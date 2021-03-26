@@ -198,7 +198,7 @@ let readAllData = (postPath) => {
                     url: `${rootUrl}/${detailUrl}/${mat.permalink}`,
                 });
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
-                    title: o.title + ' - zxCoder\'s blog',
+                    title: mat.title + ' - zxCoder\'s blog',
                     year: moment().year(),
                 }, {
                     navbar: navbar_search,
