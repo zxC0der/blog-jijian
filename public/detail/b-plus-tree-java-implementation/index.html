@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
+                <a class="navbar-item" href="https://zxcoder.top">首页</a>
+                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
+                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
+                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <div class="navbar-item">
+                    <form action="https://zxcoder.top/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">B+树(Java实现)</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Dec 20, 2020
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="https://zxcoder.top/category/算法学习">算法学习</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/B+树">#B+树</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/数据库">#数据库</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/数据结构">#数据结构</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <h2>基础概念</h2>
+    <p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
+    <h2>Search</h2>
+    <p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code>searchInInternalNode</code>函数来判断要往哪个儿子节点走。</p>
+    <pre><code class="language-java">public Tuple search(Tuple key){                       
+        Node curNode=root;                                
+        while(true){                                      
+            if(curNode.isLeaf){                           
+                return curNode.searchInLeafNode(key);     
+            }else{                                        
+                curNode=curNode.searchInInternalNode(key);
+            }                                             
+        }                                                 
+    }                                                     
+    </code></pre>
+    <h2>Insert</h2>
+    <p>插入操作的第一步类似查找，从根节点往下找到叶子节点，然后插入到叶子节点，如果该叶子节点size超过了，就应该进行第二步的分裂，<code>splitLeafNode(tree)</code>。</p>
+    <pre><code class="language-java">public boolean insert(Tuple key,Tuple value){
+        if(search(key)!=null){
+            return false;
+        }
+        Node curNode=root;
+        while(true){
+            if(curNode.isLeaf){
+                curNode.insertLeafNode(this,key,value);
+                break;
+            }else{
+                curNode= curNode.searchInInternalNode(key);
+            }
+        }
+        return true;
+    }
+    public void insertLeafNode(BPlusTree tree,Tuple key,Tuple value){
+        insertKeyValue(key,value);
+        if(isOverfull()){
+            splitLeafNode(tree);
+        }                                     
+    }               
+    </code></pre>
+    <p>分裂叶子节点的方法首先是创建两个新的叶子节点，修改链表关系，然后复制所有key-value对，然后比较复杂的一步是修改父亲关系，需要判断当前分裂的叶子节点是否是根节点，若是根节点，需要创建一个新的根节点作为分裂的两个叶子节点的父节点，若不是根节点，需要删除父节点对当前分裂节点的儿子指针，然后加上分裂后两个新节点的儿子指针，然后如果父节点的size也超过了，就应该进行第三步的分裂，<code>splitInternalNode(tree)</code></p>
+    <pre><code class="language-java">public void splitLeafNode(BPlusTree tree){               
+        Node left=buildLeafNode(tree.order);                 
+        Node right=buildLeafNode(tree.order);                
+        left.prev=prev;                                      
+        if(prev!=null){                                      
+            prev.next=left;                                  
+        }else{                                               
+            tree.head=left;                                  
+        }                                                    
+        right.next=next;                                     
+        if(next!=null){                                      
+            next.prev=right;                                 
+        }                                                    
+        left.next=right;                                     
+        right.prev=left;                                     
+        int siz=keys.size();                                 
+        int leftSize=(siz+1)/2;                              
+        left.keys.addAll(keys.subList(0,leftSize));          
+        left.values.addAll(values.subList(0,leftSize));      
+        right.keys.addAll(keys.subList(leftSize,siz));       
+        right.values.addAll(values.subList(leftSize,siz));   
+        if(isRoot){                                          
+            splitNewRoot(tree,left,right);            
+            tree.root.keys.add(right.keys.get(0));           
+        }else{                                               
+            parent.replaceChildren(this,left,right);     
+            parent.insertInternalNode(right.keys.get(0));    
+            if(parent.isOverfull()){                         
+                parent.splitInternalNode(tree);              
+            }                                                
+        }                                                    
+    }          
+    private void replaceChildren(Node node,Node left,Node right){
+        int index=children.indexOf(node);                        
+        children.remove(index);                                  
+        left.parent=this;                                        
+        right.parent=this;                                       
+        children.add(index,left);                                
+        children.add(index+1,right);                             
+    }     
+    private void splitNewRoot(BPlusTree tree,Node left,Node right){
+        isRoot=false;
+        tree.root= buildRootNode(tree.order);
+        left.parent=tree.root;
+        right.parent=tree.root;
+        tree.root.children.add(left);
+        tree.root.children.add(right);
+    }                                                                                                     
+    </code></pre>
+    <p>类似叶子节点的分裂，首先创建两个中间节点，然后复制key和children，注意中间节点的分裂需要把中间一个key拉上去，然后修改父亲关系，同样是需要判断是否是根节点，若是根节点，同叶子节点，创建一个新的根节点然后把分裂的两个节点加上去，注意和叶子节点不同的是这里根节点加的key是拉上去的key，若不是根节点，同叶子节点进行替换，并插入拉上去的key，再判断父亲节点是否需要继续分裂。</p>
+    <pre><code class="language-java">public void splitInternalNode(BPlusTree tree){                        
+        Node left=buildInternalNode(tree.order);                          
+        Node right=buildInternalNode(tree.order);                         
+        int siz=keys.size();                                              
+        int leftSize=(siz+1)/2;                                           
+        Tuple keyToParent=keys.get(leftSize);                             
+        left.keys.addAll(keys.subList(0,leftSize));                       
+        children.subList(0,leftSize+1).forEach(child-&gt;{                   
+            left.children.add(child);                                     
+            child.parent=left;                                            
+        });                                                               
+        right.keys.addAll(keys.subList(leftSize+1,siz));                  
+        children.subList(leftSize+1,siz+1).forEach(child-&gt;{               
+            right.children.add(child);                                    
+            child.parent=right;                                           
+        });                                                               
+        if(isRoot){                                                       
+            splitNewRoot(tree,left,right);                        
+            tree.root.keys.add(keyToParent);                              
+        }else{
+            parent.replaceChildren(this,left,right);                      
+            parent.insertInternalNode(keyToParent);                     
+            if(parent.isOverfull()){                                      
+                parent.splitInternalNode(tree);                           
+            }                                                             
+        }                                                                 
+    }                                                                     
+    </code></pre>
+    <h2>Delete</h2>
+    <p>删除操作细节比较多，整体框架也类似插入，递归找到叶子节点并删除对应key-value对，然后如果size不足，考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，然后合并后父节点会少一个key，如果size不足，就需要继续进行下一步的操作，同时还要处理类似删除最后一个节点，删除第一个key-value对后必须修改祖先节点的key等细节。</p>
+    <pre><code class="language-java">public boolean delete(Tuple key,Tuple value){
+        if(search(key)==null){
+            return false;
+        }
+        Node curNode=root;
+        while(true){
+            if(curNode.isLeaf){
+                return curNode.deleteLeafNode(this,key,value);
+            }else{
+                curNode= curNode.searchInInternalNode(key);
+            }
+        }
+    }
+    public boolean deleteLeafNode(BPlusTree tree,Tuple key,Tuple value){
+        boolean first=keys.indexOf(key)==0;                            
+        Tuple oldKey=keys.get(0);                                      
+        if(!deleteKeyValue(key,value)){                                
+            return false;                                              
+        }                                                              
+        if(isRoot &amp;&amp; keys.size()==0){                                  
+            isRoot=false;                                              
+            tree.root=null;                                            
+        }                                                              
+        if(first &amp;&amp; keys.size()&gt;0){                                    
+            Tuple newKey=keys.get(0);                                  
+            updateParentKey(oldKey,newKey);                            
+        }                                                              
+        if(isDeficient()){                                             
+            if(isPrevLoanable()){                                      
+                loanFromPrev();                                        
+            }else if(isNextLoanable()){                                
+                loadFromNext();                                        
+            }else{                                                     
+                if (canMergePrev()) {                                  
+                    mergePrev();                                       
+                } else if (canMergeNext()) {                           
+                    mergeNext();                                       
+                }                                                      
+                if(parent!=null &amp;&amp; parent.isDeficient()){              
+                    mergeInternalNode(tree,parent);                    
+                }                                                      
+            }                                                          
+        }                                                              
+        return true;                                                   
+    }          
+    private boolean isPrevLoanable(){                                                         
+        return prev!=null &amp;&amp; prev.isLoanable() &amp;&amp; parent==prev.parent;                        
+    }                                                                       
+    private boolean isNextLoanable(){                                                         
+        return next!=null &amp;&amp; next.isLoanable() &amp;&amp; parent==next.parent;                        
+    }                                                                                         
+    private void loanFromPrev(){                                                              
+        int siz=prev.keys.size();                                                             
+        Tuple loanKey=prev.keys.remove(siz-1);                                                
+        keys.add(0,loanKey);                                                                  
+        Tuple loanValue=prev.values.remove(siz-1);                                            
+        values.add(0,loanValue);                                                              
+        int index=parent.children.indexOf(this)-1;                                            
+        parent.keys.remove(index);                                                            
+        parent.keys.add(index,loanKey);                                                       
+    }                                                                                         
+    private void loadFromNext(){                                                              
+        Tuple loanKey=next.keys.remove(0);                                                    
+        keys.add(loanKey);                                                                    
+        Tuple loanValue=next.values.remove(0);                                                
+        values.add(loanValue);                                                                
+        int index=parent.children.indexOf(this);                                              
+        parent.keys.remove(index);                                                            
+        parent.keys.add(index,next.keys.get(0));                                              
+    }     
+    private boolean canMerge(Node node) {                                                       
+        return node!=null &amp;&amp; keys.size() + node.keys.size() &lt;= maxSize &amp;&amp; parent == node.parent;
+    }                                                                                           
+    private boolean canMergePrev(){                                                             
+        return canMerge(prev);                                                                  
+    }                                                                                           
+    private boolean canMergeNext(){                                                             
+        return canMerge(next);                                                                  
+    }                                                                                   
+    private void mergePrev(){                    
+        int siz=keys.size();                     
+        for (int i = 0; i &lt;siz; i++) {           
+            prev.keys.add(keys.get(i));          
+        }                                        
+        int index=parent.children.indexOf(this)-1
+        parent.keys.remove(index);               
+        parent.children.remove(this);            
+        prev.next=next;                          
+        if (next != null) {                      
+            next.prev=prev;                      
+        }                                        
+    }                                            
+    private void mergeNext(){                    
+        int siz=keys.size();                     
+        for (int i = 0; i &lt;siz; i++) {           
+            next.keys.add(0,keys.get(i));        
+        }                                        
+        int index=parent.children.indexOf(this); 
+        parent.keys.remove(index);               
+        parent.children.remove(this);            
+        next.prev=prev;                          
+        if (prev != null) {                      
+            prev.next=next;                      
+        }                                        
+    }                                                                                                               
+    </code></pre>
+    <p>第一种是情况是要操作的父节点是根节点，且儿子节点只有一个，那么该儿子节点将作为新的根节点，另一种情况，首先要找出当前操作的中间节点的前驱和后继节点，注意中间节点是没有双向链表相连的，然后类似叶子节点的操作，也是考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，注意从前驱结点借，其实相当于它们中间父节点的key落下来，然后前驱结点这个借出去的key拉上去，后继节点同理，最后同样是要往上考虑父亲节点是否需要继续合并下去。</p>
+    <pre><code class="language-java">private void mergeInternalNode(BPlusTree tree,Node curNode){                        
+        if (curNode.isRoot) {                                                           
+            if (curNode.children.size() &lt; 2) {                                          
+                tree.root=tree.root.children.get(0);                                    
+                tree.root.isRoot = true;                                                
+                tree.root.parent = null;                                                
+            }                                                                           
+        } else {                                                                        
+            int curIdx = curNode.parent.children.indexOf(curNode);                      
+            int preIdx = curIdx - 1;                                                    
+            int nextIdx = curIdx + 1;                                                   
+            Node prevNode = null;                                                       
+            Node nextNode = null;                                                       
+            if (preIdx &gt;= 0) {                                                          
+                prevNode = curNode.parent.children.get(preIdx);                         
+            }                                                                           
+            if (nextIdx &lt; curNode.parent.children.size()) {                             
+                nextNode = curNode.parent.children.get(nextIdx);                        
+            }                                                                           
+            if (isInternalNodeLoanable(curNode,prevNode)) {                             
+                borrowMiddleNodePrevious(curNode,prevNode);                             
+            } else if (isInternalNodeLoanable(curNode,nextNode)) {                      
+                borrowMiddleNodeNext(curNode,nextNode);                                 
+            } else {                                                                    
+                if (curNode.canMergeInternalNode(prevNode)) {                           
+                    mergeTwiToPreMiddleNode(prevNode, curNode);                            
+                    int parentKeyIdx = curNode.parent.children.indexOf(curNode)-1;      
+                    curNode.parent.keys.remove(parentKeyIdx);                           
+                    curNode.parent.children.remove(parentKeyIdx + 1);                   
+                } else if (curNode.canMergeInternalNode(nextNode)) {                    
+                    mergeTwoToPreMiddleNode(curNode, nextNode);                            
+                    int parentKeyIdx = curNode.parent.children.indexOf(nextNode)-1;     
+                    curNode.parent.keys.remove(parentKeyIdx);                           
+                    curNode.parent.children.remove(parentKeyIdx + 1);                   
+                }                                                                       
+                if(curNode.parent.isDeficient()){                                       
+                    mergeInternalNode(tree,curNode.parent);                             
+                }                                                                       
+            }                                                                           
+        }                                                                               
+    }        
+    private boolean isInternalNodeLoanable(Node curNode,Node node){           
+        return node!=null &amp;&amp; node.isLoanable() &amp;&amp; curNode.parent==node.parent;
+    }           
+    private void borrowMiddleNodePrevious(Node curNode,Node preNode) {                                                                                 
+        int parentKeyIdx = curNode.parent.children.indexOf(curNode)-1;             
+        Tuple downKey = curNode.parent.keys.get(parentKeyIdx);                     
+        curNode.keys.add(0, downKey);                                              
+        curNode.parent.keys.remove(parentKeyIdx);                                  
+        int preSize = preNode.keys.size();                                         
+        Tuple upKey = preNode.keys.get(preSize - 1);                               
+        curNode.parent.keys.add(parentKeyIdx, upKey);                              
+        preNode.keys.remove(preSize - 1);                                          
+        int preChildSize = preNode.children.size();                                
+        Node borrowPoint = preNode.children.get(preChildSize - 1);                 
+        curNode.children.add(0 , borrowPoint);                                     
+        preNode.children.remove(preChildSize - 1);                                 
+        borrowPoint.parent = curNode;                                              
+    }                                                                              
+    private void borrowMiddleNodeNext(Node curNode,Node nextNode) {                                                                                     
+        int parentKeyIdx = curNode.parent.children.indexOf(nextNode)-1;            
+        Tuple downKey = curNode.parent.keys.get(parentKeyIdx);                     
+        curNode.keys.add(downKey);                                                 
+        curNode.parent.keys.remove(parentKeyIdx);                                  
+        Tuple upKey = nextNode.keys.get(0);                                        
+        curNode.parent.keys.add(parentKeyIdx, upKey);                              
+        nextNode.keys.remove(0);                                                   
+        Node borrowPoint = nextNode.children.get(0);                               
+        curNode.children.add(borrowPoint);                                         
+        nextNode.children.remove(0);                                               
+    }                                                                                                                                                          
+    private boolean canMergeInternalNode(Node node){
+        if (node != null) {
+            return keys.size() + node.keys.size() &lt;= maxSize &amp;&amp; parent == node.parent;
+        }
+        return false;
+    }
+    private void mergeTwoInternalNode(Node first, Node sec) {
+        int parentKeyIdx = sec.parent.children.indexOf(sec)-1;
+        first.keys.add(first.parent.keys.get(parentKeyIdx));
+        first.keys.addAll(sec.keys);
+        for (int i = 0; i &lt; sec.children.size(); i++) {
+            sec.children.get(i).parent = first;
+            first.children.add(sec.children.get(i));
+        }
+    }                                                        
+    </code></pre>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="https://zxcoder.top/detail/b-plus-tree-java-implementation">https://zxcoder.top/detail/b-plus-tree-java-implementation</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

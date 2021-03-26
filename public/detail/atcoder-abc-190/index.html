@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
+                <a class="navbar-item" href="https://zxcoder.top">首页</a>
+                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
+                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
+                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <div class="navbar-item">
+                    <form action="https://zxcoder.top/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">AtCoder-ABC-190(A-F)</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Jan 30, 2021
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="https://zxcoder.top/category/题解">题解</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/思维">#思维</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/枚举">#枚举</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/暴搜">#暴搜</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/因子">#因子</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/bfs">#bfs</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/最短路">#最短路</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/状压dp">#状压dp</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/树状数组">#树状数组</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/逆序数">#逆序数</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <h2>A</h2>
+    <p>输入A，B，C，C决定先后手，A和B每次轮流减1，先减为0的输。</p>
+    <p>根据先后手决定判断是小于还是小于等于。</p>
+    <h2>B</h2>
+    <p>有一些法术，施法需要Xi秒，攻击力Yi，怪兽可以无视施法大于等于S秒或者是攻击力小于等于D的法术，问能否使怪兽造成伤害。</p>
+    <p>遍历判断，必须两个条件都不符合。</p>
+    <h2>C</h2>
+    <p>有N个盘子，M个条件，要求某两个盘子上都要有球，有K个操作，可以给两个盘子的其中一个放上一个球，问怎么放能满足最多条件。</p>
+    <p>K&lt;=16，直接爆搜，然后枚举所有条件进行判断。</p>
+    <h2>D</h2>
+    <p>求出和为N的公差为1的整数等差数列的数量。</p>
+    <p>根据定义，该数列首尾相加乘以长度就是2N，是一个偶数，所以直接枚举2N的因子，再排除掉两个因子都是偶数(<strong>如果数列长度是偶数，而公差又是1，则首尾相加不可能是偶数</strong>)的情况，剩下的就是所有可能的数列。</p>
+    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    typedef long long ll;
+    ll n;
+    int main(){
+        scanf(&quot;%lld&quot;,&amp;n);
+        n*=2LL;
+        ll ans=0;
+        for(ll i=1LL;i*i&lt;=n;i++){
+            if(n%i==0){
+                if(i%2==1 || (n/i)%2==1){
+                    ans+=2;
+                }
+            }
+        }
+        printf(&quot;%lld\n&quot;,ans);
+        return 0;
+    }
+    </code></pre>
+    <h2>E</h2>
+    <p>问题抽象出来就是给一个1e5的无向图，边权都为1，指定K个特殊点，要求找到最短的路径满足每个特殊点至少经过一次。</p>
+    <p>特殊点和特殊点之间肯定是走最短路径，所以可以先枚举特殊点，通过bfs求出任意两个特殊点的最短距离，这样就可以对图进行简化，其他的点都不需要，只需要关注这K个特殊点和它们之间的距离。</p>
+    <p>然后就是转化为带权的最短哈密顿通路的问题，因为K&lt;=17，所以可以用状压dp来解决这个问题。</p>
+    <p>枚举起点，定义dp[i][j]表示已经过的点状态为i，最后经过的点是j的最短距离，枚举状态，再枚举上一个经过的点，状态转移方程为<code>dp[j][l]=min(dp[j][l],dp[(j^(1&lt;&lt;(l-1)))][o]+cost[o][l])</code></p>
+    <p>注意状压dp中的位运算。</p>
+    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    const int N=1e5+50;
+    const int INF=0x3f3f3f3f;
+    int n,m,a,b,k;
+    int c[20];
+    vector&lt;int&gt; g[N];
+    int vis[N];
+    int cost[20][20],dp[1&lt;&lt;19][20];
+    int main(){
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        for(int i=1;i&lt;=m;i++){
+            scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+            g[a].push_back(b);
+            g[b].push_back(a);
+        }
+        scanf(&quot;%d&quot;,&amp;k);
+        for(int i=1;i&lt;=k;i++){
+            scanf(&quot;%d&quot;,&amp;c[i]);
+        }
+        if(k==1){
+            printf(&quot;%d\n&quot;,1);
+            return 0;
+        }
+        for(int i=1;i&lt;=k;i++){
+            for(int j=1;j&lt;=k;j++){
+                if(i==j){
+                    cost[i][i]=0;
+                    continue;
+                }else{
+                    cost[i][j]=INF;
+                }
+                int st=c[i];
+                int ed=c[j];
+                queue&lt;pair&lt;int,int&gt;&gt; q;
+                queue&lt;int&gt; vq;
+                q.push({st,0});
+                vis[st]=1;
+                vq.push(st);
+                while(!q.empty()){
+                    auto t=q.front();
+                    q.pop();
+                    int u=t.first;
+                    int cs=t.second;
+                    if(u==ed){
+                        cost[i][j]=cs-1;
+                        break;
+                    }
+                    int siz=g[u].size();
+                    for(int l=0;l&lt;siz;l++){
+                        int v=g[u][l];
+                        if(!vis[v]){
+                            q.push({v,cs+1});
+                            vis[v]=1;
+                            vq.push(v);
+                        }
+                    }
+                }
+                while(!vq.empty()){
+                    vis[vq.front()]=0;
+                    vq.pop();
+                }
+            }
+        }
+        int ans=INF;
+        for(int i=1;i&lt;=k;i++) {
+            memset(dp,INF,sizeof(dp));
+            // 起点
+            dp[1&lt;&lt;(i-1)][i]=0;
+            for(int j=1;j&lt;(1&lt;&lt;k);j++){
+                for(int l=1;l&lt;=k;l++){
+                    if((j&gt;&gt;(l-1))&amp;1){
+                        // 枚举上一个经过的点
+                        for(int o=1;o&lt;=k;o++){
+                            if(((j^(1&lt;&lt;(l-1)))&gt;&gt;(o-1))&amp;1){
+                                dp[j][l]=min(dp[j][l],dp[(j^(1&lt;&lt;(l-1)))][o]+cost[o][l]);
+                            }
+                        }
+                    }
+                }
+            }
+            for(int j=1;j&lt;=k;j++){
+                if(j!=i){
+                    ans=min(ans,dp[(1&lt;&lt;k)-1][j]);
+                }
+            }
+        }
+        printf(&quot;%d\n&quot;,ans&gt;=INF?-1:ans+k);
+        return 0;
+    }
+    </code></pre>
+    <h2>F</h2>
+    <p>给定一个全排列，计算分别循环左移0到n-1位时候序列的逆序数。</p>
+    <p>因为是全排列，所以当一个数从首位左移到末位，显然逆序数的变化就是减去后面比它小的数的个数，再加上后面比它大的数的个数。</p>
+    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    const int N=3e5+50;
+    typedef long long ll;
+    int n,a[N];
+    int c[N];
+    int lowbit(int x){
+        return x&amp;(-x);
+    }
+    void add(int i,int x){
+        while(i&lt;=n){
+            c[i]+=x;
+            i+=lowbit(i);
+        }
+    }
+    int sum(int i){
+        int ans=0;
+        while(i){
+            ans+=c[i];
+            i-=lowbit(i);
+        }
+        return ans;
+    }
+    int main(){
+        scanf(&quot;%d&quot;,&amp;n);
+        for(int i=1;i&lt;=n;i++){
+            scanf(&quot;%d&quot;,&amp;a[i]);
+        }
+        ll ans=0;
+        for(int i=n;i&gt;=1;i--){
+            ans+=1LL*sum(a[i]+1);
+            add(a[i]+1,1);
+        }
+        printf(&quot;%lld\n&quot;,ans);
+        for(int i=1;i&lt;n;i++){
+            ans=ans+n-1-2LL*a[i];
+            printf(&quot;%lld\n&quot;,ans);
+        }
+        return 0;
+    }
+    </code></pre>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="https://zxcoder.top/detail/atcoder-abc-190">https://zxcoder.top/detail/atcoder-abc-190</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

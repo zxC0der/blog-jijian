@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
+                <a class="navbar-item" href="https://zxcoder.top">首页</a>
+                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
+                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
+                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <div class="navbar-item">
+                    <form action="https://zxcoder.top/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">CodeForces1447D</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Dec 3, 2020
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="https://zxcoder.top/category/题解">题解</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/字符串">#字符串</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/LCS">#LCS</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <h2>题意</h2>
+    <p>给定两个长度为5000的字符串s和t，分别从中找到一个子串ss和tt，使得4*lcs(ss,tt)-len(ss)-len(tt)的值最大。</p>
+    <h2>分析</h2>
+    <p>5000! lcs! <del>很容易</del>想到最长公共子序列O(N^2)的dp求法，类似的，我们定义dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值，注意一定是以这两个字符结尾，这样统计才不重不漏，而子串的左端点其实无需考虑，只需要通过取max更新答案。</p>
+    <p>当两个字符相等，显然lcs加1，两个子串长度也分别加1，总的值加2，当两个字符不等，按照lcs的做法，这里的一个子串长度加1，另一个不变。</p>
+    <h2>代码</h2>
+    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    const int N=5050;
+    char s[N],t[N];
+    int n,m;
+    // 不用管子串的开头，dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值
+    int dp[N][N];
+    int main(){
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        scanf(&quot;%s&quot;,s+1);
+        scanf(&quot;%s&quot;,t+1);
+        int ans=0;
+        for(int i=1;i&lt;=n;i++){
+            for(int j=1;j&lt;=m;j++){
+                if(s[i]==t[j]){
+                    dp[i][j]=dp[i-1][j-1]+2;
+                }else{
+                    dp[i][j]=max(0,max(dp[i][j-1],dp[i-1][j])-1);
+                }
+                ans=max(ans,dp[i][j]);
+            }
+        }
+        printf(&quot;%d\n&quot;,ans);
+        return 0;
+    }
+    </code></pre>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="https://zxcoder.top/detail/codeforces-1447D">https://zxcoder.top/detail/codeforces-1447D</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
+                <a class="navbar-item" href="https://zxcoder.top">首页</a>
+                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
+                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
+                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <div class="navbar-item">
+                    <form action="https://zxcoder.top/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">这次一定要学会KMP</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Dec 2, 2020
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="https://zxcoder.top/category/算法学习">算法学习</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/KMP">#KMP</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/字符串">#字符串</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <h2>概述</h2>
+    <p>KMP是一种快速的字符串匹配算法，字符串匹配的暴力做法中，当匹配到某一个字符时失配，模式串需要重新回到第一个字符串，对应的，主串需要在上一个起点的基础上前进<strong>一个</strong>字符，而KMP解决的问题就在这里，通过预处理，在这里可以让模式串跳<strong>多个</strong>字符，从而加快匹配速度，最终时间复杂度是O(n+m)，n是主串长度，m是模式串长度，其中预处理复杂度是O(m)，匹配复杂度是O(n)。</p>
+    <p>首先计算一个nex数组(也有叫做fail函数，意思相同，指匹配失败之后的处理)，简单来说，nex[i]表示模式串前缀pat[0...i]的最长相同前后缀长度(可重叠，但不可以是整个子串)，这里也有另一种表示法，nex[0]为-1，然后用nex[i]表示前i的字符，也就是模式串前缀pat[0...i-1]的最长相同前后缀长度。</p>
+    <h2>匹配</h2>
+    <h3>思路</h3>
+    <p>先不考虑nex数组的计算，直接考虑匹配，假设采用的是第二种表示方法，也就是nex[i]表示模式串前i个字符的最长相同前缀后缀长度，那么，现在假设匹配到第8个字符串(i=7)失配了，按照上一节提到的，原串不动，模式串跳<strong>多个字符</strong>，那么跳多少呢，就得看此时的nex值，nex[7]表示此时模式串前7个字符的最长相同前缀后缀长度，<strong>注意这7个字符是和原串匹配的</strong>，所以如果nex[7]=3，大概就是<code>abcdabc</code>这种情况，那么原串的前7个字符也是<code>abcdabc</code>，这时候，很显然，我们把模式串跳到原串的第5个字符，也就是第二段<code>abc</code>开始匹配，就可以节省很多没必要的移动了，这里跳的数量就是<code>i-nex[i]</code>。</p>
+    <h3>代码</h3>
+    <pre><code class="language-cpp">// kmp基本查找有几种：查找出现位置(第一次/多次)，查找数量(可重叠/不可重叠)
+    int kmp(char* s,int n,char* p,int m){
+        kmp_pre(p,m);
+        // i，j分别是主串和模式串比较字符下标
+        int i=0;
+        int j=0;
+        while(i&lt;n &amp;&amp; j&lt;m){
+            printf(&quot;%d %d\n&quot;,i,j);
+            // 这里j=-1表示没有相同前后缀了，所以实际上应该是i++;j=0;只是这里合并了分支
+            if(j==-1 || s[i]==p[j]){
+                i++;
+                j++;
+            }else{
+                j=nex[j];
+            }
+            // 匹配个数
+            // if(j==m){
+               // 统计数量，多次出现的位置同理
+               // cnt++;
+               // 可重叠
+               // j=nex[j];
+               // 不可重叠
+               // j=0;
+            // }
+        }
+        // 匹配
+        if(j==m){
+            // 返回第一个出现位置
+            return i-j;
+        }
+        return -1;
+    }
+    </code></pre>
+    <h2>预处理</h2>
+    <h2>思路</h2>
+    <p>解决了匹配，剩下的就是如何求出nex数组，有两种情况。</p>
+    <p>第一种，比如abaabaaba<strong>a</strong>ba<strong>a</strong>，我们已经求出了nex[12]=9，要求nex[13]，就需要比较pat[12]和pat[9]，这里两个字符相等，都是a，刚好可以接上，所以nex[13]=nex[12]+1。</p>
+    <p>第二种，比如bacababac<strong>a</strong>ba<strong>c</strong>，我们已经求出了nex[12]=6，要求nex[13]，同样需要比较pat[12]和pat[6]，这里字符c和b是不相等的，那说明我们无法直接接上nex[12]对应的前缀pat[0...5]，所以我们尝试把前缀缩短，缩短有个重要的前提，我们必须保证我们的字符pat[12]能够接上后缀，因此我们并不是把前缀从pat[0...5]缩短到pat[0...4]，<strong>我们需要保证缩短后的前缀pat[0...k]和pat[12]之前的某一段子串是相同的</strong>，所以我们直接跳到nex[6]即可(<del>文字解释非常无力</del>)，比如bacababacabac，一开始我们尝试pat[12]和后缀pat[6...11]拼接，拼接失败，因为pat[12]不等于pat[6]，所以前缀pat[0...5]不能延伸作为nex[13]，我们考虑缩短到，根据nex[6]=2，我们将前缀缩短到pat[0..1]，此时pat[12]要拼接的后缀对应的就是pat[10...11]，拼接成功，所以nex[13]=2+1=3，总之就是抓住nex数组的定义，<strong>前缀和后缀相同，那么前缀的前缀(特指nex数组对应的最大相同前缀，后缀同理)和后缀的后缀也相同</strong>，不断尝试拼接后缀，直到可以拼接上或者nex值为-1。</p>
+    <p>一个<del>类似于并查集路径压缩的</del>小优化：比如模式串是abab，主串是abacababc，当匹配到s[3]和p[3]，失配，模式串向右移动两位，然后比较s[3]和p[1]，但是实际上这两个肯定失配，因为从模式串abab来看，当某一个字符p[i]失配，下一个要匹配的字符肯定是p[nex[i]]，而对于这个模式串的p[3]，p[3]=p[nex[3]]，所以显然失配，为了避免这些无谓的比较，采用一种类似压缩路径的方法，当计算nex[3]时，也就是即将nex[++i]=++j，i是当前比较字符，j是前缀长度，我们继续看下一个字符，也就是p[3]，如果p[3]=p[j]，那么我们就要避免nex[++i]=nex[++j]的出现，而是使用nex[++i]=nex[++j]，这里可以这么写是因为nex[++j]已经在之前迭代求出来，所以这相当于一个非递归的路径压缩，这样子当失配的时候，因为nex[3]是-1了，所以模式串不再是右移到p[1]。</p>
+    <h3>代码</h3>
+    <p>代码乍一看和思路不太一样，其实是经过了一些写法上的优化。</p>
+    <pre><code class="language-cpp">void kmp_pre(char* p,int m){
+        // i初始化为0表示要比较的字符，也就是要求nex[i+1]
+        int i=0;
+        // j表示尝试拼接的后缀长度(也等于前缀长度)，所以也是要比较的字符下标
+        // 初始化为-1，因为一开始前缀为空
+        int j=-1;
+        nex[0]=-1;
+        while(i&lt;m){
+            // j==-1只有可能是前缀为p[0]，此时nex值为0，合并分支
+            if(j==-1 || p[i]==p[j]){
+                // 因为要求的是nex[i+1]，之后求下一个，所以是++i
+                // j是前缀长度，拼接上所以是j+1
+                if(p[i+1]==p[j+1]){
+                    // 优化
+                    nex[++i]=nex[++j];
+                }else{
+                    nex[++i]=++j;
+                }
+            }else{
+                j=nex[j];
+            }
+        }
+    }
+    </code></pre>
+    <h2>拓展</h2>
+    <h3>周期和border</h3>
+    <p>来源金策的字符串ppt，省去其中看起来比较复杂的定义。</p>
+    <p>border其实就是字符串的相同前后缀长度，所以nex数组其实求的就是前缀的最长border。</p>
+    <p>周期是子串的长度，且该可以通过重复构成原串(可能不是完整的)。</p>
+    <p>比如abaaaba，周期是4(abaa)，6(abaaab)，7(abaaaba)，border是aba，a和空串。</p>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="https://zxcoder.top/detail/i-learned-kmp">https://zxcoder.top/detail/i-learned-kmp</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

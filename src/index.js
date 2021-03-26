@@ -12,6 +12,7 @@ const md = require('markdown-it')({
 const layoutDir = path.join(__dirname, '../layout');
 const postsDir = path.join(__dirname, '../posts');
 const rootDir = path.join(__dirname, '../public');
+const srcDir = path.join(__dirname, '.');
 const devUrl = "http://127.0.0.1:8080";
 const prodUrl = "https://zxcoder.top";
 const rootUrl = prodUrl;
@@ -83,15 +84,15 @@ let navbarItems = [
         link: `${rootUrl}/${aboutUrl}`,
     },
 ]
-let search_bar = renderFromFile('../layout/component/search-bar.html', {
+let search_bar = renderFromFile(`${layoutDir}/component/search-bar.html`, {
     searchPage: `${rootUrl}/${searchUrl}`,
 });
-let navbar_search = renderFromFile('../layout/component/navbar.html', {
+let navbar_search = renderFromFile(`${layoutDir}/component/navbar.html`, {
     navbarItems,
 }, {
     search_bar,
 });
-let navbar_no_search = renderFromFile('../layout/component/navbar.html', {
+let navbar_no_search = renderFromFile(`${layoutDir}/component/navbar.html`, {
     navbarItems,
 });
 /**
@@ -463,5 +464,5 @@ let searchPage = renderFromFile(`${layoutDir}/index.html`, {
 fs.mkdirSync(`${rootDir}/${searchDir}`);
 fs.writeFileSync(`${rootDir}/${searchDir}/index.html`, searchPage);
 // favicon.ico
-fs.writeFileSync(`${rootDir}/favicon.ico`, fs.readFileSync('./favicon.ico'));
+fs.writeFileSync(`${rootDir}/favicon.ico`, fs.readFileSync(`${srcDir}/favicon.ico`));
 console.timeEnd('jijian generate');
