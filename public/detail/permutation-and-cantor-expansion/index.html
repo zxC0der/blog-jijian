@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
+                <div class="navbar-item">
+                    <form action="http://127.0.0.1:8080/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">康拓展开</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Dec 3, 2020
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="http://127.0.0.1:8080/category/算法学习">算法学习</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="http://127.0.0.1:8080/tags/全排列">#全排列</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="http://127.0.0.1:8080/tags/康拓展开">#康拓展开</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <h2>康拓展开(全排列排名)</h2>
+    <h3>思路</h3>
+    <p>康拓展开是求一个全排列是第k小，思路很简单，我们求出比这个排列小的排列的数量，对于a[i]，显然比a[i]小的数都可以放在这个位置，然后后面的位置随便放，方案数就是一个阶乘，当然，因为是全排列，为了避免重复使用数字，所以求的是在i的后面比a[i]小的数的个数。即$rk=b_n(n-1)!+b_{n-1}(n-2)!+...b_10!$，其中$b_i$就是表示在i的后面比a[i]小的数的个数。</p>
+    <p>朴素做法是O(N^2)，可以用树状数组/线段树来优化计算$b_i$，复杂度为O(NlogN)。</p>
+    <h3>代码</h3>
+    <pre><code class="language-cpp">int cantor(vector&lt;int&gt;&amp; perm){
+        int n=perm.size();
+        int ans=0;
+        for(int i=0;i&lt;n;i++){
+            int cnt=0;
+            for(int j=i+1;j&lt;n;j++){
+                if(perm[j]&lt;perm[i]){
+                    cnt++;
+                }
+            }
+            ans+=cnt*fac[n-1-i];
+        }
+        return ans+1;
+    }
+    </code></pre>
+    <h2>逆康拓展开(第k个全排列)</h2>
+    <h3>思路</h3>
+    <p>逆康拓展开是指求第k个全排列，是康拓展开的逆过程，我们依次确定每一位，通过除以阶乘计算有多少个数比a[i]小，通过取模得到下一位所对应的排名，同样的，为了避免重复使用数字，我们用一个标记数组来维护还没用过的数字。</p>
+    <p>朴素做法是O(N^2)，可以用树状数组/线段树/主席树/平衡树来维护未使用的数字，复杂度为O(NlogN)。</p>
+    <h3>代码</h3>
+    <pre><code class="language-cpp">vector&lt;int&gt; revCantor(int n,int k){
+        vector&lt;int&gt; vis(n+1,0);
+        vector&lt;int&gt; ans(n,0);
+        int m=k-1;
+        for(int i=0;i&lt;n;i++){
+            int t=m/fac[n-1-i];
+            m-=t*fac[n-1-i];
+            for(int j=1;j&lt;=n;j++){
+                if(!vis[j]){
+                    t--;
+                    if(t==-1){
+                        ans[i]=j;
+                        vis[j]=1;
+                        break;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+    </code></pre>
+    <h2>上/下一个全排列</h2>
+    <h3>思路</h3>
+    <p>感性理解，肯定是在后面找一个比前面某一个位置大的数，交换，之后后面的部分转为顺序排列，为了使交换后的全排列尽量小，满足&quot;下一个&quot;，这个在前面被交换的数应该尽量靠后，权重更小，然后逆向思维，  被交换我们尽量从为了比如1 4 2 5 6 3，</p>
+    <p>感性理解，下一个全排列肯定是从后往前找到一段满足<strong>递增一个，再不断递减到完的后缀</strong>，要交换的显然是这个递增的这个，记为x，因为递减就是表示字典序最大了，要交换过去的数就是从后面找到一个刚好大于x的数，记为y，swap(x,y)，然后将后面递减部分逆序成为递增，类似于进位，后面要恢复到字典序最小的递增，为什么要从后往前，因为我们尽量让交换发生在权重更小的后面，满足<strong>下一个全排列</strong>的要求。</p>
+    <p>总结起来就是：</p>
+    <p>next_permutation的思路：从后往前找到一个i满足a[i]&lt;a[i+1]，此时a[i+1...n-1]是递减的，然后再次从后往前找到第一个大于a[i]的数，两数交换，此时a[i+1...n-1]仍然保持递减，将这一部分逆序即可。</p>
+    <p>prev_permutation的思路：累死next_permutation，符号相反，即从后往前找到一个i满足a[i]&gt;a[i+1]，此时a[i+1...n-1]是递增的，然后再次从后往前找到第一个小于a[i]的数，两数交换，此时a[i+1...n-1]仍然保持递增，将这一部分逆序即可。</p>
+    <h3>代码</h3>
+    <p>STL库函数</p>
+    <pre><code>prev_permutation(a,a+n);
+    next_permutation(a,a+n);
+    </code></pre>
+    <pre><code class="language-cpp">vector&lt;int&gt; next_permutation(vector&lt;int&gt;&amp; perm){
+        int n=perm.size();
+        int idx=-1;
+        for(int i=n-1;i&gt;0;i--){
+            if(perm[i]&gt;perm[i-1]){
+                idx=i-1;
+                break;
+            }
+        }
+        if(idx!=-1){
+            for(int i=n-1;i&gt;idx;i--){
+                if(perm[i]&gt;perm[idx]){
+                    swap(perm[i],perm[idx]);
+                    break;
+                }
+            }
+        }
+        int l=idx+1;
+        int r=n-1;
+        while(l&lt;r){
+            swap(perm[l++],perm[r--]);
+        }
+        return perm;
+    }
+    vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
+        int n=perm.size();
+        int idx=-1;
+        for(int i=n-1;i&gt;0;i--){
+            if(perm[i]&lt;perm[i-1]){
+                idx=i-1;
+                break;
+            }
+        }
+        if(idx!=-1){
+            for(int i=n-1;i&gt;idx;i--){
+                if(perm[i]&lt;perm[idx]){
+                    swap(perm[i],perm[idx]);
+                    break;
+                }
+            }
+        }
+        int l=idx+1;
+        int r=n-1;
+        while(l&lt;r){
+            swap(perm[l++],perm[r--]);
+        }
+        return perm;
+    }
+    </code></pre>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/permutation-and-cantor-expansion">http://127.0.0.1:8080/detail/permutation-and-cantor-expansion</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

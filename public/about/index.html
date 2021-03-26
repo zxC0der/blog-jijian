@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于 - zxCoder's blog</title>
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
+                <div class="navbar-item">
+                    <form action="http://127.0.0.1:8080/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-about {
+            color: #666;
+        }
+        .z-about, li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+        .z-about-title {
+            color: #333;
+            font-weight: lighter;
+        }
+    </style>
+    <div class="columns">
+        <div class="column is-3"></div>
+        <div class="column z-about">
+            <h1 class="z-about-title">关于我</h1>
+            <ul>
+                <li>一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码</li>
+                <li>不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者</li>
+                <li>数学不太行，英文也不太行，语文更不行</li>
+                <li>
+                    <span>
+                        Github
+                        <a href="https://www.github.com/Zeng1998">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-github" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </a>
+                    </span>
+                    &
+                    <span>
+                        Email
+                        <a href="mailto:1129142694@qq.com">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                        </svg>
+                    </a>
+                    </span>
+                </li>
+            </ul>
+            <h1 class="z-about-title">关于这个博客</h1>
+            <ul>
+                <li>基于Mustache模板引擎，自己实现了一个极简的的静态网页生成器</li>
+                <li>纯原生css/js打造，包括一个简单的站内搜索(目前是字符串暴力匹配)</li>
+                <li>记录一些做题题解，技术总结，读书笔记，debug经历等等</li>
+                <li>目前部署在Vercel，AliDNS解析，后期打算迁移到AliOSS</li>
+            </ul>
+        </div>
+        <div class="column is-3"></div>
+    </div>
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

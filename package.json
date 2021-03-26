@@ -1,0 +1,19 @@
+{
+  "name": "jijian",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gray-matter": "^4.0.2",
+    "json2yaml": "^1.1.0",
+    "markdown-it": "^12.0.4",
+    "moment": "^2.29.1",
+    "mustache": "^4.1.0"
+  }
+}

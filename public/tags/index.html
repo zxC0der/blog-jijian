@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签 - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
+                <div class="navbar-item">
+                    <form action="http://127.0.0.1:8080/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-term-item {
+            background: #9fceff;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .z-tag{
+            align-items: center;
+            border-radius: 4px;
+            color: #3a3a3a;
+            display: inline-flex;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+            white-space: nowrap;
+        }
+    </style>
+    <div>
+        <div class="columns">
+            <div class="column is-1"></div>
+            <div class="column" style="padding-left: 12px;">
+                <div>
+                    <h1>标签</h1>
+                    <div>
+                        <a href="http://127.0.0.1:8080/tags/思维">
+                            <span class="z-tag z-term-item">
+                                思维(6)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/数据库">
+                            <span class="z-tag z-term-item">
+                                数据库(6)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/贪心">
+                            <span class="z-tag z-term-item">
+                                贪心(4)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/字符串">
+                            <span class="z-tag z-term-item">
+                                字符串(4)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/前缀和">
+                            <span class="z-tag z-term-item">
+                                前缀和(3)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/dp">
+                            <span class="z-tag z-term-item">
+                                dp(3)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/TODO">
+                            <span class="z-tag z-term-item">
+                                TODO(3)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/枚举">
+                            <span class="z-tag z-term-item">
+                                枚举(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/二分查找">
+                            <span class="z-tag z-term-item">
+                                二分查找(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/状压dp">
+                            <span class="z-tag z-term-item">
+                                状压dp(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/最短路">
+                            <span class="z-tag z-term-item">
+                                最短路(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/AtCoder">
+                            <span class="z-tag z-term-item">
+                                AtCoder(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/因子">
+                            <span class="z-tag z-term-item">
+                                因子(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/递归">
+                            <span class="z-tag z-term-item">
+                                递归(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/debug">
+                            <span class="z-tag z-term-item">
+                                debug(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/C#">
+                            <span class="z-tag z-term-item">
+                                C#(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/CMU15-445">
+                            <span class="z-tag z-term-item">
+                                CMU15-445(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/git">
+                            <span class="z-tag z-term-item">
+                                git(2)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/01序列">
+                            <span class="z-tag z-term-item">
+                                01序列(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/交互题">
+                            <span class="z-tag z-term-item">
+                                交互题(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/区间覆盖">
+                            <span class="z-tag z-term-item">
+                                区间覆盖(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/排序">
+                            <span class="z-tag z-term-item">
+                                排序(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/整除分块">
+                            <span class="z-tag z-term-item">
+                                整除分块(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/数论">
+                            <span class="z-tag z-term-item">
+                                数论(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/LCS">
+                            <span class="z-tag z-term-item">
+                                LCS(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/dfs">
+                            <span class="z-tag z-term-item">
+                                dfs(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/素数">
+                            <span class="z-tag z-term-item">
+                                素数(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/构造">
+                            <span class="z-tag z-term-item">
+                                构造(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/CodeForces">
+                            <span class="z-tag z-term-item">
+                                CodeForces(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/期望dp">
+                            <span class="z-tag z-term-item">
+                                期望dp(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/预处理">
+                            <span class="z-tag z-term-item">
+                                预处理(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/暴力">
+                            <span class="z-tag z-term-item">
+                                暴力(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/逆序数">
+                            <span class="z-tag z-term-item">
+                                逆序数(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/树状数组">
+                            <span class="z-tag z-term-item">
+                                树状数组(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/bfs">
+                            <span class="z-tag z-term-item">
+                                bfs(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/暴搜">
+                            <span class="z-tag z-term-item">
+                                暴搜(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/并查集">
+                            <span class="z-tag z-term-item">
+                                并查集(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/二分答案">
+                            <span class="z-tag z-term-item">
+                                二分答案(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/分类讨论">
+                            <span class="z-tag z-term-item">
+                                分类讨论(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/计算几何">
+                            <span class="z-tag z-term-item">
+                                计算几何(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/ToBeAC">
+                            <span class="z-tag z-term-item">
+                                ToBeAC(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/floyd">
+                            <span class="z-tag z-term-item">
+                                floyd(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/循环节">
+                            <span class="z-tag z-term-item">
+                                循环节(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/区间合并">
+                            <span class="z-tag z-term-item">
+                                区间合并(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/DP">
+                            <span class="z-tag z-term-item">
+                                DP(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/最大曼哈顿距离">
+                            <span class="z-tag z-term-item">
+                                最大曼哈顿距离(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/二进制枚举">
+                            <span class="z-tag z-term-item">
+                                二进制枚举(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/容斥">
+                            <span class="z-tag z-term-item">
+                                容斥(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/快速幂">
+                            <span class="z-tag z-term-item">
+                                快速幂(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/MySQL">
+                            <span class="z-tag z-term-item">
+                                MySQL(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/KMP">
+                            <span class="z-tag z-term-item">
+                                KMP(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/约瑟夫环">
+                            <span class="z-tag z-term-item">
+                                约瑟夫环(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/康拓展开">
+                            <span class="z-tag z-term-item">
+                                康拓展开(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/全排列">
+                            <span class="z-tag z-term-item">
+                                全排列(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/最小表示">
+                            <span class="z-tag z-term-item">
+                                最小表示(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/位运算">
+                            <span class="z-tag z-term-item">
+                                位运算(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/数据结构">
+                            <span class="z-tag z-term-item">
+                                数据结构(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/B+树">
+                            <span class="z-tag z-term-item">
+                                B+树(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/正则表达式">
+                            <span class="z-tag z-term-item">
+                                正则表达式(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/MongoDb">
+                            <span class="z-tag z-term-item">
+                                MongoDb(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/PostgreSQL">
+                            <span class="z-tag z-term-item">
+                                PostgreSQL(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/环境变量">
+                            <span class="z-tag z-term-item">
+                                环境变量(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/ssh">
+                            <span class="z-tag z-term-item">
+                                ssh(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/Linux">
+                            <span class="z-tag z-term-item">
+                                Linux(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/服务器">
+                            <span class="z-tag z-term-item">
+                                服务器(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/dotnet">
+                            <span class="z-tag z-term-item">
+                                dotnet(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/Vue">
+                            <span class="z-tag z-term-item">
+                                Vue(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/博客">
+                            <span class="z-tag z-term-item">
+                                博客(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/LINQ">
+                            <span class="z-tag z-term-item">
+                                LINQ(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/事务">
+                            <span class="z-tag z-term-item">
+                                事务(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/默认">
+                            <span class="z-tag z-term-item">
+                                默认(1)
+                            </span>
+                        </a>
+                        <a href="http://127.0.0.1:8080/tags/开发">
+                            <span class="z-tag z-term-item">
+                                开发(1)
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-1"></div>
+        </div>
+    </div>
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined - zxCoder's blog</title>
+    <link rel="icon" href="/favicon.ico">
+    <!--bulma.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .z-footer {
+            color: #666666;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .btn-scroll-to-top {
+            bottom: 1.5rem;
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        main {
+            top: 90px;
+            margin-bottom: 0.5rem;
+        }
+        @media screen and (max-width: 960px) {
+            .is-1 {
+                display: none !important;
+            }
+        }
+        @media screen and (min-width: 361px) {
+            .z-pagination-mobile {
+                display: none!important;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            .z-pagination-desktop {
+                display: none!important;
+            }
+        }
+        ul {
+            padding-left: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column;
+            margin: 0 !important;
+        }
+        .columns {
+            margin: 0 !important;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .z-box{
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,2%);
+            color: #4a4a4a;
+            display: block;
+            padding: 1.25rem;
+        }
+        .z-box:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+        h3{
+            font-size: 1.17rem;
+            font-weight: bold;
+        }
+        .z-footer {
+            color: #666666;
+            text-align: center;
+        }
+        .z-navbar {
+            background: white !important;
+        }
+        .navbar-item:hover {
+            color: #0a0a0a !important;
+        }
+        .navbar-start {
+            margin-left: 20px !important;
+        }
+        .z-navbar-search-input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .z-navbar-search-input:focus {
+            border: #339966 solid 1px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="is-fixed-top navbar z-navbar">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
+                <div class="navbar-item">
+                    <form action="http://127.0.0.1:8080/search">
+                        <input class="z-navbar-search-input" name="q" placeholder="搜索">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main style="margin-top: 60px;">
+    <style>
+        .z-detail-title {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .z-detail, h1 h2 h3 {
+            color: #333;
+        }
+
+        .z-inline-code {
+            background: #FFFFCC;
+        }
+
+        .img-fluid {
+            /*图片渲染不超过文章宽度*/
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*line number*/
+        .hljs ul li {
+            list-style: decimal;
+            padding: 1px !important;
+            margin: 0 !important;
+        }
+
+        #collapseTOC {
+            height: 450px;
+            overflow: auto;
+        }
+
+        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+        .z-dingweizhunque {
+            padding-top: 2.3333333em !important;
+            margin-top: -1.6666666em !important; /* 临时解决方案... */
+            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+        }
+
+        .z-post-tag {
+            align-items: center;
+            border-radius: 4px;
+            display: inline-flex;
+            font-size: 14px;
+            height: 2em;
+            justify-content: center;
+            line-height: 1.5;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .z-post-tag.success {
+            background-color: #effaf3;
+            color: #257942;
+        }
+
+        .z-post-tag.warning {
+            background-color: #fffbeb;
+            color: #947600;
+        }
+
+        .z-post-footer {
+            text-align: left;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .accordion-header {
+            font-size: 24px;
+            color: #0a0a0a;
+            user-select: none;
+        }
+
+        .accordion {
+            position: fixed;
+        }
+
+        .accordion-header:hover {
+            cursor: pointer;
+        }
+
+        pre {
+            padding: 0 !important;
+        }
+    </style>
+    <div>
+        <article class="content post">
+            <div class="columns z-detail">
+                <div class="column is-1"></div>
+                <div class="column is-7">
+                    <!--标题-->
+                    <h1 class="z-detail-title">how-a-relational-database-works(原文)</h1>
+                    <!--时间，分类，标签-->
+                    <div>
+                        <span class="z-post-meta">
+                            Jan 9, 2021
+                        </span>
+                        <span class="z-post-tag success">
+                            <a href="http://127.0.0.1:8080/category/技术学习">技术学习</a>
+                        </span>
+                        <span class="z-post-tag warning">
+                            <a href="http://127.0.0.1:8080/tags/数据库">#数据库</a>
+                        </span>
+                    </div>
+                    <!--内容-->
+                    <blockquote>
+    <p>原文出处 <a href="http://coding-geek.com/how-databases-work/">http://coding-geek.com/how-databases-work/</a></p>
+    </blockquote>
+    <blockquote>
+    <p>网上流传的翻译版看起来不错，费尽心思找到英文原版出处，看起来网站有了一定年头了，这里边读边做个记录保存，防止以后文章丢失。</p>
+    </blockquote>
+    <blockquote>
+    <p>这是一篇2015年发布的文章，对关系型数据库的整个工作流程介绍得比较清楚。</p>
+    </blockquote>
+    <h2>Preface</h2>
+    <p>When it comes to relational databases, I can’t help thinking that something is missing. They’re used everywhere. There are many different databases: from the small and useful SQLite to the powerful Teradata. But, there are only a few articles that explain how a database works. You can google by yourself “how does a relational database work” to see how few results there are. Moreover, those articles are short.  Now, if you look for the last trendy technologies (Big Data, NoSQL or JavaScript), you’ll find more in-depth articles explaining how they work.</p>
+    <p>Are relational databases too old and too boring to be explained outside of university courses, research papers and books?</p>
+    <p>As a developer, I HATE using something I don’t understand. And, if databases have been used for 40 years, there must be a reason. Over the years, I’ve spent hundreds of hours to really understand these weird black boxes I use every day. <strong>Relational Databases are</strong> very interesting because they’re <strong>based on useful and reusable concepts</strong>. If understanding a database interests you but you’ve never had the time or the will to dig into this wide subject, you should like this article.</p>
+    <p>Though the title of this article is explicit, <strong>the aim of this article is NOT to understand how to use a database</strong>. Therefore, <strong>you should already know how to write a simple join query and basic CRUD queries</strong>; otherwise you might not understand this article. This is the only thing you need to know, I’ll explain everything else.</p>
+    <p>I’ll start with some computer science stuff like time complexity. I know that some of you hate this concept but, without it, you can’t understand the cleverness inside a database. Since it’s a huge topic, <strong>I’ll focus on</strong> what I think is essential: <strong>the way a database handles an SQL query</strong>. I’ll only present <strong>the basic concepts behind a database</strong> so that at the end of the article you’ll have a good idea of what’s happening under the hood.</p>
+    <p>Since it’s a long and technical article that involves many algorithms and data structures, take your time to read it. Some concepts are more difficult to understand; you can skip them and still get the overall idea.</p>
+    <p>For the more knowledgeable of you, this article is more or less divided into 3 parts:</p>
+    <ul>
+    <li>An overview of low-level and high-level database components</li>
+    <li>An overview of the query optimization process</li>
+    <li>An overview of the transaction and buffer pool management</li>
+    </ul>
+    <h2>Back to basics</h2>
+    <p>A long time ago (in a galaxy far, far away….), developers had to know exactly the number of operations they were coding. They knew by heart their algorithms and data structures because they couldn’t afford to waste the CPU and memory of their slow computers.</p>
+    <p>In this part, I’ll remind you about some of these concepts because they are essential to understand a database. I’ll also introduce the notion of <strong>database index</strong>.</p>
+    <h3>O(1) vs O($n^2$)</h3>
+    <p>Nowadays, many developers don’t care about time complexity … and they’re right!</p>
+    <p>But when you deal with a large amount of data (I’m not talking about thousands) or if you’re fighting for milliseconds, it becomes critical to understand this concept. And guess what, databases have to deal with both situations! I won’t bore you a long time, just the time to get the idea. This will help us later to understand the concept of <strong>cost based optimization</strong>.</p>
+    <h4>The concept</h4>
+    <p>The <strong>time complexity is used to see how long an algorithm will take for a given amount of data</strong>. To describe this complexity, computer scientists use the mathematical big O notation. This notation is used with a function that describes how many operations an algorithm needs for a given amount of input data.</p>
+    <p>For example, when I say “this algorithm is in O( some_function() )”, it means that for a certain amount of data the algorithm needs some_function(a_certain_amount_of_data) operations to do its job.</p>
+    <p><strong>What’s important</strong> is not the amount of data but <strong>the way the number of operations increases when the amount of data increases</strong>. The time complexity doesn’t give the exact number of operations but a good idea.</p>
+    <p><img src="https://i.loli.net/2020/12/09/u8k2U4rOFzaNlgf.png" alt="TimeComplexity.png"></p>
+    <p>In this figure, you can see the evolution of different types of complexities. I used a logarithmic scale to plot it. In other words, the number of data is quickly increasing from 1 to 1 billion. We can see that:</p>
+    <ul>
+    <li>The O(1) or constant complexity stays constant (otherwise it wouldn’t be called constant complexity).</li>
+    <li>The O(log(n)) stays low even with billions of data.</li>
+    <li>The worst complexity is the O(n2) where the number of operations quickly explodes.</li>
+    <li>The two other complexities are quickly increasing.</li>
+    </ul>
+    <h4>Examples</h4>
+    <p>With a low amount of data, the difference between O(1) and O(n2) is negligible. For example, let’s say you have an algorithm that needs to process 2000 elements.</p>
+    <ul>
+    <li>An O(1) algorithm will cost you 1 operation</li>
+    <li>An O(log(n)) algorithm will cost you 7 operations</li>
+    <li>An O(n) algorithm will cost you 2 000 operations</li>
+    <li>An O(n*log(n)) algorithm will cost you 14 000 operations</li>
+    <li>An O(n2) algorithm will cost you 4 000 000 operations</li>
+    </ul>
+    <p>The difference between O(1) and O(n2) seems a lot (4 million) but you’ll lose at max 2 ms, just the time to blink your eyes. Indeed, current processors can handle <a href="https://en.wikipedia.org/wiki/Instructions_per_second">hundreds of millions of operations per second</a>. This is why performance and optimization are not an issue in many IT projects.</p>
+    <p>As I said, it’s still important to know this concept when facing a huge number of data. If this time the algorithm needs to process 1 000 000 elements (which is not that big for a database):</p>
+    <ul>
+    <li>An O(1) algorithm will cost you 1 operation</li>
+    <li>An O(log(n)) algorithm will cost you 14 operations</li>
+    <li>An O(n) algorithm will cost you 1 000 000 operations</li>
+    <li>An O(n*log(n)) algorithm will cost you 14 000 000 operations</li>
+    <li>An O(n2) algorithm will cost you 1 000 000 000 000 operations</li>
+    </ul>
+    <p>I didn’t do the math but I’d say with the O(n2) algorithm you have the time to take a coffee (even a second one!). If you put another 0 on the amount of data, you’ll have the time to take a long nap.</p>
+    <h4>Going deeper</h4>
+    <p>To give you an idea:</p>
+    <ul>
+    <li>A search in a good hash table gives an element in O(1)</li>
+    <li>A search in a well-balanced tree gives a result in O(log(n))</li>
+    <li>A search in an array gives a result in O(n)</li>
+    <li>The best sorting algorithms have an O(n*log(n)) complexity.</li>
+    <li>A bad sorting algorithm has an O(n2) complexity</li>
+    </ul>
+    <p>Note: In the next parts, we’ll see these algorithms and data structures.</p>
+    <p>There are multiple types of time complexity:</p>
+    <ul>
+    <li>the average case scenario</li>
+    <li>the best case scenario</li>
+    <li>and the worst case scenario</li>
+    </ul>
+    <p>The time complexity is often the worst case scenario.</p>
+    <p>I only talked about time complexity but complexity also works for:</p>
+    <ul>
+    <li>the memory consumption of an algorithm</li>
+    <li>the disk I/O consumption of an algorithm</li>
+    </ul>
+    <p>Of course there are worse complexities than n2, like:</p>
+    <ul>
+    <li>$n^4$: that sucks! Some of the algorithms I’ll mention have this complexity.</li>
+    <li>$3^n$: that sucks even more! One of the algorithms we’re going to see in the middle of this article has this complexity (and it’s really used in many databases).</li>
+    <li>factorial n : you’ll never get your results, even with a low amount of data.</li>
+    <li>$n^n$: if you end-up with this complexity, you should ask yourself if IT is really your field…</li>
+    </ul>
+    <p>Note: I didn’t give you the real definition of the big O notation but just the idea. You can read this article on <a href="https://en.wikipedia.org/wiki/Big_O_notation">Wikipedia</a> for the real (asymptotic) definition.</p>
+    <h3>Merge Sort</h3>
+    <p>What do you do when you need to sort a collection? What? You call the sort() function …  ok, good answer… But for a database you have to understand how this sort() function works.</p>
+    <p>There are several good sorting algorithms so I’ll focus on the most important one: <strong>the merge sort</strong>. You might not understand right now why sorting data is useful but you should after the part on query optimization. Moreover, understanding the merge sort will help us later to understand a common database join operation called the <strong>merge join</strong>.</p>
+    <h4>Merge</h4>
+    <p>Like many useful algorithms, the merge sort is based on a trick: merging 2 sorted arrays of size N/2 into a N-element sorted array only costs N operations. This operation is called a <strong>merge</strong>.</p>
+    <p>Let’s see what this means with a simple example:</p>
+    <p><img src="https://i.loli.net/2020/12/09/gcbQ4NfiMUX5YKa.png" alt="merge_sort_3.png"></p>
+    <p>You can see on this figure that to construct the final sorted array of 8 elements, you only need to iterate one time in the 2 4-element arrays. Since both 4-element arrays are already sorted:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>you compare both current elements in the 2 arrays (current=first for the first time)</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>then take the lowest one to put it in the 8-element array</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>and go to the next element in the array you took the lowest element</li>
+    </ol>
+    </li>
+    <li>and repeat 1,2,3 until you reach the last element of one of the arrays.</li>
+    <li>Then you take the rest of the elements of the other array to put them in the 8-element array.</li>
+    </ul>
+    <p>This works because both 4-element arrays are sorted and therefore you don’t need to “go back” in these arrays.</p>
+    <p>Now that we’ve understood this trick, here is my pseudocode of the merge sort.</p>
+    <pre><code class="language-cpp">array mergeSort(array a)
+       if(length(a)==1)
+          return a[0];
+       end if
+     
+       //recursive calls
+       [left_array right_array] := split_into_2_equally_sized_arrays(a);
+       array new_left_array := mergeSort(left_array);
+       array new_right_array := mergeSort(right_array);
+     
+       //merging the 2 small ordered arrays into a big one
+       array result := merge(new_left_array,new_right_array);
+       return result;
+    </code></pre>
+    <p>The merge sort breaks the problem into smaller problems then finds the results of the smaller problems to get the result of the initial problem (note: this kind of algorithms is called divide and conquer). If you don’t understand this algorithm, don’t worry; I didn’t understand it the first time I saw it. If it can help you, I see this algorithm as a two-phase algorithm:</p>
+    <ul>
+    <li>The division phase where the array is divided into smaller arrays</li>
+    <li>The sorting phase where the small arrays are put together (using the merge) to form a bigger array.</li>
+    </ul>
+    <h4>Division phase</h4>
+    <p><img src="https://i.loli.net/2020/12/09/U7gyHqDIf1QsicF.png" alt="merge_sort_1.png"></p>
+    <p>During the division phase, the array is divided into unitary arrays using 3 steps. The formal number of steps is log(N)  (since N=8, log(N) = 3).</p>
+    <p>How do I know that?</p>
+    <p><del>I’m a genius!</del> In one word: mathematics. The idea is that each step divides the size of the initial array by 2. The number of steps is the number of times you can divide the initial array by two. This is the exact definition of logarithm (in base 2).</p>
+    <h4>Sorting phase</h4>
+    <p><img src="https://i.loli.net/2020/12/09/O8vbUkK7LDzIhGn.png" alt="merge_sort_2.png"></p>
+    <p>In the sorting phase, you start with the unitary arrays. During each step, you apply multiple merges and the overall cost is N=8 operations:</p>
+    <ul>
+    <li>In the first step you have 4 merges that cost 2 operations each</li>
+    <li>In the second step you have 2 merges that cost 4 operations each</li>
+    <li>In the third step you have 1 merge that costs 8 operations</li>
+    </ul>
+    <p>Since there are log(N) steps, <strong>the overall costs N * log(N) operations</strong>.</p>
+    <h4>The power of the merge sort</h4>
+    <p>Why this algorithm is so powerful?</p>
+    <p>Because:</p>
+    <ul>
+    <li>You can modify it in order to reduce the memory footprint, in a way that you don’t create new arrays but you directly modify the input array.</li>
+    </ul>
+    <p>Note: this kind of algorithms is called <a href="https://en.wikipedia.org/wiki/In-place_algorithm">in-place</a>.</p>
+    <ul>
+    <li>You can modify it in order to use disk space and a small amount of memory at the same time without a huge disk I/O penalty. The idea is to load in memory only the parts that are currently processed. This is important when you need to sort a multi-gigabyte table with only a memory buffer of 100 megabytes.</li>
+    </ul>
+    <p>Note: this kind of algorithms is called <a href="https://en.wikipedia.org/wiki/External_sorting">external sorting</a>.</p>
+    <ul>
+    <li>You can modify it to run on multiple processes/threads/servers.</li>
+    </ul>
+    <p>For example, the distributed merge sort is one of the key components of <a href="https://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapreduce/Reducer.html">Hadoop</a> (which is THE framework in Big Data).</p>
+    <p>T- his algorithm can turn lead into gold (true fact!).</p>
+    <p>This sorting algorithm is used in most (if not all) databases but it’s not the only one. If you want to know more, you can read this <a href="http://wwwlgis.informatik.uni-kl.de/archiv/wwwdvs.informatik.uni-kl.de/courses/DBSREAL/SS2005/Vorlesungsunterlagen/Implementing_Sorting.pdf">research paper</a> that discusses the pros and cons of the common sorting algorithms in a database.</p>
+    <h3>Array, Tree and Hash table</h3>
+    <p>Now that we understand the idea behind time complexity and sorting, I have to tell you about 3 data structures. It’s important because they’re <strong>the backbone of modern databases</strong>. I’ll also introduce the notion of <strong>database index</strong>.</p>
+    <h4>Array</h4>
+    <p>The two-dimensional array is the simplest data structure. A table can be seen as an array. For example:</p>
+    <p><img src="https://i.loli.net/2020/12/09/lok4xce6wBCRgsp.png" alt="array.png"></p>
+    <p>This 2-dimensional array is a table with rows and columns:</p>
+    <ul>
+    <li>Each row represents a subject</li>
+    <li>The columns the features that describe the subjects.</li>
+    <li>Each column stores a certain type of data (integer, string, date …).</li>
+    </ul>
+    <p>Though it’s great to store and visualize data, when you need to look for a specific value it sucks.</p>
+    <p>For example, <strong>if you want to find all the guys who work in the UK</strong>, you’ll have to look at each row to find if the row belongs to the UK. <strong>This will cost you N operations</strong> (N being the number of rows) which is not bad but could there be a faster way? This is where trees come into play.</p>
+    <p>Note: Most modern databases provide advanced arrays to store tables efficiently like heap-organized tables or index-organized tables. But it doesn’t change the problem of fast searching for a specific condition on a group of columns.</p>
+    <h4>Tree and database index</h4>
+    <p>A binary search tree is a binary tree with a special property, the key in each node must be:</p>
+    <ul>
+    <li>greater than all keys stored in the left sub-tree</li>
+    <li>smaller than all keys stored in the right sub-tree</li>
+    </ul>
+    <p>Let’s see what it means visually</p>
+    <h5>The idea</h5>
+    <p><img src="https://i.loli.net/2020/12/09/qrIRuHnjTLyYS82.png" alt="image.png"></p>
+    <p>This tree has N=15 elements. Let’s say I’m looking for 208:</p>
+    <ul>
+    <li>I start with the root whose key is 136. Since 136&lt;208, I look at the right sub-tree of the node 136.</li>
+    <li>398&gt;208 so, I look at the left sub-tree of the node 398</li>
+    <li>250&gt;208 so, I look at the left sub-tree of the node 250</li>
+    <li>200&lt;208 so, I look at the right sub-tree of the node 200. But 200 doesn’t have a right subtree, the value doesn’t exist (because if it did exist it would be in the right subtree of 200)</li>
+    </ul>
+    <p>Now let’s say I’m looking for 40</p>
+    <ul>
+    <li>I start with the root whose key is 136. Since 136&gt;40, I look at the left sub-tree of the node 136.</li>
+    <li>80&gt;40 so, I look at the left sub-tree of the node 80</li>
+    <li>40= 40, the node exists. I extract the id of the row inside the node (it’s not in the figure) and look at the table for the given row id.</li>
+    <li>Knowing the row id let me know where the data is precisely on the table and therefore I can get it instantly.</li>
+    </ul>
+    <p>In the end, both searches cost me the number of levels inside the tree. If you read carefully the part on the merge sort you should see that there are log(N) levels. So the <strong>cost of the search is log(N)</strong>, not bad!</p>
+    <h5>Back to our problem</h5>
+    <p>But this stuff is very abstract so let’s go back to our problem. Instead of a stupid integer, imagine the string that represents the country of someone in the previous table. Suppose you have a tree that contains the column “country” of the table:</p>
+    <ul>
+    <li>If you want to know who is working in the UK</li>
+    <li>you look at the tree to get the node that represents the UK</li>
+    <li>inside the “UK node” you’ll find the locations of the rows of the UK workers.</li>
+    </ul>
+    <p>This search only costs you log(N) operations instead of N operations if you directly use the array. What you’ve just imagined was a <strong>database index</strong>.</p>
+    <p>You can build a tree index for any group of columns (a string, an integer, 2 strings, an integer and a string, a date …) as long as you have a function to compare the keys (i.e. the group of columns) so that you can establish an <strong>order among the keys</strong> (which is the case for any basic types in a database).</p>
+    <h5>B+Tree Index</h5>
+    <p>Although this tree works well to get a specific value, there is a BIG problem when you need to <strong>get multiple elements between two values</strong>. It will cost O(N) because you’ll have to look at each node in the tree and check if it’s between these 2 values (for example, with an in-order traversal of the tree). Moreover this operation is not disk I/O friendly since you’ll have to read the full tree. We need to find a way to efficiently do a <strong>range query</strong>. To answer this problem, modern databases use a modified version of the previous tree called B+Tree. In a B+Tree:</p>
+    <ul>
+    <li>only the lowest nodes (the leaves) store information (the location of the rows in the associated table)</li>
+    <li>the other nodes are just here to route to the right node during the search.</li>
+    </ul>
+    <p><img src="https://i.loli.net/2020/12/09/xPTLm3d4CtSVNcH.png" alt="image.png"></p>
+    <p>As you can see, there are more nodes (twice more). Indeed, you have additional nodes, the “decision nodes” that will help you to find the right node (that stores the location of the rows in the associated table). But the search complexity is still in O(log(N)) (there is just one more level). The big difference is that <strong>the lowest nodes are linked to their successors</strong>.</p>
+    <p>With this B+Tree, if you’re looking for values between 40 and 100:</p>
+    <ul>
+    <li>You just have to look for 40 (or the closest value after 40 if 40 doesn’t exist) like you did with the previous tree.</li>
+    <li>Then gather the successors of 40 using the direct links to the successors until you reach 100.</li>
+    </ul>
+    <p>Let’s say you found M successors and the tree has N nodes. The search for a specific node costs log(N) like the previous tree. But, once you have this node, you get the M successors in M operations with the links to their successors. <strong>This search only costs M + log(N)</strong> operations vs N operations with the previous tree. Moreover, you don’t need to read the full tree (just M + log(N) nodes), which means less disk usage. If M is low (like 200 rows) and N large (1 000 000 rows) it makes a BIG difference.</p>
+    <p>But there are new problems (again!). If you add or remove a row in a database (and therefore in the associated B+Tree index):</p>
+    <ul>
+    <li>you have to keep the order between nodes inside the B+Tree otherwise you won’t be able to find nodes inside the mess.</li>
+    <li>you have to keep the lowest possible number of levels in the B+Tree otherwise the time complexity in O(log(N)) will become O(N).</li>
+    </ul>
+    <p>I other words, the B+Tree needs to be self-ordered and self-balanced. Thankfully, this is possible with smart deletion and insertion operations. But this comes with a cost: the insertion and deletion in a B+Tree are in O(log(N)). This is why some of you have heard that <strong>using too many indexes is not a good idea</strong>. Indeed, <strong>you’re slowing down the fast insertion/update/deletion of a row</strong> in a table since the database needs to update the indexes of the table with a costly O(log(N)) operation per index. Moreover, adding indexes means more workload for the <strong>transaction manager</strong> (we will see this manager at the end of the article).</p>
+    <p>For more details, you can look at the Wikipedia 【article about B+Tree](https://en.wikipedia.org/wiki/B%2B_tree). If you want an example of a B+Tree implementation in a database, look at <a href="http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/">this article</a> and <a href="http://blog.jcole.us/2013/01/10/btree-index-structures-in-innodb/">this article</a> from a core developer of MySQL. They both focus on how innoDB (the engine of MySQL) handles indexes.</p>
+    <p>Note: I was told by a reader that, because of low-level optimizations, the B+Tree needs to be fully balanced.</p>
+    <h4>Hash table</h4>
+    <p>Our last important data structure is the hash table. It’s very useful when you want to quickly look for values.  Moreover, understanding the hash table will help us later to understand a common database join operation called the <strong>hash join</strong>. This data structure is also used by a database to store some internal stuff (like the <strong>lock table</strong> or the <strong>buffer pool</strong>, we’ll see both concepts later)</p>
+    <p>The hash table is a data structure that quickly finds an element with its key. To build a hash table you need to define:</p>
+    <ul>
+    <li><strong>a key</strong> for your elements</li>
+    <li><strong>a hash function</strong> for the keys. The computed hashes of the keys give the locations of the elements (called buckets).</li>
+    <li><strong>a function to compare the keys</strong>. Once you found the right bucket you have to find the element you’re looking for inside the bucket using this comparison.</li>
+    </ul>
+    <h5>A simple example</h5>
+    <p>Let’s have a visual example:</p>
+    <p><img src="https://i.loli.net/2020/12/09/VCh1Jud94jsLT7E.png" alt="image.png"></p>
+    <p>This hash table has 10 buckets. Since I’m lazy I only drew 5 buckets but I know you’re smart so I let you imagine the 5 others. The Hash function I used is the modulo 10 of the key. In other words I only keep the last digit of the key of an element to find its bucket:</p>
+    <ul>
+    <li>if the last digit is 0 the element ends up in the bucket 0,</li>
+    <li>if the last digit is 1 the element ends up in the bucket 1,</li>
+    <li>if the last digit is 2 the element ends up in the bucket 2,</li>
+    <li>…</li>
+    </ul>
+    <p>The compare function I used is simply the equality between 2 integers.</p>
+    <p>Let’s say you want to get the element 78:</p>
+    <ul>
+    <li>The hash table computes the hash code for 78 which is 8.</li>
+    <li>It looks in the bucket 8, and the first element it finds is 78.</li>
+    <li>It gives you back the element 78</li>
+    <li><strong>The search only costs 2 operations</strong> (1 for computing the hash value and the other for finding the element inside the bucket).</li>
+    </ul>
+    <p>Now, let’s say you want to get the element 59:</p>
+    <ul>
+    <li>The hash table computes the hash code for 59 which is 9.</li>
+    <li>It looks in the bucket 9, and the first element it finds is 99. Since 99!=59, element 99 is not the right element.</li>
+    <li>Using the same logic, it looks at the second element (9), the third (79), … , and the last (29).</li>
+    <li>The element doesn’t exist.</li>
+    <li><strong>The search costs 7 operations</strong>.</li>
+    </ul>
+    <h5>A good hash function</h5>
+    <p>As you can see, depending on the value you’re looking for, the cost is not the same!</p>
+    <p>If I now change the hash function with the modulo 1 000 000 of the key (i.e. taking the last 6 digits), the second search only costs 1 operation because there are no elements in the bucket 000059. <strong>The real challenge is to find a good hash function that will create buckets that contain a very small amount of elements</strong>.</p>
+    <p>In my example, finding a good hash function is easy. But this is a simple example, finding a good hash function is more difficult when the key is:</p>
+    <ul>
+    <li>a string (for example the last name of a person)</li>
+    <li>2 strings (for example the last name and the first name of a person)</li>
+    <li>2 strings and a date (for example the last name, the first name and the birth date of a person)</li>
+    <li>…</li>
+    </ul>
+    <p><strong>With a good hash function, the search in a hash table is in O(1)</strong>.</p>
+    <h5>Array vs hash table</h5>
+    <p>Why not using an array?</p>
+    <p>Hum, you’re asking a good question.</p>
+    <ul>
+    <li>A hash table can be half loaded in memory and the other buckets can stay on disk.</li>
+    <li>With an array you have to use a contiguous space in memory. If you’re loading a large table it’s very difficult to have enough contiguous space.</li>
+    <li>With a hash table you can choose the key you want (for example the country AND the last name of a person).</li>
+    </ul>
+    <p>For more information, you can read my article on the <a href="http://coding-geek.com/how-does-a-hashmap-work-in-java/">Java HashMap</a> which is an efficient hash table implementation; you don’t need to understand Java to understand the concepts inside this article.</p>
+    <h2>Global overview</h2>
+    <p>We’ve just seen the basic components inside a database. We now need to step back to see the big picture.</p>
+    <p>A database is a collection of information that can easily be accessed and modified. But a simple bunch of files could do the same. In fact, the simplest databases like SQLite are nothing more than a bunch of files. But SQLite is a well-crafted bunch of files because it allows you to:</p>
+    <ul>
+    <li>use transactions that ensure data are safe and coherent</li>
+    <li>quickly process data even when you’re dealing with millions of data</li>
+    </ul>
+    <p>More generally, a database can be seen as the following figure:</p>
+    <p><img src="https://i.loli.net/2020/12/09/kPF2rUq8ICYOa6X.png" alt="image.png"></p>
+    <p>Before writing this part, I’ve read multiple books/papers and every source had its on way to represent a database. So, don’t focus too much on how I organized this database or how I named the processes because I made some choices to fit the plan of this article. What matters are the different components; the overall idea is that <strong>a database is divided into multiple components that interact with each other</strong>.</p>
+    <p><u>The core components:</u></p>
+    <ul>
+    <li><strong>The process manager</strong>: Many databases have a pool of processes/threads that needs to be managed. Moreover, in order to gain nanoseconds, some modern databases use their own threads instead of the Operating System threads.</li>
+    <li><strong>The network manager</strong>: Network I/O is a big issue, especially for distributed databases. That’s why some databases have their own manager.</li>
+    <li><strong>File system manager</strong>: Disk I/O is the first bottleneck of a database. Having a manager that will perfectly handle the Operating System file system or even replace it is important.</li>
+    <li><strong>The memory manager</strong>: To avoid the disk I/O penalty a large quantity of ram is required. But if you handle a large amount of memory, you need an efficient memory manager. Especially when you have many queries using memory at the same time.</li>
+    <li><strong>Security Manager</strong>: for managing the authentication and the authorizations of the users</li>
+    <li><strong>Client manager</strong>: for managing the client connections</li>
+    <li>…</li>
+    </ul>
+    <p><u>The tools:</u></p>
+    <ul>
+    <li><strong>Backup manager</strong>: for saving and restoring a database.</li>
+    <li><strong>Recovery manager</strong>: for restarting the database in a coherent state after a crash</li>
+    <li><strong>Monitor manager</strong>: for logging the activity of the database and providing tools to monitor a database</li>
+    <li><strong>Administration manager</strong>: for storing metadata (like the names and the structures of the tables) and providing tools to manage databases, schemas, tablespaces, …</li>
+    <li>…</li>
+    </ul>
+    <p><u>The query Manager:</u></p>
+    <ul>
+    <li><strong>Query parser</strong>: to check if a query is valid</li>
+    <li><strong>Query rewriter</strong>: to pre-optimize a query</li>
+    <li><strong>Query optimizer</strong>: to optimize a query</li>
+    <li><strong>Query executor</strong>: to compile and execute a query</li>
+    </ul>
+    <p><u>The data manager:</u></p>
+    <ul>
+    <li><strong>Transaction manager</strong>: to handle transactions</li>
+    <li><strong>Cache manager</strong>: to put data in memory before using them and put data in memory before writing them on disk</li>
+    <li><strong>Data access manager</strong>: to access data on disk</li>
+    </ul>
+    <p>For the rest of this article, I’ll focus on how a database manages an SQL query through the following processes:</p>
+    <ul>
+    <li>the client manager</li>
+    <li>the query manager</li>
+    <li>the data manager (I’ll also include the recovery manager in this part)</li>
+    </ul>
+    <h2>Client manager</h2>
+    <p><img src="https://i.loli.net/2020/12/09/gibURf7QSyF5ZWp.png" alt="image.png"></p>
+    <p>The client manager is the part that handles the communications with the client. The client can be a (web) server or an end-user/end-application. The client manager provides different ways to access the database through a set of well-known APIs: JDBC, ODBC, OLE-DB …</p>
+    <p>It can also provide proprietary database access APIs.</p>
+    <p>When you connect to a database:</p>
+    <ul>
+    <li>The manager first checks your <strong>authentication</strong> (your login and password) and then checks if you have the <strong>authorizations</strong> to use the database. These access rights are set by your DBA.</li>
+    <li>Then, it checks if there is a process (or a thread) available to manage your query.</li>
+    <li>It also checks if the database if not under heavy load.</li>
+    <li>It can wait a moment to get the required resources. If this wait reaches a timeout, it closes the connection and gives a readable error message.</li>
+    <li>Then it <strong>sends your query to the query manager</strong> and your query is processed</li>
+    <li>Since the query processing is not an “all or nothing” thing, as soon as it gets data from the query manager, it <strong>stores the partial results in a buffer and start sending</strong> them to you.</li>
+    <li>In case of problem, it stops the connection, gives you a <strong>readable explanation</strong> and releases the resources.</li>
+    </ul>
+    <h2>Query manager</h2>
+    <p><img src="https://i.loli.net/2020/12/09/vY4P3QwCyxoF57z.png" alt="image.png"></p>
+    <p><strong>This part is where the power of a database lies</strong>. During this part, an ill-written query is transformed into a <strong>fast</strong> executable code. The code is then executed and the results are returned to the client manager. It’s a multiple-step operation:</p>
+    <ul>
+    <li>the query is first <strong>parsed</strong> to see if it’s valid</li>
+    <li>it’s then <strong>rewritten</strong> to remove useless operations and add some pre-optimizations</li>
+    <li>it’s then <strong>optimized</strong> to improve the performances and transformed into an execution and data access plan.</li>
+    <li>then the plan is <strong>compiled</strong></li>
+    <li>at last, it’s <strong>executed</strong></li>
+    </ul>
+    <p>In this part, I won’t talk a lot about the last 2 points because they’re less important.</p>
+    <p>After reading this part, if you want a better understanding I recommend reading:</p>
+    <ul>
+    <li>The initial research paper (1979) on cost based optimization: <a href="https://www.cs.berkeley.edu/~brewer/cs262/3-selinger79.pdf">Access Path Selection in a Relational Database Management System</a>. - This article is only 12 pages and understandable with an average level in computer science.</li>
+    <li>A very good and in-depth presentation on how DB2 9.X optimizes queries <a href="http://infolab.stanford.edu/~hyunjung/cs346/db2-talk.pdf">here</a></li>
+    <li>A very good presentation on how PostgreSQL optimizes queries <a href="http://momjian.us/main/writings/pgsql/optimizer.pdf">here</a>. It’s the most accessible document since it’s more a presentation on “let’s see what query plans PostgreSQL gives in these situations“ than a “let’s see the algorithms used by PostgreSQL”.</li>
+    <li>The official <a href="https://www.sqlite.org/optoverview.html">SQLite documentation</a> about optimization. It’s “easy” to read because SQLite uses simple rules. Moreover, it’s the only official documentation that really explains how it works.</li>
+    <li>A good presentation on how SQL Server 2005 optimizes queries <a href="https://blogs.msdn.com/cfs-filesystemfile.ashx/__key/communityserver-components-postattachments/00-08-50-84-93/QPTalk.pdf">here</a></li>
+    <li>A white paper about optimization in Oracle 12c <a href="http://www.oracle.com/technetwork/database/bi-datawarehousing/twp-optimizer-with-oracledb-12c-1963236.pdf">here</a></li>
+    <li>2 theoretical courses on query optimization from the authors of the book “DATABASE SYSTEM CONCEPTS” <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch12.ppt">here</a> and <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch13.ppt">here</a>. A good read that focuses on disk I/O cost but a good level in CS is required.</li>
+    <li>Another <a href="https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/teaching/archive/sose05/dbs2/slides/09_joins.pdf">theoretical course</a> that I find more accessible but that only focuses on join operators and disk I/O.</li>
+    </ul>
+    <h3>Query parser</h3>
+    <p>Each SQL statement is sent to the parser where it is checked for correct syntax. If you made a mistake in your query the parser will reject the query. For example, if you wrote “SLECT …” instead of “SELECT …”,  the story ends here.</p>
+    <p>But this goes deeper. It also checks that the keywords are used in the right order. For example a WHERE before a SELECT will be rejected.</p>
+    <p>Then, the tables and the fields inside the query are analyzed. The parser uses the metadata of the database to check:</p>
+    <ul>
+    <li>If the <strong>tables exist</strong></li>
+    <li>If the <strong>fields</strong> of the tables exist</li>
+    <li>If the <strong>operations</strong> for the types of the fields <strong>are possible</strong> (for example you can’t compare an integer with a string, you can’t use a substring() function on an integer)</li>
+    </ul>
+    <p>Then it checks if you have the <strong>authorizations</strong> to read (or write) the tables in the query. Again, these access rights on tables are set by your DBA.</p>
+    <p>During this parsing, the SQL query is transformed into an internal representation (often a tree)</p>
+    <p>If everything is ok then the internal representation is sent to the query rewriter.</p>
+    <h3>Query rewriter</h3>
+    <p>At this step, we have an internal representation of a query. The aim of the rewriter is:</p>
+    <ul>
+    <li>to pre-optimize the query</li>
+    <li>to avoid unnecessary operations</li>
+    <li>to help the optimizer to find the best possible solution</li>
+    </ul>
+    <p>The rewriter executes a list of known rules on the query. If the query fits a pattern of a rule, the rule is applied and the query is rewritten.  Here is a non-exhaustive list of (optional) rules:</p>
+    <ul>
+    <li><strong>View merging</strong>: If you’re using a view in your query, the view is transformed with the SQL code of the view.</li>
+    <li><strong>Subquery flattening</strong>: Having subqueries is very difficult to optimize so the rewriter will try to modify a query with a subquery to remove the subquery.</li>
+    </ul>
+    <p>For example</p>
+    <pre><code class="language-sql">SELECT PERSON.*
+    FROM PERSON
+    WHERE PERSON.person_key IN
+    (SELECT MAILS.person_key
+    FROM MAILS
+    WHERE MAILS.mail LIKE 'christophe%');
+    </code></pre>
+    <p>Will be replaced by</p>
+    <pre><code class="language-sql">SELECT PERSON.*
+    FROM PERSON, MAILS
+    WHERE PERSON.person_key = MAILS.person_key
+    and MAILS.mail LIKE 'christophe%';
+    </code></pre>
+    <ul>
+    <li><strong>Removal of unnecessary operators</strong>: For example if you use a DISTINCT whereas you have a UNIQUE constraint that prevents the data from being non-unique, the DISTINCT keyword is removed.</li>
+    <li><strong>Redundant join elimination</strong>: If you have twice the same join condition because one join condition is hidden in a view or if by transitivity there is a useless join, it’s removed.</li>
+    <li><strong>Constant arithmetic evaluation</strong>: If you write something that requires a calculus, then it’s computed once during the rewriting. For example WHERE AGE &gt; 10+2 is transformed into WHERE AGE &gt; 12 and TODATE(“some date”) is transformed into the date in the datetime format</li>
+    <li><strong>(Advanced) Partition Pruning</strong>: If you’re using a partitioned table, the rewriter is able to find what partitions to use.</li>
+    <li><strong>(Advanced) Materialized view rewrite</strong>: If you have a materialized view that matches a subset of the predicates in your query, the rewriter checks if the view is up to date and modifies the query to use the materialized view instead of the raw tables.</li>
+    <li><strong>(Advanced) Custom rules</strong>: If you have custom rules to modify a query (like Oracle policies), then the rewriter executes these rules</li>
+    <li><strong>(Advanced) Olap transformations</strong>: analytical/windowing functions, star joins, rollup … are also transformed (but I’m not sure if it’s done by the rewriter or the optimizer, since both processes are very close it must depends on the database).</li>
+    </ul>
+    <p>This rewritten query is then sent to the query optimizer where the fun begins!</p>
+    <h3>Statistics</h3>
+    <p>Before we see how a database optimizes a query we need to speak about <strong>statistics</strong> because <strong>without them a database is stupid</strong>. If you don’t tell the database to analyze its own data, it will not do it and it will make (very) bad assumptions.</p>
+    <p>But what kind of information does a database need?</p>
+    <p>I have to (briefly) talk about how databases and Operating systems store data. They’re using a minimum unit called <strong>a page</strong> or a block (4 or 8 kilobytes by default). This means that if you only need 1 Kbytes it will cost you one page anyway. If the page takes 8 Kbytes then you’ll waste 7 Kbytes.</p>
+    <p>Back to the statistics! When you ask a database to gather statistics, it computes values like:</p>
+    <ul>
+    <li>The number of rows/pages in a table</li>
+    <li>For each column in a table:
+    <ul>
+    <li>distinct data values</li>
+    <li>the length of data values (min, max, average)</li>
+    <li>data range information (min, max, average)</li>
+    </ul>
+    </li>
+    <li>Information on the indexes of the table.</li>
+    </ul>
+    <p><strong>These statistics will help the optimizer to estimate the disk I/O, CPU and memory usages of the query.</strong></p>
+    <p>The statistics for each column are very important. For example if a table PERSON needs to be joined on 2 columns: LAST_NAME, FIRST_NAME. With the statistics, the database knows that there are only 1 000 different values on FIRST_NAME and 1 000 000 different values on LAST_NAME. Therefore, the database will join the data on LAST_NAME, FIRST_NAME instead of FIRST_NAME,LAST_NAME because it produces way less comparisons since the LAST_NAME are unlikely to be the same so most of the time a comparison on the 2 (or 3) first characters of the LAST_NAME is enough.</p>
+    <p>But these are basic statistics. You can ask a database to compute advanced statistics called <strong>histograms</strong>.  Histograms are statistics that inform about the distribution of the values inside the columns. For example</p>
+    <ul>
+    <li>the most frequent values</li>
+    <li>the quantiles</li>
+    <li>…</li>
+    </ul>
+    <p>These extra statistics will help the database to find an even better query plan. Especially for equality predicate (ex: WHERE AGE = 18 ) or range predicates (ex: WHERE  AGE &gt; 10 and AGE &lt;40 ) because the database will have a better idea of the number rows concerned by these predicates (note: the technical word for this concept is selectivity).</p>
+    <p>The statistics are stored in the metadata of the database. For example you can see the statistics for the (non-partitioned) tables:</p>
+    <ul>
+    <li>in USER/ALL/DBA_TABLES and USER/ALL/DBA_TAB_COLUMNS for Oracle</li>
+    <li>in SYSCAT.TABLES and SYSCAT.COLUMNS for DB2.</li>
+    </ul>
+    <p>The <strong>statistics have to be up to date</strong>. There is nothing worse than a database thinking a table has only 500 rows whereas it has 1 000 000 rows. The only drawback of the statistics is that <strong>it takes time to compute them</strong>. This is why they’re not automatically computed by default in most databases. It becomes difficult with millions of data to compute them. In this case, you can choose to compute only the basics statistics or to compute the stats on a sample of the database.</p>
+    <p>For example, when I was working on a project dealing with hundreds of millions rows in each tables, I chose to compute the statistics on only 10%, which led to a huge gain in time. For the story it turned out to be a bad decision because occasionally the 10% chosen by Oracle 10G for a specific column of a specific table were very different from the overall 100% (which is very unlikely to happen for a table with 100M rows). This wrong statistic led to a query taking occasionally 8 hours instead of 30 seconds; a nightmare to find the root cause. This example shows how important the statistics are.</p>
+    <p>Note: Of course, there are more advanced statistics specific for each database. If you want to know more, read the documentations of the databases. That being said, I’ve tried to understand how the statistics are used and the best official documentation I found was the <a href="https://www.postgresql.org/docs/9.4/static/row-estimation-examples.html">one from PostgreSQL</a>.</p>
+    <h3>Query optimizer</h3>
+    <p><img src="https://i.loli.net/2020/12/09/lC8BeAgt7Uv5MsD.png" alt="image.png"></p>
+    <p>All modern databases are using a <strong>Cost Based Optimization</strong> (or <strong>CBO</strong>) to optimize queries. The idea is to put a cost an every operation and find the best way to reduce the cost of the query by using the cheapest chain of operations to get the result.</p>
+    <p>To understand how a cost optimizer works I think it’s good to have an example to “feel” the complexity behind this task. In this part I’ll present you the 3 common ways to join 2 tables and we will quickly see that even a simple join query is a nightmare to optimize. After that, we’ll see how real optimizers do this job.</p>
+    <p>For these joins, I’ll focus on their time complexity but <strong>a database optimizer computes</strong> their <strong>CPU cost, disk I/O cost and memory requirement</strong>. The difference between time complexity and CPU cost is that time cost is very approximate (it’s for lazy guys like me). For the CPU cost, I should count every operation like an addition, an “if statement”, a multiplication, an iteration … Moreover:</p>
+    <ul>
+    <li>Each high level code operation has a specific number of low level CPU operations.</li>
+    <li>The cost of a CPU operation is not the same (in terms of CPU cycles) whether you’re using an Intel Core i7, an Intel Pentium 4, an AMD Opteron…. In other words it depends on the CPU architecture.</li>
+    </ul>
+    <p>Using the time complexity is easier (at least for me) and with it we can still get the concept of CBO. I’ll sometimes speak about disk I/O since it’s an important concept. Keep in mind that <strong>the bottleneck is most of the time the disk I/O and not the CPU usage</strong>.</p>
+    <h4>Indexes</h4>
+    <p>We talked about indexes when we saw the B+Trees. Just remember that these <strong>indexes are already sorted</strong>.</p>
+    <p>FYI, there are other types of indexes like <strong>bitmap indexes</strong>. They don’t offer the same cost in terms of CPU, disk I/O and memory than B+Tree indexes.</p>
+    <p>Moreover, many modern databases can <strong>dynamically create temporary indexes</strong> just for the current query if it can improve the cost of the execution plan.</p>
+    <h4>Access Path</h4>
+    <p>Before applying your join operators, you first need to get your data. Here is how you can get your data.</p>
+    <p>Note: Since the real problem with all the access paths is the disk I/O, I won’t talk a lot about time complexity.</p>
+    <h5>Full scan</h5>
+    <p>If you’ve ever read an execution plan you must have seen the word <strong>full scan</strong> (or just scan). A full scan is simply the database reading a table or an index entirely. <strong>In terms of disk I/O, a table full scan is obviously more expensive than an index full scan</strong>.</p>
+    <h5>Range Scan</h5>
+    <p>There are other types of scan like <strong>index range scan</strong>. It is used for example when you use a predicate like “WHERE AGE &gt; 20 AND AGE &lt;40”.</p>
+    <p>Of course you need have an index on the field AGE to use this index range scan.</p>
+    <p>We already saw in the first part that the time cost of a range query is something like log(N) +M, where N is the number of data in this index and M an estimation of the number of rows inside this range. <strong>Both N and M values are known thanks to the statistics</strong> (Note: M is the selectivity for the predicate AGE &gt;20 AND AGE&lt;40). Moreover, for a range scan you don’t need to read the full index so it’s <strong>less expensive in terms of disk I/O than a full scan</strong>.</p>
+    <h5>Unique scan</h5>
+    <p>If you only need one value from an index you can use the <strong>unique scan</strong>.</p>
+    <h5>Access by row id</h5>
+    <p>Most of the time, if the database uses an index, it will have to look for the rows associated to the index. To do so it will use an access by row id.</p>
+    <p>For example, if you do something like</p>
+    <pre><code class="language-sql">SELECT LASTNAME, FIRSTNAME from PERSON WHERE AGE = 28
+    </code></pre>
+    <p>If you have an index for person on column age, the optimizer will use the index to find all the persons who are 28 then it will ask for the associate rows in the table because the index only has information about the age and you want to know the lastname and the firstname.</p>
+    <p>But, if now you do something like</p>
+    <pre><code class="language-sql">SELECT TYPE_PERSON.CATEGORY from PERSON ,TYPE_PERSON
+    WHERE PERSON.AGE = TYPE_PERSON.AGE
+    </code></pre>
+    <p>The index on PERSON will be used to join with TYPE_PERSON but the table PERSON will not be accessed by row id since you’re not asking information on this table.</p>
+    <p>Though it works great for a few accesses, the real issue with this operation is the disk I/O. If you need too many accesses by row id the database might choose a full scan.</p>
+    <h5>Others paths</h5>
+    <p>I didn’t present all the access paths. If you want to know more, you can read the <a href="https://docs.oracle.com/database/121/TGSQL/tgsql_optop.htm">Oracle documentation</a>. The names might not be the same for the other databases but the concepts behind are the same.</p>
+    <h4>Join operators</h4>
+    <p>So, we know how to get our data, let’s join them!</p>
+    <p>I’ll present the 3 common join operators: Merge Join, Hash Join and Nested Loop Join. But before that, I need to introduce new vocabulary: <strong>inner relation</strong> and <strong>outer relation</strong>. A relation can be:</p>
+    <ul>
+    <li>a table</li>
+    <li>an index</li>
+    <li>an intermediate result from a previous operation (for example the result of a previous join)</li>
+    </ul>
+    <p>When you’re joining two relations, the join algorithms manage the two relations differently. In the rest of the article, I’ll assume that:</p>
+    <ul>
+    <li>the outer relation is the left data set</li>
+    <li>the inner relation is the right data set</li>
+    </ul>
+    <p>For example, A JOIN B is the join between A and B where A is the outer relation and B the inner relation.</p>
+    <p>Most of the time, <strong>the cost of A JOIN B is not the same as the cost of B JOIN A</strong>.</p>
+    <p><strong>In this part, I’ll also assume that the outer relation has N elements and the inner relation M elements</strong>. Keep in mind that a real optimizer knows the values of N and M with the statistics.</p>
+    <p>Note: N and M are the cardinalities of the relations.</p>
+    <h5>Nested loop join</h5>
+    <p>The nested loop join is the easiest one.</p>
+    <p><img src="https://i.loli.net/2020/12/10/R3bJ4UjLBO1YZ79.png" alt="image.png"></p>
+    <p>Here is the idea:</p>
+    <ul>
+    <li>for each row in the outer relation</li>
+    <li>you look at all the rows in the inner relation to see if there are rows that match</li>
+    </ul>
+    <p>Here is a pseudo code:</p>
+    <pre><code class="language-cpp">nested_loop_join(array outer, array inner)
+      for each row a in outer
+        for each row b in inner
+          if (match_join_condition(a,b))
+            write_result_in_output(a,b)
+          end if
+        end for
+       end for
+    </code></pre>
+    <p>Since it’s a double iteration, <strong>the time complexity is O(N*M)</strong></p>
+    <p>In term of disk I/O, for each of the N rows in the outer relation, the inner loop needs to read M rows from the inner relation. This algorithm needs to read N + N*M rows from disk. But, if the inner relation is small enough, you can put the relation in memory and just have M +N reads. With this modification, <strong>the inner relation must be the smallest one</strong> since it has more chance to fit in memory.</p>
+    <p>In terms of time complexity it makes no difference but in terms of disk I/O it’s way better to read only once both relations.</p>
+    <p>Of course, the inner relation can be replaced by an index, it will be better for the disk I/O.</p>
+    <p>Since this algorithm is very simple, here is another version that is more disk I/O friendly if the inner relation is too big to fit in memory. Here is the idea:</p>
+    <ul>
+    <li>instead of reading both relation row by row,</li>
+    <li>you read them bunch by bunch and keep 2 bunches of rows (from each relation) in memory,</li>
+    <li>you compare the rows inside the two bunches and keep the rows that match,</li>
+    <li>then you load new bunches from disk and compare them</li>
+    <li>and so on until there are no bunches to load.</li>
+    </ul>
+    <p>Here is a possible algorithm:</p>
+    <pre><code class="language-cpp">// improved version to reduce the disk I/O.
+    nested_loop_join_v2(file outer, file inner)
+      for each bunch ba in outer
+      // ba is now in memory
+        for each bunch bb in inner
+            // bb is now in memory
+            for each row a in ba
+              for each row b in bb
+                if (match_join_condition(a,b))
+                  write_result_in_output(a,b)
+                end if
+              end for
+           end for
+        end for
+       end for
+    </code></pre>
+    <p><strong>With this version, the time complexity remains the same, but the number of disk access decreases:</strong></p>
+    <ul>
+    <li>With the previous version, the algorithm needs N + N*M accesses (each access gets one row).</li>
+    <li>With this new version, the number of disk accesses becomes number_of_bunches_for(outer)+ number_of_ bunches_for(outer)* number_of_ bunches_for(inner).</li>
+    <li>If you increase the size of the bunch you reduce the number of disk accesses.</li>
+    </ul>
+    <p>Note: Each disk access gathers more data than the previous algorithm but it doesn’t matter since they’re sequential accesses (the real issue with mechanical disks is the time to get the first data).</p>
+    <h5>Hash join</h5>
+    <p>The hash join is more complicated but gives a better cost than a nested loop join in many situations.</p>
+    <p><img src="https://i.loli.net/2020/12/10/QiB9u4jNL65XsYq.png" alt="image.png"></p>
+    <p>The idea of the hash join is to:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>Get all elements from the inner relation</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>Build an in-memory hash table</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>Get all elements of the outer relation one by one</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="4">
+    <li>Compute the hash of each element (with the hash function of the hash table) to find the associated bucket of the inner relation</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="5">
+    <li>find if there is a match between the elements in the bucket and the element of the outer table</li>
+    </ol>
+    </li>
+    </ul>
+    <p>In terms of time complexity I need to make some assumptions to simplify the problem:</p>
+    <ul>
+    <li>The inner relation is divided into X buckets</li>
+    <li>The hash function distributes hash values almost uniformly for both relations. In other words the buckets are equally sized.</li>
+    <li>The matching between an element of the outer relation and all elements inside a bucket costs the number of elements inside the buckets.</li>
+    </ul>
+    <p>The time complexity is (M/X) * N + cost_to_create_hash_table(M) + cost_of_hash_function*N</p>
+    <p>If the Hash function creates enough small-sized buckets then <strong>the time complexity is O(M+N)</strong></p>
+    <p>Here is another version of the hash join which is more memory friendly but less disk I/O friendly. This time:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>you compute the hash tables for both the inner and outer relations</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>then you put them on disk</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>then you compare the 2 relations bucket by bucket (with one loaded in-memory and the other read row by row)</li>
+    </ol>
+    </li>
+    </ul>
+    <h5>Merge join</h5>
+    <p><strong>The merge join is the only join that produces a sorted result</strong>.</p>
+    <p>Note: In this simplified merge join, there are no inner or outer tables; they both play the same role. But real implementations make a difference, for example, when dealing with duplicates.</p>
+    <p>The merge join can be divided into of two steps:</p>
+    <ol>
+    <li>(Optional) Sort join operations: Both the inputs are sorted on the join key(s).</li>
+    <li>Merge join operation: The sorted inputs are merged together.</li>
+    </ol>
+    <p><u>Sort</u></p>
+    <p>We already spoke about the merge sort, in this case a merge sort in a good algorithm (but not the best if memory is not an issue).</p>
+    <p>But sometimes the data sets are already sorted, for example:</p>
+    <ul>
+    <li>If the table is natively ordered, for example an index-organized table on the join condition</li>
+    <li>If the relation is an index on the join condition</li>
+    <li>If this join is applied on an intermediate result already sorted during the process of the query</li>
+    </ul>
+    <p><u>Merge join</u></p>
+    <p><img src="https://i.loli.net/2020/12/10/7DCA8wpQJqg5c14.png" alt="image.png"></p>
+    <p>This part is very similar to the merge operation of the merge sort we saw. But this time, instead of picking every element from both relations, we only pick the elements from both relations that are equals. Here is the idea:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>you compare both current elements in the 2 relations (current=first for the first time)</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>if they’re equal, then you put both elements in the result and you go to the next element for both relations</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>if not, you go to the next element for the relation with the lowest element (because the next element might match)</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="4">
+    <li>and repeat 1,2,3 until you reach the last element of one of the relation.</li>
+    </ol>
+    </li>
+    </ul>
+    <p>This works because both relations are sorted and therefore you don’t need to “go back” in these relations.</p>
+    <p>This algorithm is a simplified version because it doesn’t handle the case where the same data appears multiple times in both arrays (in other words a multiple matches). The real version is more complicated “just” for this case; this is why I chose a simplified version.</p>
+    <p>If both relations are already sorted then <strong>the time complexity is O(N+M)</strong></p>
+    <p>If both relations need to be sorted then the time complexity is the cost to sort both relations: <strong>O(N*Log(N) + M*Log(M))</strong></p>
+    <p>For the CS geeks, here is a possible algorithm that handles the multiple matches (note: I’m not 100% sure about my algorithm):</p>
+    <pre><code class="language-cpp">mergeJoin(relation a, relation b)
+      relation output
+      integer a_key:=0;
+      integer b_key:=0;
+      
+      while (a[a_key]!=null or b[b_key]!=null)
+        if (a[a_key] &lt; b[b_key])
+          a_key++;
+        else if (a[a_key] &gt; b[b_key])
+          b_key++;
+        else //Join predicate satisfied
+        //i.e. a[a_key] == b[b_key]
+     
+          //count the number of duplicates in relation a
+          integer nb_dup_in_a = 1:
+          while (a[a_key]==a[a_key+nb_dup_in_a])
+            nb_dup_in_a++;
+             
+          //count the number of duplicates in relation b
+          integer dup_in_b = 1:
+          while (b[b_key]==b[b_key+nb_dup_in_b])
+            nb_dup_in_b++;
+             
+          //write the duplicates in output
+           for (int i = 0 ; i&lt; nb_dup_in_a ; i++)
+             for (int j = 0 ; i&lt; nb_dup_in_b ; i++)     
+               write_result_in_output(a[a_key+i],b[b_key+j])
+                
+          a_key=a_key + nb_dup_in_a-1;
+          b_key=b_key + nb_dup_in_b-1;
+     
+        end if
+      end while
+    </code></pre>
+    <h5>Which one is the best?</h5>
+    <p>If there was a best type of joins, there wouldn’t be multiple types. This question is very difficult because many factors come into play like:</p>
+    <ul>
+    <li>The <strong>amount of free memory</strong>: without enough memory you can say goodbye to the powerful hash join (at least the full in-memory hash join)</li>
+    <li>The <strong>size of the 2 data sets</strong>. For example if you have a big table with a very small one, a nested loop join will be faster than a hash join because the hash join has an expensive creation of hashes. If you have 2 very large tables the nested loop join will be very CPU expensive.</li>
+    <li>The <strong>presence of indexes</strong>. With 2 B+Tree indexes the smart choice seems to be the merge join</li>
+    <li>If <strong>the result need to be sorted</strong>: Even if you’re working with unsorted data sets, you might want to use a costly merge join (with the sorts) because at the end the result will be sorted and you’ll be able to chain the result with another merge join (or maybe because the query asks implicitly/explicitly for a sorted result with an ORDER BY/GROUP BY/DISTINCT operation)</li>
+    <li>If <strong>the relations are already sorted</strong>: In this case the merge join is the best candidate</li>
+    <li>The type of joins you’re doing: is it an <strong>equijoin</strong> (i.e.: tableA.col1 = tableB.col2)? Is it an <strong>inner join</strong>, an <strong>outer join</strong>, a <strong>cartesian product</strong> or a <strong>self-join</strong>? Some joins can’t work in certain situations.</li>
+    <li>The <strong>distribution of data</strong>. If the data on the join condition are <strong>skewed</strong> (For example you’re joining people on their last name but many people have the same), using a hash join will be a disaster because the hash function will create ill-distributed buckets.
+    If you want the join to be executed by <strong>multiple threads/process</strong></li>
+    </ul>
+    <p>For more information, you can read the <a href="https://www-01.ibm.com/support/knowledgecenter/SSEPGG_9.7.0/com.ibm.db2.luw.admin.perf.doc/doc/c0005311.html">DB2</a>, <a href="https://docs.oracle.com/cd/B28359_01/server.111/b28274/optimops.htm#i76330">ORACLE</a> or <a href="https://technet.microsoft.com/en-us/library/ms191426(v=sql.105).aspx">SQL Server</a> documentations.</p>
+    <h4>Simplified example</h4>
+    <p>We’ve just seen 3 types of join operations.</p>
+    <p>Now let’s say we need to join 5 tables to have a full view of a person. A PERSON can have:</p>
+    <ul>
+    <li>multiple MOBILES</li>
+    <li>multiple MAILS</li>
+    <li>multiple ADRESSES</li>
+    <li>multiple BANK_ACCOUNTS</li>
+    </ul>
+    <p>In other words we need a quick answer for the following query:</p>
+    <pre><code class="language-sql">SELECT * from PERSON, MOBILES, MAILS,ADRESSES, BANK_ACCOUNTS
+    WHERE
+    PERSON.PERSON_ID = MOBILES.PERSON_ID
+    AND PERSON.PERSON_ID = MAILS.PERSON_ID
+    AND PERSON.PERSON_ID = ADRESSES.PERSON_ID
+    AND PERSON.PERSON_ID = BANK_ACCOUNTS.PERSON_ID
+    </code></pre>
+    <p>As a query optimizer, I have to find the best way to process the data. But there are 2 problems:</p>
+    <ul>
+    <li>What kind of join should I use for each join?</li>
+    </ul>
+    <p>I have 3 possible joins (Hash Join, Merge Join, Nested Join) with the possibility to use 0,1 or 2 indexes (not to mention that there are different types of indexes).</p>
+    <ul>
+    <li>What order should I choose to compute the join?</li>
+    </ul>
+    <p>For example, the following figure shows different possible plans for only 3 joins on 4 tables</p>
+    <p><img src="https://i.loli.net/2020/12/12/HnoJvTiW4paBGRm.png" alt="image.png"></p>
+    <p>So here are my possibilities:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>I use a brute force approach
+    Using the database statistics, I <strong>compute the cost for every possible plan</strong> and I keep the best one. But there are many possibilities. For a given order of joins, each join has 3 possibilities: HashJoin, MergeJoin, NestedJoin. So, for a given order of joins there are $3^4$ possibilities. The join ordering is a permutation problem on a binary tree and there are (2*4)!/(4+1)! possible orders. For this very simplified problem, I end up with $3^4$*(2*4)!/(4+1)! possibilities.</li>
+    </ol>
+    </li>
+    </ul>
+    <p>In non-geek terms, it means 27 216 possible plans. If I now add the possibility for the merge join to take 0,1 or 2 B+Tree indexes, the number of possible plans becomes 210 000. Did I forget to mention that this query is VERY SIMPLE?</p>
+    <ul>
+    <li>
+    <ol start="2">
+    <li>I cry and quit this job</li>
+    </ol>
+    </li>
+    </ul>
+    <p>It’s very tempting but you wouldn’t get your result and I need money to pay the bills.</p>
+    <ul>
+    <li>
+    <ol start="3">
+    <li>I only try a few plans and take the one with the lowest cost.</li>
+    </ol>
+    </li>
+    </ul>
+    <p>Since I’m not superman, I can’t compute the cost of every plan. Instead, I can <strong>arbitrary choose a subset of all the possible plans</strong>, compute their costs and give you the best plan of this subset.</p>
+    <ul>
+    <li>
+    <ol start="4">
+    <li>I apply smart <strong>rules to reduce the number of possible plans</strong>.</li>
+    </ol>
+    </li>
+    </ul>
+    <p>There are 2 types of rules:</p>
+    <p>I can use “logical” rules that will remove useless possibilities but they won’t filter a lot of possible plans. For example: “the inner relation of the nested loop join must be the smallest data set”</p>
+    <p>I accept not finding the best solution and apply more aggressive rules to reduce a lot the number of possibilities. For example “If a relation is small, use a nested loop join and never use a merge join or a hash join”</p>
+    <p>In this simple example, I end up with many possibilities. But <strong>a real query can have other relational operators</strong> like OUTER JOIN, CROSS JOIN, GROUP BY, ORDER BY, PROJECTION, UNION, INTERSECT, DISTINCT … <strong>which means even more possibilities</strong>.</p>
+    <p>So, how a database does it?</p>
+    <h4>Dynamic programming, greedy algorithm and heuristic</h4>
+    <p>A relational database tries the multiple approaches I’ve just said. The real job of an optimizer is to find a good solution on a limited amount of time.</p>
+    <p><strong>Most of the time an optimizer doesn’t find the best solution but a “good” one</strong>.</p>
+    <p>For small queries, doing a brute force approach is possible. But there is a way to avoid unnecessary computations so that even medium queries can use the brute force approach. This is called dynamic programming.</p>
+    <h5>Dynamic Programming</h5>
+    <p>The idea behind these 2 words is that many executions plan are very similar. If you look at the following plans:</p>
+    <p><img src="https://i.loli.net/2020/12/12/JTYGRpkFe8Icmoy.png" alt="image.png"></p>
+    <p>They share the same (A JOIN B) subtree. So, instead of computing the cost of this subtree in every plan, we can compute it once, save the computed cost and reuse it when we see this subtree again. More formally, we’re facing an overlapping problem. To avoid the extra-computation of the partial results we’re using memoization.</p>
+    <p>Using this technique, instead of having a (2*N)!/(N+1)! time complexity, we “just” have $3^N$. In our previous example with 4 joins, it means passing from 336 ordering to 81. If you take a bigger <strong>query with 8 joins</strong> (which is not big), <strong>it means passing from 57 657 600 to 6561</strong>.</p>
+    <p>For the CS geeks, here is an algorithm I found on the <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch13.ppt">formal course I already gave you</a>. I won’t explain this algorithm so read it only if you already know dynamic programming or if you’re good with algorithms (you’ve been warned!):</p>
+    <pre><code class="language-cpp">procedure findbestplan(S)
+    if (bestplan[S].cost infinite)
+       return bestplan[S]
+    // else bestplan[S] has not been computed earlier, compute it now
+    if (S contains only 1 relation)
+             set bestplan[S].plan and bestplan[S].cost based on the best way
+             of accessing S  /* Using selections on S and indices on S */
+         else for each non-empty subset S1 of S such that S1 != S
+       P1= findbestplan(S1)
+       P2= findbestplan(S - S1)
+       A = best algorithm for joining results of P1 and P2
+       cost = P1.cost + P2.cost + cost of A
+       if cost &lt; bestplan[S].cost
+           bestplan[S].cost = cost
+          bestplan[S].plan = “execute P1.plan; execute P2.plan;
+                     join results of P1 and P2 using A”
+    return bestplan[S]
+    </code></pre>
+    <p>For bigger queries you can still do a dynamic programming approach but with extra rules (or <strong>heuristics</strong>) to remove possibilities:</p>
+    <ul>
+    <li>If we analyze only a certain type of plan (for example: the left-deep trees) we end up with $n*2^n$ instead of $3^n$</li>
+    </ul>
+    <p><img src="https://i.loli.net/2020/12/12/JTYGRpkFe8Icmoy.png" alt="image.png"></p>
+    <ul>
+    <li>If we add logical rules to avoid plans for some patterns (like “if a table as an index for the given predicate, don’t try a merge join on the table but only on the index”) it will reduce the number of possibilities without hurting to much the best possible solution.</li>
+    <li>If we add rules on the flow (like “perform the join operations BEFORE all the other relational operations”) it also reduces a lot of possibilities.</li>
+    <li>…</li>
+    </ul>
+    <h5>Greedy algorithms</h5>
+    <p>But for a very big query or to have a very fast answer (but not a very fast query), another type of algorithms is used, the greedy algorithms.</p>
+    <p>The idea is to follow a rule (or <strong>heuristic</strong>) to build a query plan in an incremental way. With this rule, a greedy algorithm finds the best solution to a problem one step at a time.  The algorithm starts the query plan with one JOIN. Then, at each step, the algorithm adds a new JOIN to the query plan using the same rule.</p>
+    <p>Let’s take a simple example. Let’s say we have a query with 4 joins on 5 tables (A, B, C, D and E). To simplify the problem we just take the nested join as a possible join. Let’s use the rule “use the join with the lowest cost”</p>
+    <ul>
+    <li>we arbitrary start on one of the 5 tables (let’s choose A)</li>
+    <li>we compute the cost of every join with A (A being the inner or outer relation).</li>
+    <li>we find that A JOIN B gives the lowest cost.</li>
+    <li>we then compute the cost of every join with the result of A JOIN B (A JOIN B being the inner or outer relation).</li>
+    <li>we find that (A JOIN B) JOIN C gives the best cost.</li>
+    <li>we then compute the cost of every join with the result of the (A JOIN B) JOIN C …</li>
+    <li>….</li>
+    <li>At the end we find the plan (((A JOIN B) JOIN C) JOIN D) JOIN E)</li>
+    </ul>
+    <p>Since we arbitrary started with A, we can apply the same algorithm for B, then C then D then E. We then keep the plan with the lowest cost.</p>
+    <p>By the way, this algorithm has a name: it’s called the <a href="https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm">Nearest neighbor algorithm</a>.</p>
+    <p>I won’t go into details, but with a good modeling and a sort in N*log(N) this problem can <a href="https://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=5&amp;cad=rja&amp;uact=8&amp;ved=0CE0QFjAEahUKEwjR8OLUmv3GAhUJuxQKHdU-DAA&amp;url=http%3A%2F%2Fwww.cs.bu.edu%2F~steng%2Fteaching%2FSpring2004%2Flectures%2Flecture3.ppt&amp;ei=hyK3VZGRAYn2UtX9MA&amp;usg=AFQjCNGL41kMNkG5cH">easily be solved</a>. The <strong>cost of this algorithm is in O(N*log(N)) vs O($3^N$) for the full dynamic programming version</strong>. If you have a big query with 20 joins, it means 26 vs 3 486 784 401, a BIG difference!</p>
+    <p>The problem with this algorithm is that we assume that finding the best join between 2 tables will give us the best cost if we keep this join and add a new join.  But:</p>
+    <ul>
+    <li>even if A JOIN B gives the best cost between A, B and C</li>
+    <li>(A JOIN C) JOIN B might give a better result than (A JOIN B) JOIN C.</li>
+    </ul>
+    <p>To improve the result, you can run multiple greedy algorithms using different rules and keep the best plan.</p>
+    <h5>Other algorithms</h5>
+    <p>[If you’re already fed up with algorithms, skip to the next part, what I’m going to say is not important for the rest of the article]</p>
+    <p>The problem of finding the best possible plan is an active research topic for many CS researchers. They often try to find better solutions for more precise problems/patterns. For example,</p>
+    <ul>
+    <li>if the query is a star join (it’s a certain type of multiple-join query), some databases will use a specific algorithm.</li>
+    <li>if the query is a parallel query, some databases will use a specific algorithm</li>
+    <li>…</li>
+    </ul>
+    <p>Other algorithms are also studied to replace dynamic programming for large queries. Greedy algorithms belong to larger family called <strong>heuristic algorithms</strong>. A greedy algorithm follows a rule (or heuristic), keeps the solution it found at the previous step and “appends” it to find the solution for the current step. Some algorithms follow a rule and apply it in a step-by-step way but don’t always keep the best solution found in the previous step. They are called heuristic algorithms.</p>
+    <p>For example, <strong>genetic algorithms</strong> follow a rule but the best solution of the last step is not often kept:</p>
+    <ul>
+    <li>A solution represents a possible full query plan</li>
+    <li>Instead of one solution (i.e. plan) there are P solutions (i.e. plans) kept at each step.</li>
+    <li>
+    <ol start="0">
+    <li>P query plans are randomly created</li>
+    </ol>
+    </li>
+    <li>
+    <ol>
+    <li>Only the plans with the best costs are kept</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>These best plans are mixed up to produce P news plans</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>Some of the P new plans are randomly modified</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="4">
+    <li>The step 1,2,3 are repeated T times</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="5">
+    <li>Then you keep the best plan from the P plans of the last loop.</li>
+    </ol>
+    </li>
+    </ul>
+    <p>The more loops you do the better the plan will be.</p>
+    <p>Is it magic? No, it’s the laws of nature: only the fittest survives!</p>
+    <p>FYI, genetic algorithms are implemented in PostgreSQL but I wasn’t able to find if they’re used by default.</p>
+    <p>There are other heuristic algorithms used in databases like Simulated Annealing, Iterative Improvement, Two-Phase Optimization… But I don’t know if they’re currently used in enterprise databases or if they’re only used in research databases.</p>
+    <p>For more information, you can read the following research article that presents more possible algorithms: <a href="http://www.acad.bg/rismim/itc/sub/archiv/Paper6_1_2009.PDF">Review of Algorithms for the Join Ordering Problem in Database Query Optimization</a></p>
+    <h4>Real optimizers</h4>
+    <p>[You can skip to the next part, what I’m going to say is not important]</p>
+    <p>But, all this blabla is very theoretical. Since I’m a developer and not a researcher, I like <strong>concrete examples</strong>.</p>
+    <p>Let’s see how the <a href="https://www.sqlite.org/optoverview.html">SQLite optimizer</a> works. It’s a light database so it uses a simple optimization based on a greedy algorithm with extra-rules to limit the number of possibilities:</p>
+    <ul>
+    <li>SQLite chooses to never reorder tables in a CROSS JOIN operator
+    -** joins are implemented as nested joins**</li>
+    <li>outer joins are always evaluated in the order in which they occur</li>
+    <li>…</li>
+    <li>Prior to version 3.8.0, <strong>SQLite uses the “Nearest Neighbor” greedy algorithm when searching for the best query plan</strong></li>
+    </ul>
+    <p>Wait a minute … we’ve already seen this algorithm! What a coincidence!</p>
+    <ul>
+    <li>Since version 3.8.0 (released in 2015), SQLite uses the “<a href="https://www.sqlite.org/queryplanner-ng.html">N Nearest Neighbors</a>” <strong>greedy algorithm</strong> when searching for the best query plan</li>
+    </ul>
+    <p>Let’s see how another optimizer does his job. IBM DB2 is like all the enterprise databases but I’ll focus on this one since it’s the last one I’ve really used before switching to Big Data.</p>
+    <p>If we look at the <a href="https://www-01.ibm.com/support/knowledgecenter/SSEPGG_9.7.0/com.ibm.db2.luw.admin.perf.doc/doc/r0005278.html">official documentation</a>, we learn that the DB2 optimizer let you use 7 different levels of optimization:</p>
+    <ul>
+    <li>Use greedy algorithms for the joins
+    <ul>
+    <li>0 – minimal optimization, use index scan and nested-loop join and avoid some Query Rewrite</li>
+    <li>1 – low optimization</li>
+    <li>2 – full optimization</li>
+    </ul>
+    </li>
+    <li>Use dynamic programming for the joins
+    <ul>
+    <li>3 – moderate optimization and rough approximation</li>
+    <li>5 – full optimization, uses all techniques with heuristics</li>
+    <li>7 – full optimization similar to 5, without heuristics</li>
+    <li>9 – maximal optimization spare no effort/expense <strong>considers all possible join orders, including Cartesian products</strong></li>
+    </ul>
+    </li>
+    </ul>
+    <p>We can see that <strong>DB2 uses greedy algorithms and dynamic programming</strong>. Of course, they don’t share the heuristics they use since the query optimizer is the main power of a database.</p>
+    <p>FYI, <strong>the default level is 5</strong>. By default the optimizer uses the following characteristics:</p>
+    <ul>
+    <li><strong>All available statistics</strong>, including frequent-value and quantile statistics, are used.</li>
+    <li><strong>All query rewrite rules</strong> (including materialized query table routing) are applied, except computationally intensive rules that are applicable only in very rare cases.</li>
+    <li><strong>Dynamic programming join enumeration</strong> is used, with:
+    <ul>
+    <li>Limited use of composite inner relation</li>
+    <li>Limited use of Cartesian products for star schemas involving lookup tables</li>
+    </ul>
+    </li>
+    <li>A wide range of access methods is considered, including list prefetch (note: will see what is means), index ANDing (note: a special operation with indexes), and materialized query table routing.</li>
+    </ul>
+    <p>By default, <strong>DB2 uses dynamic programming limited by heuristics for the join ordering</strong>.</p>
+    <p>The others conditions (GROUP BY, DISTINCT…) are handled by simple rules.</p>
+    <h4>Query Plan Cache</h4>
+    <p>Since the creation of a plan takes time, most databases store the plan into a <strong>query plan cache</strong> to avoid useless re-computations of the same query plan. It’s kind of a big topic since the database needs to know when to update the outdated plans. The idea is to put a threshold and if the statistics of a table have changed above this threshold then the query plan involving this table is purged from the cache.</p>
+    <h3>Query executor</h3>
+    <p>At this stage we have an optimized execution plan. This plan is compiled to become an executable code. Then, if there are enough resources (memory, CPU) it is executed by the query executor. The operators in the plan (JOIN, SORT BY …) can be executed in a sequential or parallel way; it’s up to the executor. To get and write its data, the query executor interacts with the data manager, which is the next part of the article.</p>
+    <h2>Data manager</h2>
+    <p><img src="https://i.loli.net/2020/12/13/Luyz183RltwWqUe.png" alt="image.png"></p>
+    <p>At this step, the query manager is executing the query and needs the data from the tables and indexes. It asks the data manager to get the data, but there are 2 problems:</p>
+    <ul>
+    <li>Relational databases use a transactional model. So, you can’t get any data at any time because someone else might be using/modifying the data at the same time.</li>
+    <li><strong>Data retrieval is the slowest operation in a database</strong>, therefore the data manager needs to be smart enough to get and keep data in memory buffers.</li>
+    </ul>
+    <p>In this part, we’ll see how relational databases handle these 2 problems. I won’t talk about the way the data manager gets its data because it’s not the most important (and this article is long enough!).</p>
+    <h3>Cache manager</h3>
+    <p>As I already said, the main bottleneck of databases is disk I/O. To improve performance, modern databases use a cache manager.</p>
+    <p>Instead of directly getting the data from the file system, the query executor asks for the data to the cache manager. The cache manager has an in-memory cache called <strong>buffer pool</strong>. <strong>Getting data from memory dramatically speeds up a database</strong>. It’s difficult to give an order of magnitude because it depends on the operation you need to do:</p>
+    <ul>
+    <li>sequential access (ex: full scan) vs random access (ex: access by row id),</li>
+    <li>read vs write</li>
+    </ul>
+    <p>and the type of disks used by the database:</p>
+    <ul>
+    <li>7.2k/10k/15k rpm HDD</li>
+    <li>SSD</li>
+    <li>RAID 1/5/…</li>
+    </ul>
+    <p>but I’d say <strong>memory is 100 to 100k times faster than disk</strong>.</p>
+    <p>But, this leads to another problem (as always with databases…). The cache manager needs to get the data in memory BEFORE the query executor uses them; otherwise the query manager has to wait for the data from the slow disks.</p>
+    <h4>Prefetching</h4>
+    <p>This problem is called prefetching. A query executor knows the data it’ll need because it knows the full flow of the query and has knowledge of the data on disk with the statistics. Here is the idea:</p>
+    <ul>
+    <li>When the query executor is processing its first bunch of data</li>
+    <li>It asks the cache manager to pre-load the second bunch of data</li>
+    <li>When it starts processing the second bunch of data</li>
+    <li>It asks the CM to pre-load the third bunch and informs the CM that the first bunch can be purged from cache.</li>
+    <li>…</li>
+    </ul>
+    <p>The CM stores all these data in its buffer pool. In order to know if a data is still needed, the cache manager adds an extra-information about the cached data (called a <strong>latch</strong>).</p>
+    <p>Sometimes the query executor doesn’t know what data it’ll need and some databases don’t provide this functionality. Instead, they use a speculative prefetching (for example: if the query executor asked for data 1,3,5 it’ll likely ask for 7,9,11 in a near future) or a sequential prefetching (in this case the CM simply loads from disks the next contiguous data after the ones asked).</p>
+    <p>To monitor how well the prefetching is working, modern databases provide a metric called <strong>buffer/cache hit ratio</strong>. The hit ratio shows how often a requested data has been found in the buffer cache without requiring disk access.</p>
+    <p>Note: a poor cache hit ratio doesn’t always mean that the cache is ill-working. For more information, you can read the <a href="https://docs.oracle.com/database/121/TGDBA/tune_buffer_cache.htm">Oracle documentation</a>.</p>
+    <p>But, a buffer is a <strong>limited</strong> amount of memory. Therefore, it needs to remove some data to be able to load new ones. Loading and purging the cache has a cost in terms of disk and network I/O. If you have a query that is often executed, it wouldn’t be efficient to always load then purge the data used by this query. To handle this problem, modern databases use a buffer replacement strategy.</p>
+    <h4>Buffer-Replacement strategies</h4>
+    <p>Most modern databases (at least SQL Server, MySQL, Oracle and DB2) use an LRU algorithm.</p>
+    <h5>LRU</h5>
+    <p>LRU stands for Least Recently Used. The idea behind this algorithm is to keep in the cache the data that have been recently used and, therefore, are more likely to be used again.</p>
+    <p>Here is a visual example:</p>
+    <p><img src="https://i.loli.net/2020/12/13/HwZx4RnveKTENrb.png" alt="image.png"></p>
+    <p>For the sake of comprehension, I’ll assume that the data in the buffer are not locked by latches (and therefore can be removed). In this simple example the buffer can store 3 elements:</p>
+    <ul>
+    <li>1: the cache manager uses the data 1 and puts the data into the empty buffer</li>
+    <li>2: the CM uses the data 4 and puts the data into the half-loaded buffer</li>
+    <li>3: the CM uses the data 3 and puts the data into the half-loaded buffer</li>
+    <li>4: the CM uses the data 9. The buffer is full so <strong>data 1 is removed since it’s the last recently used data</strong>. Data 9 is added into the buffer</li>
+    <li>5: the CM uses the data 4. <strong>Data 4 is already in the buffer therefore it becomes the first recently used data again</strong>.</li>
+    <li>6: the CM uses the data 1. The buffer is full so <strong>data 9 is removed since it’s the last recently used data</strong>. Data 1 is added into the buffer</li>
+    <li>…
+    This algorithm works well but there are some limitations. What if there is a full scan on a large table? In other words, what happens when the size of the table/index is above the size of the buffer? Using this algorithm will remove all the previous values in the cache whereas the data from the full scan are likely to be used only once.</li>
+    </ul>
+    <h5>Improvements</h5>
+    <p>To prevent this to happen, some databases add specific rules. For example according to <a href="https://docs.oracle.com/database/121/CNCPT/memory.htm#i10221">Oracle documentation</a>:</p>
+    <blockquote>
+    <p>“For very large tables, the database typically uses a direct path read, which loads blocks directly […], to avoid populating the buffer cache. For medium size tables, the database may use a direct read or a cache read. If it decides to use a cache read, then the database places the blocks at the end of the LRU list to prevent the scan from effectively cleaning out the buffer cache.”</p>
+    </blockquote>
+    <p>There are other possibilities like using an advanced version of LRU called LRU-K. For example SQL Server uses LRU-K for K =2.</p>
+    <p>This idea behind this algorithm is to take into account more history. With the simple LRU (which is also LRU-K for K=1), the algorithm only takes into account the last time the data was used. With the LRU-K:</p>
+    <ul>
+    <li>It takes into account the <strong>K last times the data was used</strong>.</li>
+    <li><strong>A weight is put</strong> on the number of times the data was used</li>
+    <li>If a bunch of new data is loaded into the cache, the old but often used data are not removed (because their weights are higher).</li>
+    <li>But the algorithm can’t keep old data in the cache if they aren’t used anymore.</li>
+    <li>So the <strong>weights decrease over time if the data is not used</strong>.</li>
+    </ul>
+    <p>The computation of the weight is costly and this is why SQL Server only uses K=2. This value performs well for an acceptable overhead.</p>
+    <p>For a more in-depth knowledge of LRU-K, you can read the original research paper (1993): <a href="https://www.cs.cmu.edu/~christos/courses/721-resources/p297-o_neil.pdf">The LRU-K page replacement algorithm for database disk buffering</a>.</p>
+    <h5>Other algorithms</h5>
+    <p>Of course there are other algorithms to manage cache like</p>
+    <ul>
+    <li>2Q (a LRU-K like algorithm)</li>
+    <li>CLOCK (a LRU-K like algorithm)</li>
+    <li>MRU (most recently used, uses the same logic than LRU but with another rule)</li>
+    <li>LRFU (Least Recently and Frequently Used)</li>
+    <li>…</li>
+    </ul>
+    <p>Some databases let the possibility to use another algorithm than the default one.</p>
+    <h4>Write buffer</h4>
+    <p>I only talked about read buffers that load data before using them. But in a database you also have write buffers that store data and flush them on disk by bunches instead of writing data one by one and producing many single disk accesses.</p>
+    <p>Keep in mind that buffers store <strong>pages</strong> (the smallest unit of data) and not rows (which is a logical/human way to see data). A page in a buffer pool is <strong>dirty</strong> if the page has been modified and not written on disk. There are multiple algorithms to decide the best time to write the dirty pages on disk but it’s highly linked to the notion of transaction, which is the next part of the article.</p>
+    <h3>Transaction manager</h3>
+    <p>Last but not least, this part is about the transaction manager. We’ll see how this process ensures that each query is executed in its own transaction. But before that, we need to understand the concept of ACID transactions.</p>
+    <h4>I’m on acid</h4>
+    <p>An ACID transaction is a <strong>unit of work</strong> that ensures 4 things:</p>
+    <ul>
+    <li><strong>Atomicity</strong>: the transaction is “all or nothing”, even if it lasts 10 hours. If the transaction crashes, the state goes back to before the transaction (the transaction is <strong>rolled back</strong>).</li>
+    <li><strong>Isolation</strong>: if 2 transactions A and B run at the same time, the result of transactions A and B must be the same whether A finishes before/after/during transaction B.</li>
+    <li><strong>Durability</strong>: once the transaction is <strong>committed</strong> (i.e. ends successfully), the data stay in the database no matter what happens (crash or error).</li>
+    <li><strong>Consistency</strong>: only valid data (in terms of relational constraints and functional constraints) are written to the database. The consistency is related to atomicity and isolation.</li>
+    </ul>
+    <p><img src="https://i.loli.net/2020/12/13/7UPXry9qjCTJQDn.png" alt="image.png"></p>
+    <p>During the same transaction, you can run multiple SQL queries to read, create, update and delete data. The mess begins when two transactions are using the same data. The classic example is a money transfer from an account A to an account B.  Imagine you have 2 transactions:</p>
+    <ul>
+    <li>Transaction 1 that takes 100$ from account A and gives them to account B</li>
+    <li>Transaction 2 that takes 50$ from account A and gives them to account B</li>
+    </ul>
+    <p>If we go back to the <strong>ACID</strong> properties:</p>
+    <ul>
+    <li><strong>Atomicity</strong> ensures that no matter what happens during T1 (a server crash, a network failure …), you can’t end up in a situation where the 100$ are withdrawn from A and not given to B (this case is an inconsistent state).</li>
+    <li><strong>Isolation</strong> ensures that if T1 and T2 happen at the same time, in the end A will be taken 150$ and B given 150$ and not, for example, A taken 150$ and B given just $50 because T2 has partially erased the actions of T1 (this case is also an inconsistent state).</li>
+    <li><strong>Durability</strong> ensures that T1 won’t disappear into thin air if the database crashes just after T1 is committed.</li>
+    <li><strong>Consistency</strong> ensures that no money is created or destroyed in the system.</li>
+    </ul>
+    <p>[You can skip to the next part if you want, what I’m going to say is not important for the rest of the article]</p>
+    <p>Many modern databases don’t use a pure isolation as a default behavior because it comes with a huge performance overhead. The SQL norm defines 4 levels of isolation:</p>
+    <ul>
+    <li><strong>Serializable</strong> (default behaviour in SQLite): The highest level of isolation. Two transactions happening at the same time are 100% isolated. Each transaction has its own “world”.</li>
+    <li><strong>Repeatable read</strong> (default behavior in MySQL): Each transaction has its own “world” except in one situation. If a transaction ends up successfully and adds new data, these data will be visible in the other and still running transactions. But if A modifies a data and ends up successfully, the modification won’t be visible in the still running transactions. So, this break of isolation between transactions is only about new data, not the existing ones.</li>
+    </ul>
+    <p>For example,  if a transaction A does a “SELECT count(1) from TABLE_X” and then a new data is added and committed in TABLE_X by Transaction B, if transaction A does again a count(1) the value won’t be the same.</p>
+    <p>This is called a <strong>phantom read</strong>.</p>
+    <ul>
+    <li><strong>Read committed</strong> (default behavior in Oracle, PostgreSQL and SQL Server): It’s a repeatable read + a new break of isolation. If a transaction A reads a data D and then this data is modified (or deleted) and committed by a transaction B, if A reads data D again it will see the modification (or deletion) made by B on the data.</li>
+    </ul>
+    <p>This is called a <strong>non-repeatable read</strong>.</p>
+    <ul>
+    <li><strong>Read uncommitted</strong>: the lowest level of isolation. It’s a read committed + a new break of isolation. If a transaction A reads a data D and then this data D is modified by a transaction B (that is not committed and still running), if A reads data D again it will see the modified value. If transaction B is rolled back, then data D read by A the second time doesn’t make no sense since it has been modified by a transaction B that never happened (since it was rolled back).</li>
+    </ul>
+    <p>This is called a <strong>dirty read</strong>.</p>
+    <p>Most databases add their own custom levels of isolation (like the snapshot isolation used by PostgreSQL, Oracle and SQL Server). Moreover, most databases don’t implement all the levels of the SQL norm (especially the read uncommitted level).</p>
+    <p>The default level of isolation can be overridden by the user/developer at the beginning of the connection (it’s a very simple line of code to add).</p>
+    <h4>Concurrency Control</h4>
+    <p>The real issue to ensure isolation, coherency and atomicity is the <strong>write operations on the same data</strong> (add, update and delete):</p>
+    <ul>
+    <li>if all transactions are only reading data, they can work at the same time without modifying the behavior of another transaction.</li>
+    <li>if (at least) one of the transactions is modifying a data read by other transactions, the database needs to find a way to hide this modification from the other transactions. Moreover, it also needs to ensure that this modification won’t be erased by another transaction that didn’t see the modified data.</li>
+    </ul>
+    <p>This problem is a called <strong>concurrency control</strong>.</p>
+    <p>The easiest way to solve this problem is to run each transaction one by one (i.e. sequentially). But that’s not scalable at all and only one core is working on the multi-processor/core server, not very efficient…</p>
+    <p>The ideal way to solve this problem is, every time a transaction is created or cancelled:</p>
+    <ul>
+    <li>to monitor all the operations of all the transactions</li>
+    <li>to check if the parts of 2 (or more) transactions are in conflict because they’re reading/modifying the same data.</li>
+    <li>to reorder the operations inside the conflicting transactions to reduce the size of the conflicting parts</li>
+    <li>to execute the conflicting parts in a certain order (while the non-conflicting transactions are still running concurrently).</li>
+    <li>to take into account that a transaction can be cancelled.</li>
+    </ul>
+    <p>More formally it’s a scheduling problem with conflicting schedules. More concretely, it’s a very difficult and CPU-expensive optimization problem. Enterprise databases can’t afford to wait hours to find the best schedule for each new transaction event. Therefore, they use less ideal approaches that lead to more time wasted between conflicting transactions.</p>
+    <h4>Lock manager</h4>
+    <p>To handle this problem, most databases are using <strong>locks</strong> and/or <strong>data versioning</strong>. Since it’s a big topic, I’ll focus on the locking part then I’ll speak a little bit about data versioning.</p>
+    <p><strong>Pessimistic locking</strong></p>
+    <p>The idea behind locking is:</p>
+    <ul>
+    <li>if a transaction needs a data,</li>
+    <li>it locks the data</li>
+    <li>if another transaction also needs this data,</li>
+    <li>it’ll have to wait until the first transaction releases the data.</li>
+    </ul>
+    <p>This is called an <em>exclusive lock</em>.</p>
+    <p>But using an exclusive lock for a transaction that only needs to read a data is very expensive since <strong>it forces other transactions that only want to read the same data to wait</strong>. This is why there is another type of lock, the <strong>shared lock</strong>.</p>
+    <p>With the shared lock:</p>
+    <ul>
+    <li>if a transaction needs only to read a data A,</li>
+    <li>it “shared locks” the data and reads the data</li>
+    <li>if a second transaction also needs only to read data A,</li>
+    <li>it “shared locks” the data and reads the data</li>
+    <li>if a third transaction needs to modify data A,</li>
+    <li>it “exclusive locks” the data but it has to wait until the 2 other transactions release their shared locks to apply its exclusive lock on data A.</li>
+    </ul>
+    <p>Still, if a data as an exclusive lock, a transaction that just needs to read the data will have to wait the end of the exclusive lock to put a shared lock on the data.</p>
+    <p><img src="https://i.loli.net/2020/12/14/LmAqOvB7UFWPeJc.png" alt="image.png"></p>
+    <p>The lock manager is the process that gives and releases locks. Internally, it stores the locks in a hash table (where the key is the data to lock) and knows for each data:</p>
+    <ul>
+    <li>which transactions are locking the data</li>
+    <li>which transactions are waiting for the data</li>
+    </ul>
+    <h5>Deadlock</h5>
+    <p>But the use of locks can lead to a situation where 2 transactions are waiting forever for a data:</p>
+    <p><img src="https://i.loli.net/2020/12/14/5tO1APi7DlmRU6J.png" alt="image.png"></p>
+    <p>In this figure:</p>
+    <ul>
+    <li>transaction A has an exclusive lock on data1 and is waiting to get data2</li>
+    <li>transaction B has an exclusive lock on data2 and is waiting to get data1</li>
+    </ul>
+    <p>This is called a deadlock.</p>
+    <p>During a deadlock, the lock manager chooses which transaction to cancel (rollback) in order to remove the deadlock. This decision is not easy:</p>
+    <ul>
+    <li>Is it better to kill the transaction that modified the least amount of data (and therefore that will produce the least expensive rollback)?</li>
+    <li>Is it better to kill the least aged transaction because the user of the other transaction has waited longer?</li>
+    <li>Is it better to kill the transaction that will take less time to finish (and avoid a possible starvation)?</li>
+    <li>In case of rollback, how many transactions will be impacted by this rollback?</li>
+    </ul>
+    <p>But before making this choice, it needs to check if there are deadlocks.</p>
+    <p>The hash table can be seen as a graph (like in the previous figures). There is a deadlock if there is a cycle in the graph. Since it’s expensive to check for cycles (because the graph with all the locks is quite big), a simpler approach is often used: using a <strong>timeout</strong>. If a lock is not given within this timeout, the transaction enters a deadlock state.</p>
+    <p>The lock manager can also check before giving a lock if this lock will create a deadlock. But again it’s computationally expensive to do it perfectly. Therefore, these pre-checks are often a set of basic rules.</p>
+    <h5>Two-phase locking</h5>
+    <p>The <strong>simplest way</strong> to ensure a pure isolation is if a lock is acquired at the beginning of the transaction and released at the end of the transaction. This means that a transaction has to wait for all its locks before it starts and the locks held by a transaction are released when the transaction ends. It works but it <strong>produces a lot of time wasted</strong> to wait for all locks.</p>
+    <p>A faster way is the <strong>Two-Phase Locking Protocol</strong> (used by DB2 and SQL Server) where a transaction is divided into 2 phases:</p>
+    <ul>
+    <li>the <strong>growing phase</strong> where a transaction can obtain locks, but can’t release any lock.</li>
+    <li>the <strong>shrinking phase</strong> where a transaction can release locks (on the data it has already processed and won’t process again), but can’t obtain new locks.</li>
+    </ul>
+    <p><img src="https://i.loli.net/2020/12/14/mcNudEvYJx6bBhM.png" alt="image.png"></p>
+    <p>The idea behind these 2 simple rules is:</p>
+    <ul>
+    <li>to release the locks that aren’t used anymore to reduce the wait time of other transactions waiting for these locks</li>
+    <li>to prevent from cases where a transaction gets data modified after the transaction started and therefore aren’t coherent with the first data the transaction acquired.</li>
+    </ul>
+    <p>This protocol works well except if a transaction that modified a data and released the associated lock is cancelled (rolled back). You could end up in a case where another transaction reads the modified value whereas this value is going to be rolled back. To avoid this problem, <strong>all the exclusive locks must be released at the end of the transaction</strong>.</p>
+    <h5>A few words</h5>
+    <p>Of course a real database uses a more sophisticated system involving more types of locks (like intention locks) and more granularities (locks on a row, on a page, on a partition, on a table, on a tablespace) but the idea remains the same.</p>
+    <p>I only presented the pure lock-based approach. <strong>Data versioning is another way to deal with this problem</strong>.</p>
+    <p>The idea behind versioning is that:</p>
+    <ul>
+    <li>every transaction can modify the same data at the same time</li>
+    <li>each transaction has its own copy (or version) of the data</li>
+    <li>if 2 transactions modify the same data, only one modification will be accepted, the other will be refused and the associated transaction will be rolled back (and maybe re-run).</li>
+    </ul>
+    <p>It increases the performance since:</p>
+    <ul>
+    <li><strong>reader transactions don’t block writer transactions</strong></li>
+    <li><strong>writer transactions don’t block reader transactions</strong></li>
+    <li>there is no overhead from the “fat and slow” lock manager</li>
+    </ul>
+    <p>Everything is better than locks except when 2 transactions write the same data. Moreover, you can quickly end up with a huge disk space overhead.</p>
+    <p>Data versioning and locking are two different visions: <strong>optimistic locking vs pessimistic locking</strong>. They both have pros and cons; it really depends on the use case (more reads vs more writes). For a presentation on data versioning, I recommend <a href="http://momjian.us/main/writings/pgsql/mvcc.pdf">this very good presentation</a> on how PostgreSQL implements multiversion concurrency control.</p>
+    <p>Some databases like DB2 (until DB2 9.7) and SQL Server (except for snapshot isolation) are only using locks. Other like PostgreSQL, MySQL and Oracle use a mixed approach involving locks and data versioning. I’m not aware of a database using only data versioning (if you know a database based on a pure data versioning, feel free to tell me).</p>
+    <p>[UPDATE 08/20/2015] I was told by a reader that:</p>
+    <blockquote>
+    <p>Firebird and Interbase use versioning without record locking.</p>
+    </blockquote>
+    <blockquote>
+    <p>Versioning has an interesting effect on indexes: sometimes a unique index contains duplicates, the index can have more entries than the table has rows, etc.</p>
+    </blockquote>
+    <p>If you read the part on the different levels of isolation, when you increase the isolation level you increase the number of locks and therefore the time wasted by transactions to wait for their locks. This is why most databases don’t use the highest isolation level (Serializable) by default.</p>
+    <p>As always, you can check by yourself in the documentation of the main databases (for example <a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-transaction-model.html">MySQL</a>, <a href="https://www.postgresql.org/docs/9.4/static/mvcc.html">PostgreSQL</a> or <a href="https://docs.oracle.com/cd/B28359_01/server.111/b28318/consist.htm#i5337">Oracle</a>).</p>
+    <h4>Log manager</h4>
+    <p>We’ve already seen that to increase its performances, a database stores data in memory buffers. But if the server crashes when the transaction is being committed, you’ll lose  the data still in memory during the crash, which breaks the Durability of a transaction.</p>
+    <p>You can write everything on disk but if the server crashes, you’ll end up with the data half written on disk, which breaks the Atomicity of a transaction.</p>
+    <p><strong>Any modification written by a transaction must be undone or finished</strong>.</p>
+    <p>To deal with this problem, there are 2 ways:</p>
+    <ul>
+    <li><strong>Shadow copies/pages</strong>: Each transaction creates its own copy of the database (or just a part of the database) and works on this copy. In case of error, the copy is removed. In case of success, the database switches instantly the data from the copy with a filesystem trick then it removes the “old” data.</li>
+    <li><strong>Transaction log</strong>: A transaction log is a storage space. Before each write on disk, the database writes an info on the transaction log so that in case of crash/cancel of a transaction, the database knows how to remove (or finish) the unfinished transaction.</li>
+    </ul>
+    <h5>WAL</h5>
+    <p>The shadow copies/pages creates a huge disk overhead when used on large databases involving many transactions. That’s why modern databases use a <strong>transaction log</strong>. The transaction log must be stored on a <strong>stable storage</strong>. I won’t go deeper on storage technologies but using (at least) RAID disks is mandatory to prevent from a disk failure.</p>
+    <p>Most databases (at least Oracle, <a href="https://technet.microsoft.com/en-us/library/ms186259(v=sql.105).aspx">SQL Server</a>, <a href="https://www.ibm.com/developerworks/data/library/techarticle/0301kline/0301kline.html">DB2</a>, <a href="https://www.postgresql.org/docs/9.4/static/wal.html">PostgreSQL</a>, MySQL and <a href="https://www.sqlite.org/wal.html">SQLite</a>) deal with the transaction log using the <strong>Write-Ahead Logging protocol</strong> (WAL). The WAL protocol is a set of 3 rules:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>Each modification into the database produces a log record, and <strong>the log record must be written into the transaction log before the data is written on disk</strong>.</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>The log records must be written in order; a log record A that happens before a log record B must but written before B</li>
+    </ol>
+    </li>
+    <li>
+    <ol start="3">
+    <li>When a transaction is committed, the commit order must be written on the transaction log before the transaction ends up successfully.</li>
+    </ol>
+    </li>
+    </ul>
+    <p><img src="https://i.loli.net/2020/12/14/IewnyAabukzmKSF.png" alt="image.png"></p>
+    <p>This job is done by a log manager. An easy way to see it is that between the cache manager and the data access manager (that writes data on disk) the log manager writes every update/delete/create/commit/rollback on the transaction log before they’re written on disk. Easy, right?</p>
+    <p>WRONG ANSWER! After all we’ve been through, you should know that everything related to a database is cursed by the “database effect”. More seriously, the problem is to find a way to write logs while keeping good performances. If the writes on the transaction log are too slow they will slow down everything.</p>
+    <h5>ARIES</h5>
+    <p>In 1992, IBM researchers “invented” an enhanced version of WAL called ARIES. ARIES is more or less used by most modern databases. The logic might not be the same but the concepts behind ARIES are used everywhere. I put the quotes on invented because, according to this <a href="http://db.csail.mit.edu/6.830/lectures/lec15-notes.pdf">MIT course</a>, the IBM researchers did “nothing more than writing the good practices of transaction recovery”. Since I was 5 when the ARIES paper was published, I don’t care about this old gossip from bitter researchers. In fact, I only put this info to give you a break before we start this last technical part. I’ve read a huge part of the <a href="https://www.cs.berkeley.edu/~brewer/cs262/Aries.pdf">research paper on ARIES</a> and I find it very interesting! In this part I’ll only give you an overview of ARIES but I strongly recommend to read the paper if you want a real knowledge.</p>
+    <p>ARIES stands for <strong>A</strong>lgorithms for <strong>R</strong>ecovery and <strong>I</strong>solation <strong>E</strong>xploiting <strong>S</strong>emantics.</p>
+    <p>The aim of this technique is double:</p>
+    <ul>
+    <li>
+    <ol>
+    <li>Having <strong>good performances when writing logs</strong></li>
+    </ol>
+    </li>
+    <li>
+    <ol start="2">
+    <li>Having a fast and <strong>reliable recovery</strong></li>
+    </ol>
+    </li>
+    </ul>
+    <p>There are multiple reasons a database has to rollback a transaction:</p>
+    <ul>
+    <li>Because the user cancelled it</li>
+    <li>Because of server or network failures</li>
+    <li>Because the transaction has broken the integrity of the database (for example you have a UNIQUE constraint on a column and the transaction adds a duplicate)</li>
+    <li>Because of deadlocks</li>
+    </ul>
+    <p>Sometimes (for example, in case of network failure), the database can recover the transaction.</p>
+    <p>How is that possible? To answer this question, we need to understand the information stored in a log record.</p>
+    <h5>The logs</h5>
+    <p>Each <strong>operation (add/remove/modify) during a transaction produces a log</strong>. This log record is composed of:</p>
+    <ul>
+    <li><strong>LSN</strong>: A unique <strong>L</strong>og <strong>S</strong>equence <strong>N</strong>umber. This LSN is given in a chronological order*. This means that if an operation A happened before an operation B the LSN of log A will be lower than the LSN of log B.</li>
+    <li><strong>TransID</strong>: the id of the transaction that produced the operation.</li>
+    <li><strong>PageID</strong>: the location on disk of the modified data. The minimum amount of data on disk is a page so the location of the data is the location of the page that contains the data.</li>
+    <li><strong>PrevLSN</strong>: A link to the previous log record produced by the same transaction.</li>
+    <li><strong>UNDO</strong>: a way to remove the effect of the operation</li>
+    </ul>
+    <p>For example, if the operation is an update, the UNDO will store either the value/state of the updated element before the update (physical UNDO) or the reverse operation to go back at the previous state (logical UNDO)**.</p>
+    <ul>
+    <li><strong>REDO</strong>: a way replay the operation</li>
+    </ul>
+    <p>Likewise, there are 2 ways to do that. Either you store the value/state of the element after the operation or the operation itself to replay it.</p>
+    <ul>
+    <li>…: (FYI, an ARIES log has 2 others fields: the UndoNxtLSN and the Type).</li>
+    </ul>
+    <p>Moreover, each page on disk (that stores the data, not the log) has id of the log record (LSN) of the last operation that modified the data.</p>
+    <p>The way the LSN is given is more complicated because it is linked to the way the logs are stored. But the idea remains the same.</p>
+    <p>ARIES uses only logical UNDO because it’s a real mess to deal with physical UNDO.</p>
+    <p>Note: From my little knowledge, only PostgreSQL is not using an UNDO. It uses instead a garbage collector daemon that removes the old versions of data. This is linked to the implementation of the data versioning in PostgreSQL.</p>
+    <p>To give you a better idea, here is a visual and simplified example of the log records produced by the query “UPDATE FROM PERSON SET AGE = 18;”. Let’s say this query is executed in transaction 18.</p>
+    <p><img src="https://i.loli.net/2020/12/14/56SwLnH2gGyeztU.png" alt="image.png"></p>
+    <p>Each log has a unique LSN. The logs that are linked belong to the same transaction. The logs are linked in a chronological order (the last log of the linked list is the log of the last operation).</p>
+    <h2>To conclude</h2>
+    <p>Before writing this article, I knew how big the subject was and I knew it would take time to write an in-depth article about it. It turned out that I was very optimistic and I spent twice more time than expected, but I learned a lot.</p>
+    <p>If you want a good overview about databases, I recommend reading the research paper “<a href="http://db.cs.berkeley.edu/papers/fntdb07-architecture.pdf">Architecture of a Database System</a>“. This is a good introduction on databases (110 pages) and for once it’s readable by non-CS guys. This paper helped me a lot to find a plan for this article and it’s not focused on data structures and algorithms like my article but more on the architecture concepts.</p>
+    <p>If you read this article carefully you should now understand how powerful a database is. Since it was a very long article, let me remind you about what we’ve seen:</p>
+    <ul>
+    <li>an overview of the B+Tree indexes</li>
+    <li>a global overview of a database</li>
+    <li>an overview of the cost based optimization with a strong focus on join operators</li>
+    <li>an overview of the buffer pool management</li>
+    <li>an overview of the transaction management</li>
+    </ul>
+    <p>But a database contains even more cleverness. For example, I didn’t speak about some touchy problems like:</p>
+    <ul>
+    <li>how to manage clustered databases and global transactions</li>
+    <li>how to take a snapshot when the database is still running</li>
+    <li>how to efficiently store (and compress) data</li>
+    <li>how to manage memory</li>
+    </ul>
+    <p>So, think twice when you have to choose between a buggy NoSQL database and a rock-solid relational database. Don’t get me wrong, some NoSQL databases are great. But they’re still young and answering specific problems that concern a few applications.</p>
+    <p>To conclude, if someone asks you how a database works, instead of running away you’ll now be able to answer:</p>
+    <p><img src="https://i.loli.net/2020/12/10/1w974mAH52hOvF3.gif" alt="magic_low2.gif"></p>
+    <p>Otherwise you can give him/her this article.</p>
+
+                    <!--内容协议-->
+                    <div class="z-post-footer">
+                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+                        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/how-a-relational-database-work">http://127.0.0.1:8080/detail/how-a-relational-database-work</a></p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="accordion">
+                        <div class="accordion-header" id="headingTOC">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                            </svg>
+                        </span>
+                            <span>目录</span>
+                        </div>
+                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+                    </div>
+                </div>
+                <div class="column is-1"></div>
+            </div>
+        </article>
+        <script>
+            // 生成目录
+            let nav = document.createElement('nav');
+            nav.id = 'TableOfContents';
+            let h2s = document.querySelectorAll('.post h2');
+            let h23s = document.querySelectorAll('.post h2,h3');
+            let h2ul = document.createElement('ul');
+            h23s.forEach(h23 => {
+                h23.id = h23.innerHTML;
+            });
+            let lst = document.querySelector('.post');
+            for (let i = 0; i < h23s.length; i++) {
+                if (h23s[i].tagName === 'H2') {
+                    let h2li = document.createElement('li');
+                    let h2a = document.createElement('a');
+                    h2a.href = `#${h23s[i].innerHTML}`;
+                    h2a.innerHTML = h23s[i].innerHTML;
+                    h2li.appendChild(h2a);
+                    h2ul.appendChild(h2li);
+                    lst = h2li;
+                } else {
+                    let h3ul = document.createElement('ul');
+                    while (i < h23s.length && h23s[i].tagName === 'H3') {
+                        let h3li = document.createElement('li');
+                        let h3a = document.createElement('a');
+                        h3a.href = `#${h23s[i].innerHTML}`;
+                        h3a.innerHTML = h23s[i].innerHTML;
+                        h3li.appendChild(h3a);
+                        h3ul.appendChild(h3li);
+                        i++;
+                    }
+                    lst.appendChild(h3ul);
+                    i--;
+                }
+            }
+            nav.appendChild(h2ul);
+            document.getElementById('collapseTOC').appendChild(nav);
+            let isShow = true;
+            let body = document.getElementById('collapseTOC');
+            let last = null;
+            document.getElementById('headingTOC').addEventListener('click', () => {
+                isShow = !isShow;
+                if (isShow) {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+            });
+            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                // 点击后，上次的锚点的css类就要取消
+                nd.addEventListener('click', () => {
+                    if (last != null) {
+                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                    }
+                    const id = nd.getAttribute("href").substr(1);
+                    last = id;
+                    document.getElementById(id).classList.add("z-dingweizhunque");
+                })
+            })
+        </script>
+        <!--详情页katex渲染，代码高亮-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+              crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                crossorigin="anonymous"
+                onload="initKatex();"></script>
+        <script>
+            function initKatex() {
+                const post = document.querySelector('.post');
+                if (post) {
+                    renderMathInElement(post, {
+                        delimiters: [
+                            // 自定义分隔符，才可以支持行内公式
+                            {left: "$$", right: "$$", display: true},
+                            {left: "$", right: "$", display: false},
+                        ]
+                    });
+                }
+            }
+        </script>
+        <link rel="stylesheet"
+              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                onload="initHighLight();"></script>
+        <script>
+            function initHighLight() {
+                hljs.configure({
+                    languages: ["c", "cpp", "java", "c#"]
+                });
+                const codes = document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        hljs.highlightBlock(block);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</main>
+<footer class="z-footer">
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by<a href="https://gohugo.io" target="_blank">Hugo.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
