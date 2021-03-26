@@ -237,10 +237,13 @@
                             <a href="https://zxcoder.top/tags/思维">#思维</a>
                         </span>
                         <span class="z-post-tag warning">
+                            <a href="https://zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                        <span class="z-post-tag warning">
                             <a href="https://zxcoder.top/tags/期望dp">#期望dp</a>
                         </span>
                         <span class="z-post-tag warning">
-                            <a href="https://zxcoder.top/tags/TODO">#TODO</a>
+                            <a href="https://zxcoder.top/tags/数位dp">#数位dp</a>
                         </span>
                     </div>
                     <!--内容-->
@@ -327,8 +330,73 @@
     </code></pre>
     <h2>F</h2>
     <p>求出1到N(不含前导零的16进制数)中多少个数字正好含有K的不同的数字(包括A-F)。</p>
-    <p>看起来像数位dp</p>
-    <p>TODO</p>
+    <p>16进制的数位dp基础题。基本思路和注意点都在注释里了，后面可能会整理一个数位dp学习专题。</p>
+    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+    using namespace std;
+    typedef long long ll;
+    const int N=2e5+50;
+    const int mod=1e9+7;
+    char s[N];
+    int k;
+    int dig[N];
+    // 低i位满足有k个不同数位的数字个数
+    // 注意这里定义的dp状态其实就蕴含了一种记忆化搜索时&quot;空间换时间&quot;的一种思想
+    // 实际上这里的状态也可以只定义dp[]一维，那表示的就是满足条件的数字个数，这种方法粒度大，使用空间小，但显然花费时间多，因为大多数搜索状态都无法记忆化，只能重复搜
+    // 同理状态也可以定义为dp[][][]三维，再加上一维状态压缩，这种做法就是粒度小，但是太占空间
+    ll dp[N][22];
+    void print(int x){
+        if(x){
+            print(x/2);
+        }
+        printf(&quot;%d&quot;,x%2);
+    }
+    ll dfs(int idx,int sta,int dif,bool lead,bool limit){
+        if(idx==-1){
+            // 一个合法数字(这题要排除含前导零的数)，有时候要单独考虑0的情况
+            // 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0
+            if(dif==k &amp;&amp; !lead){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        // 记忆化的都是无上限的
+        if(!limit &amp;&amp; dp[idx][dif]!=-1){
+            return dp[idx][dif];
+        }
+        // 这一位的枚举上限
+        int up=limit?dig[idx]:15;
+        ll ans=0;
+        for(int i=0;i&lt;=up;i++){
+            if(lead &amp;&amp; i==0 || (sta&gt;&gt;i)&amp;1){
+                ans+=dfs(idx-1,sta,dif,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+            }else{
+                ans+=dfs(idx-1,sta|(1&lt;&lt;i),dif+1,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+            }
+            ans%=mod;
+        }
+        if(!limit){
+            dp[idx][dif]=ans%mod;
+        }
+        return ans%mod;
+    }
+    int main(){
+        scanf(&quot;%s %d&quot;,s,&amp;k);
+        int n=strlen(s);
+        for(int i=n-1;i&gt;=0;i--){
+            if(s[i]&gt;='A'){
+                dig[n-1-i]=s[i]-'A'+10;
+            }else{
+                dig[n-1-i]=s[i]-'0';
+            }
+        }
+        memset(dp,-1,sizeof(dp));
+        // 从高位搜索下去
+        ll ans=dfs(n-1,0,0,true,true);
+        printf(&quot;%lld\n&quot;,ans%mod);
+        return 0;
+    }
+    </code></pre>
 
                     <!--内容协议-->
                     <div class="z-post-footer">
