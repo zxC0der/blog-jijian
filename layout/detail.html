@@ -82,12 +82,31 @@
     pre {
         padding: 0 !important;
     }
+
+    /*.main {*/
+    /*    display: flex;*/
+    /*}*/
+    /**/
+    /*.side {*/
+    /*    flex: 0 0 7rem;*/
+    /*}*/
+    /**/
+    /*.middle {*/
+    /*    flex: 1 1 auto;*/
+    /*}*/
+
+    /* 注意max-width和max-device-width */
+    /*@media (max-width: 720px) {*/
+    /*    .side {*/
+    /*        flex: 0 0 0;*/
+    /*    }*/
+    /*}*/
 </style>
 <div>
-    <article class="content post">
-        <div class="columns z-detail">
-            <div class="column is-1"></div>
-            <div class="column is-7">
+    <div class="main post content z-detail columns">
+        <div class="side column is-1"></div>
+<!--        <div class="middle">-->
+            <div class="left column is-7">
                 <!--标题-->
                 <h1 class="z-detail-title">{{{title}}}</h1>
                 <!--时间，分类，标签-->
@@ -112,7 +131,7 @@
                     <p>转载请注明原文地址: <a href="{{{url}}}">{{{url}}}</a></p>
                 </div>
             </div>
-            <div class="column is-3">
+            <div class="right column is-3">
                 <div class="accordion">
                     <div class="accordion-header" id="headingTOC">
                     <span>
@@ -126,9 +145,9 @@
                     <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                 </div>
             </div>
-            <div class="column is-1"></div>
-        </div>
-    </article>
+<!--        </div>-->
+        <div class="side column is-1"></div>
+    </div>
     <script>
         // 生成目录
         let nav = document.createElement('nav');

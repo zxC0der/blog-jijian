@@ -1,5 +1,5 @@
 <style>
-    .z-post-list-item > h3 {
+    .z-post-title {
         margin-top: 0;
         margin-bottom: 10px;
     }
@@ -8,11 +8,14 @@
         font-size: 14px;
     }
 
+    .z-post-date {
+        float: right;
+    }
+
     .z-post-tag {
         align-items: center;
         border-radius: 4px;
         display: inline-flex;
-        font-size: 14px;
         height: 2em;
         justify-content: center;
         line-height: 1.5;
@@ -50,36 +53,17 @@
         float: left;
         padding: 8px 16px;
         text-decoration: none;
-    }
-
-    ul.z-pagination li > span {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
+        border-radius: 5px;
+        margin: 0 4px;
     }
 
     ul.z-pagination li a.active {
-        background-color: #5ecb63;
-        color: white;
-    }
-
-    ul.z-pagination li > span.active {
         background-color: #5ecb63;
         color: white;
     }
 
     ul.z-pagination li a:hover:not(.active) {
         background-color: #ddd;
-    }
-
-    ul.z-pagination li a {
-        border-radius: 5px;
-        margin: 0 4px;
-    }
-
-    ul.z-pagination li a.active {
-        border-radius: 5px;
     }
 
     ul.z-pagination li a[disabled] {
@@ -91,17 +75,36 @@
     ul.z-pagination li a[disabled]:hover {
         cursor: not-allowed !important;
     }
+
+    .main {
+        display: flex;
+    }
+
+    .side {
+        flex: 0 0 8rem;
+    }
+
+    .middle {
+        flex: 1 1 auto;
+    }
+
+    /* 注意max-width和max-device-width */
+    @media (max-width: 720px) {
+        .side {
+            flex: 0 0 0;
+        }
+    }
 </style>
-<div class="columns">
-    <div class="column is-1"></div>
-    <div class="column">
+<div class="main">
+    <div class="side"></div>
+    <div class="middle">
         <div>
             {{#data}}
-            <div class="z-box z-post-list-item">
-                <h3>
+            <div class="z-box">
+                <h3 class="z-post-title">
                     <a href="{{{permalink}}}">{{{title}}}</a>
                 </h3>
-                <div>
+                <div class="z-post-meta">
                         <span class="z-post-tag success">
                                 <a href="{{{category.permalink}}}">{{{category.name}}}</a>
                         </span>
@@ -110,7 +113,7 @@
                             <a href="{{{permalink}}}">#{{{name}}}</a>
                         </span>
                     {{/tags}}
-                    <span class="z-post-meta" style="float: right;">
+                    <span class="z-post-date">
                             {{{date}}}
                         </span>
                 </div>
@@ -120,13 +123,13 @@
         <div class="z-pagination-div">
             <ul class="z-pagination">
                 {{#number}}
-                <li class="z-pagination-desktop">
+                <li>
                     <a class="{{{class}}}" {{{disabled}}} href="{{{link}}}">{{num}}</a>
                 </li>
                 {{/number}}
             </ul>
         </div>
     </div>
-    <div class="column is-1"></div>
+    <div class="side"></div>
 </div>
 

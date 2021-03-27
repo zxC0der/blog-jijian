@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>ssh - zxCoder's blog</title>
-    <link rel="icon" href="https://zxcoder.top/favicon.ico">
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.ico">
     <!--bulma.css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
     <style>
         .z-footer {
             color: #666666;
@@ -109,13 +111,13 @@
     <nav class="is-fixed-top navbar z-navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
-                <a class="navbar-item" href="https://zxcoder.top">首页</a>
-                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
-                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
-                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
                 <div class="navbar-item">
-                    <form action="https://zxcoder.top/search">
+                    <form action="http://127.0.0.1:8080/search">
                         <input class="z-navbar-search-input" name="q" placeholder="搜索">
                     </form>
                 </div>
@@ -125,7 +127,7 @@
 </header>
 <main style="margin-top: 60px;">
     <style>
-        .z-post-list-item > h3 {
+        .z-post-title {
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -134,11 +136,14 @@
             font-size: 14px;
         }
 
+        .z-post-date {
+            float: right;
+        }
+
         .z-post-tag {
             align-items: center;
             border-radius: 4px;
             display: inline-flex;
-            font-size: 14px;
             height: 2em;
             justify-content: center;
             line-height: 1.5;
@@ -176,36 +181,17 @@
             float: left;
             padding: 8px 16px;
             text-decoration: none;
-        }
-
-        ul.z-pagination li > span {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 4px;
         }
 
         ul.z-pagination li a.active {
-            background-color: #5ecb63;
-            color: white;
-        }
-
-        ul.z-pagination li > span.active {
             background-color: #5ecb63;
             color: white;
         }
 
         ul.z-pagination li a:hover:not(.active) {
             background-color: #ddd;
-        }
-
-        ul.z-pagination li a {
-            border-radius: 5px;
-            margin: 0 4px;
-        }
-
-        ul.z-pagination li a.active {
-            border-radius: 5px;
         }
 
         ul.z-pagination li a[disabled] {
@@ -217,38 +203,57 @@
         ul.z-pagination li a[disabled]:hover {
             cursor: not-allowed !important;
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
-    <div class="columns">
-        <div class="column is-1"></div>
-        <div class="column">
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
             <div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/my-linux-server-config">个人云服务器软件配置备忘录</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/my-linux-server-config">个人云服务器软件配置备忘录</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/技术学习">技术学习</a>
+                                    <a href="http://127.0.0.1:8080/category/技术学习">技术学习</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/服务器">#服务器</a>
+                                <a href="http://127.0.0.1:8080/tags/服务器">#服务器</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/Linux">#Linux</a>
+                                <a href="http://127.0.0.1:8080/tags/Linux">#Linux</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/ssh">#ssh</a>
+                                <a href="http://127.0.0.1:8080/tags/ssh">#ssh</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/环境变量">#环境变量</a>
+                                <a href="http://127.0.0.1:8080/tags/环境变量">#环境变量</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/PostgreSQL">#PostgreSQL</a>
+                                <a href="http://127.0.0.1:8080/tags/PostgreSQL">#PostgreSQL</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/MongoDb">#MongoDb</a>
+                                <a href="http://127.0.0.1:8080/tags/MongoDb">#MongoDb</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Nov 29, 2020
                             </span>
                     </div>
@@ -256,19 +261,19 @@
             </div>
             <div class="z-pagination-div">
                 <ul class="z-pagination">
-                    <li class="z-pagination-desktop">
+                    <li>
                         <a class="" disabled href="javascript:void(0)">Prev</a>
                     </li>
-                    <li class="z-pagination-desktop">
-                        <a class="active"  href="https://zxcoder.top/tags/ssh">1</a>
+                    <li>
+                        <a class="active"  href="http://127.0.0.1:8080/tags/ssh">1</a>
                     </li>
-                    <li class="z-pagination-desktop">
+                    <li>
                         <a class="" disabled href="javascript:void(0)">Next</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="column is-1"></div>
+        <div class="side"></div>
     </div>
 
 </main>

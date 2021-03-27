@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>关于 - zxCoder's blog</title>
-    <link rel="icon" href="https://zxcoder.top/favicon.ico">
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.ico">
     <!--bulma.css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
     <style>
         .z-footer {
             color: #666666;
@@ -109,13 +111,13 @@
     <nav class="is-fixed-top navbar z-navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
-                <a class="navbar-item" href="https://zxcoder.top">首页</a>
-                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
-                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
-                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
                 <div class="navbar-item">
-                    <form action="https://zxcoder.top/search">
+                    <form action="http://127.0.0.1:8080/search">
                         <input class="z-navbar-search-input" name="q" placeholder="搜索">
                     </form>
                 </div>
@@ -136,10 +138,29 @@
             color: #333;
             font-weight: lighter;
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 22rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
-    <div class="columns">
-        <div class="column is-3"></div>
-        <div class="column z-about">
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle z-about">
             <h1 class="z-about-title">关于我</h1>
             <ul>
                 <li>一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码</li>
@@ -172,10 +193,10 @@
                 <li>基于Mustache模板引擎，自己实现了一个极简的的静态网页生成器</li>
                 <li>纯原生css/js打造，包括一个简单的站内搜索(目前是字符串暴力匹配)</li>
                 <li>记录一些做题题解，技术总结，读书笔记，debug经历等等</li>
-                <li>目前部署在Vercel，AliDNS解析，后期打算迁移到AliOSS</li>
+                <li>目前部署在Vercel(免费，省心，速度也还行)，AliDNS解析</li>
             </ul>
         </div>
-        <div class="column is-3"></div>
+        <div class="side"></div>
     </div>
 </main>
 <footer class="z-footer">

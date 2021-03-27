@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>思维 - zxCoder's blog</title>
-    <link rel="icon" href="https://zxcoder.top/favicon.ico">
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.ico">
     <!--bulma.css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
     <style>
         .z-footer {
             color: #666666;
@@ -109,13 +111,13 @@
     <nav class="is-fixed-top navbar z-navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
-                <a class="navbar-item" href="https://zxcoder.top">首页</a>
-                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
-                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
-                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
                 <div class="navbar-item">
-                    <form action="https://zxcoder.top/search">
+                    <form action="http://127.0.0.1:8080/search">
                         <input class="z-navbar-search-input" name="q" placeholder="搜索">
                     </form>
                 </div>
@@ -125,7 +127,7 @@
 </header>
 <main style="margin-top: 60px;">
     <style>
-        .z-post-list-item > h3 {
+        .z-post-title {
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -134,11 +136,14 @@
             font-size: 14px;
         }
 
+        .z-post-date {
+            float: right;
+        }
+
         .z-post-tag {
             align-items: center;
             border-radius: 4px;
             display: inline-flex;
-            font-size: 14px;
             height: 2em;
             justify-content: center;
             line-height: 1.5;
@@ -176,36 +181,17 @@
             float: left;
             padding: 8px 16px;
             text-decoration: none;
-        }
-
-        ul.z-pagination li > span {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 4px;
         }
 
         ul.z-pagination li a.active {
-            background-color: #5ecb63;
-            color: white;
-        }
-
-        ul.z-pagination li > span.active {
             background-color: #5ecb63;
             color: white;
         }
 
         ul.z-pagination li a:hover:not(.active) {
             background-color: #ddd;
-        }
-
-        ul.z-pagination li a {
-            border-radius: 5px;
-            margin: 0 4px;
-        }
-
-        ul.z-pagination li a.active {
-            border-radius: 5px;
         }
 
         ul.z-pagination li a[disabled] {
@@ -217,208 +203,227 @@
         ul.z-pagination li a[disabled]:hover {
             cursor: not-allowed !important;
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
-    <div class="columns">
-        <div class="column is-1"></div>
-        <div class="column">
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
             <div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/atcoder-abc-194">AtCoder-ABC-194(A-F)</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/atcoder-abc-194">AtCoder-ABC-194(A-F)</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/暴力">#暴力</a>
+                                <a href="http://127.0.0.1:8080/tags/暴力">#暴力</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/预处理">#预处理</a>
+                                <a href="http://127.0.0.1:8080/tags/预处理">#预处理</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/前缀和">#前缀和</a>
+                                <a href="http://127.0.0.1:8080/tags/前缀和">#前缀和</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/dp">#dp</a>
+                                <a href="http://127.0.0.1:8080/tags/dp">#dp</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/期望dp">#期望dp</a>
+                                <a href="http://127.0.0.1:8080/tags/期望dp">#期望dp</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/数位dp">#数位dp</a>
+                                <a href="http://127.0.0.1:8080/tags/数位dp">#数位dp</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Mar 17, 2021
                             </span>
                     </div>
                 </div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/codeforces-1485C">CodeForces1485C</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/codeforces-1485C">CodeForces1485C</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/数论">#数论</a>
+                                <a href="http://127.0.0.1:8080/tags/数论">#数论</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/整除分块">#整除分块</a>
+                                <a href="http://127.0.0.1:8080/tags/整除分块">#整除分块</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/枚举">#枚举</a>
+                                <a href="http://127.0.0.1:8080/tags/枚举">#枚举</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Feb 14, 2021
                             </span>
                     </div>
                 </div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/atcoder-abc-190">AtCoder-ABC-190(A-F)</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/atcoder-abc-190">AtCoder-ABC-190(A-F)</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/枚举">#枚举</a>
+                                <a href="http://127.0.0.1:8080/tags/枚举">#枚举</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/暴搜">#暴搜</a>
+                                <a href="http://127.0.0.1:8080/tags/暴搜">#暴搜</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/因子">#因子</a>
+                                <a href="http://127.0.0.1:8080/tags/因子">#因子</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/bfs">#bfs</a>
+                                <a href="http://127.0.0.1:8080/tags/bfs">#bfs</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/最短路">#最短路</a>
+                                <a href="http://127.0.0.1:8080/tags/最短路">#最短路</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/状压dp">#状压dp</a>
+                                <a href="http://127.0.0.1:8080/tags/状压dp">#状压dp</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/树状数组">#树状数组</a>
+                                <a href="http://127.0.0.1:8080/tags/树状数组">#树状数组</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/逆序数">#逆序数</a>
+                                <a href="http://127.0.0.1:8080/tags/逆序数">#逆序数</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Jan 30, 2021
                             </span>
                     </div>
                 </div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/atcoder-abc-178">AtCoder-ABC-178(A-F)</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/atcoder-abc-178">AtCoder-ABC-178(A-F)</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/快速幂">#快速幂</a>
+                                <a href="http://127.0.0.1:8080/tags/快速幂">#快速幂</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/容斥">#容斥</a>
+                                <a href="http://127.0.0.1:8080/tags/容斥">#容斥</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/dp">#dp</a>
+                                <a href="http://127.0.0.1:8080/tags/dp">#dp</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/二进制枚举">#二进制枚举</a>
+                                <a href="http://127.0.0.1:8080/tags/二进制枚举">#二进制枚举</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/最大曼哈顿距离">#最大曼哈顿距离</a>
+                                <a href="http://127.0.0.1:8080/tags/最大曼哈顿距离">#最大曼哈顿距离</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/贪心">#贪心</a>
+                                <a href="http://127.0.0.1:8080/tags/贪心">#贪心</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Nov 25, 2020
                             </span>
                     </div>
                 </div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/atcoder-abc-179">AtCoder-ABC-179(A-F)</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/atcoder-abc-179">AtCoder-ABC-179(A-F)</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/因子">#因子</a>
+                                <a href="http://127.0.0.1:8080/tags/因子">#因子</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/DP">#DP</a>
+                                <a href="http://127.0.0.1:8080/tags/dp">#dp</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/前缀和">#前缀和</a>
+                                <a href="http://127.0.0.1:8080/tags/前缀和">#前缀和</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/区间合并">#区间合并</a>
+                                <a href="http://127.0.0.1:8080/tags/区间合并">#区间合并</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/循环节">#循环节</a>
+                                <a href="http://127.0.0.1:8080/tags/循环节">#循环节</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Nov 11, 2020
                             </span>
                     </div>
                 </div>
-                <div class="z-box z-post-list-item">
-                    <h3>
-                        <a href="https://zxcoder.top/detail/atcoder-abc-181">AtCoder-ABC-181(A-F)</a>
+                <div class="z-box">
+                    <h3 class="z-post-title">
+                        <a href="http://127.0.0.1:8080/detail/atcoder-abc-181">AtCoder-ABC-181(A-F)</a>
                     </h3>
-                    <div>
+                    <div class="z-post-meta">
                             <span class="z-post-tag success">
-                                    <a href="https://zxcoder.top/category/题解">题解</a>
+                                    <a href="http://127.0.0.1:8080/category/题解">题解</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/AtCoder">#AtCoder</a>
+                                <a href="http://127.0.0.1:8080/tags/AtCoder">#AtCoder</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/计算几何">#计算几何</a>
+                                <a href="http://127.0.0.1:8080/tags/计算几何">#计算几何</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/思维">#思维</a>
+                                <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/二分查找">#二分查找</a>
+                                <a href="http://127.0.0.1:8080/tags/二分查找">#二分查找</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/分类讨论">#分类讨论</a>
+                                <a href="http://127.0.0.1:8080/tags/分类讨论">#分类讨论</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/前缀和">#前缀和</a>
+                                <a href="http://127.0.0.1:8080/tags/前缀和">#前缀和</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/二分答案">#二分答案</a>
+                                <a href="http://127.0.0.1:8080/tags/二分答案">#二分答案</a>
                             </span>
                         <span class="z-post-tag warning">
-                                <a href="https://zxcoder.top/tags/并查集">#并查集</a>
+                                <a href="http://127.0.0.1:8080/tags/并查集">#并查集</a>
                             </span>
-                        <span class="z-post-meta" style="float: right;">
+                        <span class="z-post-date">
                                 Nov 5, 2020
                             </span>
                     </div>
@@ -426,19 +431,19 @@
             </div>
             <div class="z-pagination-div">
                 <ul class="z-pagination">
-                    <li class="z-pagination-desktop">
+                    <li>
                         <a class="" disabled href="javascript:void(0)">Prev</a>
                     </li>
-                    <li class="z-pagination-desktop">
-                        <a class="active"  href="https://zxcoder.top/tags/思维">1</a>
+                    <li>
+                        <a class="active"  href="http://127.0.0.1:8080/tags/思维">1</a>
                     </li>
-                    <li class="z-pagination-desktop">
+                    <li>
                         <a class="" disabled href="javascript:void(0)">Next</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="column is-1"></div>
+        <div class="side"></div>
     </div>
 
 </main>

@@ -15,7 +15,7 @@ const rootDir = path.join(__dirname, '../public');
 const srcDir = path.join(__dirname, '.');
 const devUrl = "http://127.0.0.1:8080";
 const prodUrl = "https://zxcoder.top";
-const rootUrl = prodUrl;
+const rootUrl = devUrl;
 const categoryDir = "category";
 const categoryUrl = "category";
 const tagDir = "tags";
@@ -378,7 +378,7 @@ let aboutBlog = [
     "基于Mustache模板引擎，自己实现了一个极简的的静态网页生成器",
     "纯原生css/js打造，包括一个简单的站内搜索(目前是字符串暴力匹配)",
     "记录一些做题题解，技术总结，读书笔记，debug经历等等",
-    "目前部署在Vercel，AliDNS解析，后期打算迁移到AliOSS",
+    "目前部署在Vercel(免费，省心，速度也还行)，AliDNS解析",
 ]
 let aboutComponent = renderFromFile(`${layoutDir}/about.html`, {
     aboutMe,

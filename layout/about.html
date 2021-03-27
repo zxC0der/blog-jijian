@@ -10,10 +10,29 @@
         color: #333;
         font-weight: lighter;
     }
+
+    .main {
+        display: flex;
+    }
+
+    .side {
+        flex: 0 0 22rem;
+    }
+
+    .middle {
+        flex: 1 1 auto;
+    }
+
+    /* 注意max-width和max-device-width */
+    @media (max-width: 720px) {
+        .side {
+            flex: 0 0 0;
+        }
+    }
 </style>
-<div class="columns">
-    <div class="column is-3"></div>
-    <div class="column z-about">
+<div class="main">
+    <div class="side"></div>
+    <div class="middle z-about">
         <h1 class="z-about-title">关于我</h1>
         <ul>
             {{#aboutMe}}
@@ -48,5 +67,5 @@
             {{/aboutBlog}}
         </ul>
     </div>
-    <div class="column is-3"></div>
+    <div class="side"></div>
 </div>

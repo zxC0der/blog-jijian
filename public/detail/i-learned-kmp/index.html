@@ -6,6 +6,8 @@
     <link rel="icon" href="/favicon.ico">
     <!--bulma.css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
     <style>
         .z-footer {
             color: #666666;
@@ -109,13 +111,13 @@
     <nav class="is-fixed-top navbar z-navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="https://zxcoder.top">zxCoder</a>
-                <a class="navbar-item" href="https://zxcoder.top">首页</a>
-                <a class="navbar-item" href="https://zxcoder.top/category">分类</a>
-                <a class="navbar-item" href="https://zxcoder.top/tags">标签</a>
-                <a class="navbar-item" href="https://zxcoder.top/about">关于</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">zxCoder</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080">首页</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/category">分类</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/tags">标签</a>
+                <a class="navbar-item" href="http://127.0.0.1:8080/about">关于</a>
                 <div class="navbar-item">
-                    <form action="https://zxcoder.top/search">
+                    <form action="http://127.0.0.1:8080/search">
                         <input class="z-navbar-search-input" name="q" placeholder="搜索">
                     </form>
                 </div>
@@ -208,12 +210,31 @@
         pre {
             padding: 0 !important;
         }
+
+        /*.main {*/
+        /*    display: flex;*/
+        /*}*/
+        /**/
+        /*.side {*/
+        /*    flex: 0 0 7rem;*/
+        /*}*/
+        /**/
+        /*.middle {*/
+        /*    flex: 1 1 auto;*/
+        /*}*/
+
+        /* 注意max-width和max-device-width */
+        /*@media (max-width: 720px) {*/
+        /*    .side {*/
+        /*        flex: 0 0 0;*/
+        /*    }*/
+        /*}*/
     </style>
     <div>
-        <article class="content post">
-            <div class="columns z-detail">
-                <div class="column is-1"></div>
-                <div class="column is-7">
+        <div class="main post content z-detail columns">
+            <div class="side column is-1"></div>
+    <!--        <div class="middle">-->
+                <div class="left column is-7">
                     <!--标题-->
                     <h1 class="z-detail-title">这次一定要学会KMP</h1>
                     <!--时间，分类，标签-->
@@ -222,13 +243,13 @@
                             Dec 2, 2020
                         </span>
                         <span class="z-post-tag success">
-                            <a href="https://zxcoder.top/category/算法学习">算法学习</a>
+                            <a href="http://127.0.0.1:8080/category/算法学习">算法学习</a>
                         </span>
                         <span class="z-post-tag warning">
-                            <a href="https://zxcoder.top/tags/KMP">#KMP</a>
+                            <a href="http://127.0.0.1:8080/tags/KMP">#KMP</a>
                         </span>
                         <span class="z-post-tag warning">
-                            <a href="https://zxcoder.top/tags/字符串">#字符串</a>
+                            <a href="http://127.0.0.1:8080/tags/字符串">#字符串</a>
                         </span>
                     </div>
                     <!--内容-->
@@ -314,10 +335,10 @@
                     <!--内容协议-->
                     <div class="z-post-footer">
                         <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://zxcoder.top/detail/i-learned-kmp">https://zxcoder.top/detail/i-learned-kmp</a></p>
+                        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/i-learned-kmp">http://127.0.0.1:8080/detail/i-learned-kmp</a></p>
                     </div>
                 </div>
-                <div class="column is-3">
+                <div class="right column is-3">
                     <div class="accordion">
                         <div class="accordion-header" id="headingTOC">
                         <span>
@@ -331,9 +352,9 @@
                         <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                     </div>
                 </div>
-                <div class="column is-1"></div>
-            </div>
-        </article>
+    <!--        </div>-->
+            <div class="side column is-1"></div>
+        </div>
         <script>
             // 生成目录
             let nav = document.createElement('nav');
