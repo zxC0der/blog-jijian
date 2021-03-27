@@ -13,9 +13,14 @@ const layoutDir = path.join(__dirname, '../layout');
 const postsDir = path.join(__dirname, '../posts');
 const rootDir = path.join(__dirname, '../public');
 const srcDir = path.join(__dirname, '.');
+let arguments = process.argv.splice(2);
 const devUrl = "http://127.0.0.1:8080";
 const prodUrl = "https://www.zxcoder.top";
-const rootUrl = prodUrl;
+// 平时启动默认为dev环境，如果从deploy脚本启动默认为开发环境
+let rootUrl = devUrl;
+if(arguments.length>0 && arguments[0]!==""){
+    rootUrl=arguments[0];
+}
 const categoryDir = "category";
 const categoryUrl = "category";
 const tagDir = "tags";

@@ -113,7 +113,6 @@
 <script>
     const form = document.querySelector('#searchForm');
     const input = form.querySelector('input[name="q"]');
-    console.log(window.location.search)
     if (input.value === '') {
         input.value = new URLSearchParams(window.location.search).get('q');
     }
@@ -176,6 +175,7 @@
     }
 
     function search(query) {
+        let start = Date.now();
         showLoadingSpin();
         resultsElement.innerHTML = '';
         if (query === '') {
@@ -212,7 +212,9 @@
         } else {
             hideLoadMoreBtn();
         }
+        let end = Date.now();
         if (results.length > 0) {
+            stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end-start}ms )`;
             poplateResults(query);
         } else {
             stat.innerHTML = noResults;
@@ -235,7 +237,6 @@
         }
         loading = true;
         loadMore.setAttribute('disabled', '');
-        stat.innerHTML = resultCnt + thisResults.length + "篇";
         let i = (page - 1) * paginate;
         let count = 0;
         for (; i < thisResults.length && count < paginate; i += 1, count += 1) {
