@@ -29,30 +29,12 @@
             top: 90px;
             margin-bottom: 0.5rem;
         }
-        @media screen and (max-width: 960px) {
-            .is-1 {
-                display: none !important;
-            }
-        }
-        @media screen and (min-width: 361px) {
-            .z-pagination-mobile {
-                display: none!important;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            .z-pagination-desktop {
-                display: none!important;
-            }
-        }
         ul {
             padding-left: 0;
         }
         body {
             display: flex;
             flex-flow: column;
-            margin: 0 !important;
-        }
-        .columns {
             margin: 0 !important;
         }
         pre {
@@ -84,9 +66,6 @@
             color: #666666;
             text-align: center;
         }
-        .z-navbar {
-            background: white !important;
-        }
         .navbar-item:hover {
             color: #0a0a0a !important;
         }
@@ -104,11 +83,30 @@
             border: #339966 solid 1px;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="is-fixed-top navbar z-navbar">
+    <nav class="is-fixed-top navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="https://www.zxcoder.top">zxCoder</a>
@@ -126,151 +124,132 @@
     </nav>
 </header>
 <main style="margin-top: 60px;">
-    <style>
-        .z-detail-title {
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
+            <style>
+                .z-detail-title {
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                }
 
-        .z-detail, h1 h2 h3 {
-            color: #333;
-        }
+                .z-detail, h1 h2 h3 {
+                    color: #333;
+                }
 
-        .z-inline-code {
-            background: #FFFFCC;
-        }
+                .z-inline-code {
+                    background: #FFFFCC;
+                }
 
-        .img-fluid {
-            /*图片渲染不超过文章宽度*/
-            max-width: 100%;
-            max-height: 100%;
-        }
+                .img-fluid {
+                    /*图片渲染不超过文章宽度*/
+                    max-width: 100%;
+                    max-height: 100%;
+                }
 
-        /*line number*/
-        .hljs ul li {
-            list-style: decimal;
-            padding: 1px !important;
-            margin: 0 !important;
-        }
+                /*line number*/
+                .hljs ul li {
+                    list-style: decimal;
+                    padding: 1px !important;
+                    margin: 0 !important;
+                }
 
-        #collapseTOC {
-            height: 450px;
-            overflow: auto;
-        }
+                #collapseTOC {
+                    height: 450px;
+                    overflow: auto;
+                }
 
-        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-        .z-dingweizhunque {
-            padding-top: 2.3333333em !important;
-            margin-top: -1.6666666em !important; /* 临时解决方案... */
-            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-        }
+                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+                .z-dingweizhunque {
+                    padding-top: 2.3333333em !important;
+                    margin-top: -1.6666666em !important; /* 临时解决方案... */
+                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+                }
 
-        .z-post-tag {
-            align-items: center;
-            border-radius: 4px;
-            display: inline-flex;
-            font-size: 14px;
-            height: 2em;
-            justify-content: center;
-            line-height: 1.5;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
+                .z-post-tag {
+                    align-items: center;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    font-size: 14px;
+                    height: 2em;
+                    justify-content: center;
+                    line-height: 1.5;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
 
-        .z-post-tag.success {
-            background-color: #effaf3;
-            color: #257942;
-        }
+                .z-post-tag.success {
+                    background-color: #effaf3;
+                    color: #257942;
+                }
 
-        .z-post-tag.warning {
-            background-color: #fffbeb;
-            color: #947600;
-        }
+                .z-post-tag.warning {
+                    background-color: #fffbeb;
+                    color: #947600;
+                }
 
-        .z-post-footer {
-            text-align: left;
-            color: #666666;
-            font-size: 14px;
-        }
+                .z-post-footer {
+                    text-align: left;
+                    color: #666666;
+                    font-size: 14px;
+                }
 
-        .accordion-header {
-            font-size: 24px;
-            color: #0a0a0a;
-            user-select: none;
-        }
+                .accordion-header {
+                    font-size: 24px;
+                    color: #0a0a0a;
+                    user-select: none;
+                }
 
-        .accordion {
-            position: fixed;
-        }
+                .accordion {
+                    position: fixed;
+                }
 
-        .accordion-header:hover {
-            cursor: pointer;
-        }
+                .accordion-header:hover {
+                    cursor: pointer;
+                }
 
-        pre {
-            padding: 0 !important;
-        }
-
-        /*.main {*/
-        /*    display: flex;*/
-        /*}*/
-        /**/
-        /*.side {*/
-        /*    flex: 0 0 7rem;*/
-        /*}*/
-        /**/
-        /*.middle {*/
-        /*    flex: 1 1 auto;*/
-        /*}*/
-
-        /* 注意max-width和max-device-width */
-        /*@media (max-width: 720px) {*/
-        /*    .side {*/
-        /*        flex: 0 0 0;*/
-        /*    }*/
-        /*}*/
-    </style>
-    <div>
-        <div class="main post content z-detail columns">
-            <div class="side column is-1"></div>
-    <!--        <div class="middle">-->
-                <div class="left column is-7">
+                pre {
+                    padding: 0 !important;
+                }
+            </style>
+            <div class="main post content z-detail columns">
+                <div class="column is-8">
                     <!--标题-->
                     <h1 class="z-detail-title">dotnet5-项目快速起步</h1>
                     <!--时间，分类，标签-->
                     <div>
-                        <span class="z-post-meta">
-                            Dec 14, 2020
-                        </span>
+                                <span class="z-post-meta">
+                                    Dec 14, 2020
+                                </span>
                         <span class="z-post-tag success">
-                            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/C#">#C#</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/C#">#C#</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a>
+                                </span>
                     </div>
                     <!--内容-->
                     <blockquote>
-    <p>用最简单的方式介绍dotnet中我所用到的一小小小部分，更多具体信息需要查看官方文档。</p>
-    </blockquote>
-    <h2>Solution和Project</h2>
-    <p>一个Solution可以包括多个Project，比如在我的项目中，为了方便(<del>其实是电脑打开两个IDE太卡</del>)，把MongoDB-PBAC-Server/Client/Common三个Project放在同一个Solution里，其中sln文件就是Solution的相关配置文件，csproj文件就是Project的配置文件。</p>
-    <p>在这里，我的Project分为两种，*-Common是一个Class Library(类库)，可以打包成NuGet包，另外两个是Console Application(控制台应用)，可以引入NuGet包，直接运行或者打包成可执行文件。</p>
-    <h2>打包</h2>
-    <p><code>dotnet build</code>命令会将项目及其依赖包生成为一大堆二进制文件(.dll，.pdb等)。</p>
-    <p><code>build</code>之后，通过<code>dotnet pack --no-build</code>命令可以将项目打包为NuGet包，也就是一个.nupkg文件，<code>--no-build</code>指明无需再build一次，所以也可以直接<code>pack</code>而不用先<code>buiid</code>。</p>
-    <p>也可以在csproj文件中指定<code>&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt;</code>，这样子在<code>build</code>的时候会自动<code>pack</code>。</p>
-    <p>默认情况下会在<code>**/bin/Debug/</code>下生成一个.nupkg文件，更多选项可以参考文档。</p>
-    <p>得到的NuGet包可以放到某个文件夹里，然后在本地的NuGet配置文件(<code>~/.nuget/NuGet/NuGet.Config</code>)中指定路径，相当于添加本地源，这样子就可以通过<code>dotnet add</code>或者直接在IDE中安装NuGet包，对应的在csproj文件中就会有响应的<code>&lt;PackageReference Include=&quot;&quot; Version=&quot;&quot;/&gt;</code>。</p>
-    <h2>发布</h2>
-    <p><code>dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true</code>，该命令默认会在<code>**/bin/Debug/net5.0/linux-x64/publish</code>下生成一个可执行文件。</p>
-    <p>其中<code>-r</code>后面接linux-x64是指定运行时(runtime)，而<code>PublishSingleFile=true</code>和<code>PublishTrimmed=true</code>分别表示生成单个可执行文件以及对生成的文件进行裁剪，减小文件大小。</p>
-    <h2>build和publish</h2>
-    <p>简单来说，<code>build</code>不会把第三方的依赖包打包进入，所以<code>build</code>之后的可执行文件可以在本机运行，在运行时依赖本地的依赖包，而<code>publish</code>是专门用于发布的，所以会将所有依赖包打包进入，可以直接移植到其他机器运行。</p>
-    <p>根据官方文档，其实在.Net Core3.0之后的项目，库依赖项会被打包到输出文件夹。 如果没有其他任何特定于发布的逻辑(例如，Web项目具有的逻辑)，也可以直接部署。</p>
+            <p>用最简单的方式介绍dotnet中我所用到的一小小小部分，更多具体信息需要查看官方文档。</p>
+            </blockquote>
+            <h2>Solution和Project</h2>
+            <p>一个Solution可以包括多个Project，比如在我的项目中，为了方便(<del>其实是电脑打开两个IDE太卡</del>)，把MongoDB-PBAC-Server/Client/Common三个Project放在同一个Solution里，其中sln文件就是Solution的相关配置文件，csproj文件就是Project的配置文件。</p>
+            <p>在这里，我的Project分为两种，*-Common是一个Class Library(类库)，可以打包成NuGet包，另外两个是Console Application(控制台应用)，可以引入NuGet包，直接运行或者打包成可执行文件。</p>
+            <h2>打包</h2>
+            <p><code>dotnet build</code>命令会将项目及其依赖包生成为一大堆二进制文件(.dll，.pdb等)。</p>
+            <p><code>build</code>之后，通过<code>dotnet pack --no-build</code>命令可以将项目打包为NuGet包，也就是一个.nupkg文件，<code>--no-build</code>指明无需再build一次，所以也可以直接<code>pack</code>而不用先<code>buiid</code>。</p>
+            <p>也可以在csproj文件中指定<code>&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt;</code>，这样子在<code>build</code>的时候会自动<code>pack</code>。</p>
+            <p>默认情况下会在<code>**/bin/Debug/</code>下生成一个.nupkg文件，更多选项可以参考文档。</p>
+            <p>得到的NuGet包可以放到某个文件夹里，然后在本地的NuGet配置文件(<code>~/.nuget/NuGet/NuGet.Config</code>)中指定路径，相当于添加本地源，这样子就可以通过<code>dotnet add</code>或者直接在IDE中安装NuGet包，对应的在csproj文件中就会有响应的<code>&lt;PackageReference Include=&quot;&quot; Version=&quot;&quot;/&gt;</code>。</p>
+            <h2>发布</h2>
+            <p><code>dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true</code>，该命令默认会在<code>**/bin/Debug/net5.0/linux-x64/publish</code>下生成一个可执行文件。</p>
+            <p>其中<code>-r</code>后面接linux-x64是指定运行时(runtime)，而<code>PublishSingleFile=true</code>和<code>PublishTrimmed=true</code>分别表示生成单个可执行文件以及对生成的文件进行裁剪，减小文件大小。</p>
+            <h2>build和publish</h2>
+            <p>简单来说，<code>build</code>不会把第三方的依赖包打包进入，所以<code>build</code>之后的可执行文件可以在本机运行，在运行时依赖本地的依赖包，而<code>publish</code>是专门用于发布的，所以会将所有依赖包打包进入，可以直接移植到其他机器运行。</p>
+            <p>根据官方文档，其实在.Net Core3.0之后的项目，库依赖项会被打包到输出文件夹。 如果没有其他任何特定于发布的逻辑(例如，Web项目具有的逻辑)，也可以直接部署。</p>
 
                     <!--内容协议-->
                     <div class="z-post-footer">
@@ -278,130 +257,133 @@
                         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/dotnet5-project-quick-start">https://www.zxcoder.top/detail/dotnet5-project-quick-start</a></p>
                     </div>
                 </div>
-                <div class="right column is-3">
+                <div class="column is-4">
                     <div class="accordion">
                         <div class="accordion-header" id="headingTOC">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"/>
-                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                            </svg>
-                        </span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"/>
+                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                                    </svg>
+                                </span>
                             <span>目录</span>
                         </div>
                         <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                     </div>
                 </div>
-    <!--        </div>-->
-            <div class="side column is-1"></div>
-        </div>
-        <script>
-            // 生成目录
-            let nav = document.createElement('nav');
-            nav.id = 'TableOfContents';
-            let h2s = document.querySelectorAll('.post h2');
-            let h23s = document.querySelectorAll('.post h2,h3');
-            let h2ul = document.createElement('ul');
-            h23s.forEach(h23 => {
-                h23.id = h23.innerHTML;
-            });
-            let lst = document.querySelector('.post');
-            for (let i = 0; i < h23s.length; i++) {
-                if (h23s[i].tagName === 'H2') {
-                    let h2li = document.createElement('li');
-                    let h2a = document.createElement('a');
-                    h2a.href = `#${h23s[i].innerHTML}`;
-                    h2a.innerHTML = h23s[i].innerHTML;
-                    h2li.appendChild(h2a);
-                    h2ul.appendChild(h2li);
-                    lst = h2li;
-                } else {
-                    let h3ul = document.createElement('ul');
-                    while (i < h23s.length && h23s[i].tagName === 'H3') {
-                        let h3li = document.createElement('li');
-                        let h3a = document.createElement('a');
-                        h3a.href = `#${h23s[i].innerHTML}`;
-                        h3a.innerHTML = h23s[i].innerHTML;
-                        h3li.appendChild(h3a);
-                        h3ul.appendChild(h3li);
-                        i++;
+            </div>
+            <script>
+                // 生成目录
+                let nav = document.createElement('nav');
+                nav.id = 'TableOfContents';
+                let h2s = document.querySelectorAll('.post h2');
+                let h23s = document.querySelectorAll('.post h2,h3');
+                let h2ul = document.createElement('ul');
+                h23s.forEach(h23 => {
+                    h23.id = h23.innerHTML;
+                });
+                let lst = document.querySelector('.post');
+                for (let i = 0; i < h23s.length; i++) {
+                    if (h23s[i].tagName === 'H2') {
+                        let h2li = document.createElement('li');
+                        let h2a = document.createElement('a');
+                        h2a.href = `#${h23s[i].innerHTML}`;
+                        h2a.innerHTML = h23s[i].innerHTML;
+                        h2li.appendChild(h2a);
+                        h2ul.appendChild(h2li);
+                        lst = h2li;
+                    } else {
+                        let h3ul = document.createElement('ul');
+                        while (i < h23s.length && h23s[i].tagName === 'H3') {
+                            let h3li = document.createElement('li');
+                            let h3a = document.createElement('a');
+                            h3a.href = `#${h23s[i].innerHTML}`;
+                            h3a.innerHTML = h23s[i].innerHTML;
+                            h3li.appendChild(h3a);
+                            h3ul.appendChild(h3li);
+                            i++;
+                        }
+                        lst.appendChild(h3ul);
+                        i--;
                     }
-                    lst.appendChild(h3ul);
-                    i--;
                 }
-            }
-            nav.appendChild(h2ul);
-            document.getElementById('collapseTOC').appendChild(nav);
-            let isShow = true;
-            let body = document.getElementById('collapseTOC');
-            let last = null;
-            document.getElementById('headingTOC').addEventListener('click', () => {
-                isShow = !isShow;
-                if (isShow) {
-                    body.style.display = 'block';
-                } else {
-                    body.style.display = 'none';
-                }
-            });
-            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                // 点击后，上次的锚点的css类就要取消
-                nd.addEventListener('click', () => {
-                    if (last != null) {
-                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                nav.appendChild(h2ul);
+                document.getElementById('collapseTOC').appendChild(nav);
+                let isShow = true;
+                let body = document.getElementById('collapseTOC');
+                let last = null;
+                document.getElementById('headingTOC').addEventListener('click', () => {
+                    isShow = !isShow;
+                    if (isShow) {
+                        body.style.display = 'block';
+                    } else {
+                        body.style.display = 'none';
                     }
-                    const id = nd.getAttribute("href").substr(1);
-                    last = id;
-                    document.getElementById(id).classList.add("z-dingweizhunque");
+                });
+                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                    // 点击后，上次的锚点的css类就要取消
+                    nd.addEventListener('click', () => {
+                        if (last != null) {
+                            document.getElementById(last).classList.remove("z-dingweizhunque");
+                        }
+                        const id = nd.getAttribute("href").substr(1);
+                        last = id;
+                        document.getElementById(id).classList.add("z-dingweizhunque");
+                    })
                 })
-            })
-        </script>
-        <!--详情页katex渲染，代码高亮-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-              crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                crossorigin="anonymous"
-                onload="initKatex();"></script>
-        <script>
-            function initKatex() {
-                const post = document.querySelector('.post');
-                if (post) {
-                    renderMathInElement(post, {
-                        delimiters: [
-                            // 自定义分隔符，才可以支持行内公式
-                            {left: "$$", right: "$$", display: true},
-                            {left: "$", right: "$", display: false},
-                        ]
+            </script>
+            <!--详情页katex渲染，代码高亮-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+                  crossorigin="anonymous">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                    crossorigin="anonymous"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                    crossorigin="anonymous"
+                    onload="initKatex();"></script>
+            <script>
+                function initKatex() {
+                    const post = document.querySelector('.post');
+                    if (post) {
+                        renderMathInElement(post, {
+                            delimiters: [
+                                // 自定义分隔符，才可以支持行内公式
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                            ]
+                        });
+                    }
+                }
+            </script>
+            <link rel="stylesheet"
+                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                    onload="initHighLight();"></script>
+            <script>
+                function initHighLight() {
+                    hljs.configure({
+                        languages: ["c", "cpp", "java", "c#"]
+                    });
+                    const codes = document.querySelectorAll('div code')
+                    codes.forEach((block) => {
+                        if (block.classList.length >= 1) {
+                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                            // let ul=block.firstElementChild;
+                            // ul.removeChild(ul.lastElementChild);
+                            // hljs.highlightBlock(block);
+                        } else {
+                            block.classList.add('z-inline-code')
+                        }
                     });
                 }
-            }
-        </script>
-        <link rel="stylesheet"
-              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                onload="initHighLight();"></script>
-        <script>
-            function initHighLight() {
-                hljs.configure({
-                    languages: ["c", "cpp", "java", "c#"]
-                });
-                const codes = document.querySelectorAll('div code')
-                codes.forEach((block) => {
-                    if (block.classList.length >= 1) {
-                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                        hljs.highlightBlock(block);
-                    } else {
-                        block.classList.add('z-inline-code')
-                    }
-                });
-            }
-        </script>
-    </div>
+            </script>
+            </div>
 
+        </div>
+        <div class="side"></div>
+    </div>
 </main>
 <footer class="z-footer">
     <p>

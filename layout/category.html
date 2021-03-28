@@ -4,7 +4,8 @@
         margin-bottom: 10px;
         font-size: 1rem;
     }
-    .z-tag{
+
+    .z-tag {
         align-items: center;
         border-radius: 4px;
         color: #3a3a3a;
@@ -18,22 +19,14 @@
     }
 </style>
 <div>
-    <div class="columns">
-        <div class="column is-1"></div>
-        <div class="column" style="padding-left: 12px;">
-            <div>
-                <h1>{{title}}</h1>
-                <div>
-                    {{#categoryList}}
-                    <a href="{{{link}}}">
-                        <span class="z-tag z-term-item">
-                            {{name}}({{num}})
-                        </span>
-                    </a>
-                    {{/categoryList}}
-                </div>
-            </div>
-        </div>
-        <div class="column is-1"></div>
+    <h1>{{title}}</h1>
+    <div>
+        {{#categoryList}}
+        <a href="{{{link}}}">
+            <span class="z-tag z-term-item">
+                {{name}}({{num}})
+            </span>
+        </a>
+        {{/categoryList}}
     </div>
 </div>

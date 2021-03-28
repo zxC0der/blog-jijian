@@ -79,35 +79,27 @@
         color: #947600;
     }
 </style>
-<div class="columns">
-    <div class="column is-1"></div>
-    <div class="column">
-        <div>
-            <form id="searchForm">
-                <div class="field has-addons">
-                    <input class="z-search-input"
-                           name="q"
-                           placeholder="请输入关键字">
-                </div>
-            </form>
-            <div class="z-search-tip">
-                <svg id="loadingSpinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"/>
-                    <path d="M12 2a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0v-3a1 1 0 0 1 1-1zm8.66-10a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5A1 1 0 0 1 20.66 7zM7.67 14.5a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5a1 1 0 0 1 1.366.366zM20.66 17a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 0 1 1-1.732l2.598 1.5A1 1 0 0 1 20.66 17zM7.67 9.5a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 1 1 1-1.732l2.598 1.5A1 1 0 0 1 7.67 9.5z"/>
-                </svg>
-                <span id="searchStat"></span>
-            </div>
-            <div id="searchResults" class="search-results"></div>
-            <div class="text-center">
-                <button id="btnLoadMore">
-                    加载更多
-                </button>
-            </div>
+<div>
+    <form id="searchForm">
+        <div class="field has-addons">
+            <input class="z-search-input" name="q" placeholder="请输入关键字">
         </div>
+    </form>
+    <div class="z-search-tip">
+        <svg id="loadingSpinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M12 2a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0v-3a1 1 0 0 1 1-1zm8.66-10a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5A1 1 0 0 1 20.66 7zM7.67 14.5a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5a1 1 0 0 1 1.366.366zM20.66 17a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 0 1 1-1.732l2.598 1.5A1 1 0 0 1 20.66 17zM7.67 9.5a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 1 1 1-1.732l2.598 1.5A1 1 0 0 1 7.67 9.5z"/>
+        </svg>
+        <span id="searchStat"></span>
     </div>
-    <div class="column is-1"></div>
-    <!--在这个页面搜 不会发送网络请求-->
+    <div id="searchResults" class="search-results"></div>
+    <div class="text-center">
+        <button id="btnLoadMore">
+            加载更多
+        </button>
+    </div>
 </div>
+<!--在这个页面搜 不会发送网络请求-->
 <script defer src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js">
 </script>
 <script>
@@ -214,7 +206,7 @@
         }
         let end = Date.now();
         if (results.length > 0) {
-            stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end-start}ms )`;
+            stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
             poplateResults(query);
         } else {
             stat.innerHTML = noResults;

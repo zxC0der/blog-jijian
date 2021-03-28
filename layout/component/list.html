@@ -76,60 +76,39 @@
         cursor: not-allowed !important;
     }
 
-    .main {
-        display: flex;
-    }
 
-    .side {
-        flex: 0 0 8rem;
-    }
-
-    .middle {
-        flex: 1 1 auto;
-    }
-
-    /* 注意max-width和max-device-width */
-    @media (max-width: 720px) {
-        .side {
-            flex: 0 0 0;
-        }
-    }
 </style>
-<div class="main">
-    <div class="side"></div>
-    <div class="middle">
-        <div>
-            {{#data}}
-            <div class="z-box">
-                <h3 class="z-post-title">
-                    <a href="{{{permalink}}}">{{{title}}}</a>
-                </h3>
-                <div class="z-post-meta">
+<div>
+    <div>
+        {{#data}}
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="{{{permalink}}}">{{{title}}}</a>
+            </h3>
+            <div class="z-post-meta">
                         <span class="z-post-tag success">
                                 <a href="{{{category.permalink}}}">{{{category.name}}}</a>
                         </span>
-                    {{#tags}}
-                    <span class="z-post-tag warning">
+                {{#tags}}
+                <span class="z-post-tag warning">
                             <a href="{{{permalink}}}">#{{{name}}}</a>
                         </span>
-                    {{/tags}}
-                    <span class="z-post-date">
+                {{/tags}}
+                <span class="z-post-date">
                             {{{date}}}
                         </span>
-                </div>
             </div>
-            {{/data}}
         </div>
-        <div class="z-pagination-div">
-            <ul class="z-pagination">
-                {{#number}}
-                <li>
-                    <a class="{{{class}}}" {{{disabled}}} href="{{{link}}}">{{num}}</a>
-                </li>
-                {{/number}}
-            </ul>
-        </div>
+        {{/data}}
     </div>
-    <div class="side"></div>
+    <div class="z-pagination-div">
+        <ul class="z-pagination">
+            {{#number}}
+            <li>
+                <a class="{{{class}}}" {{{disabled}}} href="{{{link}}}">{{num}}</a>
+            </li>
+            {{/number}}
+        </ul>
+    </div>
 </div>
 

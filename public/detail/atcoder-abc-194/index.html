@@ -29,30 +29,12 @@
             top: 90px;
             margin-bottom: 0.5rem;
         }
-        @media screen and (max-width: 960px) {
-            .is-1 {
-                display: none !important;
-            }
-        }
-        @media screen and (min-width: 361px) {
-            .z-pagination-mobile {
-                display: none!important;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            .z-pagination-desktop {
-                display: none!important;
-            }
-        }
         ul {
             padding-left: 0;
         }
         body {
             display: flex;
             flex-flow: column;
-            margin: 0 !important;
-        }
-        .columns {
             margin: 0 !important;
         }
         pre {
@@ -84,9 +66,6 @@
             color: #666666;
             text-align: center;
         }
-        .z-navbar {
-            background: white !important;
-        }
         .navbar-item:hover {
             color: #0a0a0a !important;
         }
@@ -104,11 +83,30 @@
             border: #339966 solid 1px;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="is-fixed-top navbar z-navbar">
+    <nav class="is-fixed-top navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="https://www.zxcoder.top">zxCoder</a>
@@ -126,298 +124,279 @@
     </nav>
 </header>
 <main style="margin-top: 60px;">
-    <style>
-        .z-detail-title {
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
+            <style>
+                .z-detail-title {
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                }
 
-        .z-detail, h1 h2 h3 {
-            color: #333;
-        }
+                .z-detail, h1 h2 h3 {
+                    color: #333;
+                }
 
-        .z-inline-code {
-            background: #FFFFCC;
-        }
+                .z-inline-code {
+                    background: #FFFFCC;
+                }
 
-        .img-fluid {
-            /*图片渲染不超过文章宽度*/
-            max-width: 100%;
-            max-height: 100%;
-        }
+                .img-fluid {
+                    /*图片渲染不超过文章宽度*/
+                    max-width: 100%;
+                    max-height: 100%;
+                }
 
-        /*line number*/
-        .hljs ul li {
-            list-style: decimal;
-            padding: 1px !important;
-            margin: 0 !important;
-        }
+                /*line number*/
+                .hljs ul li {
+                    list-style: decimal;
+                    padding: 1px !important;
+                    margin: 0 !important;
+                }
 
-        #collapseTOC {
-            height: 450px;
-            overflow: auto;
-        }
+                #collapseTOC {
+                    height: 450px;
+                    overflow: auto;
+                }
 
-        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-        .z-dingweizhunque {
-            padding-top: 2.3333333em !important;
-            margin-top: -1.6666666em !important; /* 临时解决方案... */
-            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-        }
+                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+                .z-dingweizhunque {
+                    padding-top: 2.3333333em !important;
+                    margin-top: -1.6666666em !important; /* 临时解决方案... */
+                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+                }
 
-        .z-post-tag {
-            align-items: center;
-            border-radius: 4px;
-            display: inline-flex;
-            font-size: 14px;
-            height: 2em;
-            justify-content: center;
-            line-height: 1.5;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
+                .z-post-tag {
+                    align-items: center;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    font-size: 14px;
+                    height: 2em;
+                    justify-content: center;
+                    line-height: 1.5;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
 
-        .z-post-tag.success {
-            background-color: #effaf3;
-            color: #257942;
-        }
+                .z-post-tag.success {
+                    background-color: #effaf3;
+                    color: #257942;
+                }
 
-        .z-post-tag.warning {
-            background-color: #fffbeb;
-            color: #947600;
-        }
+                .z-post-tag.warning {
+                    background-color: #fffbeb;
+                    color: #947600;
+                }
 
-        .z-post-footer {
-            text-align: left;
-            color: #666666;
-            font-size: 14px;
-        }
+                .z-post-footer {
+                    text-align: left;
+                    color: #666666;
+                    font-size: 14px;
+                }
 
-        .accordion-header {
-            font-size: 24px;
-            color: #0a0a0a;
-            user-select: none;
-        }
+                .accordion-header {
+                    font-size: 24px;
+                    color: #0a0a0a;
+                    user-select: none;
+                }
 
-        .accordion {
-            position: fixed;
-        }
+                .accordion {
+                    position: fixed;
+                }
 
-        .accordion-header:hover {
-            cursor: pointer;
-        }
+                .accordion-header:hover {
+                    cursor: pointer;
+                }
 
-        pre {
-            padding: 0 !important;
-        }
-
-        /*.main {*/
-        /*    display: flex;*/
-        /*}*/
-        /**/
-        /*.side {*/
-        /*    flex: 0 0 7rem;*/
-        /*}*/
-        /**/
-        /*.middle {*/
-        /*    flex: 1 1 auto;*/
-        /*}*/
-
-        /* 注意max-width和max-device-width */
-        /*@media (max-width: 720px) {*/
-        /*    .side {*/
-        /*        flex: 0 0 0;*/
-        /*    }*/
-        /*}*/
-    </style>
-    <div>
-        <div class="main post content z-detail columns">
-            <div class="side column is-1"></div>
-    <!--        <div class="middle">-->
-                <div class="left column is-7">
+                pre {
+                    padding: 0 !important;
+                }
+            </style>
+            <div class="main post content z-detail columns">
+                <div class="column is-8">
                     <!--标题-->
                     <h1 class="z-detail-title">AtCoder-ABC-194(A-F)</h1>
                     <!--时间，分类，标签-->
                     <div>
-                        <span class="z-post-meta">
-                            Mar 17, 2021
-                        </span>
+                                <span class="z-post-meta">
+                                    Mar 17, 2021
+                                </span>
                         <span class="z-post-tag success">
-                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/category/题解">题解</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/暴力">#暴力</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/暴力">#暴力</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/预处理">#预处理</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/预处理">#预处理</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/思维">#思维</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/思维">#思维</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/期望dp">#期望dp</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/期望dp">#期望dp</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/数位dp">#数位dp</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/数位dp">#数位dp</a>
+                                </span>
                     </div>
                     <!--内容-->
                     <h2>A</h2>
-    <p>略</p>
-    <h2>B</h2>
-    <p>N个员工，每个员工做A，B两种工作的时间都不同，如果让一个员工做A和B，花费时间就是两者之和，如果让两个员工做，花费时间就是两者最大值，问所花费最小时间。</p>
-    <p>N为1000，直接暴力枚举。</p>
-    <h2>C</h2>
-    <p>求$\displaystyle \sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2$。</p>
-    <p>展开一下，预处理前缀和和平方前缀和即可。</p>
-    <h2>D</h2>
-    <p>有N个点，一开始在点1，每次等概率随机选择一个点(包括所在的点)，将这两点连边并走到该点，问使得图连通的操作次数。</p>
-    <p>有个很重要的思路，走的顺序是不重要的，<strong>重要的只有一点，就是走过了(连通)了多少个点</strong>。就比如从1走到2，再从2走到1，和在2一直原地踏步是一样的，所以将图抽象为一条线段，比如3个点<code>1---2---3</code>，先算从1走到2的期望，这里的2并不仅仅指图上的点2，只是代表第二个走过的点，所以这里有三种可能性，原地踏步1种，另外2种可能性都可以走到第二个点，所以从1走到2的期望是3/2，同理再算从2走到3的期望是3/1，因此可以总结得到规律，答案为$\sum_{i-1}^{n-1}\frac{n}{i}$。</p>
-    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-    using namespace std;
-    const int N=1e5+50;
-    int n;
-    int main(){
-        scanf(&quot;%d&quot;,&amp;n);
-        double ans=0.0;
-        for(int i=1;i&lt;n;i++){
-            ans+=n*1.0/i;
-        }
-        printf(&quot;%.8lf\n&quot;,ans);
-        return 0;
-    }
-    </code></pre>
-    <p>再仔细思考，其实题目本质就是N个点，每次随机给一个点染色，问所有点全部染色的次数期望。</p>
-    <p>考虑期望dp，dp[i]表示已经染色了i个点，要染色n个点所需要的次数期望，状态转移方程为$dp[i]=\frac{i}{n}dp[i]+\frac{n-i}{n}dp[i+1]+1$，其中第一部分是指随机选到的点是已染色的，第二部分是指选到未染色的点，移项化简，得到$dp[i]=dp[i+1]+\frac{n}{n-i}$，初始状态为dp[n]=0。</p>
-    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-    using namespace std;
-    const int N=1e5+50;
-    int n;
-    double dp[N];
-    int main(){
-        scanf(&quot;%d&quot;,&amp;n);
-        for(int i=n-1;i&gt;=1;i--){
-            dp[i]=dp[i+1]+n*1.0/(n-i);
-        }
-        printf(&quot;%.8lf\n&quot;,dp[1]);
-        return 0;
-    }
-    </code></pre>
-    <h2>E</h2>
-    <p>给定长度为N的数组，对于每个长度为M的子数组，求出Mex，然后再求出所有Mex的最小值。</p>
-    <p>最简单的做法就是滑窗维护mex，但有个重要的问题，<strong>只需要考虑删除数字之后mex的变化，而不用考虑添加数字之后mex的变化</strong>，因为要求的是最小mex，而添加数字只会让mex变大。</p>
-    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-    using namespace std;
-    const int N=2e6+50;
-    int n,m;
-    int a[N],b[N];
-    int mex;
-    void add(int i){
-        b[a[i]]++;
-    }
-    void del(int i){
-        b[a[i]]--;
-        if(b[a[i]]==0 &amp;&amp; a[i]&lt;mex){
-            mex=a[i];
-        }
-    }
-    int main(){
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-        for(int i=1;i&lt;=n;i++){
-            scanf(&quot;%d&quot;,&amp;a[i]);
-        }
-        for(int i=1;i&lt;=m;i++){
-            add(i);
-        }
-        for(int i=0;i&lt;=n;i++){
-            if(b[i]==0){
-                mex=i;
-                break;
-            }
-        }
-        for(int i=m+1;i&lt;=n;i++){
-            add(i);
-            del(i-m);
-        }
-        printf(&quot;%d\n&quot;,mex);
-        return 0;
-    }
-    </code></pre>
-    <h2>F</h2>
-    <p>求出1到N(不含前导零的16进制数)中多少个数字正好含有K的不同的数字(包括A-F)。</p>
-    <p>16进制的数位dp基础题。基本思路和注意点都在注释里了，后面可能会整理一个数位dp学习专题。</p>
-    <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-    using namespace std;
-    typedef long long ll;
-    const int N=2e5+50;
-    const int mod=1e9+7;
-    char s[N];
-    int k;
-    int dig[N];
-    // 低i位满足有k个不同数位的数字个数
-    // 注意这里定义的dp状态其实就蕴含了一种记忆化搜索时&quot;空间换时间&quot;的一种思想
-    // 实际上这里的状态也可以只定义dp[]一维，那表示的就是满足条件的数字个数，这种方法粒度大，使用空间小，但显然花费时间多，因为大多数搜索状态都无法记忆化，只能重复搜
-    // 同理状态也可以定义为dp[][][]三维，再加上一维状态压缩，这种做法就是粒度小，但是太占空间
-    ll dp[N][22];
-    void print(int x){
-        if(x){
-            print(x/2);
-        }
-        printf(&quot;%d&quot;,x%2);
-    }
-    ll dfs(int idx,int sta,int dif,bool lead,bool limit){
-        if(idx==-1){
-            // 一个合法数字(这题要排除含前导零的数)，有时候要单独考虑0的情况
-            // 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0
-            if(dif==k &amp;&amp; !lead){
-                return 1;
-            }else{
+            <p>略</p>
+            <h2>B</h2>
+            <p>N个员工，每个员工做A，B两种工作的时间都不同，如果让一个员工做A和B，花费时间就是两者之和，如果让两个员工做，花费时间就是两者最大值，问所花费最小时间。</p>
+            <p>N为1000，直接暴力枚举。</p>
+            <h2>C</h2>
+            <p>求$\displaystyle \sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2$。</p>
+            <p>展开一下，预处理前缀和和平方前缀和即可。</p>
+            <h2>D</h2>
+            <p>有N个点，一开始在点1，每次等概率随机选择一个点(包括所在的点)，将这两点连边并走到该点，问使得图连通的操作次数。</p>
+            <p>有个很重要的思路，走的顺序是不重要的，<strong>重要的只有一点，就是走过了(连通)了多少个点</strong>。就比如从1走到2，再从2走到1，和在2一直原地踏步是一样的，所以将图抽象为一条线段，比如3个点<code>1---2---3</code>，先算从1走到2的期望，这里的2并不仅仅指图上的点2，只是代表第二个走过的点，所以这里有三种可能性，原地踏步1种，另外2种可能性都可以走到第二个点，所以从1走到2的期望是3/2，同理再算从2走到3的期望是3/1，因此可以总结得到规律，答案为$\sum_{i-1}^{n-1}\frac{n}{i}$。</p>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+            using namespace std;
+            const int N=1e5+50;
+            int n;
+            int main(){
+                scanf(&quot;%d&quot;,&amp;n);
+                double ans=0.0;
+                for(int i=1;i&lt;n;i++){
+                    ans+=n*1.0/i;
+                }
+                printf(&quot;%.8lf\n&quot;,ans);
                 return 0;
             }
-        }
-        // 记忆化的都是无上限的
-        if(!limit &amp;&amp; dp[idx][dif]!=-1){
-            return dp[idx][dif];
-        }
-        // 这一位的枚举上限
-        int up=limit?dig[idx]:15;
-        ll ans=0;
-        for(int i=0;i&lt;=up;i++){
-            if(lead &amp;&amp; i==0 || (sta&gt;&gt;i)&amp;1){
-                ans+=dfs(idx-1,sta,dif,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
-            }else{
-                ans+=dfs(idx-1,sta|(1&lt;&lt;i),dif+1,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+            </code></pre>
+            <p>再仔细思考，其实题目本质就是N个点，每次随机给一个点染色，问所有点全部染色的次数期望。</p>
+            <p>考虑期望dp，dp[i]表示已经染色了i个点，要染色n个点所需要的次数期望，状态转移方程为$dp[i]=\frac{i}{n}dp[i]+\frac{n-i}{n}dp[i+1]+1$，其中第一部分是指随机选到的点是已染色的，第二部分是指选到未染色的点，移项化简，得到$dp[i]=dp[i+1]+\frac{n}{n-i}$，初始状态为dp[n]=0。</p>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+            using namespace std;
+            const int N=1e5+50;
+            int n;
+            double dp[N];
+            int main(){
+                scanf(&quot;%d&quot;,&amp;n);
+                for(int i=n-1;i&gt;=1;i--){
+                    dp[i]=dp[i+1]+n*1.0/(n-i);
+                }
+                printf(&quot;%.8lf\n&quot;,dp[1]);
+                return 0;
             }
-            ans%=mod;
-        }
-        if(!limit){
-            dp[idx][dif]=ans%mod;
-        }
-        return ans%mod;
-    }
-    int main(){
-        scanf(&quot;%s %d&quot;,s,&amp;k);
-        int n=strlen(s);
-        for(int i=n-1;i&gt;=0;i--){
-            if(s[i]&gt;='A'){
-                dig[n-1-i]=s[i]-'A'+10;
-            }else{
-                dig[n-1-i]=s[i]-'0';
+            </code></pre>
+            <h2>E</h2>
+            <p>给定长度为N的数组，对于每个长度为M的子数组，求出Mex，然后再求出所有Mex的最小值。</p>
+            <p>最简单的做法就是滑窗维护mex，但有个重要的问题，<strong>只需要考虑删除数字之后mex的变化，而不用考虑添加数字之后mex的变化</strong>，因为要求的是最小mex，而添加数字只会让mex变大。</p>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+            using namespace std;
+            const int N=2e6+50;
+            int n,m;
+            int a[N],b[N];
+            int mex;
+            void add(int i){
+                b[a[i]]++;
             }
-        }
-        memset(dp,-1,sizeof(dp));
-        // 从高位搜索下去
-        ll ans=dfs(n-1,0,0,true,true);
-        printf(&quot;%lld\n&quot;,ans%mod);
-        return 0;
-    }
-    </code></pre>
+            void del(int i){
+                b[a[i]]--;
+                if(b[a[i]]==0 &amp;&amp; a[i]&lt;mex){
+                    mex=a[i];
+                }
+            }
+            int main(){
+                scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+                for(int i=1;i&lt;=n;i++){
+                    scanf(&quot;%d&quot;,&amp;a[i]);
+                }
+                for(int i=1;i&lt;=m;i++){
+                    add(i);
+                }
+                for(int i=0;i&lt;=n;i++){
+                    if(b[i]==0){
+                        mex=i;
+                        break;
+                    }
+                }
+                for(int i=m+1;i&lt;=n;i++){
+                    add(i);
+                    del(i-m);
+                }
+                printf(&quot;%d\n&quot;,mex);
+                return 0;
+            }
+            </code></pre>
+            <h2>F</h2>
+            <p>求出1到N(不含前导零的16进制数)中多少个数字正好含有K的不同的数字(包括A-F)。</p>
+            <p>16进制的数位dp基础题。基本思路和注意点都在注释里了，后面可能会整理一个数位dp学习专题。</p>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+            using namespace std;
+            typedef long long ll;
+            const int N=2e5+50;
+            const int mod=1e9+7;
+            char s[N];
+            int k;
+            int dig[N];
+            // 低i位满足有k个不同数位的数字个数
+            // 注意这里定义的dp状态其实就蕴含了一种记忆化搜索时&quot;空间换时间&quot;的一种思想
+            // 实际上这里的状态也可以只定义dp[]一维，那表示的就是满足条件的数字个数，这种方法粒度大，使用空间小，但显然花费时间多，因为大多数搜索状态都无法记忆化，只能重复搜
+            // 同理状态也可以定义为dp[][][]三维，再加上一维状态压缩，这种做法就是粒度小，但是太占空间
+            ll dp[N][22];
+            void print(int x){
+                if(x){
+                    print(x/2);
+                }
+                printf(&quot;%d&quot;,x%2);
+            }
+            ll dfs(int idx,int sta,int dif,bool lead,bool limit){
+                if(idx==-1){
+                    // 一个合法数字(这题要排除含前导零的数)，有时候要单独考虑0的情况
+                    // 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0
+                    if(dif==k &amp;&amp; !lead){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }
+                // 记忆化的都是无上限的
+                if(!limit &amp;&amp; dp[idx][dif]!=-1){
+                    return dp[idx][dif];
+                }
+                // 这一位的枚举上限
+                int up=limit?dig[idx]:15;
+                ll ans=0;
+                for(int i=0;i&lt;=up;i++){
+                    if(lead &amp;&amp; i==0 || (sta&gt;&gt;i)&amp;1){
+                        ans+=dfs(idx-1,sta,dif,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+                    }else{
+                        ans+=dfs(idx-1,sta|(1&lt;&lt;i),dif+1,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+                    }
+                    ans%=mod;
+                }
+                if(!limit){
+                    dp[idx][dif]=ans%mod;
+                }
+                return ans%mod;
+            }
+            int main(){
+                scanf(&quot;%s %d&quot;,s,&amp;k);
+                int n=strlen(s);
+                for(int i=n-1;i&gt;=0;i--){
+                    if(s[i]&gt;='A'){
+                        dig[n-1-i]=s[i]-'A'+10;
+                    }else{
+                        dig[n-1-i]=s[i]-'0';
+                    }
+                }
+                memset(dp,-1,sizeof(dp));
+                // 从高位搜索下去
+                ll ans=dfs(n-1,0,0,true,true);
+                printf(&quot;%lld\n&quot;,ans%mod);
+                return 0;
+            }
+            </code></pre>
 
                     <!--内容协议-->
                     <div class="z-post-footer">
@@ -425,130 +404,133 @@
                         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/atcoder-abc-194">https://www.zxcoder.top/detail/atcoder-abc-194</a></p>
                     </div>
                 </div>
-                <div class="right column is-3">
+                <div class="column is-4">
                     <div class="accordion">
                         <div class="accordion-header" id="headingTOC">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"/>
-                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                            </svg>
-                        </span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"/>
+                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                                    </svg>
+                                </span>
                             <span>目录</span>
                         </div>
                         <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                     </div>
                 </div>
-    <!--        </div>-->
-            <div class="side column is-1"></div>
-        </div>
-        <script>
-            // 生成目录
-            let nav = document.createElement('nav');
-            nav.id = 'TableOfContents';
-            let h2s = document.querySelectorAll('.post h2');
-            let h23s = document.querySelectorAll('.post h2,h3');
-            let h2ul = document.createElement('ul');
-            h23s.forEach(h23 => {
-                h23.id = h23.innerHTML;
-            });
-            let lst = document.querySelector('.post');
-            for (let i = 0; i < h23s.length; i++) {
-                if (h23s[i].tagName === 'H2') {
-                    let h2li = document.createElement('li');
-                    let h2a = document.createElement('a');
-                    h2a.href = `#${h23s[i].innerHTML}`;
-                    h2a.innerHTML = h23s[i].innerHTML;
-                    h2li.appendChild(h2a);
-                    h2ul.appendChild(h2li);
-                    lst = h2li;
-                } else {
-                    let h3ul = document.createElement('ul');
-                    while (i < h23s.length && h23s[i].tagName === 'H3') {
-                        let h3li = document.createElement('li');
-                        let h3a = document.createElement('a');
-                        h3a.href = `#${h23s[i].innerHTML}`;
-                        h3a.innerHTML = h23s[i].innerHTML;
-                        h3li.appendChild(h3a);
-                        h3ul.appendChild(h3li);
-                        i++;
+            </div>
+            <script>
+                // 生成目录
+                let nav = document.createElement('nav');
+                nav.id = 'TableOfContents';
+                let h2s = document.querySelectorAll('.post h2');
+                let h23s = document.querySelectorAll('.post h2,h3');
+                let h2ul = document.createElement('ul');
+                h23s.forEach(h23 => {
+                    h23.id = h23.innerHTML;
+                });
+                let lst = document.querySelector('.post');
+                for (let i = 0; i < h23s.length; i++) {
+                    if (h23s[i].tagName === 'H2') {
+                        let h2li = document.createElement('li');
+                        let h2a = document.createElement('a');
+                        h2a.href = `#${h23s[i].innerHTML}`;
+                        h2a.innerHTML = h23s[i].innerHTML;
+                        h2li.appendChild(h2a);
+                        h2ul.appendChild(h2li);
+                        lst = h2li;
+                    } else {
+                        let h3ul = document.createElement('ul');
+                        while (i < h23s.length && h23s[i].tagName === 'H3') {
+                            let h3li = document.createElement('li');
+                            let h3a = document.createElement('a');
+                            h3a.href = `#${h23s[i].innerHTML}`;
+                            h3a.innerHTML = h23s[i].innerHTML;
+                            h3li.appendChild(h3a);
+                            h3ul.appendChild(h3li);
+                            i++;
+                        }
+                        lst.appendChild(h3ul);
+                        i--;
                     }
-                    lst.appendChild(h3ul);
-                    i--;
                 }
-            }
-            nav.appendChild(h2ul);
-            document.getElementById('collapseTOC').appendChild(nav);
-            let isShow = true;
-            let body = document.getElementById('collapseTOC');
-            let last = null;
-            document.getElementById('headingTOC').addEventListener('click', () => {
-                isShow = !isShow;
-                if (isShow) {
-                    body.style.display = 'block';
-                } else {
-                    body.style.display = 'none';
-                }
-            });
-            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                // 点击后，上次的锚点的css类就要取消
-                nd.addEventListener('click', () => {
-                    if (last != null) {
-                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                nav.appendChild(h2ul);
+                document.getElementById('collapseTOC').appendChild(nav);
+                let isShow = true;
+                let body = document.getElementById('collapseTOC');
+                let last = null;
+                document.getElementById('headingTOC').addEventListener('click', () => {
+                    isShow = !isShow;
+                    if (isShow) {
+                        body.style.display = 'block';
+                    } else {
+                        body.style.display = 'none';
                     }
-                    const id = nd.getAttribute("href").substr(1);
-                    last = id;
-                    document.getElementById(id).classList.add("z-dingweizhunque");
+                });
+                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                    // 点击后，上次的锚点的css类就要取消
+                    nd.addEventListener('click', () => {
+                        if (last != null) {
+                            document.getElementById(last).classList.remove("z-dingweizhunque");
+                        }
+                        const id = nd.getAttribute("href").substr(1);
+                        last = id;
+                        document.getElementById(id).classList.add("z-dingweizhunque");
+                    })
                 })
-            })
-        </script>
-        <!--详情页katex渲染，代码高亮-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-              crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                crossorigin="anonymous"
-                onload="initKatex();"></script>
-        <script>
-            function initKatex() {
-                const post = document.querySelector('.post');
-                if (post) {
-                    renderMathInElement(post, {
-                        delimiters: [
-                            // 自定义分隔符，才可以支持行内公式
-                            {left: "$$", right: "$$", display: true},
-                            {left: "$", right: "$", display: false},
-                        ]
+            </script>
+            <!--详情页katex渲染，代码高亮-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+                  crossorigin="anonymous">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                    crossorigin="anonymous"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                    crossorigin="anonymous"
+                    onload="initKatex();"></script>
+            <script>
+                function initKatex() {
+                    const post = document.querySelector('.post');
+                    if (post) {
+                        renderMathInElement(post, {
+                            delimiters: [
+                                // 自定义分隔符，才可以支持行内公式
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                            ]
+                        });
+                    }
+                }
+            </script>
+            <link rel="stylesheet"
+                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                    onload="initHighLight();"></script>
+            <script>
+                function initHighLight() {
+                    hljs.configure({
+                        languages: ["c", "cpp", "java", "c#"]
+                    });
+                    const codes = document.querySelectorAll('div code')
+                    codes.forEach((block) => {
+                        if (block.classList.length >= 1) {
+                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                            // let ul=block.firstElementChild;
+                            // ul.removeChild(ul.lastElementChild);
+                            // hljs.highlightBlock(block);
+                        } else {
+                            block.classList.add('z-inline-code')
+                        }
                     });
                 }
-            }
-        </script>
-        <link rel="stylesheet"
-              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                onload="initHighLight();"></script>
-        <script>
-            function initHighLight() {
-                hljs.configure({
-                    languages: ["c", "cpp", "java", "c#"]
-                });
-                const codes = document.querySelectorAll('div code')
-                codes.forEach((block) => {
-                    if (block.classList.length >= 1) {
-                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                        hljs.highlightBlock(block);
-                    } else {
-                        block.classList.add('z-inline-code')
-                    }
-                });
-            }
-        </script>
-    </div>
+            </script>
+            </div>
 
+        </div>
+        <div class="side"></div>
+    </div>
 </main>
 <footer class="z-footer">
     <p>

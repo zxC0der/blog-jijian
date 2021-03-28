@@ -16,8 +16,8 @@ https://www.zxcoder.top/category/基础知识
 https://www.zxcoder.top/category/读书笔记
 https://www.zxcoder.top/tags
 https://www.zxcoder.top/tags/思维
-https://www.zxcoder.top/tags/数据库
 https://www.zxcoder.top/tags/dp
+https://www.zxcoder.top/tags/数据库
 https://www.zxcoder.top/tags/贪心
 https://www.zxcoder.top/tags/字符串
 https://www.zxcoder.top/tags/前缀和
@@ -29,6 +29,7 @@ https://www.zxcoder.top/tags/AtCoder
 https://www.zxcoder.top/tags/因子
 https://www.zxcoder.top/tags/TODO
 https://www.zxcoder.top/tags/递归
+https://www.zxcoder.top/tags/数位dp
 https://www.zxcoder.top/tags/debug
 https://www.zxcoder.top/tags/C#
 https://www.zxcoder.top/tags/CMU15-445
@@ -44,7 +45,6 @@ https://www.zxcoder.top/tags/dfs
 https://www.zxcoder.top/tags/素数
 https://www.zxcoder.top/tags/构造
 https://www.zxcoder.top/tags/CodeForces
-https://www.zxcoder.top/tags/数位dp
 https://www.zxcoder.top/tags/期望dp
 https://www.zxcoder.top/tags/预处理
 https://www.zxcoder.top/tags/暴力
@@ -67,8 +67,6 @@ https://www.zxcoder.top/tags/快速幂
 https://www.zxcoder.top/tags/MySQL
 https://www.zxcoder.top/tags/KMP
 https://www.zxcoder.top/tags/约瑟夫环
-https://www.zxcoder.top/tags/数位DP
-https://www.zxcoder.top/tags/DP
 https://www.zxcoder.top/tags/康拓展开
 https://www.zxcoder.top/tags/全排列
 https://www.zxcoder.top/tags/最小表示

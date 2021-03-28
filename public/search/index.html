@@ -31,30 +31,12 @@
             top: 90px;
             margin-bottom: 0.5rem;
         }
-        @media screen and (max-width: 960px) {
-            .is-1 {
-                display: none !important;
-            }
-        }
-        @media screen and (min-width: 361px) {
-            .z-pagination-mobile {
-                display: none!important;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            .z-pagination-desktop {
-                display: none!important;
-            }
-        }
         ul {
             padding-left: 0;
         }
         body {
             display: flex;
             flex-flow: column;
-            margin: 0 !important;
-        }
-        .columns {
             margin: 0 !important;
         }
         pre {
@@ -86,9 +68,6 @@
             color: #666666;
             text-align: center;
         }
-        .z-navbar {
-            background: white !important;
-        }
         .navbar-item:hover {
             color: #0a0a0a !important;
         }
@@ -106,11 +85,30 @@
             border: #339966 solid 1px;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="is-fixed-top navbar z-navbar">
+    <nav class="is-fixed-top navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="https://www.zxcoder.top">zxCoder</a>
@@ -123,96 +121,94 @@
     </nav>
 </header>
 <main style="margin-top: 60px;">
-    <style>
-        .z-search-input {
-            width: 100%;
-            outline-style: none;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 13px 14px;
-            font-size: 14px;
-            font-weight: 600;
-        }
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
+            <style>
+                .z-search-input {
+                    width: 100%;
+                    outline-style: none;
+                    border: 1px solid #ccc;
+                    border-radius: 3px;
+                    padding: 13px 14px;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
 
-        .z-search-input:focus {
-            border: #339966 solid 1px;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
-        }
+                .z-search-input:focus {
+                    border: #339966 solid 1px;
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+                }
 
-        .z-search-tip {
-            background-color: #fffbeb;
-            color: #947600;
-            margin-top: 5px;
-            margin-bottom: 0 !important;
-            border-radius: 4px;
-            padding: 1.25rem 2.5rem 1.25rem 1.5rem;
-        }
+                .z-search-tip {
+                    background-color: #fffbeb;
+                    color: #947600;
+                    margin-top: 5px;
+                    margin-bottom: 0 !important;
+                    border-radius: 4px;
+                    padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+                }
 
-        #btnLoadMore {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            display: inline-block;
-            font-size: 16px;
-            width: 100%;
-            font-weight: bold;
-        }
+                #btnLoadMore {
+                    background-color: #4CAF50; /* Green */
+                    border: none;
+                    color: white;
+                    padding: 10px;
+                    text-align: center;
+                    display: inline-block;
+                    font-size: 16px;
+                    width: 100%;
+                    font-weight: bold;
+                }
 
-        .d-none {
-            display: none;
-        }
+                .d-none {
+                    display: none;
+                }
 
-        .search-result-title {
-            margin-bottom: 5px !important;
-        }
+                .search-result-title {
+                    margin-bottom: 5px !important;
+                }
 
-        .search-result-meta {
-            margin-top: 5px !important;
-            margin-bottom: 5px !important;
-        }
+                .search-result-meta {
+                    margin-top: 5px !important;
+                    margin-bottom: 5px !important;
+                }
 
-        /*搜索高亮要自定义样式*/
-        .text-accent {
-            color: #FF0033;
-        }
+                /*搜索高亮要自定义样式*/
+                .text-accent {
+                    color: #FF0033;
+                }
 
-        .z-post-meta {
-            font-size: 14px;
-        }
+                .z-post-meta {
+                    font-size: 14px;
+                }
 
-        .z-post-tag {
-            align-items: center;
-            border-radius: 4px;
-            display: inline-flex;
-            font-size: .75rem;
-            height: 2em;
-            justify-content: center;
-            line-height: 1.5;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
+                .z-post-tag {
+                    align-items: center;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    font-size: .75rem;
+                    height: 2em;
+                    justify-content: center;
+                    line-height: 1.5;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
 
-        .z-post-tag.success {
-            background-color: #effaf3;
-            color: #257942;
-        }
+                .z-post-tag.success {
+                    background-color: #effaf3;
+                    color: #257942;
+                }
 
-        .z-post-tag.warning {
-            background-color: #fffbeb;
-            color: #947600;
-        }
-    </style>
-    <div class="columns">
-        <div class="column is-1"></div>
-        <div class="column">
+                .z-post-tag.warning {
+                    background-color: #fffbeb;
+                    color: #947600;
+                }
+            </style>
             <div>
                 <form id="searchForm">
                     <div class="field has-addons">
-                        <input class="z-search-input"
-                               name="q"
-                               placeholder="请输入关键字">
+                        <input class="z-search-input" name="q" placeholder="请输入关键字">
                     </div>
                 </form>
                 <div class="z-search-tip">
@@ -229,237 +225,237 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="column is-1"></div>
-        <!--在这个页面搜 不会发送网络请求-->
-    </div>
-    <script defer src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js">
-    </script>
-    <script>
-        const form = document.querySelector('#searchForm');
-        const input = form.querySelector('input[name="q"]');
-        if (input.value === '') {
-            input.value = new URLSearchParams(window.location.search).get('q');
-        }
-        form.addEventListener('submit', (event) => {
-            search(input.value);
-            event.preventDefault();
-        });
-        const noKeywords = "请输入搜索关键字";
-        const noResults = "搜索不到相关内容";
-        const resultCnt = "搜索到相关文章";
-        let loading = false;
-        const highlightOptions = {
-            element: 'span',
-            className: 'text-accent',
-        };
-        let title = document.title;
-        const resultContentWordCount = 120;
-        const paginate = 10;
-        let page = 1;
-        const resultsElement = document.getElementById('searchResults');
-        const stat = document.getElementById('searchStat');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        const loadMore = document.getElementById('btnLoadMore');
-        loadMore.addEventListener('click', () => {
-            poplateResults(input.value);
-        });
-        let data = [];
-        let thisResults = [];
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                if (xhr.status !== 200) {
-                    console.error({error: xhr.statusText});
-                    return;
+            <!--在这个页面搜 不会发送网络请求-->
+            <script defer src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js">
+            </script>
+            <script>
+                const form = document.querySelector('#searchForm');
+                const input = form.querySelector('input[name="q"]');
+                if (input.value === '') {
+                    input.value = new URLSearchParams(window.location.search).get('q');
                 }
-                // index.json数据
-                data = xhr.response;
-                search(input.value);
-            }
-        };
-        xhr.responseType = 'json';
-        xhr.open('GET',
-            document.head.querySelector('meta[data-name="search-index"]').getAttribute('content'), true);
-        xhr.send(null);
+                form.addEventListener('submit', (event) => {
+                    search(input.value);
+                    event.preventDefault();
+                });
+                const noKeywords = "请输入搜索关键字";
+                const noResults = "搜索不到相关内容";
+                const resultCnt = "搜索到相关文章";
+                let loading = false;
+                const highlightOptions = {
+                    element: 'span',
+                    className: 'text-accent',
+                };
+                let title = document.title;
+                const resultContentWordCount = 120;
+                const paginate = 10;
+                let page = 1;
+                const resultsElement = document.getElementById('searchResults');
+                const stat = document.getElementById('searchStat');
+                const loadingSpinner = document.getElementById('loadingSpinner');
+                const loadMore = document.getElementById('btnLoadMore');
+                loadMore.addEventListener('click', () => {
+                    poplateResults(input.value);
+                });
+                let data = [];
+                let thisResults = [];
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status !== 200) {
+                            console.error({error: xhr.statusText});
+                            return;
+                        }
+                        // index.json数据
+                        data = xhr.response;
+                        search(input.value);
+                    }
+                };
+                xhr.responseType = 'json';
+                xhr.open('GET',
+                    document.head.querySelector('meta[data-name="search-index"]').getAttribute('content'), true);
+                xhr.send(null);
 
-        function hideLoadMoreBtn() {
-            loadMore.classList.add('d-none');
-        }
+                function hideLoadMoreBtn() {
+                    loadMore.classList.add('d-none');
+                }
 
-        function showLoadMoreBtn() {
-            loadMore.classList.remove('d-none');
-        }
+                function showLoadMoreBtn() {
+                    loadMore.classList.remove('d-none');
+                }
 
-        function hideLoadingSpin() {
-            loadingSpinner.classList.add('d-none');
-        }
+                function hideLoadingSpin() {
+                    loadingSpinner.classList.add('d-none');
+                }
 
-        function showLoadingSpin() {
-            loadingSpinner.classList.remove('d-none');
-        }
+                function showLoadingSpin() {
+                    loadingSpinner.classList.remove('d-none');
+                }
 
-        function search(query) {
-            let start = Date.now();
-            showLoadingSpin();
-            resultsElement.innerHTML = '';
-            if (query === '') {
-                stat.innerHTML = noKeywords;
-                hideLoadMoreBtn();
-                hideLoadingSpin();
-                return;
-            }
-            page = 1;
-            setPage(query);
-            const siz = data.length;
-            let results = [];
-            for (let i = 0; i < siz; i++) {
-                if (data[i].title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
-                    results.push(data[i]);
-                } else if (data[i].content.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
-                    results.push(data[i]);
-                } else if (data[i].category.name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
-                    results.push(data[i]);
-                } else {
-                    for (let j = 0; j < data[i].tags.length; j++) {
-                        if (data[i].tags[j].name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                function search(query) {
+                    let start = Date.now();
+                    showLoadingSpin();
+                    resultsElement.innerHTML = '';
+                    if (query === '') {
+                        stat.innerHTML = noKeywords;
+                        hideLoadMoreBtn();
+                        hideLoadingSpin();
+                        return;
+                    }
+                    page = 1;
+                    setPage(query);
+                    const siz = data.length;
+                    let results = [];
+                    for (let i = 0; i < siz; i++) {
+                        if (data[i].title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
                             results.push(data[i]);
-                            break;
+                        } else if (data[i].content.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                            results.push(data[i]);
+                        } else if (data[i].category.name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                            results.push(data[i]);
+                        } else {
+                            for (let j = 0; j < data[i].tags.length; j++) {
+                                if (data[i].tags[j].name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                                    results.push(data[i]);
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
-            }
-            // 深拷贝，解决了先搜co再搜java的问题，内容被截断了一部分
-            thisResults = JSON.parse(JSON.stringify(results))
-            hideLoadingSpin();
-            if (results.length > paginate) {
-                showLoadMoreBtn();
-            } else {
-                hideLoadMoreBtn();
-            }
-            let end = Date.now();
-            if (results.length > 0) {
-                stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end-start}ms )`;
-                poplateResults(query);
-            } else {
-                stat.innerHTML = noResults;
-            }
-        }
-
-        function setPage(query) {
-            const newTitle = (query ? (`${query} - `) : '') + title;
-            const url = `${window.location.pathname}?q=${encodeURIComponent(query)}`;
-            window.history.pushState(null, title, url);
-            document.title = newTitle; // history.pushState's title was ignored.
-        }
-
-        function poplateResults(query) {
-            if (!thisResults) {
-                return;
-            }
-            if (loading) {
-                return;
-            }
-            loading = true;
-            loadMore.setAttribute('disabled', '');
-            let i = (page - 1) * paginate;
-            let count = 0;
-            for (; i < thisResults.length && count < paginate; i += 1, count += 1) {
-                const result = thisResults[i];
-                const idx = (page - 1) * paginate + i;
-                // 匹配关键词
-                const titleKeywords = [];
-                const metaKeywords = [];
-                const contentKeywords = [];
-                let pos = result.title.toLowerCase().indexOf(query.toLowerCase());
-                while (pos > -1) {
-                    titleKeywords.push(result.title.substr(pos, query.length));
-                    pos = result.title.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
-                }
-                pos = result.category.name.toLowerCase().indexOf(query.toLowerCase());
-                while (pos > -1) {
-                    metaKeywords.push(result.category.name.substr(pos, query.length));
-                    pos = result.category.name.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
-                }
-                for (let j = 0; j < result.tags.length; j++) {
-                    pos = result.tags[j].name.toLowerCase().indexOf(query.toLowerCase());
-                    while (pos > -1) {
-                        metaKeywords.push(result.tags[j].name.substr(pos, query.length));
-                        pos = result.tags[j].name.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
+                    // 深拷贝，解决了先搜co再搜java的问题，内容被截断了一部分
+                    thisResults = JSON.parse(JSON.stringify(results))
+                    hideLoadingSpin();
+                    if (results.length > paginate) {
+                        showLoadMoreBtn();
+                    } else {
+                        hideLoadMoreBtn();
+                    }
+                    let end = Date.now();
+                    if (results.length > 0) {
+                        stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
+                        poplateResults(query);
+                    } else {
+                        stat.innerHTML = noResults;
                     }
                 }
-                pos = result.content.toLowerCase().indexOf(query.toLowerCase());
-                while (pos > -1) {
-                    contentKeywords.push(result.content.substr(pos, query.length));
-                    pos = result.content.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
+
+                function setPage(query) {
+                    const newTitle = (query ? (`${query} - `) : '') + title;
+                    const url = `${window.location.pathname}?q=${encodeURIComponent(query)}`;
+                    window.history.pushState(null, title, url);
+                    document.title = newTitle; // history.pushState's title was ignored.
                 }
-                // 截取展示的部分
-                if (result.content.length > resultContentWordCount) {
-                    let contentStart = 0;
-                    if (contentKeywords.length > 0) {
-                        const pos = result.content.indexOf(contentKeywords[0]);
-                        if ((pos + contentKeywords[0].length) > resultContentWordCount - 1) {
-                            contentStart = pos;
+
+                function poplateResults(query) {
+                    if (!thisResults) {
+                        return;
+                    }
+                    if (loading) {
+                        return;
+                    }
+                    loading = true;
+                    loadMore.setAttribute('disabled', '');
+                    let i = (page - 1) * paginate;
+                    let count = 0;
+                    for (; i < thisResults.length && count < paginate; i += 1, count += 1) {
+                        const result = thisResults[i];
+                        const idx = (page - 1) * paginate + i;
+                        // 匹配关键词
+                        const titleKeywords = [];
+                        const metaKeywords = [];
+                        const contentKeywords = [];
+                        let pos = result.title.toLowerCase().indexOf(query.toLowerCase());
+                        while (pos > -1) {
+                            titleKeywords.push(result.title.substr(pos, query.length));
+                            pos = result.title.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
                         }
+                        pos = result.category.name.toLowerCase().indexOf(query.toLowerCase());
+                        while (pos > -1) {
+                            metaKeywords.push(result.category.name.substr(pos, query.length));
+                            pos = result.category.name.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
+                        }
+                        for (let j = 0; j < result.tags.length; j++) {
+                            pos = result.tags[j].name.toLowerCase().indexOf(query.toLowerCase());
+                            while (pos > -1) {
+                                metaKeywords.push(result.tags[j].name.substr(pos, query.length));
+                                pos = result.tags[j].name.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
+                            }
+                        }
+                        pos = result.content.toLowerCase().indexOf(query.toLowerCase());
+                        while (pos > -1) {
+                            contentKeywords.push(result.content.substr(pos, query.length));
+                            pos = result.content.toLowerCase().indexOf(query.toLowerCase(), pos + 1);
+                        }
+                        // 截取展示的部分
+                        if (result.content.length > resultContentWordCount) {
+                            let contentStart = 0;
+                            if (contentKeywords.length > 0) {
+                                const pos = result.content.indexOf(contentKeywords[0]);
+                                if ((pos + contentKeywords[0].length) > resultContentWordCount - 1) {
+                                    contentStart = pos;
+                                }
+                            }
+                            result.content = `${(contentStart === 0 ? '' : '...') + result.content.substring(contentStart, contentStart + resultContentWordCount)}...`;
+                        }
+                        const id = `searchResult${idx}`;
+                        // 直接拼字符串，去掉mustache包
+                        let template = "";
+                        template += "<div class='z-box' id='" +
+                            id +
+                            "'>";
+                        template += "<h3 class='search-result-title'>";
+                        template += "<a href='" +
+                            result.permalink +
+                            "'>" +
+                            result.title +
+                            "</a>";
+                        template += "</h3>";
+                        template += "<div class='search-result-meta'>";
+                        template += "<span class='z-post-tag success'>";
+                        template += "<a href=https://www.zxcoder.top/category/" + result.category.name + " class='z-post-meta'>";
+                        template += result.category.name;
+                        template += "</a>";
+                        template += "</span>";
+                        for (let j = 0; j < result.tags.length; j++) {
+                            template += "<span class='z-post-tag warning'>";
+                            template += "<a href=https://www.zxcoder.top/tags/" + result.tags[j].name + " class='z-post-meta'>";
+                            template += "#" + result.tags[j].name;
+                            template += "</a>";
+                            template += "</span>";
+                        }
+                        template += "<span class='z-post-meta' style='float: right;'>";
+                        template += result.date;
+                        template += "</span>"
+                        template += "</div>";
+                        template += "<div class='search-result-content'>";
+                        template += result.content;
+                        template += "</div>";
+                        template += "</div>";
+                        resultsElement.insertAdjacentHTML('beforeend', template);
+                        highlight(id, titleKeywords, metaKeywords, contentKeywords);
                     }
-                    result.content = `${(contentStart === 0 ? '' : '...') + result.content.substring(contentStart, contentStart + resultContentWordCount)}...`;
+                    loading = false;
+                    loadMore.removeAttribute('disabled');
+                    if (thisResults.length <= paginate * page) {
+                        hideLoadMoreBtn();
+                    } else {
+                        showLoadMoreBtn();
+                    }
+                    page += 1;
                 }
-                const id = `searchResult${idx}`;
-                // 直接拼字符串，去掉mustache包
-                let template = "";
-                template += "<div class='z-box' id='" +
-                    id +
-                    "'>";
-                template += "<h3 class='search-result-title'>";
-                template += "<a href='" +
-                    result.permalink +
-                    "'>" +
-                    result.title +
-                    "</a>";
-                template += "</h3>";
-                template += "<div class='search-result-meta'>";
-                template += "<span class='z-post-tag success'>";
-                template += "<a href=https://www.zxcoder.top/category/" + result.category.name + " class='z-post-meta'>";
-                template += result.category.name;
-                template += "</a>";
-                template += "</span>";
-                for (let j = 0; j < result.tags.length; j++) {
-                    template += "<span class='z-post-tag warning'>";
-                    template += "<a href=https://www.zxcoder.top/tags/" + result.tags[j].name + " class='z-post-meta'>";
-                    template += "#" + result.tags[j].name;
-                    template += "</a>";
-                    template += "</span>";
-                }
-                template += "<span class='z-post-meta' style='float: right;'>";
-                template += result.date;
-                template += "</span>"
-                template += "</div>";
-                template += "<div class='search-result-content'>";
-                template += result.content;
-                template += "</div>";
-                template += "</div>";
-                resultsElement.insertAdjacentHTML('beforeend', template);
-                highlight(id, titleKeywords, metaKeywords, contentKeywords);
-            }
-            loading = false;
-            loadMore.removeAttribute('disabled');
-            if (thisResults.length <= paginate * page) {
-                hideLoadMoreBtn();
-            } else {
-                showLoadMoreBtn();
-            }
-            page += 1;
-        }
 
-        function highlight(id, titleKeywords, metaKeywords, contentKeywords) {
-            const titleHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-title`));
-            titleHighlighter.mark(titleKeywords, highlightOptions);
-            const metaHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-meta`));
-            metaHighlighter.mark(metaKeywords, highlightOptions);
-            const contentHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-content`));
-            contentHighlighter.mark(contentKeywords, highlightOptions);
-        }
-    </script>
+                function highlight(id, titleKeywords, metaKeywords, contentKeywords) {
+                    const titleHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-title`));
+                    titleHighlighter.mark(titleKeywords, highlightOptions);
+                    const metaHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-meta`));
+                    metaHighlighter.mark(metaKeywords, highlightOptions);
+                    const contentHighlighter = new Mark(document.querySelectorAll(`#${id} > .search-result-content`));
+                    contentHighlighter.mark(contentKeywords, highlightOptions);
+                }
+            </script>
+        </div>
+        <div class="side"></div>
+    </div>
 </main>
 <footer class="z-footer">
     <p>

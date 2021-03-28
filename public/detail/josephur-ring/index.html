@@ -29,30 +29,12 @@
             top: 90px;
             margin-bottom: 0.5rem;
         }
-        @media screen and (max-width: 960px) {
-            .is-1 {
-                display: none !important;
-            }
-        }
-        @media screen and (min-width: 361px) {
-            .z-pagination-mobile {
-                display: none!important;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            .z-pagination-desktop {
-                display: none!important;
-            }
-        }
         ul {
             padding-left: 0;
         }
         body {
             display: flex;
             flex-flow: column;
-            margin: 0 !important;
-        }
-        .columns {
             margin: 0 !important;
         }
         pre {
@@ -84,9 +66,6 @@
             color: #666666;
             text-align: center;
         }
-        .z-navbar {
-            background: white !important;
-        }
         .navbar-item:hover {
             color: #0a0a0a !important;
         }
@@ -104,11 +83,30 @@
             border: #339966 solid 1px;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="is-fixed-top navbar z-navbar">
+    <nav class="is-fixed-top navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="https://www.zxcoder.top">zxCoder</a>
@@ -126,157 +124,138 @@
     </nav>
 </header>
 <main style="margin-top: 60px;">
-    <style>
-        .z-detail-title {
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
+            <style>
+                .z-detail-title {
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                }
 
-        .z-detail, h1 h2 h3 {
-            color: #333;
-        }
+                .z-detail, h1 h2 h3 {
+                    color: #333;
+                }
 
-        .z-inline-code {
-            background: #FFFFCC;
-        }
+                .z-inline-code {
+                    background: #FFFFCC;
+                }
 
-        .img-fluid {
-            /*图片渲染不超过文章宽度*/
-            max-width: 100%;
-            max-height: 100%;
-        }
+                .img-fluid {
+                    /*图片渲染不超过文章宽度*/
+                    max-width: 100%;
+                    max-height: 100%;
+                }
 
-        /*line number*/
-        .hljs ul li {
-            list-style: decimal;
-            padding: 1px !important;
-            margin: 0 !important;
-        }
+                /*line number*/
+                .hljs ul li {
+                    list-style: decimal;
+                    padding: 1px !important;
+                    margin: 0 !important;
+                }
 
-        #collapseTOC {
-            height: 450px;
-            overflow: auto;
-        }
+                #collapseTOC {
+                    height: 450px;
+                    overflow: auto;
+                }
 
-        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-        .z-dingweizhunque {
-            padding-top: 2.3333333em !important;
-            margin-top: -1.6666666em !important; /* 临时解决方案... */
-            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-        }
+                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+                .z-dingweizhunque {
+                    padding-top: 2.3333333em !important;
+                    margin-top: -1.6666666em !important; /* 临时解决方案... */
+                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+                }
 
-        .z-post-tag {
-            align-items: center;
-            border-radius: 4px;
-            display: inline-flex;
-            font-size: 14px;
-            height: 2em;
-            justify-content: center;
-            line-height: 1.5;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
+                .z-post-tag {
+                    align-items: center;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    font-size: 14px;
+                    height: 2em;
+                    justify-content: center;
+                    line-height: 1.5;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
 
-        .z-post-tag.success {
-            background-color: #effaf3;
-            color: #257942;
-        }
+                .z-post-tag.success {
+                    background-color: #effaf3;
+                    color: #257942;
+                }
 
-        .z-post-tag.warning {
-            background-color: #fffbeb;
-            color: #947600;
-        }
+                .z-post-tag.warning {
+                    background-color: #fffbeb;
+                    color: #947600;
+                }
 
-        .z-post-footer {
-            text-align: left;
-            color: #666666;
-            font-size: 14px;
-        }
+                .z-post-footer {
+                    text-align: left;
+                    color: #666666;
+                    font-size: 14px;
+                }
 
-        .accordion-header {
-            font-size: 24px;
-            color: #0a0a0a;
-            user-select: none;
-        }
+                .accordion-header {
+                    font-size: 24px;
+                    color: #0a0a0a;
+                    user-select: none;
+                }
 
-        .accordion {
-            position: fixed;
-        }
+                .accordion {
+                    position: fixed;
+                }
 
-        .accordion-header:hover {
-            cursor: pointer;
-        }
+                .accordion-header:hover {
+                    cursor: pointer;
+                }
 
-        pre {
-            padding: 0 !important;
-        }
-
-        /*.main {*/
-        /*    display: flex;*/
-        /*}*/
-        /**/
-        /*.side {*/
-        /*    flex: 0 0 7rem;*/
-        /*}*/
-        /**/
-        /*.middle {*/
-        /*    flex: 1 1 auto;*/
-        /*}*/
-
-        /* 注意max-width和max-device-width */
-        /*@media (max-width: 720px) {*/
-        /*    .side {*/
-        /*        flex: 0 0 0;*/
-        /*    }*/
-        /*}*/
-    </style>
-    <div>
-        <div class="main post content z-detail columns">
-            <div class="side column is-1"></div>
-    <!--        <div class="middle">-->
-                <div class="left column is-7">
+                pre {
+                    padding: 0 !important;
+                }
+            </style>
+            <div class="main post content z-detail columns">
+                <div class="column is-8">
                     <!--标题-->
                     <h1 class="z-detail-title">约瑟夫环问题</h1>
                     <!--时间，分类，标签-->
                     <div>
-                        <span class="z-post-meta">
-                            Dec 2, 2020
-                        </span>
+                                <span class="z-post-meta">
+                                    Dec 2, 2020
+                                </span>
                         <span class="z-post-tag success">
-                            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/约瑟夫环">#约瑟夫环</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/约瑟夫环">#约瑟夫环</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/递归">#递归</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/递归">#递归</a>
+                                </span>
                     </div>
                     <!--内容-->
                     <h2>思路</h2>
-    <p>约瑟夫环问题是：n个人围成一个环，编号从1到n(或者从0到n-1)，从1开始数(从几开始数不重要，重要的是数到第几个出队)，第k个人出队，然后从下一个人开始重新数，直到剩最后一个为赢家。</p>
-    <p>我们先把环展开，n个人时，队列为1 2 3 ... n-1 n(n个人，队列1)，淘汰一个人后，下一轮应该从k+1开始报数，也就是k+1 k+1 ... k-1(n-1个人，队列2)，对于这两个队列，胜者的编号应该是一样的，但在两个队列中的位置发生了变化，而对于下面这个队列1 2 3 ... n-2 n-1(n-1个人，队列3)，因为和队列2都是n-1个人，所以显然胜者的位置是一样的，而我们的递归函数f(n,k)其实算的就是队列1(n个人)和队列3(n-1个人)，而当我们计算了队列3，需要转化为队列2之后，再返回给上层函数，这两者的关系就是(x+k)%n，n是当前人数，在迭代做法中应该是i。</p>
-    <p>注意最后一步，当队列编号从0开始时，可以直接(x+k)%n，当队伍编号从1开始时，应该是(x+k-1)%n+1。</p>
-    <h2>代码</h2>
-    <h3>递归</h3>
-    <pre><code class="language-cpp">int josephus(int n,int k){
-        // 递归边界，注意编号是0或者1
-        if(n==1){
-            return 0;
-        }
-        // 注意如果编号从1开始，则是(josephus(n-1,k)+k-1)%n+1
-        return (josephus(n-1,k)+k)%n;
-    }
-    </code></pre>
-    <h3>非递归</h3>
-    <pre><code class="language-cpp">int josephus2(int n,int k){
-        int x=0;
-        for(int i=2;i&lt;=n;i++){
-            x=(x+k)%i;
-        }
-        return x;
-    }
-    </code></pre>
+            <p>约瑟夫环问题是：n个人围成一个环，编号从1到n(或者从0到n-1)，从1开始数(从几开始数不重要，重要的是数到第几个出队)，第k个人出队，然后从下一个人开始重新数，直到剩最后一个为赢家。</p>
+            <p>我们先把环展开，n个人时，队列为1 2 3 ... n-1 n(n个人，队列1)，淘汰一个人后，下一轮应该从k+1开始报数，也就是k+1 k+1 ... k-1(n-1个人，队列2)，对于这两个队列，胜者的编号应该是一样的，但在两个队列中的位置发生了变化，而对于下面这个队列1 2 3 ... n-2 n-1(n-1个人，队列3)，因为和队列2都是n-1个人，所以显然胜者的位置是一样的，而我们的递归函数f(n,k)其实算的就是队列1(n个人)和队列3(n-1个人)，而当我们计算了队列3，需要转化为队列2之后，再返回给上层函数，这两者的关系就是(x+k)%n，n是当前人数，在迭代做法中应该是i。</p>
+            <p>注意最后一步，当队列编号从0开始时，可以直接(x+k)%n，当队伍编号从1开始时，应该是(x+k-1)%n+1。</p>
+            <h2>代码</h2>
+            <h3>递归</h3>
+            <pre><code class="language-cpp">int josephus(int n,int k){
+                // 递归边界，注意编号是0或者1
+                if(n==1){
+                    return 0;
+                }
+                // 注意如果编号从1开始，则是(josephus(n-1,k)+k-1)%n+1
+                return (josephus(n-1,k)+k)%n;
+            }
+            </code></pre>
+            <h3>非递归</h3>
+            <pre><code class="language-cpp">int josephus2(int n,int k){
+                int x=0;
+                for(int i=2;i&lt;=n;i++){
+                    x=(x+k)%i;
+                }
+                return x;
+            }
+            </code></pre>
 
                     <!--内容协议-->
                     <div class="z-post-footer">
@@ -284,130 +263,133 @@
                         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/josephur-ring">https://www.zxcoder.top/detail/josephur-ring</a></p>
                     </div>
                 </div>
-                <div class="right column is-3">
+                <div class="column is-4">
                     <div class="accordion">
                         <div class="accordion-header" id="headingTOC">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"/>
-                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                            </svg>
-                        </span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"/>
+                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                                    </svg>
+                                </span>
                             <span>目录</span>
                         </div>
                         <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                     </div>
                 </div>
-    <!--        </div>-->
-            <div class="side column is-1"></div>
-        </div>
-        <script>
-            // 生成目录
-            let nav = document.createElement('nav');
-            nav.id = 'TableOfContents';
-            let h2s = document.querySelectorAll('.post h2');
-            let h23s = document.querySelectorAll('.post h2,h3');
-            let h2ul = document.createElement('ul');
-            h23s.forEach(h23 => {
-                h23.id = h23.innerHTML;
-            });
-            let lst = document.querySelector('.post');
-            for (let i = 0; i < h23s.length; i++) {
-                if (h23s[i].tagName === 'H2') {
-                    let h2li = document.createElement('li');
-                    let h2a = document.createElement('a');
-                    h2a.href = `#${h23s[i].innerHTML}`;
-                    h2a.innerHTML = h23s[i].innerHTML;
-                    h2li.appendChild(h2a);
-                    h2ul.appendChild(h2li);
-                    lst = h2li;
-                } else {
-                    let h3ul = document.createElement('ul');
-                    while (i < h23s.length && h23s[i].tagName === 'H3') {
-                        let h3li = document.createElement('li');
-                        let h3a = document.createElement('a');
-                        h3a.href = `#${h23s[i].innerHTML}`;
-                        h3a.innerHTML = h23s[i].innerHTML;
-                        h3li.appendChild(h3a);
-                        h3ul.appendChild(h3li);
-                        i++;
+            </div>
+            <script>
+                // 生成目录
+                let nav = document.createElement('nav');
+                nav.id = 'TableOfContents';
+                let h2s = document.querySelectorAll('.post h2');
+                let h23s = document.querySelectorAll('.post h2,h3');
+                let h2ul = document.createElement('ul');
+                h23s.forEach(h23 => {
+                    h23.id = h23.innerHTML;
+                });
+                let lst = document.querySelector('.post');
+                for (let i = 0; i < h23s.length; i++) {
+                    if (h23s[i].tagName === 'H2') {
+                        let h2li = document.createElement('li');
+                        let h2a = document.createElement('a');
+                        h2a.href = `#${h23s[i].innerHTML}`;
+                        h2a.innerHTML = h23s[i].innerHTML;
+                        h2li.appendChild(h2a);
+                        h2ul.appendChild(h2li);
+                        lst = h2li;
+                    } else {
+                        let h3ul = document.createElement('ul');
+                        while (i < h23s.length && h23s[i].tagName === 'H3') {
+                            let h3li = document.createElement('li');
+                            let h3a = document.createElement('a');
+                            h3a.href = `#${h23s[i].innerHTML}`;
+                            h3a.innerHTML = h23s[i].innerHTML;
+                            h3li.appendChild(h3a);
+                            h3ul.appendChild(h3li);
+                            i++;
+                        }
+                        lst.appendChild(h3ul);
+                        i--;
                     }
-                    lst.appendChild(h3ul);
-                    i--;
                 }
-            }
-            nav.appendChild(h2ul);
-            document.getElementById('collapseTOC').appendChild(nav);
-            let isShow = true;
-            let body = document.getElementById('collapseTOC');
-            let last = null;
-            document.getElementById('headingTOC').addEventListener('click', () => {
-                isShow = !isShow;
-                if (isShow) {
-                    body.style.display = 'block';
-                } else {
-                    body.style.display = 'none';
-                }
-            });
-            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                // 点击后，上次的锚点的css类就要取消
-                nd.addEventListener('click', () => {
-                    if (last != null) {
-                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                nav.appendChild(h2ul);
+                document.getElementById('collapseTOC').appendChild(nav);
+                let isShow = true;
+                let body = document.getElementById('collapseTOC');
+                let last = null;
+                document.getElementById('headingTOC').addEventListener('click', () => {
+                    isShow = !isShow;
+                    if (isShow) {
+                        body.style.display = 'block';
+                    } else {
+                        body.style.display = 'none';
                     }
-                    const id = nd.getAttribute("href").substr(1);
-                    last = id;
-                    document.getElementById(id).classList.add("z-dingweizhunque");
+                });
+                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                    // 点击后，上次的锚点的css类就要取消
+                    nd.addEventListener('click', () => {
+                        if (last != null) {
+                            document.getElementById(last).classList.remove("z-dingweizhunque");
+                        }
+                        const id = nd.getAttribute("href").substr(1);
+                        last = id;
+                        document.getElementById(id).classList.add("z-dingweizhunque");
+                    })
                 })
-            })
-        </script>
-        <!--详情页katex渲染，代码高亮-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-              crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                crossorigin="anonymous"
-                onload="initKatex();"></script>
-        <script>
-            function initKatex() {
-                const post = document.querySelector('.post');
-                if (post) {
-                    renderMathInElement(post, {
-                        delimiters: [
-                            // 自定义分隔符，才可以支持行内公式
-                            {left: "$$", right: "$$", display: true},
-                            {left: "$", right: "$", display: false},
-                        ]
+            </script>
+            <!--详情页katex渲染，代码高亮-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+                  crossorigin="anonymous">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                    crossorigin="anonymous"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                    crossorigin="anonymous"
+                    onload="initKatex();"></script>
+            <script>
+                function initKatex() {
+                    const post = document.querySelector('.post');
+                    if (post) {
+                        renderMathInElement(post, {
+                            delimiters: [
+                                // 自定义分隔符，才可以支持行内公式
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                            ]
+                        });
+                    }
+                }
+            </script>
+            <link rel="stylesheet"
+                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                    onload="initHighLight();"></script>
+            <script>
+                function initHighLight() {
+                    hljs.configure({
+                        languages: ["c", "cpp", "java", "c#"]
+                    });
+                    const codes = document.querySelectorAll('div code')
+                    codes.forEach((block) => {
+                        if (block.classList.length >= 1) {
+                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                            // let ul=block.firstElementChild;
+                            // ul.removeChild(ul.lastElementChild);
+                            // hljs.highlightBlock(block);
+                        } else {
+                            block.classList.add('z-inline-code')
+                        }
                     });
                 }
-            }
-        </script>
-        <link rel="stylesheet"
-              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                onload="initHighLight();"></script>
-        <script>
-            function initHighLight() {
-                hljs.configure({
-                    languages: ["c", "cpp", "java", "c#"]
-                });
-                const codes = document.querySelectorAll('div code')
-                codes.forEach((block) => {
-                    if (block.classList.length >= 1) {
-                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                        hljs.highlightBlock(block);
-                    } else {
-                        block.classList.add('z-inline-code')
-                    }
-                });
-            }
-        </script>
-    </div>
+            </script>
+            </div>
 
+        </div>
+        <div class="side"></div>
+    </div>
 </main>
 <footer class="z-footer">
     <p>

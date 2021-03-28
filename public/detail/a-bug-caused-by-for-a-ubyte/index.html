@@ -29,30 +29,12 @@
             top: 90px;
             margin-bottom: 0.5rem;
         }
-        @media screen and (max-width: 960px) {
-            .is-1 {
-                display: none !important;
-            }
-        }
-        @media screen and (min-width: 361px) {
-            .z-pagination-mobile {
-                display: none!important;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            .z-pagination-desktop {
-                display: none!important;
-            }
-        }
         ul {
             padding-left: 0;
         }
         body {
             display: flex;
             flex-flow: column;
-            margin: 0 !important;
-        }
-        .columns {
             margin: 0 !important;
         }
         pre {
@@ -84,9 +66,6 @@
             color: #666666;
             text-align: center;
         }
-        .z-navbar {
-            background: white !important;
-        }
         .navbar-item:hover {
             color: #0a0a0a !important;
         }
@@ -104,11 +83,30 @@
             border: #339966 solid 1px;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
+
+        .main {
+            display: flex;
+        }
+
+        .side {
+            flex: 0 0 8rem;
+        }
+
+        .middle {
+            flex: 1 1 auto;
+        }
+
+        /* 注意max-width和max-device-width */
+        @media (max-width: 720px) {
+            .side {
+                flex: 0 0 0;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="is-fixed-top navbar z-navbar">
+    <nav class="is-fixed-top navbar">
         <div class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="https://www.zxcoder.top">zxCoder</a>
@@ -126,138 +124,119 @@
     </nav>
 </header>
 <main style="margin-top: 60px;">
-    <style>
-        .z-detail-title {
-            margin-top: 12px;
-            margin-bottom: 12px;
-        }
+    <div class="main">
+        <div class="side"></div>
+        <div class="middle">
+            <style>
+                .z-detail-title {
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                }
 
-        .z-detail, h1 h2 h3 {
-            color: #333;
-        }
+                .z-detail, h1 h2 h3 {
+                    color: #333;
+                }
 
-        .z-inline-code {
-            background: #FFFFCC;
-        }
+                .z-inline-code {
+                    background: #FFFFCC;
+                }
 
-        .img-fluid {
-            /*图片渲染不超过文章宽度*/
-            max-width: 100%;
-            max-height: 100%;
-        }
+                .img-fluid {
+                    /*图片渲染不超过文章宽度*/
+                    max-width: 100%;
+                    max-height: 100%;
+                }
 
-        /*line number*/
-        .hljs ul li {
-            list-style: decimal;
-            padding: 1px !important;
-            margin: 0 !important;
-        }
+                /*line number*/
+                .hljs ul li {
+                    list-style: decimal;
+                    padding: 1px !important;
+                    margin: 0 !important;
+                }
 
-        #collapseTOC {
-            height: 450px;
-            overflow: auto;
-        }
+                #collapseTOC {
+                    height: 450px;
+                    overflow: auto;
+                }
 
-        /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-        .z-dingweizhunque {
-            padding-top: 2.3333333em !important;
-            margin-top: -1.6666666em !important; /* 临时解决方案... */
-            /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-        }
+                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+                .z-dingweizhunque {
+                    padding-top: 2.3333333em !important;
+                    margin-top: -1.6666666em !important; /* 临时解决方案... */
+                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+                }
 
-        .z-post-tag {
-            align-items: center;
-            border-radius: 4px;
-            display: inline-flex;
-            font-size: 14px;
-            height: 2em;
-            justify-content: center;
-            line-height: 1.5;
-            padding-left: .75em;
-            padding-right: .75em;
-        }
+                .z-post-tag {
+                    align-items: center;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    font-size: 14px;
+                    height: 2em;
+                    justify-content: center;
+                    line-height: 1.5;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                }
 
-        .z-post-tag.success {
-            background-color: #effaf3;
-            color: #257942;
-        }
+                .z-post-tag.success {
+                    background-color: #effaf3;
+                    color: #257942;
+                }
 
-        .z-post-tag.warning {
-            background-color: #fffbeb;
-            color: #947600;
-        }
+                .z-post-tag.warning {
+                    background-color: #fffbeb;
+                    color: #947600;
+                }
 
-        .z-post-footer {
-            text-align: left;
-            color: #666666;
-            font-size: 14px;
-        }
+                .z-post-footer {
+                    text-align: left;
+                    color: #666666;
+                    font-size: 14px;
+                }
 
-        .accordion-header {
-            font-size: 24px;
-            color: #0a0a0a;
-            user-select: none;
-        }
+                .accordion-header {
+                    font-size: 24px;
+                    color: #0a0a0a;
+                    user-select: none;
+                }
 
-        .accordion {
-            position: fixed;
-        }
+                .accordion {
+                    position: fixed;
+                }
 
-        .accordion-header:hover {
-            cursor: pointer;
-        }
+                .accordion-header:hover {
+                    cursor: pointer;
+                }
 
-        pre {
-            padding: 0 !important;
-        }
-
-        /*.main {*/
-        /*    display: flex;*/
-        /*}*/
-        /**/
-        /*.side {*/
-        /*    flex: 0 0 7rem;*/
-        /*}*/
-        /**/
-        /*.middle {*/
-        /*    flex: 1 1 auto;*/
-        /*}*/
-
-        /* 注意max-width和max-device-width */
-        /*@media (max-width: 720px) {*/
-        /*    .side {*/
-        /*        flex: 0 0 0;*/
-        /*    }*/
-        /*}*/
-    </style>
-    <div>
-        <div class="main post content z-detail columns">
-            <div class="side column is-1"></div>
-    <!--        <div class="middle">-->
-                <div class="left column is-7">
+                pre {
+                    padding: 0 !important;
+                }
+            </style>
+            <div class="main post content z-detail columns">
+                <div class="column is-8">
                     <!--标题-->
                     <h1 class="z-detail-title">关于for循环用无符号byte引发的一个bug</h1>
                     <!--时间，分类，标签-->
                     <div>
-                        <span class="z-post-meta">
-                            Jan 8, 2021
-                        </span>
+                                <span class="z-post-meta">
+                                    Jan 8, 2021
+                                </span>
                         <span class="z-post-tag success">
-                            <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>
+                                </span>
                         <span class="z-post-tag warning">
-                            <a href="https://www.zxcoder.top/tags/debug">#debug</a>
-                        </span>
+                                    <a href="https://www.zxcoder.top/tags/debug">#debug</a>
+                                </span>
                     </div>
                     <!--内容-->
                     <p>突然脑抽for循环定义byte变量</p>
-    <pre><code class="language-c#">for (byte i = 0; i &lt; 256; i++) {
-        data.Add(i);
-    }
-    </code></pre>
-    <p>看似很有道理，byte的范围是0-255，那我就遍历到255就行，结果单元测试一直炸，而且电脑变卡，所以猜测是内存炸了。</p>
-    <p>定睛一看，这TM不是一个死循环！i到255后在加1，又变成0...</p>
-    <p>解决，又顺利浪费了20分钟。</p>
+            <pre><code class="language-c#">for (byte i = 0; i &lt; 256; i++) {
+                data.Add(i);
+            }
+            </code></pre>
+            <p>看似很有道理，byte的范围是0-255，那我就遍历到255就行，结果单元测试一直炸，而且电脑变卡，所以猜测是内存炸了。</p>
+            <p>定睛一看，这TM不是一个死循环！i到255后在加1，又变成0...</p>
+            <p>解决，又顺利浪费了20分钟。</p>
 
                     <!--内容协议-->
                     <div class="z-post-footer">
@@ -265,130 +244,133 @@
                         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/a-bug-caused-by-for-a-ubyte">https://www.zxcoder.top/detail/a-bug-caused-by-for-a-ubyte</a></p>
                     </div>
                 </div>
-                <div class="right column is-3">
+                <div class="column is-4">
                     <div class="accordion">
                         <div class="accordion-header" id="headingTOC">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"/>
-                                <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                            </svg>
-                        </span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"/>
+                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                                    </svg>
+                                </span>
                             <span>目录</span>
                         </div>
                         <div id="collapseTOC" aria-labelledby="headingTOC"></div>
                     </div>
                 </div>
-    <!--        </div>-->
-            <div class="side column is-1"></div>
-        </div>
-        <script>
-            // 生成目录
-            let nav = document.createElement('nav');
-            nav.id = 'TableOfContents';
-            let h2s = document.querySelectorAll('.post h2');
-            let h23s = document.querySelectorAll('.post h2,h3');
-            let h2ul = document.createElement('ul');
-            h23s.forEach(h23 => {
-                h23.id = h23.innerHTML;
-            });
-            let lst = document.querySelector('.post');
-            for (let i = 0; i < h23s.length; i++) {
-                if (h23s[i].tagName === 'H2') {
-                    let h2li = document.createElement('li');
-                    let h2a = document.createElement('a');
-                    h2a.href = `#${h23s[i].innerHTML}`;
-                    h2a.innerHTML = h23s[i].innerHTML;
-                    h2li.appendChild(h2a);
-                    h2ul.appendChild(h2li);
-                    lst = h2li;
-                } else {
-                    let h3ul = document.createElement('ul');
-                    while (i < h23s.length && h23s[i].tagName === 'H3') {
-                        let h3li = document.createElement('li');
-                        let h3a = document.createElement('a');
-                        h3a.href = `#${h23s[i].innerHTML}`;
-                        h3a.innerHTML = h23s[i].innerHTML;
-                        h3li.appendChild(h3a);
-                        h3ul.appendChild(h3li);
-                        i++;
+            </div>
+            <script>
+                // 生成目录
+                let nav = document.createElement('nav');
+                nav.id = 'TableOfContents';
+                let h2s = document.querySelectorAll('.post h2');
+                let h23s = document.querySelectorAll('.post h2,h3');
+                let h2ul = document.createElement('ul');
+                h23s.forEach(h23 => {
+                    h23.id = h23.innerHTML;
+                });
+                let lst = document.querySelector('.post');
+                for (let i = 0; i < h23s.length; i++) {
+                    if (h23s[i].tagName === 'H2') {
+                        let h2li = document.createElement('li');
+                        let h2a = document.createElement('a');
+                        h2a.href = `#${h23s[i].innerHTML}`;
+                        h2a.innerHTML = h23s[i].innerHTML;
+                        h2li.appendChild(h2a);
+                        h2ul.appendChild(h2li);
+                        lst = h2li;
+                    } else {
+                        let h3ul = document.createElement('ul');
+                        while (i < h23s.length && h23s[i].tagName === 'H3') {
+                            let h3li = document.createElement('li');
+                            let h3a = document.createElement('a');
+                            h3a.href = `#${h23s[i].innerHTML}`;
+                            h3a.innerHTML = h23s[i].innerHTML;
+                            h3li.appendChild(h3a);
+                            h3ul.appendChild(h3li);
+                            i++;
+                        }
+                        lst.appendChild(h3ul);
+                        i--;
                     }
-                    lst.appendChild(h3ul);
-                    i--;
                 }
-            }
-            nav.appendChild(h2ul);
-            document.getElementById('collapseTOC').appendChild(nav);
-            let isShow = true;
-            let body = document.getElementById('collapseTOC');
-            let last = null;
-            document.getElementById('headingTOC').addEventListener('click', () => {
-                isShow = !isShow;
-                if (isShow) {
-                    body.style.display = 'block';
-                } else {
-                    body.style.display = 'none';
-                }
-            });
-            document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                // 点击后，上次的锚点的css类就要取消
-                nd.addEventListener('click', () => {
-                    if (last != null) {
-                        document.getElementById(last).classList.remove("z-dingweizhunque");
+                nav.appendChild(h2ul);
+                document.getElementById('collapseTOC').appendChild(nav);
+                let isShow = true;
+                let body = document.getElementById('collapseTOC');
+                let last = null;
+                document.getElementById('headingTOC').addEventListener('click', () => {
+                    isShow = !isShow;
+                    if (isShow) {
+                        body.style.display = 'block';
+                    } else {
+                        body.style.display = 'none';
                     }
-                    const id = nd.getAttribute("href").substr(1);
-                    last = id;
-                    document.getElementById(id).classList.add("z-dingweizhunque");
+                });
+                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+                    // 点击后，上次的锚点的css类就要取消
+                    nd.addEventListener('click', () => {
+                        if (last != null) {
+                            document.getElementById(last).classList.remove("z-dingweizhunque");
+                        }
+                        const id = nd.getAttribute("href").substr(1);
+                        last = id;
+                        document.getElementById(id).classList.add("z-dingweizhunque");
+                    })
                 })
-            })
-        </script>
-        <!--详情页katex渲染，代码高亮-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-              integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-              crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                crossorigin="anonymous"
-                onload="initKatex();"></script>
-        <script>
-            function initKatex() {
-                const post = document.querySelector('.post');
-                if (post) {
-                    renderMathInElement(post, {
-                        delimiters: [
-                            // 自定义分隔符，才可以支持行内公式
-                            {left: "$$", right: "$$", display: true},
-                            {left: "$", right: "$", display: false},
-                        ]
+            </script>
+            <!--详情页katex渲染，代码高亮-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+                  crossorigin="anonymous">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+                    crossorigin="anonymous"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+                    crossorigin="anonymous"
+                    onload="initKatex();"></script>
+            <script>
+                function initKatex() {
+                    const post = document.querySelector('.post');
+                    if (post) {
+                        renderMathInElement(post, {
+                            delimiters: [
+                                // 自定义分隔符，才可以支持行内公式
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                            ]
+                        });
+                    }
+                }
+            </script>
+            <link rel="stylesheet"
+                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+                    onload="initHighLight();"></script>
+            <script>
+                function initHighLight() {
+                    hljs.configure({
+                        languages: ["c", "cpp", "java", "c#"]
+                    });
+                    const codes = document.querySelectorAll('div code')
+                    codes.forEach((block) => {
+                        if (block.classList.length >= 1) {
+                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                            // let ul=block.firstElementChild;
+                            // ul.removeChild(ul.lastElementChild);
+                            // hljs.highlightBlock(block);
+                        } else {
+                            block.classList.add('z-inline-code')
+                        }
                     });
                 }
-            }
-        </script>
-        <link rel="stylesheet"
-              href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-        <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                onload="initHighLight();"></script>
-        <script>
-            function initHighLight() {
-                hljs.configure({
-                    languages: ["c", "cpp", "java", "c#"]
-                });
-                const codes = document.querySelectorAll('div code')
-                codes.forEach((block) => {
-                    if (block.classList.length >= 1) {
-                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                        hljs.highlightBlock(block);
-                    } else {
-                        block.classList.add('z-inline-code')
-                    }
-                });
-            }
-        </script>
-    </div>
+            </script>
+            </div>
 
+        </div>
+        <div class="side"></div>
+    </div>
 </main>
 <footer class="z-footer">
     <p>

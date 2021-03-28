@@ -2,43 +2,24 @@
     .z-about {
         color: #666;
     }
+
     .z-about, li {
         margin-bottom: 10px;
         list-style: disc;
     }
+
     .z-about-title {
         color: #333;
         font-weight: lighter;
     }
-
-    .main {
-        display: flex;
-    }
-
-    .side {
-        flex: 0 0 22rem;
-    }
-
-    .middle {
-        flex: 1 1 auto;
-    }
-
-    /* 注意max-width和max-device-width */
-    @media (max-width: 720px) {
-        .side {
-            flex: 0 0 0;
-        }
-    }
 </style>
-<div class="main">
-    <div class="side"></div>
-    <div class="middle z-about">
-        <h1 class="z-about-title">关于我</h1>
-        <ul>
-            {{#aboutMe}}
-            <li>{{{.}}}</li>
-            {{/aboutMe}}
-            <li>
+<div class="z-about">
+    <h1 class="z-about-title">关于我</h1>
+    <ul>
+        {{#aboutMe}}
+        <li>{{{.}}}</li>
+        {{/aboutMe}}
+        <li>
                 <span>
                     Github
                     <a href="https://www.github.com/Zeng1998">
@@ -48,8 +29,8 @@
                         </svg>
                     </a>
                 </span>
-                &
-                <span>
+            &
+            <span>
                     Email
                     <a href="mailto:1129142694@qq.com">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -58,14 +39,12 @@
                     </svg>
                 </a>
                 </span>
-            </li>
-        </ul>
-        <h1 class="z-about-title">关于这个博客</h1>
-        <ul>
-            {{#aboutBlog}}
-            <li>{{{.}}}</li>
-            {{/aboutBlog}}
-        </ul>
-    </div>
-    <div class="side"></div>
+        </li>
+    </ul>
+    <h1 class="z-about-title">关于这个博客</h1>
+    <ul>
+        {{#aboutBlog}}
+        <li>{{{.}}}</li>
+        {{/aboutBlog}}
+    </ul>
 </div>

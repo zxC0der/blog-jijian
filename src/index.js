@@ -194,6 +194,10 @@ let readAllData = (postPath) => {
                         tags[tag]++;
                     }
                 });
+                // if(mat.permalink==='digital-dp-just-dfs'){
+                //     console.log(o.content)
+                //     console.log(md.render(o.content))
+                // }
                 // 渲染
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, {
                     title: obj.title,
@@ -431,7 +435,7 @@ for (let i = 0; i < catList.length; i++) {
 // 标签首页
 let tagComponent = renderFromFile(`${layoutDir}/tag.html`, {
     title: "标签",
-    categoryList: tagList,
+    tagList: tagList,
 });
 let tagPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '标签 - zxCoder\'s blog',
@@ -504,3 +508,9 @@ for(let i=0;i<absData.length;i++){
 }
 fWrite.close();
 console.timeEnd('jijian generate');
+
+// TODO
+// 1 navbar浏览器宽度小于某个值会消失
+// 2 写文章时需要人肉确定标签是否存在(DP和dp)
+// 3 样式修改
+// 4 代码缩进问题

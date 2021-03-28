@@ -1,8 +1,8 @@
 ---
 permalink: digital-dp-just-dfs
 tags: 
-  - DP
-  - 数位DP
+  - dp
+  - 数位dp
 math: true
 category: 算法学习
 title: 数位dp(爆搜)
@@ -95,8 +95,8 @@ ll dfs(int idx,int sta,int dif,bool lead,bool limit){
 
 ```cpp
 ll solve(ll x){
-    pre(x);
-    return dfs(k-1,0,0,true,true);
+pre(x);
+return dfs(k-1,0,0,true,true);
 }
 int main(){
     // 通常dp状态只需要初始化一次
