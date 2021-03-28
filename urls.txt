@@ -3,12 +3,14 @@ https://www.zxcoder.top/page/2
 https://www.zxcoder.top/page/3
 https://www.zxcoder.top/page/4
 https://www.zxcoder.top/page/5
+https://www.zxcoder.top/page/6
 https://www.zxcoder.top/category
 https://www.zxcoder.top/category/题解
 https://www.zxcoder.top/category/题解/page/2
+https://www.zxcoder.top/category/算法学习
+https://www.zxcoder.top/category/算法学习/page/2
 https://www.zxcoder.top/category/技术学习
 https://www.zxcoder.top/category/技术学习/page/2
-https://www.zxcoder.top/category/算法学习
 https://www.zxcoder.top/category/杂七杂八
 https://www.zxcoder.top/category/基础知识
 https://www.zxcoder.top/category/读书笔记
@@ -65,6 +67,8 @@ https://www.zxcoder.top/tags/快速幂
 https://www.zxcoder.top/tags/MySQL
 https://www.zxcoder.top/tags/KMP
 https://www.zxcoder.top/tags/约瑟夫环
+https://www.zxcoder.top/tags/数位DP
+https://www.zxcoder.top/tags/DP
 https://www.zxcoder.top/tags/康拓展开
 https://www.zxcoder.top/tags/全排列
 https://www.zxcoder.top/tags/最小表示
@@ -85,6 +89,7 @@ https://www.zxcoder.top/tags/LINQ
 https://www.zxcoder.top/tags/事务
 https://www.zxcoder.top/tags/默认
 https://www.zxcoder.top/tags/开发
+https://www.zxcoder.top/detail/digital-dp-just-dfs
 https://www.zxcoder.top/detail/atcoder-abc-194
 https://www.zxcoder.top/detail/understanding-mysql-from-root
 https://www.zxcoder.top/detail/jwt-session-summary
