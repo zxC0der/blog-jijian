@@ -8,6 +8,7 @@ const jsonToYaml = require('json2yaml');
 const md = require('markdown-it')({
     html: true,
 });
+const readline=require('readline');
 // xxxDir是生成html的存放路径，xxxUrl是生成html的跳转url
 const layoutDir = path.join(__dirname, '../layout');
 const postsDir = path.join(__dirname, '../posts');
@@ -372,6 +373,7 @@ let catList = obj.catList;
 let tagList = obj.tagList;
 // 首页分页
 const indexSizePerPage = 6;
+const indexPageNum=Math.ceil(absData.length/indexSizePerPage);
 renderPages(rootDir, rootUrl, indexSizePerPage, absData, navbar_search, true);
 // 关于页
 let aboutMe = [
@@ -470,4 +472,35 @@ fs.mkdirSync(`${rootDir}/${searchDir}`);
 fs.writeFileSync(`${rootDir}/${searchDir}/index.html`, searchPage);
 // favicon.ico
 fs.writeFileSync(`${rootDir}/favicon.ico`, fs.readFileSync(`${srcDir}/favicon.ico`));
+// 生成url.txt文件
+let fWrite = fs.createWriteStream(`${rootDir}/../urls.txt`);
+// 首页
+fWrite.write(`${rootUrl}`+'\n');
+// 首页分页
+for(let i=2;i<=indexPageNum;i++){
+    fWrite.write(`${rootUrl}/page/${i}`+'\n');
+}
+// 分类页
+fWrite.write(`${rootUrl}/category`+'\n');
+// 分类列表页
+for(let i=0;i<catList.length;i++){
+    fWrite.write(`${catList[i].link}`+'\n');
+    for(let j=2;j<=Math.ceil(catList[i].num/categorySizePerPage);j++){
+        fWrite.write(`${catList[i].link}/page/${j}`+'\n');
+    }
+}
+// 标签页
+fWrite.write(`${rootUrl}/tags`+'\n');
+// 标签列表首页
+for(let i=0;i<tagList.length;i++){
+    fWrite.write(`${tagList[i].link}`+'\n');
+    for(let j=2;j<=Math.ceil(tagList[i].num/tagSizePerPage);j++){
+        fWrite.write(`${tagList[i].link}/page/${j}`+'\n');
+    }
+}
+// 详情页
+for(let i=0;i<absData.length;i++){
+    fWrite.write(`${absData[i].permalink}`+'\n');
+}
+fWrite.close();
 console.timeEnd('jijian generate');
