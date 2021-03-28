@@ -212,30 +212,34 @@
                     padding: 0 !important;
                 }
             </style>
-            <div class="main post content z-detail columns">
-                <div class="column is-8">
+            <!--<div class="post content z-detail columns">-->
+            <!--    <div class="column is-8">-->
                     <!--标题-->
-                    <h1 class="z-detail-title">CMU15-445(19-fall)-Project2-Hash-Index</h1>
+            <!--        <h1 class="z-detail-title">CMU15-445(19-fall)-Project2-Hash-Index</h1>-->
                     <!--时间，分类，标签-->
-                    <div>
-                                <span class="z-post-meta">
-                                    Nov 17, 2020
-                                </span>
-                        <span class="z-post-tag success">
-                                    <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-                                </span>
-                    </div>
+            <!--        <div>-->
+            <!--                    <span class="z-post-meta">-->
+            <!--                        Nov 17, 2020-->
+            <!--                    </span>-->
+            <!--            <span class="z-post-tag success">-->
+            <!--                        <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--        </div>-->
                     <!--内容-->
-                    <blockquote>
-            <p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：1129142694@qq.com</p>
+                    <div>
+                        <blockquote>
+            <p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#x31;&#50;&#57;&#49;&#x34;&#x32;&#x36;&#57;&#x34;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#x6d;">&#x31;&#x31;&#50;&#57;&#49;&#x34;&#x32;&#x36;&#57;&#x34;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#x6d;</a></p>
             </blockquote>
-            <h2>理论基础</h2>
+            <h2 id="理论基础">理论基础</h2>
             <p>DBMS内部会使用多种数据结构，具体用途包括表示内部的元数据，存储核心数据，执行查询时的临时数据结构(比如join时用了哈希表)，数据库索引。</p>
             <p>对于一个哈希表我们通常会关注两个部分，一个是Hash Function(哈希函数)，另一个是Hashing Scheme(哈希冲突解决方案)。</p>
             <p>对于不同的哈希函数，通常我们会关注它的速度和冲突率。</p>
@@ -253,17 +257,17 @@
             <li>Linear Hashing：线性哈希，重点在于不是当block溢出是分裂，而是维护一个split pointer，指向下一个需要分裂的位置，当插入时<strong>任意一个</strong>block溢出，先用链地址法解决(仍然属于溢出)，然后添加一个哈希函数，然后将split pointer指向的block重新哈希并分裂，然后移动split pointer到下一位，这样查找时如果发现哈希后的位置在split pointer之上，说明需要进行第二次哈希。当split pointer移动到最后一个slot之后，直接删除第一个哈希，将split pointer移动到顶端，重新开始。</li>
             </ul>
             <p>(后面这几种哈希方案第一次见，有一说一，还是很秀的，最后一个有点看不太懂，或者说有点难描述。</p>
-            <h2>具体实现</h2>
+            <h2 id="具体实现">具体实现</h2>
             <p>Project #2目标是实现一个哈希表作为数据库中的基础数据结构，使用线性探测来解决哈希冲突。</p>
             <p>这里实现的哈希表和之前理解的哈希表没有本质的区别，有一点不同就是后者因为可以完全加载到内存中，所以其实就是一个k-v对的数组，而前者的不行，必须将哈希表必须分成多个部分(block)，一个page就放一个block，按需加载进内存。</p>
-            <h3>Header Page</h3>
+            <h3 id="header-page">Header Page</h3>
             <p>维护哈希表的一些元数据，包括bucket(存放k-v对的桶，一个block里有多个bucket)数量，blcok数量以及所有block对应的page id。</p>
-            <h3>Block Page</h3>
+            <h3 id="block-page">Block Page</h3>
             <p>存放实际数据的page，一个block包含一个k-v对数组，以及两个标记数组，occupied表示该bucket是否被占用，readable表示该bucket如果被占用是有效k-v对还是已经被懒删除。这里采用atomic_char(8位)来表示8个bucket的状态，同时可以通过cas技术来实现线程安全。</p>
             <p>同时包括两个主要函数，Insert和Remove。</p>
             <p>Insert首先通过cas判断occupied对应位是否为0，若是，置为1(cas自动实现)并插入数据，同时将readable对应位修改为1，若否，说明已经有k-v对占用，再次通过cas判断readable是否为0，若是，置为1(cas自动实现)并插入数据，若否，插入失败，返回false，由上层的哈希算法去决定如何处理。</p>
             <p>Remove采用懒删除的方法，因为这里采用线性探测，如果不采用懒删除，就会导致删除后的查找失败。所以具体操作就是不断轮询cas将readable对应位改为0，表示该位置是无效数据。</p>
-            <h3>Linear Probing Hash Table</h3>
+            <h3 id="linear-probing-hash-table">Linear Probing Hash Table</h3>
             <p>实际的哈希表对象包含了一个header page的page id，所有操作都是从这里发起，先从磁盘中读取header page，再根据header page定位找到各个block page。此外还有一个哈希函数和一个key的比较器，一个用来读取page的缓冲池管理器，以及一个读写锁用于实现并发线程安全。</p>
             <p>同时哈希表包括了以下几个核心函数功能：</p>
             <ul>
@@ -274,27 +278,28 @@
             <p>并发安全方面，首先要弄清楚在每种操作中每个对象(哈希表对象和各个page对象)应该加读锁还是写锁，这取决于是否对这个对象进行写操作。比如对于哈希表对象，GetValue函数中只会对哈希表对象进行读操作，读取BPM对象，compartor对象等，所以加读锁，Insert和Remove同理，但是Resize就会修改哈希表对象的bucket数量，header page id，block数量，block映射关系等等，所以需要加写锁。对于page对象，包括header page和block page，在GetValue函数中，page只需要加读锁，在Insert和Remove函数中，header page只要加读锁，block page因为要插入，删除，要加写锁，在Resize函数中，新的page需要写入数据，所以要加写锁。</p>
             <p>注意在读写锁的实现中，加读锁是可以同时读，加了读锁可以再加写锁，但不能再加读锁，而且会等到所有读者完成才开始写锁，所以加读锁可以防止写。注意<strong>加锁后一定要记得解锁，不然就很容易出现死锁</strong>。</p>
 
+                    </div>
                     <!--内容协议-->
-                    <div class="z-post-footer">
-                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project2">https://www.zxcoder.top/detail/cmu15445-19fall-project2</a></p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="accordion">
-                        <div class="accordion-header" id="headingTOC">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                                    </svg>
-                                </span>
-                            <span>目录</span>
-                        </div>
-                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
-                    </div>
-                </div>
-            </div>
+            <!--        <div class="z-post-footer">-->
+            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
+            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project2">https://www.zxcoder.top/detail/cmu15445-19fall-project2</a></p>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="column is-4">-->
+            <!--        <div class="accordion">-->
+            <!--            <div class="accordion-header" id="headingTOC">-->
+            <!--                    <span>-->
+            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
+            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
+            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
+            <!--                        </svg>-->
+            <!--                    </span>-->
+            <!--                <span>目录</span>-->
+            <!--            </div>-->
+            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             <script>
                 // 生成目录
                 let nav = document.createElement('nav');

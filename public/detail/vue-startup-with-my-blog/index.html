@@ -212,30 +212,34 @@
                     padding: 0 !important;
                 }
             </style>
-            <div class="main post content z-detail columns">
-                <div class="column is-8">
+            <!--<div class="post content z-detail columns">-->
+            <!--    <div class="column is-8">-->
                     <!--标题-->
-                    <h1 class="z-detail-title">Vue基础入门——从0搭建一个博客</h1>
+            <!--        <h1 class="z-detail-title">Vue基础入门——从0搭建一个博客</h1>-->
                     <!--时间，分类，标签-->
-                    <div>
-                                <span class="z-post-meta">
-                                    Jan 12, 2021
-                                </span>
-                        <span class="z-post-tag success">
-                                    <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/博客">#博客</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/Vue">#Vue</a>
-                                </span>
-                    </div>
+            <!--        <div>-->
+            <!--                    <span class="z-post-meta">-->
+            <!--                        Jan 12, 2021-->
+            <!--                    </span>-->
+            <!--            <span class="z-post-tag success">-->
+            <!--                        <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/博客">#博客</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/Vue">#Vue</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--        </div>-->
                     <!--内容-->
-                    <blockquote>
+                    <div>
+                        <blockquote>
             <p>拖了很久的一篇，一直想记录一下Vue开发一个简单的个人前端项目的全过程<del>(免得每写一次前端都要重新查一遍文档和博客)</del>，直到Vue3都出了，我终于写下这篇小短文了<del>(Vue2)</del>。</p>
             </blockquote>
-            <h2>初始化</h2>
+            <h2 id="初始化">初始化</h2>
             <p>首先全局安装<code>vue</code>和<code>vue-cli</code></p>
             <pre><code class="language-shell">npm install -g vue
             npm install -g @vue/cli
@@ -243,7 +247,7 @@
             <p>然后通过<code>vue-cli</code>创建项目</p>
             <pre><code class="language-shell">vue init xxx
             </code></pre>
-            <h2>页面</h2>
+            <h2 id="页面">页面</h2>
             <p>在<code>src/components</code>下写一些组件，创建文件夹<code>src/pages</code>放页面，在<code>src</code>目录下的<code>App. vue</code>是主组件，也是入口页面，里面通常是放<code>Header</code>，<code>Footer</code>，<code>router-view</code>这些组件，其中<code>router-view</code>是可以根据路由的变化切换页面的，后面会提到。</p>
             <p>一个Vue组件有一些通用的结构，如下：</p>
             <pre><code class="language-vue">&lt;template&gt;
@@ -256,7 +260,7 @@
               name:&quot;Navbar&quot;, // 组件名
               data() {       // 数据，写成函数的形式，使用数据副本，避免了数据污染
                 return {
-                  current: 'home',
+                  current: &#39;home&#39;,
                   searchText:&quot;&quot;,
                 };
               },
@@ -275,8 +279,8 @@
             &lt;style scoped&gt;  /** css部分，scoped表示只在组件内生效 **/
             &lt;/style&gt;
             </code></pre>
-            <h2>父子组件交互</h2>
-            <h3>父组件传值给子组件</h3>
+            <h2 id="父子组件交互">父子组件交互</h2>
+            <h3 id="父组件传值给子组件">父组件传值给子组件</h3>
             <p>在子组件中定义<code>props</code>，包括名字和类型，默认值等等。</p>
             <pre><code class="language-vue">&lt;script&gt;
             export default {
@@ -294,11 +298,11 @@
                 @change=&quot;pageChange&quot;&gt;
             &lt;/Pagination&gt;
             </code></pre>
-            <h3>子组件传值给父组件</h3>
+            <h3 id="子组件传值给父组件">子组件传值给父组件</h3>
             <p>在子组件中通过调用<code>emit</code>函数来触发父组件的回调函数，例如以下代码触发了父组件的<code>change</code>函数，也就是<code>@change</code>所指定的函数。</p>
             <pre><code class="language-js">this.$emit(&quot;change&quot;, para);
             </code></pre>
-            <h2>路由</h2>
+            <h2 id="路由">路由</h2>
             <p>首先安装<code>vue-router</code>，在<code>main.js</code>同级文件夹里创建<code>routes.js</code>，格式如下</p>
             <pre><code class="language-js">Vue.use(VueRouter)
             const routes = [
@@ -330,10 +334,10 @@
             new Vue({
                 render: h =&gt; h(App),
                 router, // 必须是router或者指定router:xxx
-            }).$mount('#app')
+            }).$mount(&#39;#app&#39;)
             </code></pre>
             <p>路由中复杂的参数以及其他配置具体参照文档。</p>
-            <h2>获取数据</h2>
+            <h2 id="获取数据">获取数据</h2>
             <p>通常使用<code>axios</code>来获取数据，在本项目中，用将<code>md</code>文件生成<code>json</code>文件的方法实现一个“伪后端”，将文件放到<code>public</code>文件夹下，<code>axios</code>也同样可以获取到。</p>
             <pre><code class="language-js">this.$axios.get(&quot;/data.json&quot;).then((resp) =&gt; {
                 // ...
@@ -342,34 +346,35 @@
             <p>注意<code>axios</code>的使用还需要在<code>main.js</code>中将<code>axios</code>绑定到<code>Vue</code>原型上。</p>
             <pre><code class="language-js">Vue.prototype.$axios = axios
             </code></pre>
-            <h2>其他</h2>
-            <p>博客里用到了<code>pure.css</code>样式库，用法很简单，先<code>npm</code>安装，然后在<code>main.js</code>里<code>import Purecss from 'purecss'</code>导入，再用<code>Vue.use(Purecss) </code>就能用上这个样式库，其他插件/组件库/样式库等也基本同理，看对应文档即可。</p>
+            <h2 id="其他">其他</h2>
+            <p>博客里用到了<code>pure.css</code>样式库，用法很简单，先<code>npm</code>安装，然后在<code>main.js</code>里<code>import Purecss from &#39;purecss&#39;</code>导入，再用<code>Vue.use(Purecss) </code>就能用上这个样式库，其他插件/组件库/样式库等也基本同理，看对应文档即可。</p>
             <p>博客除了<code>pure.css</code>，还用到了<code>normalize.css</code>，<code>awesome-icon</code>，<code>mavon-editor</code>等。</p>
-            <h2>运行</h2>
+            <h2 id="运行">运行</h2>
             <p>在项目目录下先<code>npm install</code>安装依赖包，然后<code>npm run serve</code>可以在本地跑起来，<code>npm run build</code>可以打包成静态文件放服务器上。</p>
             <p>这个博客是用了<code>Vercel</code>托管，绑定<code>github</code>项目后，每次<code>push</code>完就会自动构建打包。</p>
 
+                    </div>
                     <!--内容协议-->
-                    <div class="z-post-footer">
-                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/vue-startup-with-my-blog">https://www.zxcoder.top/detail/vue-startup-with-my-blog</a></p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="accordion">
-                        <div class="accordion-header" id="headingTOC">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                                    </svg>
-                                </span>
-                            <span>目录</span>
-                        </div>
-                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
-                    </div>
-                </div>
-            </div>
+            <!--        <div class="z-post-footer">-->
+            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
+            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/vue-startup-with-my-blog">https://www.zxcoder.top/detail/vue-startup-with-my-blog</a></p>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="column is-4">-->
+            <!--        <div class="accordion">-->
+            <!--            <div class="accordion-header" id="headingTOC">-->
+            <!--                    <span>-->
+            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
+            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
+            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
+            <!--                        </svg>-->
+            <!--                    </span>-->
+            <!--                <span>目录</span>-->
+            <!--            </div>-->
+            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             <script>
                 // 生成目录
                 let nav = document.createElement('nav');

@@ -5,10 +5,7 @@ const moment = require('moment');
 const mustache = require('mustache');
 const matter = require('gray-matter');
 const jsonToYaml = require('json2yaml');
-const md = require('markdown-it')({
-    html: true,
-});
-const readline=require('readline');
+const marked = require("marked");
 // xxxDir是生成html的存放路径，xxxUrl是生成html的跳转url
 const layoutDir = path.join(__dirname, '../layout');
 const postsDir = path.join(__dirname, '../posts');
@@ -194,17 +191,16 @@ let readAllData = (postPath) => {
                         tags[tag]++;
                     }
                 });
-                // if(mat.permalink==='digital-dp-just-dfs'){
-                //     console.log(o.content)
-                //     console.log(md.render(o.content))
-                // }
+                if(mat.permalink==='vue-startup-with-my-blog'){
+                    console.log(marked(o.content));
+                }
                 // 渲染
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, {
                     title: obj.title,
                     date: obj.date,
                     category: obj.category,
                     tags: obj.tags,
-                    content: md.render(o.content),
+                    content: marked(o.content),
                     url: `${rootUrl}/${detailUrl}/${mat.permalink}`,
                 });
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {

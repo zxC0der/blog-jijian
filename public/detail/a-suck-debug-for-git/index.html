@@ -212,27 +212,31 @@
                     padding: 0 !important;
                 }
             </style>
-            <div class="main post content z-detail columns">
-                <div class="column is-8">
+            <!--<div class="post content z-detail columns">-->
+            <!--    <div class="column is-8">-->
                     <!--标题-->
-                    <h1 class="z-detail-title">一次关于git的简单查错</h1>
+            <!--        <h1 class="z-detail-title">一次关于git的简单查错</h1>-->
                     <!--时间，分类，标签-->
-                    <div>
-                                <span class="z-post-meta">
-                                    Dec 28, 2020
-                                </span>
-                        <span class="z-post-tag success">
-                                    <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/git">#git</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/debug">#debug</a>
-                                </span>
-                    </div>
+            <!--        <div>-->
+            <!--                    <span class="z-post-meta">-->
+            <!--                        Dec 28, 2020-->
+            <!--                    </span>-->
+            <!--            <span class="z-post-tag success">-->
+            <!--                        <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/git">#git</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/debug">#debug</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--        </div>-->
                     <!--内容-->
-                    <p>本地一个项目突然push不上，报错是</p>
+                    <div>
+                        <p>本地一个项目突然push不上，报错是</p>
             <pre><code>ERROR: Repository not found.
             fatal: Could not read from remote repository.
 
@@ -243,7 +247,7 @@
             <p>再接下来通过<code>git remote -v</code><strong>检查远程仓库链接</strong>，没有问题，通过<code>git remote rm origin</code>和<code>git remote add origin</code>重新添加后还行不行。</p>
             <p>然后通过<code>git config user.name/user.email</code>检查本地仓库的用户名和邮箱，也没问题。</p>
             <p>想到大概率是两个ssh key的问题，因为之前博客放在小号的github上，所以本地配置了两个ssh密钥对，附上过程：</p>
-            <p>通过<code>ssh-keygen -t rsa -C 'xx@xx.com' -f ~/.ssh/xxx</code>生成一个新的密钥对，然后在<code>~/.ssh/config</code>中配置</p>
+            <p>通过<code>ssh-keygen -t rsa -C &#39;xx@xx.com&#39; -f ~/.ssh/xxx</code>生成一个新的密钥对，然后在<code>~/.ssh/config</code>中配置</p>
             <pre><code>Host github.com
             HostName github.com
             PreferredAuthentications publickey
@@ -251,33 +255,34 @@
 
             Host zxc.github.com
             HostName github.com
-            PreferredAuthentications publickey		
+            PreferredAuthentications publickey        
             IdentityFile ~/.ssh/xxx
             </code></pre>
             <p>这里因为两个都是用在github上，所以host应该加个子域名区分，如果是不同网站，比如gitee，直接gitee.com就行。</p>
             <p>因此，重新仔细检查了<code>~/.ssh/config</code>文件，最后发现问题是把<code>id_rsa</code>打成了<code>id-rsa</code>...</p>
 
+                    </div>
                     <!--内容协议-->
-                    <div class="z-post-footer">
-                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/a-suck-debug-for-git">https://www.zxcoder.top/detail/a-suck-debug-for-git</a></p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="accordion">
-                        <div class="accordion-header" id="headingTOC">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                                    </svg>
-                                </span>
-                            <span>目录</span>
-                        </div>
-                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
-                    </div>
-                </div>
-            </div>
+            <!--        <div class="z-post-footer">-->
+            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
+            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/a-suck-debug-for-git">https://www.zxcoder.top/detail/a-suck-debug-for-git</a></p>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="column is-4">-->
+            <!--        <div class="accordion">-->
+            <!--            <div class="accordion-header" id="headingTOC">-->
+            <!--                    <span>-->
+            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
+            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
+            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
+            <!--                        </svg>-->
+            <!--                    </span>-->
+            <!--                <span>目录</span>-->
+            <!--            </div>-->
+            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             <script>
                 // 生成目录
                 let nav = document.createElement('nav');

@@ -212,45 +212,53 @@
                     padding: 0 !important;
                 }
             </style>
-            <div class="main post content z-detail columns">
-                <div class="column is-8">
+            <!--<div class="post content z-detail columns">-->
+            <!--    <div class="column is-8">-->
                     <!--标题-->
-                    <h1 class="z-detail-title">AtCoder-ABC-179(A-F)</h1>
+            <!--        <h1 class="z-detail-title">AtCoder-ABC-179(A-F)</h1>-->
                     <!--时间，分类，标签-->
-                    <div>
-                                <span class="z-post-meta">
-                                    Nov 11, 2020
-                                </span>
-                        <span class="z-post-tag success">
-                                    <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/因子">#因子</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/区间合并">#区间合并</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/循环节">#循环节</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/思维">#思维</a>
-                                </span>
-                    </div>
+            <!--        <div>-->
+            <!--                    <span class="z-post-meta">-->
+            <!--                        Nov 11, 2020-->
+            <!--                    </span>-->
+            <!--            <span class="z-post-tag success">-->
+            <!--                        <a href="https://www.zxcoder.top/category/题解">题解</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/因子">#因子</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/区间合并">#区间合并</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/循环节">#循环节</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/思维">#思维</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--        </div>-->
                     <!--内容-->
-                    <h2>A</h2>
+                    <div>
+                        <h2 id="a">A</h2>
             <p>输出字符串，以s结尾就加es，否则加s。</p>
-            <h2>B</h2>
+            <h2 id="b">B</h2>
             <p>判断是否有连续三对相同的数。</p>
-            <h2>C</h2>
+            <h2 id="c">C</h2>
             <p>给定N，求多少个正数三元组(A,B,C)满足AB+C=N。预处理因子个数然后暴力枚举C。</p>
-            <h2>D</h2>
+            <h2 id="d">D</h2>
             <p>给定一些区间，从数轴的1开始，每次可以选择任意一个区间的任意一个数，向右走这么多步，问走到N的方案数。</p>
             <p>简单的方案数DP，不同的是从前面的某一段区间转移而来，所以枚举区间，然后用前缀和优化即可，再优化也可以先把区间进行合并。</p>
             <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -308,7 +316,7 @@
                 return 0;
             }
             </code></pre>
-            <h2>E</h2>
+            <h2 id="e">E</h2>
             <p>给定首项x和递推式$a_n=(a_{n-1}^2)%m$，求前n项和。</p>
             <p>注意到m的范围是1e5，所以很明显每一项都不会超过1e5，所以肯定会存在循环节，所以暴力找出循环节然后用前缀和计算一下剩下的小部分即可。</p>
             <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -344,7 +352,7 @@
                 return 0;
             }
             </code></pre>
-            <h2>F</h2>
+            <h2 id="f">F</h2>
             <p>有个n行n列的网格图，初始中间n-2的方阵是黑色，最下边的行和最右边的列是白色，有两种操作，选择一列或者一行变成白色直到第一个原先已经白色的格子，给定一些操作，问最后黑色格子数量。</p>
             <p>最重要的一点是要从全局来看这个网格图，每一次操作其实都是对中间n-2行n-2列的黑色方阵的压缩，比如对第x列操作，那么对于x列右边的列，横向行的操作就不会再影响到了。</p>
             <p>具体做法如下，行和列分别维护：从上到下第一个被操作(全部变成白色)的行，这是因为上一段提到的，相当于一个收缩隔离的作用，在这个行以下的，状态不会再被改变，即黑色格子数量是一定的，可以通过第二个维护的量来记录；每一行第一个白色格子位置，显然这个白色格子就是列操作产生的，这样子当对这一行进行操作，就可以直接算出消失的黑色格子数量(<strong>注意比如[黑 白 黑]的清空，行的操作也只会影响第一个黑，但是这不会影响答案，第二个黑会在列的操作时被影响</strong>)。列同理。</p>
@@ -393,27 +401,28 @@
             }
             </code></pre>
 
+                    </div>
                     <!--内容协议-->
-                    <div class="z-post-footer">
-                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/atcoder-abc-179">https://www.zxcoder.top/detail/atcoder-abc-179</a></p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="accordion">
-                        <div class="accordion-header" id="headingTOC">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                                    </svg>
-                                </span>
-                            <span>目录</span>
-                        </div>
-                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
-                    </div>
-                </div>
-            </div>
+            <!--        <div class="z-post-footer">-->
+            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
+            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/atcoder-abc-179">https://www.zxcoder.top/detail/atcoder-abc-179</a></p>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="column is-4">-->
+            <!--        <div class="accordion">-->
+            <!--            <div class="accordion-header" id="headingTOC">-->
+            <!--                    <span>-->
+            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
+            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
+            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
+            <!--                        </svg>-->
+            <!--                    </span>-->
+            <!--                <span>目录</span>-->
+            <!--            </div>-->
+            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             <script>
                 // 生成目录
                 let nav = document.createElement('nav');

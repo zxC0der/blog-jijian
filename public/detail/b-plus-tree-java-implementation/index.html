@@ -212,32 +212,37 @@
                     padding: 0 !important;
                 }
             </style>
-            <div class="main post content z-detail columns">
-                <div class="column is-8">
+            <!--<div class="post content z-detail columns">-->
+            <!--    <div class="column is-8">-->
                     <!--标题-->
-                    <h1 class="z-detail-title">B+树(Java实现)</h1>
+            <!--        <h1 class="z-detail-title">B+树(Java实现)</h1>-->
                     <!--时间，分类，标签-->
-                    <div>
-                                <span class="z-post-meta">
-                                    Dec 20, 2020
-                                </span>
-                        <span class="z-post-tag success">
-                                    <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/B+树">#B+树</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-                                </span>
-                        <span class="z-post-tag warning">
-                                    <a href="https://www.zxcoder.top/tags/数据结构">#数据结构</a>
-                                </span>
-                    </div>
+            <!--        <div>-->
+            <!--                    <span class="z-post-meta">-->
+            <!--                        Dec 20, 2020-->
+            <!--                    </span>-->
+            <!--            <span class="z-post-tag success">-->
+            <!--                        <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/B+树">#B+树</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--            <span class="z-post-tag warning">-->
+            <!--                        <a href="https://www.zxcoder.top/tags/数据结构">#数据结构</a>-->
+            <!--                    </span>-->
+            <!--            -->
+            <!--        </div>-->
                     <!--内容-->
-                    <h2>基础概念</h2>
+                    <div>
+                        <h2 id="基础概念">基础概念</h2>
             <p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
-            <h2>Search</h2>
+            <h2 id="search">Search</h2>
             <p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code>searchInInternalNode</code>函数来判断要往哪个儿子节点走。</p>
             <pre><code class="language-java">public Tuple search(Tuple key){                       
                 Node curNode=root;                                
@@ -250,7 +255,7 @@
                 }                                                 
             }                                                     
             </code></pre>
-            <h2>Insert</h2>
+            <h2 id="insert">Insert</h2>
             <p>插入操作的第一步类似查找，从根节点往下找到叶子节点，然后插入到叶子节点，如果该叶子节点size超过了，就应该进行第二步的分裂，<code>splitLeafNode(tree)</code>。</p>
             <pre><code class="language-java">public boolean insert(Tuple key,Tuple value){
                 if(search(key)!=null){
@@ -353,7 +358,7 @@
                 }                                                                 
             }                                                                     
             </code></pre>
-            <h2>Delete</h2>
+            <h2 id="delete">Delete</h2>
             <p>删除操作细节比较多，整体框架也类似插入，递归找到叶子节点并删除对应key-value对，然后如果size不足，考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，然后合并后父节点会少一个key，如果size不足，就需要继续进行下一步的操作，同时还要处理类似删除最后一个节点，删除第一个key-value对后必须修改祖先节点的key等细节。</p>
             <pre><code class="language-java">public boolean delete(Tuple key,Tuple value){
                 if(search(key)==null){
@@ -550,27 +555,28 @@
             }                                                        
             </code></pre>
 
+                    </div>
                     <!--内容协议-->
-                    <div class="z-post-footer">
-                        <p>本站遵循 CC-BY-NC 4.0 协议</p>
-                        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/b-plus-tree-java-implementation">https://www.zxcoder.top/detail/b-plus-tree-java-implementation</a></p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="accordion">
-                        <div class="accordion-header" id="headingTOC">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
-                                    </svg>
-                                </span>
-                            <span>目录</span>
-                        </div>
-                        <div id="collapseTOC" aria-labelledby="headingTOC"></div>
-                    </div>
-                </div>
-            </div>
+            <!--        <div class="z-post-footer">-->
+            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
+            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/b-plus-tree-java-implementation">https://www.zxcoder.top/detail/b-plus-tree-java-implementation</a></p>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="column is-4">-->
+            <!--        <div class="accordion">-->
+            <!--            <div class="accordion-header" id="headingTOC">-->
+            <!--                    <span>-->
+            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
+            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
+            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
+            <!--                        </svg>-->
+            <!--                    </span>-->
+            <!--                <span>目录</span>-->
+            <!--            </div>-->
+            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             <script>
                 // 生成目录
                 let nav = document.createElement('nav');
