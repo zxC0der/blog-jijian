@@ -94,6 +94,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -127,285 +128,286 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            <style>
-                .z-post-title {
-                    margin-top: 0;
-                    margin-bottom: 10px;
-                }
+<!--content不缩进，暂时解决代码块缩进问题-->
+<style>
+    .z-post-title {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
 
-                .z-post-meta {
-                    font-size: 14px;
-                }
+    .z-post-meta {
+        font-size: 14px;
+    }
 
-                .z-post-date {
-                    float: right;
-                }
+    .z-post-date {
+        float: right;
+    }
 
-                .z-post-tag {
-                    align-items: center;
-                    border-radius: 4px;
-                    display: inline-flex;
-                    height: 2em;
-                    justify-content: center;
-                    line-height: 1.5;
-                    padding-left: .75em;
-                    padding-right: .75em;
-                }
+    .z-post-tag {
+        align-items: center;
+        border-radius: 4px;
+        display: inline-flex;
+        height: 2em;
+        justify-content: center;
+        line-height: 1.5;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
 
-                .z-post-tag.success {
-                    background-color: #effaf3;
-                    color: #257942;
-                }
+    .z-post-tag.success {
+        background-color: #effaf3;
+        color: #257942;
+    }
 
-                .z-post-tag.warning {
-                    background-color: #fffbeb;
-                    color: #947600;
-                }
+    .z-post-tag.warning {
+        background-color: #fffbeb;
+        color: #947600;
+    }
 
-                .z-pagination-div {
-                    margin-top: 25px;
-                    text-align: center;
-                }
+    .z-pagination-div {
+        margin-top: 25px;
+        text-align: center;
+    }
 
-                ul.z-pagination {
-                    display: inline-block;
-                    padding: 0;
-                    margin: 0;
-                }
+    ul.z-pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
-                ul.z-pagination li {
-                    display: inline;
-                }
+    ul.z-pagination li {
+        display: inline;
+    }
 
-                ul.z-pagination li a {
-                    color: black;
-                    float: left;
-                    padding: 8px 16px;
-                    text-decoration: none;
-                    border-radius: 5px;
-                    margin: 0 4px;
-                }
+    ul.z-pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 0 4px;
+    }
 
-                ul.z-pagination li a.active {
-                    background-color: #5ecb63;
-                    color: white;
-                }
+    ul.z-pagination li a.active {
+        background-color: #5ecb63;
+        color: white;
+    }
 
-                ul.z-pagination li a:hover:not(.active) {
-                    background-color: #ddd;
-                }
+    ul.z-pagination li a:hover:not(.active) {
+        background-color: #ddd;
+    }
 
-                ul.z-pagination li a[disabled] {
-                    background: #666666 !important;
-                    opacity: 0.5;
-                    color: white;
-                }
+    ul.z-pagination li a[disabled] {
+        background: #666666 !important;
+        opacity: 0.5;
+        color: white;
+    }
 
-                ul.z-pagination li a[disabled]:hover {
-                    cursor: not-allowed !important;
-                }
+    ul.z-pagination li a[disabled]:hover {
+        cursor: not-allowed !important;
+    }
 
 
-            </style>
-            <div>
-                <div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/atcoder-abc-178">AtCoder-ABC-178(A-F)</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/思维">#思维</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/快速幂">#快速幂</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/容斥">#容斥</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/二进制枚举">#二进制枚举</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/最大曼哈顿距离">#最大曼哈顿距离</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 25, 2020
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project2">CMU15-445(19-fall)-Project2-Hash-Index</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 17, 2020
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project1">CMU15-445(19-fall)-Project1-Buffer-Pool-Manager</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 16, 2020
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/codeforces-div2-678">CodeForces-Div2-678(A-D)</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/CodeForces">#CodeForces</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/构造">#构造</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/素数">#素数</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/二分查找">#二分查找</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/dfs">#dfs</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 13, 2020
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/atcoder-abc-179">AtCoder-ABC-179(A-F)</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/因子">#因子</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/区间合并">#区间合并</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/循环节">#循环节</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/思维">#思维</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 11, 2020
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/atcoder-abc-180">AtCoder-ABC-180(A-F)</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/AtCoder">#AtCoder</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/最短路">#最短路</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/floyd">#floyd</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/状压dp">#状压dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/ToBeAC">#ToBeAC</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 7, 2020
-                                    </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="z-pagination-div">
-                    <ul class="z-pagination">
-                        <li>
-                            <a class=""  href="https://www.zxcoder.top/page/4">Prev</a>
-                        </li>
-                        <li>
-                            <a class=""  href="https://www.zxcoder.top">1</a>
-                        </li>
-                        <li>
-                            <a class=""  href="javascript:void(0)">...</a>
-                        </li>
-                        <li>
-                            <a class=""  href="https://www.zxcoder.top/page/4">4</a>
-                        </li>
-                        <li>
-                            <a class="active"  href="https://www.zxcoder.top/page/5">5</a>
-                        </li>
-                        <li>
-                            <a class=""  href="https://www.zxcoder.top/page/6">6</a>
-                        </li>
-                        <li>
-                            <a class=""  href="https://www.zxcoder.top">Next</a>
-                        </li>
-                    </ul>
-                </div>
+</style>
+<div style="width: 100%;">
+    <div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/atcoder-abc-178">AtCoder-ABC-178(A-F)</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/题解">题解</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/思维">#思维</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/快速幂">#快速幂</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/容斥">#容斥</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/二进制枚举">#二进制枚举</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/最大曼哈顿距离">#最大曼哈顿距离</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 25, 2020
+                        </span>
             </div>
-
         </div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project2">CMU15-445(19-fall)-Project2-Hash-Index</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 17, 2020
+                        </span>
+            </div>
+        </div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project1">CMU15-445(19-fall)-Project1-Buffer-Pool-Manager</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 16, 2020
+                        </span>
+            </div>
+        </div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/codeforces-div2-678">CodeForces-Div2-678(A-D)</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/题解">题解</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/CodeForces">#CodeForces</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/构造">#构造</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/素数">#素数</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/二分查找">#二分查找</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/dfs">#dfs</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 13, 2020
+                        </span>
+            </div>
+        </div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/atcoder-abc-179">AtCoder-ABC-179(A-F)</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/题解">题解</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/因子">#因子</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/区间合并">#区间合并</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/循环节">#循环节</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/思维">#思维</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 11, 2020
+                        </span>
+            </div>
+        </div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/atcoder-abc-180">AtCoder-ABC-180(A-F)</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/题解">题解</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/AtCoder">#AtCoder</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/最短路">#最短路</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/floyd">#floyd</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/状压dp">#状压dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/ToBeAC">#ToBeAC</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 7, 2020
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="z-pagination-div">
+        <ul class="z-pagination">
+            <li>
+                <a class=""  href="https://www.zxcoder.top/page/4">Prev</a>
+            </li>
+            <li>
+                <a class=""  href="https://www.zxcoder.top">1</a>
+            </li>
+            <li>
+                <a class=""  href="javascript:void(0)">...</a>
+            </li>
+            <li>
+                <a class=""  href="https://www.zxcoder.top/page/4">4</a>
+            </li>
+            <li>
+                <a class="active"  href="https://www.zxcoder.top/page/5">5</a>
+            </li>
+            <li>
+                <a class=""  href="https://www.zxcoder.top/page/6">6</a>
+            </li>
+            <li>
+                <a class=""  href="https://www.zxcoder.top">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div>
         <div class="side"></div>
     </div>
 </main>

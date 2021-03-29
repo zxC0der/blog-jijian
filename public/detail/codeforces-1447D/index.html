@@ -94,6 +94,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -127,284 +128,290 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            <style>
-                .z-detail-title {
-                    margin-top: 12px;
-                    margin-bottom: 12px;
-                }
+<!--content不缩进，暂时解决代码块缩进问题-->
+<style>
+    .z-detail-title {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
 
-                .z-detail, h1 h2 h3 {
-                    color: #333;
-                }
+    .z-detail, h1 h2 h3 {
+        color: #333;
+    }
 
-                .z-inline-code {
-                    background: #FFFFCC;
-                }
+    .z-inline-code {
+        background: #FFFFCC;
+    }
 
-                .img-fluid {
-                    /*图片渲染不超过文章宽度*/
-                    max-width: 100%;
-                    max-height: 100%;
-                }
+    .img-fluid {
+        /*图片渲染不超过文章宽度*/
+        max-width: 100%;
+        max-height: 100%;
+    }
 
-                /*line number*/
-                .hljs ul li {
-                    list-style: decimal;
-                    padding: 1px !important;
-                    margin: 0 !important;
-                }
+    .hljs ul{
+        margin-top: 0!important;
+    }
+    /*line number*/
+    .hljs li {
+        list-style: decimal;
+        padding: 1px !important;
+        margin: 0 !important;
+    }
 
-                #collapseTOC {
-                    height: 450px;
-                    overflow: auto;
-                }
+    #collapseTOC {
+        height: 450px;
+        overflow: auto;
+    }
 
-                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-                .z-dingweizhunque {
-                    padding-top: 2.3333333em !important;
-                    margin-top: -1.6666666em !important; /* 临时解决方案... */
-                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-                }
+    /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+    .z-dingweizhunque {
+        padding-top: 2.3333333em !important;
+        margin-top: -1.6666666em !important; /* 临时解决方案... */
+        /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+    }
 
-                .z-post-tag {
-                    align-items: center;
-                    border-radius: 4px;
-                    display: inline-flex;
-                    font-size: 14px;
-                    height: 2em;
-                    justify-content: center;
-                    line-height: 1.5;
-                    padding-left: .75em;
-                    padding-right: .75em;
-                }
+    .z-post-tag {
+        align-items: center;
+        border-radius: 4px;
+        display: inline-flex;
+        font-size: 14px;
+        height: 2em;
+        justify-content: center;
+        line-height: 1.5;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
 
-                .z-post-tag.success {
-                    background-color: #effaf3;
-                    color: #257942;
-                }
+    .z-post-tag.success {
+        background-color: #effaf3;
+        color: #257942;
+    }
 
-                .z-post-tag.warning {
-                    background-color: #fffbeb;
-                    color: #947600;
-                }
+    .z-post-tag.warning {
+        background-color: #fffbeb;
+        color: #947600;
+    }
 
-                .z-post-footer {
-                    text-align: left;
-                    color: #666666;
-                    font-size: 14px;
-                }
+    .z-post-footer {
+        text-align: left;
+        color: #666666;
+        font-size: 14px;
+    }
 
-                .accordion-header {
-                    font-size: 24px;
-                    color: #0a0a0a;
-                    user-select: none;
-                }
+    .accordion-header {
+        font-size: 24px;
+        color: #0a0a0a;
+        user-select: none;
+    }
 
-                .accordion {
-                    position: fixed;
-                }
+    .accordion {
+        position: fixed;
+    }
 
-                .accordion-header:hover {
-                    cursor: pointer;
-                }
+    .accordion-header:hover {
+        cursor: pointer;
+    }
 
-                pre {
-                    padding: 0 !important;
-                }
-            </style>
-            <!--<div class="post content z-detail columns">-->
-            <!--    <div class="column is-8">-->
-                    <!--标题-->
-            <!--        <h1 class="z-detail-title">CodeForces1447D</h1>-->
-                    <!--时间，分类，标签-->
-            <!--        <div>-->
-            <!--                    <span class="z-post-meta">-->
-            <!--                        Dec 3, 2020-->
-            <!--                    </span>-->
-            <!--            <span class="z-post-tag success">-->
-            <!--                        <a href="https://www.zxcoder.top/category/题解">题解</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--            <span class="z-post-tag warning">-->
-            <!--                        <a href="https://www.zxcoder.top/tags/字符串">#字符串</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--            <span class="z-post-tag warning">-->
-            <!--                        <a href="https://www.zxcoder.top/tags/LCS">#LCS</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--            <span class="z-post-tag warning">-->
-            <!--                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--        </div>-->
-                    <!--内容-->
-                    <div>
-                        <h2 id="题意">题意</h2>
-            <p>给定两个长度为5000的字符串s和t，分别从中找到一个子串ss和tt，使得4*lcs(ss,tt)-len(ss)-len(tt)的值最大。</p>
-            <h2 id="分析">分析</h2>
-            <p>5000! lcs! <del>很容易</del>想到最长公共子序列O(N^2)的dp求法，类似的，我们定义dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值，注意一定是以这两个字符结尾，这样统计才不重不漏，而子串的左端点其实无需考虑，只需要通过取max更新答案。</p>
-            <p>当两个字符相等，显然lcs加1，两个子串长度也分别加1，总的值加2，当两个字符不等，按照lcs的做法，这里的一个子串长度加1，另一个不变。</p>
-            <h2 id="代码">代码</h2>
-            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-            using namespace std;
-            const int N=5050;
-            char s[N],t[N];
-            int n,m;
-            // 不用管子串的开头，dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值
-            int dp[N][N];
-            int main(){
-                scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-                scanf(&quot;%s&quot;,s+1);
-                scanf(&quot;%s&quot;,t+1);
-                int ans=0;
-                for(int i=1;i&lt;=n;i++){
-                    for(int j=1;j&lt;=m;j++){
-                        if(s[i]==t[j]){
-                            dp[i][j]=dp[i-1][j-1]+2;
-                        }else{
-                            dp[i][j]=max(0,max(dp[i][j-1],dp[i-1][j])-1);
-                        }
-                        ans=max(ans,dp[i][j]);
-                    }
-                }
-                printf(&quot;%d\n&quot;,ans);
-                return 0;
+    pre {
+        padding: 0 !important;
+    }
+    .z-detail-content{
+        margin-top: 20px;
+    }
+</style>
+<div class="post content z-detail columns">
+    <div class="column is-8">
+        <!--标题-->
+        <h1 class="z-detail-title">CodeForces1447D</h1>
+        <!--时间，分类，标签-->
+        <div>
+                    <span class="z-post-meta">
+                        Dec 3, 2020
+                    </span>
+            <span class="z-post-tag success">
+                        <a href="https://www.zxcoder.top/category/题解">题解</a>
+                    </span>
+            <span class="z-post-tag warning">
+                        <a href="https://www.zxcoder.top/tags/字符串">#字符串</a>
+                    </span>
+            <span class="z-post-tag warning">
+                        <a href="https://www.zxcoder.top/tags/LCS">#LCS</a>
+                    </span>
+            <span class="z-post-tag warning">
+                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                    </span>
+        </div>
+        <!--内容-->
+        <div class="z-detail-content">
+            <h2 id="题意">题意</h2>
+<p>给定两个长度为5000的字符串s和t，分别从中找到一个子串ss和tt，使得4*lcs(ss,tt)-len(ss)-len(tt)的值最大。</p>
+<h2 id="分析">分析</h2>
+<p>5000! lcs! <del>很容易</del>想到最长公共子序列O(N^2)的dp求法，类似的，我们定义dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值，注意一定是以这两个字符结尾，这样统计才不重不漏，而子串的左端点其实无需考虑，只需要通过取max更新答案。</p>
+<p>当两个字符相等，显然lcs加1，两个子串长度也分别加1，总的值加2，当两个字符不等，按照lcs的做法，这里的一个子串长度加1，另一个不变。</p>
+<h2 id="代码">代码</h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=5050;
+char s[N],t[N];
+int n,m;
+// 不用管子串的开头，dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值
+int dp[N][N];
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    scanf(&quot;%s&quot;,s+1);
+    scanf(&quot;%s&quot;,t+1);
+    int ans=0;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=m;j++){
+            if(s[i]==t[j]){
+                dp[i][j]=dp[i-1][j-1]+2;
+            }else{
+                dp[i][j]=max(0,max(dp[i][j-1],dp[i-1][j])-1);
             }
-            </code></pre>
-
-                    </div>
-                    <!--内容协议-->
-            <!--        <div class="z-post-footer">-->
-            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
-            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/codeforces-1447D">https://www.zxcoder.top/detail/codeforces-1447D</a></p>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--    <div class="column is-4">-->
-            <!--        <div class="accordion">-->
-            <!--            <div class="accordion-header" id="headingTOC">-->
-            <!--                    <span>-->
-            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
-            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
-            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
-            <!--                        </svg>-->
-            <!--                    </span>-->
-            <!--                <span>目录</span>-->
-            <!--            </div>-->
-            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--</div>-->
-            <script>
-                // 生成目录
-                let nav = document.createElement('nav');
-                nav.id = 'TableOfContents';
-                let h2s = document.querySelectorAll('.post h2');
-                let h23s = document.querySelectorAll('.post h2,h3');
-                let h2ul = document.createElement('ul');
-                h23s.forEach(h23 => {
-                    h23.id = h23.innerHTML;
-                });
-                let lst = document.querySelector('.post');
-                for (let i = 0; i < h23s.length; i++) {
-                    if (h23s[i].tagName === 'H2') {
-                        let h2li = document.createElement('li');
-                        let h2a = document.createElement('a');
-                        h2a.href = `#${h23s[i].innerHTML}`;
-                        h2a.innerHTML = h23s[i].innerHTML;
-                        h2li.appendChild(h2a);
-                        h2ul.appendChild(h2li);
-                        lst = h2li;
-                    } else {
-                        let h3ul = document.createElement('ul');
-                        while (i < h23s.length && h23s[i].tagName === 'H3') {
-                            let h3li = document.createElement('li');
-                            let h3a = document.createElement('a');
-                            h3a.href = `#${h23s[i].innerHTML}`;
-                            h3a.innerHTML = h23s[i].innerHTML;
-                            h3li.appendChild(h3a);
-                            h3ul.appendChild(h3li);
-                            i++;
-                        }
-                        lst.appendChild(h3ul);
-                        i--;
-                    }
-                }
-                nav.appendChild(h2ul);
-                document.getElementById('collapseTOC').appendChild(nav);
-                let isShow = true;
-                let body = document.getElementById('collapseTOC');
-                let last = null;
-                document.getElementById('headingTOC').addEventListener('click', () => {
-                    isShow = !isShow;
-                    if (isShow) {
-                        body.style.display = 'block';
-                    } else {
-                        body.style.display = 'none';
-                    }
-                });
-                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                    // 点击后，上次的锚点的css类就要取消
-                    nd.addEventListener('click', () => {
-                        if (last != null) {
-                            document.getElementById(last).classList.remove("z-dingweizhunque");
-                        }
-                        const id = nd.getAttribute("href").substr(1);
-                        last = id;
-                        document.getElementById(id).classList.add("z-dingweizhunque");
-                    })
-                })
-            </script>
-            <!--详情页katex渲染，代码高亮-->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-                  crossorigin="anonymous">
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                    crossorigin="anonymous"></script>
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                    crossorigin="anonymous"
-                    onload="initKatex();"></script>
-            <script>
-                function initKatex() {
-                    const post = document.querySelector('.post');
-                    if (post) {
-                        renderMathInElement(post, {
-                            delimiters: [
-                                // 自定义分隔符，才可以支持行内公式
-                                {left: "$$", right: "$$", display: true},
-                                {left: "$", right: "$", display: false},
-                            ]
-                        });
-                    }
-                }
-            </script>
-            <link rel="stylesheet"
-                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                    onload="initHighLight();"></script>
-            <script>
-                function initHighLight() {
-                    hljs.configure({
-                        languages: ["c", "cpp", "java", "c#"]
-                    });
-                    const codes = document.querySelectorAll('div code')
-                    codes.forEach((block) => {
-                        if (block.classList.length >= 1) {
-                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                            // let ul=block.firstElementChild;
-                            // ul.removeChild(ul.lastElementChild);
-                            // hljs.highlightBlock(block);
-                        } else {
-                            block.classList.add('z-inline-code')
-                        }
-                    });
-                }
-            </script>
-            </div>
+            ans=max(ans,dp[i][j]);
+        }
+    }
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}
+</code></pre>
 
         </div>
+        <!--内容协议-->
+        <div class="z-post-footer">
+            <p>本站遵循 CC-BY-NC 4.0 协议</p>
+            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/codeforces-1447D">https://www.zxcoder.top/detail/codeforces-1447D</a></p>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="accordion">
+            <div class="accordion-header" id="headingTOC">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                        </svg>
+                    </span>
+                <span>目录</span>
+            </div>
+            <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+        </div>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.createElement('nav');
+    nav.id = 'TableOfContents';
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    document.getElementById('collapseTOC').appendChild(nav);
+    let isShow = true;
+    let body = document.getElementById('collapseTOC');
+    let last = null;
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            body.style.display = 'block';
+        } else {
+            body.style.display = 'none';
+        }
+    });
+    document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+        // 点击后，上次的锚点的css类就要取消
+        nd.addEventListener('click', () => {
+            if (last != null) {
+                document.getElementById(last).classList.remove("z-dingweizhunque");
+            }
+            const id = nd.getAttribute("href").substr(1);
+            last = id;
+            document.getElementById(id).classList.add("z-dingweizhunque");
+        })
+    })
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/highlightjs-vue"></script>-->
+<script>
+    // hljs.registerLanguage("vue", window.hljsDefineVue);
+    // hljs.initHighlightingOnLoad();
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "c#"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul=block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</div>
+
+</div>
         <div class="side"></div>
     </div>
 </main>

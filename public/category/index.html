@@ -94,6 +94,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -127,62 +128,63 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            <style>
-                .z-term-item {
-                    background: #9fceff;
-                    margin-bottom: 10px;
-                    font-size: 1rem;
-                }
+<!--content不缩进，暂时解决代码块缩进问题-->
+<style>
+    .z-term-item {
+        background: #9fceff;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
 
-                .z-tag {
-                    align-items: center;
-                    border-radius: 4px;
-                    color: #3a3a3a;
-                    display: inline-flex;
-                    height: 2em;
-                    justify-content: center;
-                    line-height: 1.5;
-                    padding-left: .75em;
-                    padding-right: .75em;
-                    white-space: nowrap;
-                }
-            </style>
-            <div>
-                <h1>分类</h1>
-                <div>
-                    <a href="https://www.zxcoder.top/category/题解">
-                        <span class="z-tag z-term-item">
-                            题解(10)
-                        </span>
-                    </a>
-                    <a href="https://www.zxcoder.top/category/算法学习">
-                        <span class="z-tag z-term-item">
-                            算法学习(7)
-                        </span>
-                    </a>
-                    <a href="https://www.zxcoder.top/category/技术学习">
-                        <span class="z-tag z-term-item">
-                            技术学习(7)
-                        </span>
-                    </a>
-                    <a href="https://www.zxcoder.top/category/杂七杂八">
-                        <span class="z-tag z-term-item">
-                            杂七杂八(3)
-                        </span>
-                    </a>
-                    <a href="https://www.zxcoder.top/category/基础知识">
-                        <span class="z-tag z-term-item">
-                            基础知识(3)
-                        </span>
-                    </a>
-                    <a href="https://www.zxcoder.top/category/读书笔记">
-                        <span class="z-tag z-term-item">
-                            读书笔记(1)
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
+    .z-tag {
+        align-items: center;
+        border-radius: 4px;
+        color: #3a3a3a;
+        display: inline-flex;
+        height: 2em;
+        justify-content: center;
+        line-height: 1.5;
+        padding-left: .75em;
+        padding-right: .75em;
+        white-space: nowrap;
+    }
+</style>
+<div>
+    <h1>分类</h1>
+    <div>
+        <a href="https://www.zxcoder.top/category/题解">
+            <span class="z-tag z-term-item">
+                题解(10)
+            </span>
+        </a>
+        <a href="https://www.zxcoder.top/category/算法学习">
+            <span class="z-tag z-term-item">
+                算法学习(7)
+            </span>
+        </a>
+        <a href="https://www.zxcoder.top/category/技术学习">
+            <span class="z-tag z-term-item">
+                技术学习(7)
+            </span>
+        </a>
+        <a href="https://www.zxcoder.top/category/杂七杂八">
+            <span class="z-tag z-term-item">
+                杂七杂八(3)
+            </span>
+        </a>
+        <a href="https://www.zxcoder.top/category/基础知识">
+            <span class="z-tag z-term-item">
+                基础知识(3)
+            </span>
+        </a>
+        <a href="https://www.zxcoder.top/category/读书笔记">
+            <span class="z-tag z-term-item">
+                读书笔记(1)
+            </span>
+        </a>
+    </div>
+</div>
+</div>
         <div class="side"></div>
     </div>
 </main>

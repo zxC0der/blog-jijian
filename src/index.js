@@ -191,9 +191,6 @@ let readAllData = (postPath) => {
                         tags[tag]++;
                     }
                 });
-                if(mat.permalink==='vue-startup-with-my-blog'){
-                    console.log(marked(o.content));
-                }
                 // 渲染
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, {
                     title: obj.title,
@@ -509,4 +506,4 @@ console.timeEnd('jijian generate');
 // 1 navbar浏览器宽度小于某个值会消失
 // 2 写文章时需要人肉确定标签是否存在(DP和dp)
 // 3 样式修改
-// 4 代码缩进问题
+// 4 html标签里套css/js标签可能影响了关闭标签

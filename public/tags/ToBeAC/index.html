@@ -94,6 +94,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -127,139 +128,140 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            <style>
-                .z-post-title {
-                    margin-top: 0;
-                    margin-bottom: 10px;
-                }
+<!--content不缩进，暂时解决代码块缩进问题-->
+<style>
+    .z-post-title {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
 
-                .z-post-meta {
-                    font-size: 14px;
-                }
+    .z-post-meta {
+        font-size: 14px;
+    }
 
-                .z-post-date {
-                    float: right;
-                }
+    .z-post-date {
+        float: right;
+    }
 
-                .z-post-tag {
-                    align-items: center;
-                    border-radius: 4px;
-                    display: inline-flex;
-                    height: 2em;
-                    justify-content: center;
-                    line-height: 1.5;
-                    padding-left: .75em;
-                    padding-right: .75em;
-                }
+    .z-post-tag {
+        align-items: center;
+        border-radius: 4px;
+        display: inline-flex;
+        height: 2em;
+        justify-content: center;
+        line-height: 1.5;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
 
-                .z-post-tag.success {
-                    background-color: #effaf3;
-                    color: #257942;
-                }
+    .z-post-tag.success {
+        background-color: #effaf3;
+        color: #257942;
+    }
 
-                .z-post-tag.warning {
-                    background-color: #fffbeb;
-                    color: #947600;
-                }
+    .z-post-tag.warning {
+        background-color: #fffbeb;
+        color: #947600;
+    }
 
-                .z-pagination-div {
-                    margin-top: 25px;
-                    text-align: center;
-                }
+    .z-pagination-div {
+        margin-top: 25px;
+        text-align: center;
+    }
 
-                ul.z-pagination {
-                    display: inline-block;
-                    padding: 0;
-                    margin: 0;
-                }
+    ul.z-pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
-                ul.z-pagination li {
-                    display: inline;
-                }
+    ul.z-pagination li {
+        display: inline;
+    }
 
-                ul.z-pagination li a {
-                    color: black;
-                    float: left;
-                    padding: 8px 16px;
-                    text-decoration: none;
-                    border-radius: 5px;
-                    margin: 0 4px;
-                }
+    ul.z-pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 0 4px;
+    }
 
-                ul.z-pagination li a.active {
-                    background-color: #5ecb63;
-                    color: white;
-                }
+    ul.z-pagination li a.active {
+        background-color: #5ecb63;
+        color: white;
+    }
 
-                ul.z-pagination li a:hover:not(.active) {
-                    background-color: #ddd;
-                }
+    ul.z-pagination li a:hover:not(.active) {
+        background-color: #ddd;
+    }
 
-                ul.z-pagination li a[disabled] {
-                    background: #666666 !important;
-                    opacity: 0.5;
-                    color: white;
-                }
+    ul.z-pagination li a[disabled] {
+        background: #666666 !important;
+        opacity: 0.5;
+        color: white;
+    }
 
-                ul.z-pagination li a[disabled]:hover {
-                    cursor: not-allowed !important;
-                }
+    ul.z-pagination li a[disabled]:hover {
+        cursor: not-allowed !important;
+    }
 
 
-            </style>
-            <div>
-                <div>
-                    <div class="z-box">
-                        <h3 class="z-post-title">
-                            <a href="https://www.zxcoder.top/detail/atcoder-abc-180">AtCoder-ABC-180(A-F)</a>
-                        </h3>
-                        <div class="z-post-meta">
-                                    <span class="z-post-tag success">
-                                            <a href="https://www.zxcoder.top/category/题解">题解</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/AtCoder">#AtCoder</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/最短路">#最短路</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/floyd">#floyd</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/状压dp">#状压dp</a>
-                                    </span>
-                            <span class="z-post-tag warning">
-                                        <a href="https://www.zxcoder.top/tags/ToBeAC">#ToBeAC</a>
-                                    </span>
-                            <span class="z-post-date">
-                                        Nov 7, 2020
-                                    </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="z-pagination-div">
-                    <ul class="z-pagination">
-                        <li>
-                            <a class="" disabled href="javascript:void(0)">Prev</a>
-                        </li>
-                        <li>
-                            <a class="active"  href="https://www.zxcoder.top/tags/ToBeAC">1</a>
-                        </li>
-                        <li>
-                            <a class="" disabled href="javascript:void(0)">Next</a>
-                        </li>
-                    </ul>
-                </div>
+</style>
+<div style="width: 100%;">
+    <div>
+        <div class="z-box">
+            <h3 class="z-post-title">
+                <a href="https://www.zxcoder.top/detail/atcoder-abc-180">AtCoder-ABC-180(A-F)</a>
+            </h3>
+            <div class="z-post-meta">
+                        <span class="z-post-tag success">
+                                <a href="https://www.zxcoder.top/category/题解">题解</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/AtCoder">#AtCoder</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/最短路">#最短路</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/floyd">#floyd</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/状压dp">#状压dp</a>
+                        </span>
+                <span class="z-post-tag warning">
+                            <a href="https://www.zxcoder.top/tags/ToBeAC">#ToBeAC</a>
+                        </span>
+                <span class="z-post-date">
+                            Nov 7, 2020
+                        </span>
             </div>
-
         </div>
+    </div>
+    <div class="z-pagination-div">
+        <ul class="z-pagination">
+            <li>
+                <a class="" disabled href="javascript:void(0)">Prev</a>
+            </li>
+            <li>
+                <a class="active"  href="https://www.zxcoder.top/tags/ToBeAC">1</a>
+            </li>
+            <li>
+                <a class="" disabled href="javascript:void(0)">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div>
         <div class="side"></div>
     </div>
 </main>

@@ -104,6 +104,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -122,8 +123,8 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            {{> content}}
-        </div>
+<!--content不缩进，暂时解决代码块缩进问题-->
+{{> content}}</div>
         <div class="side"></div>
     </div>
 </main>

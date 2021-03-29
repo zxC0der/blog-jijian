@@ -94,6 +94,7 @@
 
         .middle {
             flex: 1 1 auto;
+            display: flex;
         }
 
         /* 注意max-width和max-device-width */
@@ -127,314 +128,321 @@
     <div class="main">
         <div class="side"></div>
         <div class="middle">
-            <style>
-                .z-detail-title {
-                    margin-top: 12px;
-                    margin-bottom: 12px;
-                }
+<!--content不缩进，暂时解决代码块缩进问题-->
+<style>
+    .z-detail-title {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
 
-                .z-detail, h1 h2 h3 {
-                    color: #333;
-                }
+    .z-detail, h1 h2 h3 {
+        color: #333;
+    }
 
-                .z-inline-code {
-                    background: #FFFFCC;
-                }
+    .z-inline-code {
+        background: #FFFFCC;
+    }
 
-                .img-fluid {
-                    /*图片渲染不超过文章宽度*/
-                    max-width: 100%;
-                    max-height: 100%;
-                }
+    .img-fluid {
+        /*图片渲染不超过文章宽度*/
+        max-width: 100%;
+        max-height: 100%;
+    }
 
-                /*line number*/
-                .hljs ul li {
-                    list-style: decimal;
-                    padding: 1px !important;
-                    margin: 0 !important;
-                }
+    .hljs ul{
+        margin-top: 0!important;
+    }
+    /*line number*/
+    .hljs li {
+        list-style: decimal;
+        padding: 1px !important;
+        margin: 0 !important;
+    }
 
-                #collapseTOC {
-                    height: 450px;
-                    overflow: auto;
-                }
+    #collapseTOC {
+        height: 450px;
+        overflow: auto;
+    }
 
-                /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
-                .z-dingweizhunque {
-                    padding-top: 2.3333333em !important;
-                    margin-top: -1.6666666em !important; /* 临时解决方案... */
-                    /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
-                }
+    /*想办法让点到的标题 有一个这个css 而不是每个标题 根据目录点击的href获得id，然后找到这个id，添加css*/
+    .z-dingweizhunque {
+        padding-top: 2.3333333em !important;
+        margin-top: -1.6666666em !important; /* 临时解决方案... */
+        /*他妈的，纵向margin重叠了解一下，https://juejin.cn/post/6844903497045917710*/
+    }
 
-                .z-post-tag {
-                    align-items: center;
-                    border-radius: 4px;
-                    display: inline-flex;
-                    font-size: 14px;
-                    height: 2em;
-                    justify-content: center;
-                    line-height: 1.5;
-                    padding-left: .75em;
-                    padding-right: .75em;
-                }
+    .z-post-tag {
+        align-items: center;
+        border-radius: 4px;
+        display: inline-flex;
+        font-size: 14px;
+        height: 2em;
+        justify-content: center;
+        line-height: 1.5;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
 
-                .z-post-tag.success {
-                    background-color: #effaf3;
-                    color: #257942;
-                }
+    .z-post-tag.success {
+        background-color: #effaf3;
+        color: #257942;
+    }
 
-                .z-post-tag.warning {
-                    background-color: #fffbeb;
-                    color: #947600;
-                }
+    .z-post-tag.warning {
+        background-color: #fffbeb;
+        color: #947600;
+    }
 
-                .z-post-footer {
-                    text-align: left;
-                    color: #666666;
-                    font-size: 14px;
-                }
+    .z-post-footer {
+        text-align: left;
+        color: #666666;
+        font-size: 14px;
+    }
 
-                .accordion-header {
-                    font-size: 24px;
-                    color: #0a0a0a;
-                    user-select: none;
-                }
+    .accordion-header {
+        font-size: 24px;
+        color: #0a0a0a;
+        user-select: none;
+    }
 
-                .accordion {
-                    position: fixed;
-                }
+    .accordion {
+        position: fixed;
+    }
 
-                .accordion-header:hover {
-                    cursor: pointer;
-                }
+    .accordion-header:hover {
+        cursor: pointer;
+    }
 
-                pre {
-                    padding: 0 !important;
-                }
-            </style>
-            <!--<div class="post content z-detail columns">-->
-            <!--    <div class="column is-8">-->
-                    <!--标题-->
-            <!--        <h1 class="z-detail-title">数据库事务故障恢复</h1>-->
-                    <!--时间，分类，标签-->
-            <!--        <div>-->
-            <!--                    <span class="z-post-meta">-->
-            <!--                        Feb 22, 2021-->
-            <!--                    </span>-->
-            <!--            <span class="z-post-tag success">-->
-            <!--                        <a href="https://www.zxcoder.top/category/基础知识">基础知识</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--            <span class="z-post-tag warning">-->
-            <!--                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--            <span class="z-post-tag warning">-->
-            <!--                        <a href="https://www.zxcoder.top/tags/事务">#事务</a>-->
-            <!--                    </span>-->
-            <!--            -->
-            <!--        </div>-->
-                    <!--内容-->
-                    <div>
-                        <h2 id="事务管理">事务管理</h2>
-            <h3 id="事务的定义">事务的定义</h3>
-            <p>事务是一系列的数据库操作，作为一个不可分割的执行**单元(unit)**，要么全做要么全不做。</p>
-            <p>在这一部分单纯讨论事务的并发时，我们通常定义一个简单的事务模型，假设事务的写操作是直接写到磁盘(实际上会有页面的缓冲池)的原子操作(因此另一个并发事务可以读取到最新数据)。而事务并非总能成功执行，但事务出错终止(aborted)时，为了保证原子性，事务终止前对数据库做的操作都需要撤销，需要对事务进行回滚(rolled back)，数据库系统通常是基于日志(log)进行故障恢复。</p>
-            <h3 id="事务的四个特性acid：">事务的四个特性(ACID)：</h3>
-            <ul>
-            <li>原子性(Atomicity): 事务是最小的执行单位，要么全做，要么全不做。</li>
-            <li>一致性(Consistency): 执行事务前后，数据都是处于一致性状态，即该状态满足预定的约束(比如转账模型中，事务执行<strong>前后</strong>，两个账户余额总数应该是不变的)。</li>
-            <li>隔离性(Isolation): 多事务并发执行时，各个并发事务之间都是独立的，感觉不到其他事务的存在。</li>
-            <li>持久性(Durability): 一个事务成功完成后，对数据库的改变是持久的，即使发生系统故障。</li>
-            </ul>
-            <h2 id="故障恢复">故障恢复</h2>
-            <h3 id="故障分类">故障分类</h3>
-            <ul>
-            <li>事务故障: 事务逻辑错误或者并发事务出现死锁。</li>
-            <li>系统故障: 硬件或者软件的错误或漏洞导致数据库系统发生故障。导致内存数据丢失(已提交事务可能数据还在内存没刷回磁盘，需要重做，未提交事务)。</li>
-            <li>磁盘故障: 非执行时错误，而是写入磁盘时因为磁盘故障导致磁盘数据丢失。</li>
-            </ul>
-            <h3 id="日志记录">日志记录</h3>
-            <p>日志是包括一系列的日志记录(log record)，基本的日志记录类型包括：</p>
-            <ul>
-            <li>更新日志记录，&lt;T,X,V1,V2&gt;，其中T表示事务标识，X是数据项标识，V1是旧值，V2是新值。</li>
-            <li>事务开始记录，&lt;T,start&gt;</li>
-            <li>事务提交记录，&lt;T,commit&gt;</li>
-            <li>事务终止记录，&lt;T,abort&gt;</li>
-            </ul>
-            <p>每次事务执行写操作，需要先写日志，再执行操作。</p>
-            <h3 id="redo和undo">Redo和Undo</h3>
-            <p>发生系统故障时，可以利用日志对事务进行重做(Redo)或者撤销(Undo)。</p>
-            <ul>
-            <li><p>如果一个事务包括start，但不包括commit和abort，说明这个事务在系统故障前开始，但是没有完成或回滚，因此此时数据更新有可能在内存，也可能已经刷盘，为了保证数据的一致性，必须进行Undo操作。</p>
-            </li>
-            <li><p>如果一个事务包括start，以及包括commit或者abort，说明这个事务的所有操作都已经完成，都记录在日志里，但是也不知道修改是否已经刷盘，所以必须根据日志记录，进行Redo操作。(已经commit或者abort的事务必须Redo而不是Undo，因为修改有可能已经写入磁盘？)</p>
-            </li>
-            <li><p>Undo操作除了把数据恢复成旧值，还会把恢复操作作为一个更新操作写入为<strong>一种只读的特殊日志</strong>，不需要记录恢复操作的旧值和新值。最后写入一个abort日志，表示事务撤销完成。</p>
-            </li>
-            <li><p>Redo操作按顺序将数据设置成新值。</p>
-            </li>
-            </ul>
-            <h3 id="检查点checkpoint">检查点(checkpoint)</h3>
-            <p>系统会定时将缓存中的脏页刷回磁盘，并用另外的日志记录下当前记录点的时刻，系统故障恢复时不需要考虑最后一个记录点之前成功提交的事务。</p>
-            <h3 id="事务回滚">事务回滚</h3>
-            <p>正常的事务回滚，从后往前扫描日志，对于该事务的每一个日志记录&lt;T,X,V1,V2&gt;，将数据项X写入旧值V1，然后往日志末尾添加一个特殊的只读日志记录&lt;T,X,V2&gt;，注意这种特殊记录不需要旧值，不会被Undo。</p>
-            <p>当遇到该事务的&lt;T,start&gt;记录，停止扫描，并往日志末尾写入&lt;T,abort&gt;表示回滚完成。</p>
-            <h3 id="系统故障的恢复">系统故障的恢复</h3>
-            <p>利用日志记录进行系统故障的恢复(Recovery after a system crash)，书上所描述的完整算法如下：</p>
-            <ul>
-            <li><p>重做(redo)阶段：把该redo的事务进行redo，并构造该undo的undo-list(包括系统奔溃前未完成的事务，即没有提交也没有回滚)。</p>
-            <ul>
-            <li>初始化undo-list为最后一个检查点(checkpoint)的活跃事务(+检查点之前开始的事务)。</li>
-            <li>从最后一个检查点开始正向扫描日志记录，遇到一个普通日志记录&lt;T,X,V1,V2&gt;或者read-only特殊日志记录&lt;T,X,V2&gt;(表示重做回滚(比如自定义的某些条件下的事务回滚而不是意外的事务回滚))，执行redo操作，将数据项X写入V2值。</li>
-            <li>遇到&lt;T,start&gt;，将该事务加入undo-list(+检查点之后开始的事务)。</li>
-            <li>遇到&lt;T,commit&gt;或者T&lt;T,abort&gt;，将该事务从undo-list中删除(-故障发生点之前提交或回滚的事务(第2步的redo操作中就对这些事务进行了重做))。</li>
-            </ul>
-            </li>
-            <li><p>撤销(undo)阶段：</p>
-            <ul>
-            <li>反向扫描日志，遇到属于undo-list的事务日志，执行undo操作，将数据项写回旧值。</li>
-            <li>遇到属于undo-list的事务的&lt;T,start&gt;，把该事务从undo-list删除，写入一个&lt;T,abort&gt;日志记录(该事务已撤销完成)。</li>
-            <li>当undo-list为空，则所有事务撤销完成。</li>
-            </ul>
-            </li>
-            </ul>
-            <p>为了方便处理，undo-list的事务在重做阶段也会被重做，然后在撤销阶段再被撤销。</p>
-            <h2 id="mysql中的事务恢复">MySQL中的事务恢复</h2>
-            <h2 id="postgresql中的事务恢复">PostgreSQL中的事务恢复</h2>
-
-                    </div>
-                    <!--内容协议-->
-            <!--        <div class="z-post-footer">-->
-            <!--            <p>本站遵循 CC-BY-NC 4.0 协议</p>-->
-            <!--            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/database-transaction-recovery">https://www.zxcoder.top/detail/database-transaction-recovery</a></p>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--    <div class="column is-4">-->
-            <!--        <div class="accordion">-->
-            <!--            <div class="accordion-header" id="headingTOC">-->
-            <!--                    <span>-->
-            <!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">-->
-            <!--                            <path fill="none" d="M0 0h24v24H0z"/>-->
-            <!--                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>-->
-            <!--                        </svg>-->
-            <!--                    </span>-->
-            <!--                <span>目录</span>-->
-            <!--            </div>-->
-            <!--            <div id="collapseTOC" aria-labelledby="headingTOC"></div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--</div>-->
-            <script>
-                // 生成目录
-                let nav = document.createElement('nav');
-                nav.id = 'TableOfContents';
-                let h2s = document.querySelectorAll('.post h2');
-                let h23s = document.querySelectorAll('.post h2,h3');
-                let h2ul = document.createElement('ul');
-                h23s.forEach(h23 => {
-                    h23.id = h23.innerHTML;
-                });
-                let lst = document.querySelector('.post');
-                for (let i = 0; i < h23s.length; i++) {
-                    if (h23s[i].tagName === 'H2') {
-                        let h2li = document.createElement('li');
-                        let h2a = document.createElement('a');
-                        h2a.href = `#${h23s[i].innerHTML}`;
-                        h2a.innerHTML = h23s[i].innerHTML;
-                        h2li.appendChild(h2a);
-                        h2ul.appendChild(h2li);
-                        lst = h2li;
-                    } else {
-                        let h3ul = document.createElement('ul');
-                        while (i < h23s.length && h23s[i].tagName === 'H3') {
-                            let h3li = document.createElement('li');
-                            let h3a = document.createElement('a');
-                            h3a.href = `#${h23s[i].innerHTML}`;
-                            h3a.innerHTML = h23s[i].innerHTML;
-                            h3li.appendChild(h3a);
-                            h3ul.appendChild(h3li);
-                            i++;
-                        }
-                        lst.appendChild(h3ul);
-                        i--;
-                    }
-                }
-                nav.appendChild(h2ul);
-                document.getElementById('collapseTOC').appendChild(nav);
-                let isShow = true;
-                let body = document.getElementById('collapseTOC');
-                let last = null;
-                document.getElementById('headingTOC').addEventListener('click', () => {
-                    isShow = !isShow;
-                    if (isShow) {
-                        body.style.display = 'block';
-                    } else {
-                        body.style.display = 'none';
-                    }
-                });
-                document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
-                    // 点击后，上次的锚点的css类就要取消
-                    nd.addEventListener('click', () => {
-                        if (last != null) {
-                            document.getElementById(last).classList.remove("z-dingweizhunque");
-                        }
-                        const id = nd.getAttribute("href").substr(1);
-                        last = id;
-                        document.getElementById(id).classList.add("z-dingweizhunque");
-                    })
-                })
-            </script>
-            <!--详情页katex渲染，代码高亮-->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-                  integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-                  crossorigin="anonymous">
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-                    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-                    crossorigin="anonymous"></script>
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-                    integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-                    crossorigin="anonymous"
-                    onload="initKatex();"></script>
-            <script>
-                function initKatex() {
-                    const post = document.querySelector('.post');
-                    if (post) {
-                        renderMathInElement(post, {
-                            delimiters: [
-                                // 自定义分隔符，才可以支持行内公式
-                                {left: "$$", right: "$$", display: true},
-                                {left: "$", right: "$", display: false},
-                            ]
-                        });
-                    }
-                }
-            </script>
-            <link rel="stylesheet"
-                  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
-            <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-                    onload="initHighLight();"></script>
-            <script>
-                function initHighLight() {
-                    hljs.configure({
-                        languages: ["c", "cpp", "java", "c#"]
-                    });
-                    const codes = document.querySelectorAll('div code')
-                    codes.forEach((block) => {
-                        if (block.classList.length >= 1) {
-                            // block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                            // let ul=block.firstElementChild;
-                            // ul.removeChild(ul.lastElementChild);
-                            // hljs.highlightBlock(block);
-                        } else {
-                            block.classList.add('z-inline-code')
-                        }
-                    });
-                }
-            </script>
-            </div>
+    pre {
+        padding: 0 !important;
+    }
+    .z-detail-content{
+        margin-top: 20px;
+    }
+</style>
+<div class="post content z-detail columns">
+    <div class="column is-8">
+        <!--标题-->
+        <h1 class="z-detail-title">数据库事务故障恢复</h1>
+        <!--时间，分类，标签-->
+        <div>
+                    <span class="z-post-meta">
+                        Feb 22, 2021
+                    </span>
+            <span class="z-post-tag success">
+                        <a href="https://www.zxcoder.top/category/基础知识">基础知识</a>
+                    </span>
+            <span class="z-post-tag warning">
+                        <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
+                    </span>
+            <span class="z-post-tag warning">
+                        <a href="https://www.zxcoder.top/tags/事务">#事务</a>
+                    </span>
+        </div>
+        <!--内容-->
+        <div class="z-detail-content">
+            <h2 id="事务管理">事务管理</h2>
+<h3 id="事务的定义">事务的定义</h3>
+<p>事务是一系列的数据库操作，作为一个不可分割的执行**单元(unit)**，要么全做要么全不做。</p>
+<p>在这一部分单纯讨论事务的并发时，我们通常定义一个简单的事务模型，假设事务的写操作是直接写到磁盘(实际上会有页面的缓冲池)的原子操作(因此另一个并发事务可以读取到最新数据)。而事务并非总能成功执行，但事务出错终止(aborted)时，为了保证原子性，事务终止前对数据库做的操作都需要撤销，需要对事务进行回滚(rolled back)，数据库系统通常是基于日志(log)进行故障恢复。</p>
+<h3 id="事务的四个特性acid：">事务的四个特性(ACID)：</h3>
+<ul>
+<li>原子性(Atomicity): 事务是最小的执行单位，要么全做，要么全不做。</li>
+<li>一致性(Consistency): 执行事务前后，数据都是处于一致性状态，即该状态满足预定的约束(比如转账模型中，事务执行<strong>前后</strong>，两个账户余额总数应该是不变的)。</li>
+<li>隔离性(Isolation): 多事务并发执行时，各个并发事务之间都是独立的，感觉不到其他事务的存在。</li>
+<li>持久性(Durability): 一个事务成功完成后，对数据库的改变是持久的，即使发生系统故障。</li>
+</ul>
+<h2 id="故障恢复">故障恢复</h2>
+<h3 id="故障分类">故障分类</h3>
+<ul>
+<li>事务故障: 事务逻辑错误或者并发事务出现死锁。</li>
+<li>系统故障: 硬件或者软件的错误或漏洞导致数据库系统发生故障。导致内存数据丢失(已提交事务可能数据还在内存没刷回磁盘，需要重做，未提交事务)。</li>
+<li>磁盘故障: 非执行时错误，而是写入磁盘时因为磁盘故障导致磁盘数据丢失。</li>
+</ul>
+<h3 id="日志记录">日志记录</h3>
+<p>日志是包括一系列的日志记录(log record)，基本的日志记录类型包括：</p>
+<ul>
+<li>更新日志记录，&lt;T,X,V1,V2&gt;，其中T表示事务标识，X是数据项标识，V1是旧值，V2是新值。</li>
+<li>事务开始记录，&lt;T,start&gt;</li>
+<li>事务提交记录，&lt;T,commit&gt;</li>
+<li>事务终止记录，&lt;T,abort&gt;</li>
+</ul>
+<p>每次事务执行写操作，需要先写日志，再执行操作。</p>
+<h3 id="redo和undo">Redo和Undo</h3>
+<p>发生系统故障时，可以利用日志对事务进行重做(Redo)或者撤销(Undo)。</p>
+<ul>
+<li><p>如果一个事务包括start，但不包括commit和abort，说明这个事务在系统故障前开始，但是没有完成或回滚，因此此时数据更新有可能在内存，也可能已经刷盘，为了保证数据的一致性，必须进行Undo操作。</p>
+</li>
+<li><p>如果一个事务包括start，以及包括commit或者abort，说明这个事务的所有操作都已经完成，都记录在日志里，但是也不知道修改是否已经刷盘，所以必须根据日志记录，进行Redo操作。(已经commit或者abort的事务必须Redo而不是Undo，因为修改有可能已经写入磁盘？)</p>
+</li>
+<li><p>Undo操作除了把数据恢复成旧值，还会把恢复操作作为一个更新操作写入为<strong>一种只读的特殊日志</strong>，不需要记录恢复操作的旧值和新值。最后写入一个abort日志，表示事务撤销完成。</p>
+</li>
+<li><p>Redo操作按顺序将数据设置成新值。</p>
+</li>
+</ul>
+<h3 id="检查点checkpoint">检查点(checkpoint)</h3>
+<p>系统会定时将缓存中的脏页刷回磁盘，并用另外的日志记录下当前记录点的时刻，系统故障恢复时不需要考虑最后一个记录点之前成功提交的事务。</p>
+<h3 id="事务回滚">事务回滚</h3>
+<p>正常的事务回滚，从后往前扫描日志，对于该事务的每一个日志记录&lt;T,X,V1,V2&gt;，将数据项X写入旧值V1，然后往日志末尾添加一个特殊的只读日志记录&lt;T,X,V2&gt;，注意这种特殊记录不需要旧值，不会被Undo。</p>
+<p>当遇到该事务的&lt;T,start&gt;记录，停止扫描，并往日志末尾写入&lt;T,abort&gt;表示回滚完成。</p>
+<h3 id="系统故障的恢复">系统故障的恢复</h3>
+<p>利用日志记录进行系统故障的恢复(Recovery after a system crash)，书上所描述的完整算法如下：</p>
+<ul>
+<li><p>重做(redo)阶段：把该redo的事务进行redo，并构造该undo的undo-list(包括系统奔溃前未完成的事务，即没有提交也没有回滚)。</p>
+<ul>
+<li>初始化undo-list为最后一个检查点(checkpoint)的活跃事务(+检查点之前开始的事务)。</li>
+<li>从最后一个检查点开始正向扫描日志记录，遇到一个普通日志记录&lt;T,X,V1,V2&gt;或者read-only特殊日志记录&lt;T,X,V2&gt;(表示重做回滚(比如自定义的某些条件下的事务回滚而不是意外的事务回滚))，执行redo操作，将数据项X写入V2值。</li>
+<li>遇到&lt;T,start&gt;，将该事务加入undo-list(+检查点之后开始的事务)。</li>
+<li>遇到&lt;T,commit&gt;或者T&lt;T,abort&gt;，将该事务从undo-list中删除(-故障发生点之前提交或回滚的事务(第2步的redo操作中就对这些事务进行了重做))。</li>
+</ul>
+</li>
+<li><p>撤销(undo)阶段：</p>
+<ul>
+<li>反向扫描日志，遇到属于undo-list的事务日志，执行undo操作，将数据项写回旧值。</li>
+<li>遇到属于undo-list的事务的&lt;T,start&gt;，把该事务从undo-list删除，写入一个&lt;T,abort&gt;日志记录(该事务已撤销完成)。</li>
+<li>当undo-list为空，则所有事务撤销完成。</li>
+</ul>
+</li>
+</ul>
+<p>为了方便处理，undo-list的事务在重做阶段也会被重做，然后在撤销阶段再被撤销。</p>
+<h2 id="mysql中的事务恢复">MySQL中的事务恢复</h2>
+<h2 id="postgresql中的事务恢复">PostgreSQL中的事务恢复</h2>
 
         </div>
+        <!--内容协议-->
+        <div class="z-post-footer">
+            <p>本站遵循 CC-BY-NC 4.0 协议</p>
+            <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/database-transaction-recovery">https://www.zxcoder.top/detail/database-transaction-recovery</a></p>
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="accordion">
+            <div class="accordion-header" id="headingTOC">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path d="M12 3v2H3V3h9zm4 16v2H3v-2h13zm6-8v2H3v-2h19z"/>
+                        </svg>
+                    </span>
+                <span>目录</span>
+            </div>
+            <div id="collapseTOC" aria-labelledby="headingTOC"></div>
+        </div>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.createElement('nav');
+    nav.id = 'TableOfContents';
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    document.getElementById('collapseTOC').appendChild(nav);
+    let isShow = true;
+    let body = document.getElementById('collapseTOC');
+    let last = null;
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            body.style.display = 'block';
+        } else {
+            body.style.display = 'none';
+        }
+    });
+    document.body.querySelectorAll('#TableOfContents a,.anchor').forEach(nd => {
+        // 点击后，上次的锚点的css类就要取消
+        nd.addEventListener('click', () => {
+            if (last != null) {
+                document.getElementById(last).classList.remove("z-dingweizhunque");
+            }
+            const id = nd.getAttribute("href").substr(1);
+            last = id;
+            document.getElementById(id).classList.add("z-dingweizhunque");
+        })
+    })
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/highlightjs-vue"></script>-->
+<script>
+    // hljs.registerLanguage("vue", window.hljsDefineVue);
+    // hljs.initHighlightingOnLoad();
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "c#"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul=block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</div>
+
+</div>
         <div class="side"></div>
     </div>
 </main>
