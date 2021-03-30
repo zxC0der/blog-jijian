@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="http://127.0.0.1:8080/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="ᕕ( ᐛ )ᕗ Herman&#x27;s blog">
+    <meta name="description" content="Hi I&#x27;m Herman Martinus.
+I&#x27;m an internet person and maker of things.
+I&#x27;m that guy who&#x27;s always tinkering with ideas and making little apps and games. My projects">
+    <meta name="keywords" content="blog, blogging, write, writing" />
+    <script src="https://cdn.usefathom.com/script.js" data-site="WKWMFTPV" defer></script>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+            /*color: #ff5e6c;*/
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        .title h1 {
+            font-size: 1.5em;
+        }
+
+        .title span {
+            font-weight: 400;
+        }
+
+        .bear::before {
+            content: "ᕦʕ •ᴥ•ʔᕤ";
+            font-weight: 400;
+        }
+        .bear:hover::before {
+            content: "ᕙʕ ಠᴥಠʔᕗ";
+            font-weight: 400;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        content {
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .helptext {
+            color: #777;
+            font-size: small;
+        }
+
+        .errorlist {
+            color: #eba613;
+            font-size: small;
+        }
+
+        #id_favicon {
+            width: 20px;
+            text-align: center;
+        }
+
+        #date-range,
+        #initial-values {
+            display: none;
+        }
+
+        #date-range:target,
+        #initial-values:target {
+            display: block;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        ul.post-list li small {
+            text-align: right;
+            flex: 0 0 115px;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        /* discovery feed */
+        ul.discover-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.discover-posts li {
+            display: flex;
+            line-height: 1.2;
+        }
+
+        ul.discover-posts li span {
+            flex: 0 0 40px;
+        }
+
+        ul.discover-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        ul.discover-posts li div {
+            padding-bottom: 8px;
+        }
+
+        ul.discover-posts li small {
+            color: #777 !important;
+        }
+
+        ul.discover-posts li small a {
+            color: #777 !important;
+        }
+
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color:#01242e;
+                color: #ddd;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            strong,
+            b {
+                color: #eee;
+            }
+
+            a {
+                color: #8cc2dd;
+            }
+
+            code {
+                background-color: #777;
+            }
+
+            pre code {
+                color: #ddd;
+            }
+
+            blockquote {
+                color: #ccc;
+            }
+
+            .helptext {
+                color: #aaa;
+            }
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        .btn-scroll-to-top {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h1>zxCoder's blog</h1>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+</style>
+<div class="post">
+    <h1>个人云服务器软件配置备忘录</h1>
+    <div>
+        <span>
+            Nov 29, 2020
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/category/技术学习">技术学习</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/服务器">#服务器</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/Linux">#Linux</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/ssh">#ssh</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/环境变量">#环境变量</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/PostgreSQL">#PostgreSQL</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/MongoDb">#MongoDb</a>
+        </span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="collapseTOC"></div>
+    <div>
+        <h2 id="创建非root用户">创建非root用户</h2>
+<h3 id="创建用户">创建用户</h3>
+<pre><code>useradd -m -s /bin/bash zxc
+</code></pre>
+<p>其中<code>useradd</code>是添加用户的命令，需要root权限，<code>-m</code>表示自动创建用户的家目录，<code>-s /bin/bash</code>指定用户登录后使用的shell。</p>
+<h3 id="设置密码">设置密码</h3>
+<pre><code>passwd zxc
+</code></pre>
+<p>重复输入密码，回车确定。</p>
+<h3 id="将用户加入sudoer">将用户加入sudoer</h3>
+<p>新建的用户默认是无法使用<code>sudo</code>命令的，需要修改<code>/etc/sudoers</code>文件，而这个文件默认是只读的，<code>u+w</code>的<code>u</code>表示文件的拥有者，<code>+w</code>表示添加写权限，在这里也相当于<code>chmod 600</code>了。</p>
+<pre><code>chmod u+w /etc/sudoers
+</code></pre>
+<p>然后修改<code>/etc/sudoers</code>文件，添加一行</p>
+<pre><code>zxc ALL=(ALL:ALL) ALL
+</code></pre>
+<p>这里添加的语句可以有4种形式，分别是：</p>
+<pre><code>xxx ALL=(ALL:ALL) ALL
+%xxx ALL=(ALL:ALL) ALL
+xxx ALL=(ALL:ALL) NOPASSWD: ALL
+%xxx ALL=(ALL:ALL) NOPASSWD: ALL
+</code></pre>
+<p>它们的含义分别是:
+允许用户xxx执行sudo命令(需要输入密码)；
+允许用户组xxx里面的用户执行sudo命令(需要输入密码)；
+允许用户xxx执行sudo命令(不需要输入密码)；
+允许用户组xxx里面的用户执行sudo命令(不需要输入密码)。</p>
+<p>其中这几个ALL的含义分别是：第一个ALL是主机限定，可以改为localhost，改成别的ip的情况，我猜测<strong>可能可以执行sudo但是只能执行另一台主机的命令</strong>，第二个ALL是限定可以以该用户的角色去执行命令，所以可以改成root，冒号后面的第三个ALL是表示用户组，含义同第二个，最后一个ALL表示可以执行的命令。</p>
+<p>最后记得撤销文件的写权限</p>
+<pre><code>chmod u-w /etc/sudoers
+</code></pre>
+<h2 id="配置ssh密钥登录">配置ssh密钥登录</h2>
+<h3 id="本地生成ssh密钥">本地生成ssh密钥</h3>
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+<p>表示使用rsa生成密钥存放在<code>~/.ssh</code>目录下，在linux中<code>~</code>表示家目录，普通用户就是<code>/home/xxx</code>，root用户就是<code>/root</code>。</p>
+<ul>
+<li>将公钥复制到远程主机</li>
+</ul>
+<pre><code>ssh-copy-id -i ~/.ssh/id_rsa.pub  zxc@xxx.xx.xx.xx
+</code></pre>
+<p><code>-i</code>表示指定公钥文件位置，这个公钥会被复制到远程主机<code>~/.ssh/</code>下的<code>authorized_keys</code>文件，这个文件保存了被授权允许通过ssh登录的主机公钥。</p>
+<ul>
+<li>修改文件读写权限</li>
+</ul>
+<pre><code>chmod 600 ~/.ssh/authorized_keys
+chmod 700 -R ~/.ssh
+</code></pre>
+<p>为了保证安全，其中600表示只有拥有者有读写权限，700表示只有拥有者有读、写、执行权限。</p>
+<h3 id="禁止密码登录可选">禁止密码登录(可选)</h3>
+<p>修改<code>etc/ssh/sshd_conf</code>文件</p>
+<pre><code>PasswordAuthentication no
+</code></pre>
+<h3 id="解决客户端ssh连接服务器一段时间不操作之后卡死的问题">解决客户端SSH连接服务器一段时间不操作之后卡死的问题</h3>
+<p>修改本地文件<code>/etc/ssh/ssh_config</code>，添加两个配置</p>
+<pre><code>ServerAliveInterval 50 #每隔50秒就向服务器发送一个请求
+ServerAliveCountMax 3  #允许超时的次数
+</code></pre>
+<p>然后重启ssh服务</p>
+<pre><code>sudo /etc/init.d/ssh restart
+</code></pre>
+<h2 id="环境变量">环境变量</h2>
+<h3 id="配置方法">配置方法</h3>
+<p>在Linux系统中，环境变量是用来定义系统运行环境的一些参数。</p>
+<p><code>export</code>命令显示系统定义的所有环境变量，而<code>echo $PATH</code>命令可以显示<code>PATH</code>环境变量的值，也就是在命令行输入一个命令，默认查找的位置。</p>
+<p>配置环境变量的方法有以下几种：</p>
+<h4 id="方法一-export">方法一 <code>export</code></h4>
+<p>直接使用<code>export</code>命令修改环境变量，比如</p>
+<pre><code>export PGHOST=localhost
+</code></pre>
+<p>设置一个名为<code>PGHOST</code>的环境变量，值为<code>localhost</code>。</p>
+<p>比如</p>
+<pre><code>export PATH=/home/uusama/mysql/bin:$PATH
+# 或者
+export PATH=$PATH:/home/uusama/mysql/bin
+</code></pre>
+<p>添加<code>PATH</code>环境变量的值，其中<code>$PATH</code>表示原来的值，和新的值之间用冒号分隔。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>立即生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>当前终端有效，窗口关闭后失效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>仅对当前用户有效</td>
+</tr>
+</tbody></table>
+<h4 id="方法二-bashrc">方法二 <code>~/.bashrc</code></h4>
+<p>通过修改<code>~/.bashrc</code>文件进行配置。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>使用相同用户重新打开终端生效，或者手动执行<code>source ~/.bashrc</code>生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>永久有效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>仅对当前用户有效</td>
+</tr>
+</tbody></table>
+<h4 id="方法三-bash_profile">方法三 <code>~/.bash_profile</code></h4>
+<p>通过修改<code>~/.bash_profile</code>文件进行配置。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>使用相同用户重新打开终端生效，或者手动执行<code>source ~/.bash_profile</code>生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>永久有效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>仅对当前用户有效</td>
+</tr>
+</tbody></table>
+<h4 id="方法四-etcbashrc">方法四 <code>/etc/bashrc</code></h4>
+<p>通过修改<code>/etc/bashrc</code>文件进行配置，需要root权限以及该文件的写入权限。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>重新打开终端生效，或者手动执行<code>source /etc/bashrc</code>生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>永久有效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>对所有用户有效</td>
+</tr>
+</tbody></table>
+<h4 id="方法五-etcprofile">方法五 <code>/etc/profile</code></h4>
+<p>通过修改<code>/etc/profile</code>文件进行配置，需要root权限以及该文件的写入权限。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>重新打开终端生效，或者手动执行<code>source /etc/profile</code>生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>永久有效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>对所有用户有效</td>
+</tr>
+</tbody></table>
+<h4 id="方法四-etcenviroment">方法四 <code>/etc/enviroment</code></h4>
+<p>通过修改<code>/etc/enviroment</code>文件进行配置，需要root权限以及该文件的写入权限。</p>
+<p><strong>注意：</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生效时间</td>
+<td>重新打开终端生效，或者手动执行<code>source /etc/enviroment</code>生效</td>
+</tr>
+<tr>
+<td>生效期限</td>
+<td>永久有效</td>
+</tr>
+<tr>
+<td>生效范围</td>
+<td>对所有用户有效</td>
+</tr>
+</tbody></table>
+<h3 id="加载顺序">加载顺序</h3>
+<p>基本上是从系统级到用户级，从<code>profile</code>到<code>bashrc</code>的顺序</p>
+<ul>
+<li><code>/etc/environment</code></li>
+<li><code>/etc/profile</code></li>
+<li><code>/etc/bashrc</code></li>
+<li><code>~/.profile</code></li>
+<li><code>~/.bashrc</code></li>
+</ul>
+<h2 id="postgresql">PostgreSQL</h2>
+<h3 id="安装">安装</h3>
+<pre><code>sudo sh -c &#39;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#39;
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql
+</code></pre>
+<p><code>sh -c</code>的作用是将后面的字符串当做完整的命令来执行，这样就可以保证<code>sudo</code>的作用范围在整个命令，然后<code>echo</code>命令表示输出文本，后面加上重定向符号表示输出到文件<code>/etc/apt/sources.list.d/pgdg.list</code>，这个文件以<code>.list</code>为拓展名，表示是第三方源，统一放在<code>sources.list.d</code>这个文件夹下，而<code>/etc/sources.list</code>这个则是官方的软件源。</p>
+<p>list文件的格式主要分为几部分，第一部分通常是<code>deb</code>或者<code>deb-src</code>，因为ubuntu是基于debian的，<code>deb</code>其实就是debian的前三个字母，在这里表示通过<code>.deb</code>文件安装或者通过源码安装；第二部分是安装文件的url，在这里是<code>http://apt.postgresql.org/pub/repos/apt</code>，第三部分是版本代号，这里是<code>$(lsb_release -cs)-pgdg</code>，其中<code>$()</code>可以理解为执行括号内的命令得到的输出，在服务器Ubuntu20.04系统上输出是focal，所以对应的可以在刚才的url里找到<code>./dists/focal-pgdg</code>这个文件夹里的安装文件，而在本地执行这个命令显示<code>n/a</code>，第四部分是限定词，这里是<code>main</code>。</p>
+<p>配置了软件源，就要通过<code>apt-get update</code>更新软件源(<strong>不是更新软件</strong>)，通俗理解是把新的软件源中的软件列表更新到电脑上，而<code>apt-get upgrade</code>才是更新软件。</p>
+<p><code>apt-get -y install</code>中的<code>-y</code>表示跳过确认<code>yes/no</code>，通过这个命令，软件默认安装到了<code>/usr/share</code>下的对应文件夹。</p>
+<h3 id="配置">配置</h3>
+<p>PostgreSQL安装后默认创建了一个名为<code>postgres</code>的用户，既是DMBS的用户，也是Linux用户，所以先切换到该用户进入psql。</p>
+<pre><code>sudo su - postgres
+psql
+</code></pre>
+<p>此时进入PostgreSQL的交互式shell，修改默认用户密码，并添加一个刚刚创建的Linux用户所对应的数据库用户。</p>
+<pre><code>ALTER USER postgres WITH PASSWORD &#39;xxxxxx&#39;;
+</code></pre>
+<p>修改密码后，如果当前Linux用户就是数据库对应的用户，也无需密码即可进入，否则通过<code>psql -U usernmae</code>再输入密码进入。</p>
+<p>此时如果用用户zxc执行命令<code>psql -U postgres</code>会报错，有两种解决方案，一个数需要指定<code>-h localhost</code>，或者将<code>PGHOST=localhost</code>写入环境变量里，另一个是修改配置文件<code>pg_hba.conf</code></p>
+<pre><code># 将这一行最后的peer改为md5(需要密码)或者trust(不需要密码)
+local  all  postgres  md5
+</code></pre>
+<p>注意到下面还有一行，也是同样的用处，all表示不指定某一个用户，但是在这里单独修改是不生效的，相当于通用的规则会被上面特定用户的规则所覆盖。</p>
+<pre><code>local  all  all  md5
+</code></pre>
+<p>修改后通过<code>service postgresql reload</code>重启生效，或者在psql shell中执行<code>SELECT pg_reload_conf()</code>。</p>
+<h2 id="mongodb">MongoDB</h2>
+<h3 id="安装-1">安装</h3>
+<p>类似的，通过官网配置软件源的方式来安装。</p>
+<pre><code>wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo &quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+</code></pre>
+<p>但是因为对Linux不熟悉，所以我觉得这种安装方法比较难以控制，所以采用tarball压缩包的安装方法。</p>
+<p>现在<a href="https://www.mongodb.com/try/download/community">官网</a>下载一个tgz压缩包并解压，这里我在<code>~</code>目录下创建了一个<code>tgz</code>文件夹用来放一些软件的压缩包，一个<code>app</code>文件夹放这些软件。</p>
+<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2004-4.4.2.tgz
+tar -zxvf mongodb-linux-*-4.4.2.tgz -C ../app/
+mv mongodb-linux-aarch64-ubuntu2004-4.4.2/ mongodb/
+</code></pre>
+<p>下载的时候如果出现域名解析错误，就需要修改<code>/etc/resolv.conf</code>，添加googleDNS域名服务器。</p>
+<pre><code>nameserver 8.8.8.8
+nameserver 8.8.4.4
+</code></pre>
+<p>然后注意下载的应该是<code>x86_64</code>版本，也就是不加<code>(arm)</code>的版本，可以通过命令<code>arch</code>来查询。</p>
+<p>解压时<code>-C</code>指定解压目录。</p>
+<h3 id="配置-1">配置</h3>
+<p>然后需要配置环境变量，这里我们配置在<code>~/.bashrc</code>文件中。</p>
+<pre><code>export PATH=$PATH:/home/zxc/app/mongodb/bin/
+</code></pre>
+<p>创建数据目录和日志目录，这里我在<code>~/app</code>下创建了<code>mongondb-data</code>用来存放mongodb相关的所有数据，里面有一个<code>data</code>文件夹和一个<code>log</code>文件夹。</p>
+<p>然后启动<code>mongod</code>，这里的<code>d</code>就是deamon的意思，守护进程，相当于启动了一个后台监控服务。</p>
+<pre><code>mongod --dbpath ~/app/mongodb-data/data --logpath ~/app/mongodb-data/log/mongod.log --fork
+</code></pre>
+<p>默认情况下，MongoDB没有启用访问控制，没有默认的用户名和密码，所以可以直接通过<code>mongodb</code>命令进入shell。为了实现用户角色的访问控制，我们需要自己创建用户。</p>
+<p>首先创建一个管理员用户<code>admin</code>。</p>
+<pre><code>use admin
+db.createUser({
+        user:&quot;userAdmin&quot;,
+        pwd:&quot;xxxxxxxx&quot;,
+        roles:[
+            &quot;clusterAdmin&quot;,
+            &quot;dbAdminAnyDatabase&quot;,
+            &quot;userAdminAnyDatabase&quot;,
+            &quot;readWriteAnyDatabase&quot;
+        ]
+    }
+)
+</code></pre>
+<p>分别给这个<code>userAdmin</code>的用户分配了集群管理权限，所有数据库管理权限，所有用户管理权限，所有数据库读写权限。</p>
+<p>然后重启<code>mongod</code>，注意加上<code>--auth</code>参数。然后通过<code>db.auth()</code>方法进行授权验证，才可以进行其他操作。</p>
+<p>注意正确的关闭<code>mongod</code>的方法是在mongo shell中使用<code>db.shutdownServer()</code>函数。</p>
+<pre><code>use admin
+db.auth(&quot;userAdmin&quot;,&quot;xxxxxxxx&quot;)
+</code></pre>
+<p>然后注意，MongoDB启动之后，默认是只绑定本机ip，要想远程访问，还需要加上参数<code>--bind_ip=0.0.0.0</code>，我们可以把这些启动参数保存在一个配置文件</p>
+<pre><code>dbpath=/home/zxc/app/mongodb-data/data
+logpath=/home/zxc/app/mongodb-data/log/mongod.log
+logappend=true
+port=27017
+fork=true
+auth=true
+bind_ip=0.0.0.0 # 所有ip可访问，为了安全可以指定客户端ip
+</code></pre>
+<p>启动<code>mongod</code>指定配置文件即可。</p>
+<pre><code>mongod -f mongod.conf
+</code></pre>
+<p>注意<code>nohttpinterface</code>这个配置属性默认是关闭的，所以我们也可以通过浏览器访问<code>ip:27017</code>来判断<code>mongod</code>是否已经正确启动。</p>
+<h2 id="docker">Docker</h2>
+<h3 id="安装-2">安装</h3>
+<p>按照官网文档，选择通过存储库(repository)来进行安装。</p>
+<p>这是更新apt包索引以及安装允许使用HTTPS存储库的包。</p>
+<pre><code>sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+</code></pre>
+<p>添加官方密钥。</p>
+<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre>
+<p>其中<code>curl</code>是也是下载命令，<code>-fsSL</code>的<code>-f</code>表示当出现HTTP错误时静默，<code>-s</code>也表示静默模式，因为这里的输出将作为下一条命令的输入，所以不需要其他的输出，<code>-S</code>表示即使开了<code>-s</code>，也会输出错误，<code>-L</code>表示服从重定向，<code>|</code>是管道符号，表示上一条命令的输出作为下一条命令的参数，<code>apt-key add</code>表示将软件包密钥添加到本地trusted数据库中，<code>-</code>表示<code>stdin</code>(标准输入)，也正是上一条命令curl的输出通过管道变成这条命令的标准输入</p>
+<p>设置稳定版本的存储库。</p>
+<pre><code>sudo add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+</code></pre>
+<p><code>add-apt-repository</code>命令其实是一个python脚本，自动在source.list里添加软件源。</p>
+<p>安装docker稳定版。</p>
+<pre><code>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre>
+<p>最后通过运行hello world镜像来判断是否安装成功。</p>
+<pre><code>sudo docker run hello-world
+</code></pre>
+<h3 id="配置-2">配置</h3>
+<p>因为众所周知的原因，我们需要修改仓库镜像源，直接修改<code>/etc/docker/daemon.json</code>文件，加入中科大，网易，官方中国仓库三个。</p>
+<pre><code>{&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;,&quot;http://hub-mirror.c.163.com&quot;,&quot;https://registry.docker-cn.com&quot;]}
+</code></pre>
+<p>然后顺便搭建一个nextcloud私有云盘。</p>
+<pre><code>sudo docker run -d -p 8080:80 nextcloud
+</code></pre>
+<p><code>-d</code>表示detach，默认在后台运行容器，并且返回容器id，<code>-p</code>表示将容器的一个端口暴露给外层主机，这里<code>8080:80</code>表示访问外部主机8080端口就映射到该容器的80端口，也就是nextcloud的默认端口。</p>
+<p>docker默认每次执行都需要root权限，并且docker守护进程启动的时候，会默认赋予名字为docker的用户组读写Unix socket的权限，因此只需要将当前用户加入到docker用户组即可。</p>
+<pre><code>sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+</code></pre>
+<p><code>groupadd docker</code>是创建一个docker用户组，这里通常已经自动创建好了，<code>gpasswd -a</code>表示添加用户到用户组，<code>newgrp</code>是切换到指定用户组。</p>
+<p>安装docker-compose，docker-compose是一个通过yml文件来管理多容器应用的工具，而不需要每次都去拉去image，再创建多个容器。</p>
+<p>下载，如果速度太慢可以本地下载后再上传到服务器。</p>
+<pre><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<p>添加执行权限。</p>
+<pre><code>sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>创建软链接。</p>
+<pre><code>sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre>
+<p>测试是否安装成功。</p>
+<pre><code>docker-compose --version
+</code></pre>
+
+    </div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/my-linux-server-config">http://127.0.0.1:8080/detail/my-linux-server-config</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.createElement('nav');
+    nav.id = 'TableOfContents';
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a=document.createElement('a');
+        h23.style.display='inline-block';
+        a.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display='inline-block';
+        a.href='#headingTOC';
+        h23.parentElement.insertBefore(a,h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    document.getElementById('collapseTOC').appendChild(nav);
+    let body = document.getElementById('collapseTOC');
+    let isShow = false;
+    body.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            body.style.display = 'block';
+        } else {
+            body.style.display = 'none';
+        }
+    });
+    document.querySelectorAll("#TableOfContents a").forEach(ele => {
+        ele.addEventListener('click', () => {
+            isShow = !isShow;
+            if (isShow) {
+                body.style.display = 'block';
+            } else {
+                body.style.display = 'none';
+            }
+        })
+    })
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "c#"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by My Coding.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

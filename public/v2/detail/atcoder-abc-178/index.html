@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="http://127.0.0.1:8080/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="ᕕ( ᐛ )ᕗ Herman&#x27;s blog">
+    <meta name="description" content="Hi I&#x27;m Herman Martinus.
+I&#x27;m an internet person and maker of things.
+I&#x27;m that guy who&#x27;s always tinkering with ideas and making little apps and games. My projects">
+    <meta name="keywords" content="blog, blogging, write, writing" />
+    <script src="https://cdn.usefathom.com/script.js" data-site="WKWMFTPV" defer></script>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+            /*color: #ff5e6c;*/
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        .title h1 {
+            font-size: 1.5em;
+        }
+
+        .title span {
+            font-weight: 400;
+        }
+
+        .bear::before {
+            content: "ᕦʕ •ᴥ•ʔᕤ";
+            font-weight: 400;
+        }
+        .bear:hover::before {
+            content: "ᕙʕ ಠᴥಠʔᕗ";
+            font-weight: 400;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        content {
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .helptext {
+            color: #777;
+            font-size: small;
+        }
+
+        .errorlist {
+            color: #eba613;
+            font-size: small;
+        }
+
+        #id_favicon {
+            width: 20px;
+            text-align: center;
+        }
+
+        #date-range,
+        #initial-values {
+            display: none;
+        }
+
+        #date-range:target,
+        #initial-values:target {
+            display: block;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        ul.post-list li small {
+            text-align: right;
+            flex: 0 0 115px;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        /* discovery feed */
+        ul.discover-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.discover-posts li {
+            display: flex;
+            line-height: 1.2;
+        }
+
+        ul.discover-posts li span {
+            flex: 0 0 40px;
+        }
+
+        ul.discover-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        ul.discover-posts li div {
+            padding-bottom: 8px;
+        }
+
+        ul.discover-posts li small {
+            color: #777 !important;
+        }
+
+        ul.discover-posts li small a {
+            color: #777 !important;
+        }
+
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color:#01242e;
+                color: #ddd;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            strong,
+            b {
+                color: #eee;
+            }
+
+            a {
+                color: #8cc2dd;
+            }
+
+            code {
+                background-color: #777;
+            }
+
+            pre code {
+                color: #ddd;
+            }
+
+            blockquote {
+                color: #ccc;
+            }
+
+            .helptext {
+                color: #aaa;
+            }
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        .btn-scroll-to-top {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h1>zxCoder's blog</h1>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+</style>
+<div class="post">
+    <h1>AtCoder-ABC-178(A-F)</h1>
+    <div>
+        <span>
+            Nov 25, 2020
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/category/题解">题解</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/思维">#思维</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/快速幂">#快速幂</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/容斥">#容斥</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/dp">#dp</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/二进制枚举">#二进制枚举</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/最大曼哈顿距离">#最大曼哈顿距离</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/贪心">#贪心</a>
+        </span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="collapseTOC"></div>
+    <div>
+        <h2 id="a">A</h2>
+<p>输出1-x</p>
+<h2 id="b">B</h2>
+<p>给定区间[a,b]和区间[c,d]，要从区间各取一个数，使得乘积最大。</p>
+<p>一开始想复杂了，其实最大值肯定是区间边缘的值相乘得到的，如果包含0，再跟0取个max即可。</p>
+<h2 id="c">C</h2>
+<p>求长度为n，至少含有一个0和一个9的不同数字序列个数。</p>
+<p>利用容斥的思想，不加限制，长度为n的不同数字序列个数为$10^n$，再减去<strong>可以</strong>含有0，但是不含有9的数字序列个数$9^n$，再同样减去<strong>可以</strong>含有9，但是不含有0的数字序列个数$9^n$，然后要加上被删除两次的同时不含0和9的序列个数。</p>
+<h2 id="d">D</h2>
+<p>求每一项大于等于3，且和为给定S的序列个数。</p>
+<p>有序的凑硬币问题，基础dp。比如[3,4]和[4,3]是属于不同序列，如果题目要求是属于同一个序列的话，就要将第一重循环改为枚举硬币面额。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2005;
+const ll MOD=1e9+7;
+ll dp[N];
+int s;
+int main(){
+    scanf(&quot;%d&quot;,&amp;s);
+    dp[0]=1;
+    for(int i=1;i&lt;=s;i++){
+        for(int j=3;j&lt;=i;j++){
+            if(i-j&gt;=0){
+                dp[i]=(dp[i]+dp[i-j])%MOD;
+            }
+        }
+//        printf(&quot;%d %lld\n&quot;,i,dp[i]);
+    }
+    printf(&quot;%lld\n&quot;,dp[s]%MOD);
+    return 0;
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>给定n个点，求两点间最大的曼哈顿距离。</p>
+<p>经典题目，做法是将曼哈顿距离公式的绝对值符号拆开，对二维点来说会有4种情况，然后将同一个点的x，y放一起，发现两个点的形式其实是一样的，比如都是$(x_i+y_i)-(x_j+y_j)$，或者是$(-x_i+y_i)-(-x_j+y_j)$，所以直接枚举符号状态，然后遍历一遍求最大最小值。</p>
+<p>这个算法也可以改成动态的(支持查询，插入，删除)，只需要对每个二进制状态分别维护一个数据结构即可。原题hdu4666</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2e5+50;
+int n;
+ll x[N],y[N];
+int sta[4][2]=;
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%lld%lld&quot;,&amp;x[i],&amp;y[i]);
+    }
+    ll ans=0;
+    for(int i=0;i&lt;4;i++){
+        ll mx=-1e18;
+        ll mn=1e18;
+        for(int j=1;j&lt;=n;j++){
+            ll t=sta[i][0]*x[j]+sta[i][1]*y[j];
+            mx=max(mx,t);
+            mn=min(mn,t);
+        }
+        ans=max(ans,mx-mn);
+    }
+    printf(&quot;%lld\n&quot;,ans);
+    return 0;
+}
+</code></pre>
+<h2 id="f">F</h2>
+<p>给定a和b长度相同的两个升序数组，要求重排数组b，使得a和b对应位置的数字不同。</p>
+<p>a和b都已经升序，所以首先将b逆序，这时候中间就可能存在一段a和b对应位置数字相同，且<strong>这段区间都是同一个数字</strong>，然后考虑将b数组这些位置的数字交换到其他位置，这里维护一个可以交换的位置下标即可，这样复杂度是O(N)的。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2e5+50;
+int n,a[N],b[N];
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;a[i]);
+    }
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;b[n+1-i]);
+    }
+    int idx=1;
+    bool flag=true;
+    for(int i=1;i&lt;=n;i++){
+        if(a[i]==b[i]){
+            while(idx&lt;=n &amp;&amp; (a[i]==b[idx] || a[idx]==b[i])){
+                idx++;
+            }
+            if(idx&gt;n){
+                flag=false;
+                break;
+            }
+            swap(b[idx],b[i]);
+        }
+    }
+    if(flag){
+        printf(&quot;Yes\n&quot;);
+        for(int i=1;i&lt;=n;i++){
+            printf(&quot;%d%c&quot;,b[i],i==n?&#39;\n&#39;:&#39; &#39;);
+        }
+    }else{
+        printf(&quot;No\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+
+    </div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/atcoder-abc-178">http://127.0.0.1:8080/detail/atcoder-abc-178</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.createElement('nav');
+    nav.id = 'TableOfContents';
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a=document.createElement('a');
+        h23.style.display='inline-block';
+        a.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display='inline-block';
+        a.href='#headingTOC';
+        h23.parentElement.insertBefore(a,h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    document.getElementById('collapseTOC').appendChild(nav);
+    let body = document.getElementById('collapseTOC');
+    let isShow = false;
+    body.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            body.style.display = 'block';
+        } else {
+            body.style.display = 'none';
+        }
+    });
+    document.querySelectorAll("#TableOfContents a").forEach(ele => {
+        ele.addEventListener('click', () => {
+            isShow = !isShow;
+            if (isShow) {
+                body.style.display = 'block';
+            } else {
+                body.style.display = 'none';
+            }
+        })
+    })
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "c#"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by My Coding.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

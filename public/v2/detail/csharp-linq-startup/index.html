@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="http://127.0.0.1:8080/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="ᕕ( ᐛ )ᕗ Herman&#x27;s blog">
+    <meta name="description" content="Hi I&#x27;m Herman Martinus.
+I&#x27;m an internet person and maker of things.
+I&#x27;m that guy who&#x27;s always tinkering with ideas and making little apps and games. My projects">
+    <meta name="keywords" content="blog, blogging, write, writing" />
+    <script src="https://cdn.usefathom.com/script.js" data-site="WKWMFTPV" defer></script>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+            /*color: #ff5e6c;*/
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        .title h1 {
+            font-size: 1.5em;
+        }
+
+        .title span {
+            font-weight: 400;
+        }
+
+        .bear::before {
+            content: "ᕦʕ •ᴥ•ʔᕤ";
+            font-weight: 400;
+        }
+        .bear:hover::before {
+            content: "ᕙʕ ಠᴥಠʔᕗ";
+            font-weight: 400;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        content {
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .helptext {
+            color: #777;
+            font-size: small;
+        }
+
+        .errorlist {
+            color: #eba613;
+            font-size: small;
+        }
+
+        #id_favicon {
+            width: 20px;
+            text-align: center;
+        }
+
+        #date-range,
+        #initial-values {
+            display: none;
+        }
+
+        #date-range:target,
+        #initial-values:target {
+            display: block;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        ul.post-list li small {
+            text-align: right;
+            flex: 0 0 115px;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        /* discovery feed */
+        ul.discover-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.discover-posts li {
+            display: flex;
+            line-height: 1.2;
+        }
+
+        ul.discover-posts li span {
+            flex: 0 0 40px;
+        }
+
+        ul.discover-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        ul.discover-posts li div {
+            padding-bottom: 8px;
+        }
+
+        ul.discover-posts li small {
+            color: #777 !important;
+        }
+
+        ul.discover-posts li small a {
+            color: #777 !important;
+        }
+
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color:#01242e;
+                color: #ddd;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            strong,
+            b {
+                color: #eee;
+            }
+
+            a {
+                color: #8cc2dd;
+            }
+
+            code {
+                background-color: #777;
+            }
+
+            pre code {
+                color: #ddd;
+            }
+
+            blockquote {
+                color: #ccc;
+            }
+
+            .helptext {
+                color: #aaa;
+            }
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        .btn-scroll-to-top {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h1>zxCoder's blog</h1>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+</style>
+<div class="post">
+    <h1>CSharp语言集成查询(LINQ)</h1>
+    <div>
+        <span>
+            Jan 8, 2021
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/category/技术学习">技术学习</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/C#">#C#</a>
+        </span>
+        <span>
+            <a href="http://127.0.0.1:8080/tags/LINQ">#LINQ</a>
+        </span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="collapseTOC"></div>
+    <div>
+        <h2 id="概述">概述</h2>
+<p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
+<p>例子：</p>
+<pre><code class="language-c#">int[] num = {1, 5, 2, 7, 6, 3, 9, 8, 4, 10};
+var lowNum = from i in num where i &gt; 5 orderby i descending select i;
+foreach (var x in lowNum) {
+    Console.WriteLine(x);
+}
+</code></pre>
+<p>每一个查询运算符(基本上)都有对应的一个<strong>拓展方法</strong>，因此上述的例子可以改写成</p>
+<pre><code class="language-c#">var lowNum2 = num.Where(i =&gt; i &gt; 5).OrderByDescending(i =&gt; i);
+foreach (var x in lowNum2) {
+    Console.WriteLine(x);
+}
+</code></pre>
+<p>LINQ查询返回的基本都是<code>IEnumerable&lt;\T&gt;</code>或其派生接口，仅创建查询变量不会检索到任何数据，默认是延迟执行。</p>
+<p>对于<code>Count</code>、<code>Max</code>、<code>Average</code>和<code>First</code>等此查询，默认强制立即执行，返回单个值，<code>ToList</code>和<code>ToArray</code>方法也可以强制立即执行查询并缓存结果。</p>
+<p><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/linq/media/introduction-to-linq-queries/linq-query-complete-operation.png" alt="LINQ查询示意图"></p>
+<p>除了上面的简单查询的例子，LINQ支持分组，连接，子查询等复杂操作，详见文档。</p>
+
+    </div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/csharp-linq-startup">http://127.0.0.1:8080/detail/csharp-linq-startup</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.createElement('nav');
+    nav.id = 'TableOfContents';
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a=document.createElement('a');
+        h23.style.display='inline-block';
+        a.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display='inline-block';
+        a.href='#headingTOC';
+        h23.parentElement.insertBefore(a,h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    document.getElementById('collapseTOC').appendChild(nav);
+    let body = document.getElementById('collapseTOC');
+    let isShow = false;
+    body.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            body.style.display = 'block';
+        } else {
+            body.style.display = 'none';
+        }
+    });
+    document.querySelectorAll("#TableOfContents a").forEach(ele => {
+        ele.addEventListener('click', () => {
+            isShow = !isShow;
+            if (isShow) {
+                body.style.display = 'block';
+            } else {
+                body.style.display = 'none';
+            }
+        })
+    })
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "c#"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>
+        Copyright © 2021-2021 zxCoder. All Rights Reserved.
+    </p>
+    <p>
+        Powered by My Coding.</a>
+    </p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop" class="btn-scroll-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<!--滚动到顶部-->
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7ddc9ab94909306a499447b261e024df";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
