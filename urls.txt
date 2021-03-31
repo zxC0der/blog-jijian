@@ -1,16 +1,8 @@
 https://www.zxcoder.top
-https://www.zxcoder.top/page/2
-https://www.zxcoder.top/page/3
-https://www.zxcoder.top/page/4
-https://www.zxcoder.top/page/5
-https://www.zxcoder.top/page/6
 https://www.zxcoder.top/category
 https://www.zxcoder.top/category/题解
-https://www.zxcoder.top/category/题解/page/2
 https://www.zxcoder.top/category/算法学习
-https://www.zxcoder.top/category/算法学习/page/2
 https://www.zxcoder.top/category/技术学习
-https://www.zxcoder.top/category/技术学习/page/2
 https://www.zxcoder.top/category/杂七杂八
 https://www.zxcoder.top/category/基础知识
 https://www.zxcoder.top/category/读书笔记

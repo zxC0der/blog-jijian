@@ -209,6 +209,9 @@ let readAllData = (postPath) => {
             })
         }
     );
+    jsonData.sort((a, b) => {
+        return moment(b.date, "MMM D, YYYY").diff(moment(a.date, "MMM D, YYYY"));
+    })
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
     // 格式转换
     let tagList = []
@@ -372,27 +375,17 @@ if (arguments.length > 0 && arguments[0] !== "") {
     let fWrite = fs.createWriteStream(`${rootDir}/../../urls.txt`);
     // 首页
     fWrite.write(`${rootUrl}` + '\n');
-    // 首页分页
-    for (let i = 2; i <= indexPageNum; i++) {
-        fWrite.write(`${rootUrl}/page/${i}` + '\n');
-    }
     // 分类页
     fWrite.write(`${rootUrl}/category` + '\n');
     // 分类列表页
     for (let i = 0; i < catList.length; i++) {
         fWrite.write(`${catList[i].link}` + '\n');
-        for (let j = 2; j <= Math.ceil(catList[i].num / categorySizePerPage); j++) {
-            fWrite.write(`${catList[i].link}/page/${j}` + '\n');
-        }
     }
     // 标签页
     fWrite.write(`${rootUrl}/tags` + '\n');
     // 标签列表首页
     for (let i = 0; i < tagList.length; i++) {
         fWrite.write(`${tagList[i].link}` + '\n');
-        for (let j = 2; j <= Math.ceil(tagList[i].num / tagSizePerPage); j++) {
-            fWrite.write(`${tagList[i].link}/page/${j}` + '\n');
-        }
     }
     // 详情页
     for (let i = 0; i < absData.length; i++) {
