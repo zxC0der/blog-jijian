@@ -28,6 +28,7 @@
     </div>
 </div>
 <script>
+    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
     let nav = document.createElement('nav');
     nav.id = 'TableOfContents';
@@ -125,6 +126,7 @@
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
+<!--<script defer src="../../highlight.js" onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

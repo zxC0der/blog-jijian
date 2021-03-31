@@ -185,76 +185,6 @@
             color: #8b6fcb;
         }
 
-        /* discovery feed */
-        ul.discover-posts {
-            list-style-type: none;
-            padding: unset;
-        }
-
-        ul.discover-posts li {
-            display: flex;
-            line-height: 1.2;
-        }
-
-        ul.discover-posts li span {
-            flex: 0 0 40px;
-        }
-
-        ul.discover-posts li a:visited {
-            color: #8b6fcb;
-        }
-
-        ul.discover-posts li div {
-            padding-bottom: 8px;
-        }
-
-        ul.discover-posts li small {
-            color: #777 !important;
-        }
-
-        ul.discover-posts li small a {
-            color: #777 !important;
-        }
-
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color:#01242e;
-                color: #ddd;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            strong,
-            b {
-                color: #eee;
-            }
-
-            a {
-                color: #8cc2dd;
-            }
-
-            code {
-                background-color: #777;
-            }
-
-            pre code {
-                color: #ddd;
-            }
-
-            blockquote {
-                color: #ccc;
-            }
-
-            .helptext {
-                color: #aaa;
-            }
-        }
-
         code ul li{
             list-style-type: decimal;
         }
@@ -289,43 +219,19 @@
     }
 
     .z-search-tip {
-        margin-top: 5px;
+        margin-top: 0.33rem;
         padding: 1.25rem 0;
     }
-
-    #btnLoadMore {
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        display: inline-block;
-        font-size: 16px;
-        width: 100%;
-        font-weight: bold;
-    }
-
-    .d-none {
-        display: none;
-    }
-
 </style>
 <div>
     <form id="searchForm">
-        <div>
-            <input class="z-search-input" name="q" placeholder="请输入关键字">
-        </div>
+        <input class="z-search-input" name="q" placeholder="请输入关键字">
     </form>
     <div class="z-search-tip">
-        <svg id="loadingSpinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-            <path fill="none" d="M0 0h24v24H0z"/>
-            <path d="M12 2a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0v-3a1 1 0 0 1 1-1zm8.66-10a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5A1 1 0 0 1 20.66 7zM7.67 14.5a1 1 0 0 1-.366 1.366l-2.598 1.5a1 1 0 1 1-1-1.732l2.598-1.5a1 1 0 0 1 1.366.366zM20.66 17a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 0 1 1-1.732l2.598 1.5A1 1 0 0 1 20.66 17zM7.67 9.5a1 1 0 0 1-1.366.366l-2.598-1.5a1 1 0 1 1 1-1.732l2.598 1.5A1 1 0 0 1 7.67 9.5z"/>
-        </svg>
         <span id="searchStat"></span>
     </div>
     <ul id="searchResults" class="blog-posts"></ul>
 </div>
-<!--在这个页面搜 不会发送网络请求-->
 </script>
 <script>
     const form = document.querySelector('#searchForm');
@@ -340,9 +246,9 @@
     const noKeywords = "请输入搜索关键字";
     const noResults = "搜索不到相关内容";
     const resultCnt = "搜索到相关文章";
+    const searching = "搜索中...";
     const resultsElement = document.getElementById('searchResults');
     const stat = document.getElementById('searchStat');
-    const loadingSpinner = document.getElementById('loadingSpinner');
     let data = [];
     let thisResults = [];
     const xhr = new XMLHttpRequest();
@@ -364,22 +270,14 @@
         .getAttribute('content'), true);
     xhr.send(null);
 
-    function hideLoadingSpin() {
-        loadingSpinner.classList.add('d-none');
-    }
-
-    function showLoadingSpin() {
-        loadingSpinner.classList.remove('d-none');
-    }
-
     function search(query) {
         let start = Date.now();
-        showLoadingSpin();
+        stat.style.color = 'hsl(48, 100%, 29%)';
+        stat.innerHTML = searching;
         resultsElement.innerHTML = '';
         if (query === '') {
             stat.style.color = 'hsl(348, 86%, 43%)\t';
             stat.innerHTML = noKeywords;
-            hideLoadingSpin();
             return;
         }
         const siz = data.length;
@@ -402,14 +300,12 @@
         }
         // 深拷贝，解决了先搜co再搜java的问题，内容被截断了一部分
         thisResults = JSON.parse(JSON.stringify(results))
-        hideLoadingSpin();
         let end = Date.now();
         if (results.length > 0) {
             stat.style.color = 'hsl(141, 53%, 31%)'
             stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
             for (let i = 0; i < thisResults.length; i += 1) {
                 const result = thisResults[i];
-                // 直接拼字符串，去掉mustache包
                 let template = "";
                 template += "<li>" +
                     "<span>" +

@@ -393,4 +393,7 @@ if (arguments.length > 0 && arguments[0] !== "") {
     }
     fWrite.close();
 }
+// 复制js
+fs.writeFileSync(`${rootDir}/highlight.pack.js`, fs.readFileSync(`${srcDir}/highlight.pack.js`));
+// fs.writeFileSync(`${rootDir}/katex.js`, fs.readFileSync(`${srcDir}/katex.js`));
 console.timeEnd('jijian generate');

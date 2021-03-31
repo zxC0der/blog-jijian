@@ -185,76 +185,6 @@
             color: #8b6fcb;
         }
 
-        /* discovery feed */
-        ul.discover-posts {
-            list-style-type: none;
-            padding: unset;
-        }
-
-        ul.discover-posts li {
-            display: flex;
-            line-height: 1.2;
-        }
-
-        ul.discover-posts li span {
-            flex: 0 0 40px;
-        }
-
-        ul.discover-posts li a:visited {
-            color: #8b6fcb;
-        }
-
-        ul.discover-posts li div {
-            padding-bottom: 8px;
-        }
-
-        ul.discover-posts li small {
-            color: #777 !important;
-        }
-
-        ul.discover-posts li small a {
-            color: #777 !important;
-        }
-
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color:#01242e;
-                color: #ddd;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            strong,
-            b {
-                color: #eee;
-            }
-
-            a {
-                color: #8cc2dd;
-            }
-
-            code {
-                background-color: #777;
-            }
-
-            pre code {
-                color: #ddd;
-            }
-
-            blockquote {
-                color: #ccc;
-            }
-
-            .helptext {
-                color: #aaa;
-            }
-        }
-
         code ul li{
             list-style-type: decimal;
         }
@@ -477,6 +407,7 @@ int main(){
     </div>
 </div>
 <script>
+    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
     let nav = document.createElement('nav');
     nav.id = 'TableOfContents';
@@ -574,6 +505,7 @@ int main(){
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
+<!--<script defer src="../../highlight.js" onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

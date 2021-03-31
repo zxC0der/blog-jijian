@@ -185,76 +185,6 @@
             color: #8b6fcb;
         }
 
-        /* discovery feed */
-        ul.discover-posts {
-            list-style-type: none;
-            padding: unset;
-        }
-
-        ul.discover-posts li {
-            display: flex;
-            line-height: 1.2;
-        }
-
-        ul.discover-posts li span {
-            flex: 0 0 40px;
-        }
-
-        ul.discover-posts li a:visited {
-            color: #8b6fcb;
-        }
-
-        ul.discover-posts li div {
-            padding-bottom: 8px;
-        }
-
-        ul.discover-posts li small {
-            color: #777 !important;
-        }
-
-        ul.discover-posts li small a {
-            color: #777 !important;
-        }
-
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color:#01242e;
-                color: #ddd;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            strong,
-            b {
-                color: #eee;
-            }
-
-            a {
-                color: #8cc2dd;
-            }
-
-            code {
-                background-color: #777;
-            }
-
-            pre code {
-                color: #ddd;
-            }
-
-            blockquote {
-                color: #ccc;
-            }
-
-            .helptext {
-                color: #aaa;
-            }
-        }
-
         code ul li{
             list-style-type: decimal;
         }
@@ -305,7 +235,7 @@
     <div id="collapseTOC"></div>
     <div>
         <blockquote>
-<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#x31;&#x32;&#x39;&#49;&#52;&#50;&#x36;&#57;&#x34;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#x31;&#x31;&#x32;&#x39;&#49;&#52;&#50;&#x36;&#57;&#x34;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#49;&#49;&#x32;&#x39;&#49;&#x34;&#50;&#54;&#x39;&#52;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#49;&#49;&#x32;&#x39;&#49;&#x34;&#50;&#54;&#x39;&#52;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a></p>
 </blockquote>
 <h2 id="理论基础">理论基础</h2>
 <h3 id="introduction-of-dbms">Introduction of DBMS</h3>
@@ -381,6 +311,7 @@
     </div>
 </div>
 <script>
+    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
     let nav = document.createElement('nav');
     nav.id = 'TableOfContents';
@@ -478,6 +409,7 @@
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/atom-one-light.min.css">
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
+<!--<script defer src="../../highlight.js" onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({
