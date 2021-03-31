@@ -380,7 +380,7 @@ if (arguments.length > 0 && arguments[0] !== "") {
     // 分类列表页
     for (let i = 0; i < catList.length; i++) {
         fWrite.write(`${catList[i].link}` + '\n');
-    }
+   }
     // 标签页
     fWrite.write(`${rootUrl}/tags` + '\n');
     // 标签列表首页
