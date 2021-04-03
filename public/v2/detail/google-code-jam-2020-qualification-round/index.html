@@ -238,7 +238,180 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="a-vestigium">A Vestigium</h2>
+<p>求方阵的主对角线和，判断有多少个行和多少个列有重复数字。</p>
+<h2 id="b-nesting-depth">B Nesting Depth</h2>
+<p>给一个数字序列，要求添加最少的括号，使得最后的字符串<strong>括号是平衡的</strong>，并且<strong>每个数字x都正好被x对括号所包括</strong>。</p>
+<p>先考虑<code>xxx0xxx</code>的串，很显然，0不需要括号，而两边的两部分至少都是1，所以可以用一对括号将xxx包括起来，得到<code>(xxx)0(xxx)</code>，然后再处理每部分的xxx，此时<code>xxx</code>外层已经有一个括号，因此xxx中的1不需要括号，所以需要找到<code>xxx1xxx</code>的结构进行迭代处理。</p>
+<p>迭代因为每次字符串都会变化，不太好写，因此采用递归的方法，基于上面的思路，可以得到算法如下：</p>
+<ul>
+<li>构造一个dfs函数，进行类似split的操作，split的分隔符从&#39;0&#39;到字符串的最大数字字符，该函数返回传入字符串加括号后的结果。</li>
+<li>dfs函数中，利用分隔符将字符串分为多个部分，每个部分再递归处理，然后将每个部分加括号的结果再加上外层的一对括号，而分割符号不需要加(即使分隔符号不是0)，再将结果返回。</li>
+<li>考虑一些边界情况：比如遍历后没有分割，不能直接返回，需要递归找下一个字符的分割；比如分割时注意最后不要漏了最后一个部分。</li>
+</ul>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int T;
+char s[105];
+vector&lt;char&gt; dfs(vector&lt;char&gt; &amp;arr,char cp,char mx){
+    if(cp==mx){
+        return arr;
+    }
+    int siz=arr.size();
+    vector&lt;char&gt; ans;
+    vector&lt;char&gt; t;
+    for(int i=0;i&lt;siz;i++){
+        if(arr[i]==cp){
+            if(t.size()&gt;0){
+                t=dfs(t,cp+1,mx);
+                ans.push_back(&#39;(&#39;);
+                ans.insert(ans.end(),t.begin(),t.end());
+                ans.push_back(&#39;)&#39;);
+                t.clear();
+            }
+            ans.push_back(cp);
+        }else{
+            t.push_back(arr[i]);
+        }
+    }
+    if(t.size()&gt;0){
+        t=dfs(t,cp+1,mx);
+        if(t.size()&gt;0){
+            ans.push_back(&#39;(&#39;);
+            ans.insert(ans.end(),t.begin(),t.end());
+            ans.push_back(&#39;)&#39;);
+        }
+    }
+    return ans;
+}
+int main(){
+    scanf(&quot;%d&quot;,&amp;T);
+    for(int t=1;t&lt;=T;t++){
+        scanf(&quot;%s&quot;,s);
+        int n=strlen(s);
+        vector&lt;char&gt; vs(s,s+n);
+        char mx=&#39;0&#39;;
+        for(int i=0;i&lt;n;i++){
+            mx=max(mx,s[i]);
+        }
+        vector&lt;char&gt; ans=dfs(vs,&#39;0&#39;,mx);
+        printf(&quot;Case #%d: &quot;,t);
+        int siz=ans.size();
+        for(int i=0;i&lt;siz;i++){
+            printf(&quot;%c&quot;,ans[i]);
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="c-parenting-partnering-returns">C Parenting Partnering Returns</h2>
+<p>将n个时间段分配给两个人，要求不重叠，输出任意一个方案或者无解。</p>
+<p>按照开始时间，结束时间的顺序排序，然后遍历贪心取，如果两个人都不能拿，就无解。</p>
+<h2 id="d-esab-atad">D ESAb ATAd</h2>
+<p>第一次写交互题，参考了<a href="http://zory.ink/posts/6ad41bdb.html">这个博客</a>。</p>
+<p>题意是有一个100位的01序列，你每次可以询问某个位置的值，且每10次询问后(注意题目表达)，序列会等概率随机发生4种变化的一种，包括1)取反 2)反转 3)取反+反转 4)无变化，要求不超过150次询问得到该序列。</p>
+<p>首先要找到变化的规律，一对01对有四种形式(00 01 10 11)进行这四种操作的结果只有16种，经过观察，可以发现01对可以抽象为两种，相同和不同(00和01)，而对应四种变化得到的也是两种不同的01对，所以，如果能找到一对相同的01对和一对不同的01对，通过观察变化前后的不同，就可以确定这次变化，这样子，需要2次询问，剩下的8次询问可以用来确定其他位，然后在变化的时候，将这些所有位都进行变化。</p>
+<p>为了方便处理，采用头尾双指针的方法来确定序列，这样每次都是两次询问，刚好可以保证每十次询问就变化。</p>
+<p>如果没同时找到相同和不同的01对，比如一直只有相同的01对，也没关系，此时只需要一次询问就可以确定序列的变化。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int T,n;
+int ans[105];
+int ask(int p){
+    printf(&quot;%d\n&quot;,p);
+    fflush(stdout);
+    int ans;
+    scanf(&quot;%d&quot;,&amp;ans);
+    return ans;
+}
+void complement(){
+    for(int i=1;i&lt;=n;i++){
+        ans[i]=1-ans[i];
+    }
+}
+void reverse(){
+    for(int i=1;i&lt;=n/2;i++){
+        swap(ans[i],ans[n+1-i]);
+    }
+}
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;T,&amp;n);
+    for(int t=1;t&lt;=T;t++){
+        // 第几次询问
+        int qs=1;
+        // 已确定数组边界
+        int l=1,r=n;
+        // 相同和不同的数对位置
+        int sa=0,di=0;
+        while(l&lt;=r){
+            if(qs&gt;10 &amp;&amp; qs%10==1){
+                // 变化是发生在第x1次询问之后，回复之前
+                if(sa&amp;&amp; di){
+                    int ta=ask(sa);
+                    int tb=ask(di);
+                    if(ta==ans[sa]){
+                        if(tb==ans[di]){
+                            // 4 没变化
+                        }else{
+                            // 2 reverse
+                            reverse();
+                        }
+                    }else{
+                        if(tb==ans[di]){
+                            // 3 取反+reverse
+                            complement();
+                            reverse();
+                        }else{
+                            // 1 取反
+                            complement();
+                        }
+                    }
+                }else if(sa){
+                    int t=ask(sa);
+                    if(t!=ans[sa]){
+                        // 1或3 取反
+                        complement();
+                    }
+                    ask(sa);
+                }else{
+                    int t=ask(di);
+                    if(t!=ans[di]){
+                        // 1或2 reverse
+                        reverse();
+                    }
+                    ask(di);
+                }
+            }else{
+                ans[l]=ask(l);
+                ans[r]=ask(r);
+                if(ans[l]==ans[r]){
+                    sa=l;
+                }else{
+                    di=l;
+                }
+                l++;
+                r--;
+            }
+            // 题目设计每十次询问才会变化，所以每次都询问两个，方便处理
+            qs+=2;
+        }
+        for(int i=1;i&lt;=n;i++){
+            printf(&quot;%d&quot;,ans[i]);
+        }
+        printf(&quot;\n&quot;);
+        fflush(stdout);
+        // 返回结果Y或N，但一般没办法再怎么处理，但要记得读
+        char res[10];
+        scanf(&quot;%s&quot;,res);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="e-indicium">E Indicium</h2>
+<p>构造一个N*N的矩阵，满足每一行每一列都是不重复的1到N，且对角线的和为K。</p>
+<p>// TODO 暂时不会做</p>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

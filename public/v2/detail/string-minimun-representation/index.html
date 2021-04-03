@@ -232,7 +232,37 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="思路">思路</h2>
+<p>给定一个字符串，最小表示指的是循环的字符串中字典序最小的那个。</p>
+<p>做法是定义两个指针i=0和j=1，表示正在比较的两个字符下标，定义k表示当前比较的字符串相等前缀长度，当a[i+k]==a[j+k]，k++，当a[i+k]!=a[j+k]，假设a[i+k]&gt;a[j+k]，直接让i+=k+1，因为a[i+1...i+k-1]这部分开头的前缀显然不可能是最小表示，因为对应的有一个a[j+1...j+k-1]与其相等，而a[i+k]又大于a[j+k]，所以显然不是最优。然后注意字符串的循环结构，所以i+k的下标要取模n；如果i和j移动后相等，需要一个往后移一位。</p>
+<h2 id="代码">代码</h2>
+<pre><code class="language-cpp">int minStrRepresentation(string s){
+    int n=s.size();
+    int i=0;
+    int j=1;
+    int k=0;
+    while(i&lt;n &amp;&amp; j&lt;n &amp;&amp; k&lt;n){
+        int cmp=s[(i+k)%n]-s[(j+k)%n];
+        if(cmp==0){
+            k++;
+        }else{
+            if(cmp&gt;0){
+                // 加k+1是因为以s[i+k]开头的前缀肯定以s[j+k]开头的前缀
+                i+=k+1;
+            }else{
+                j+=k+1;
+            }
+            if(i==j){
+                j++;
+            }
+            k=0;
+        }
+    }
+    // 因为字典序大的字符指针往后跳
+    return min(i,j);
+}
+</code></pre>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

@@ -232,7 +232,26 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="概述">概述</h2>
+<p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
+<p>例子：</p>
+<pre><code class="language-c#">int[] num = {1, 5, 2, 7, 6, 3, 9, 8, 4, 10};
+var lowNum = from i in num where i &gt; 5 orderby i descending select i;
+foreach (var x in lowNum) {
+    Console.WriteLine(x);
+}
+</code></pre>
+<p>每一个查询运算符(基本上)都有对应的一个<strong>拓展方法</strong>，因此上述的例子可以改写成</p>
+<pre><code class="language-c#">var lowNum2 = num.Where(i =&gt; i &gt; 5).OrderByDescending(i =&gt; i);
+foreach (var x in lowNum2) {
+    Console.WriteLine(x);
+}
+</code></pre>
+<p>LINQ查询返回的基本都是<code>IEnumerable&lt;\T&gt;</code>或其派生接口，仅创建查询变量不会检索到任何数据，默认是延迟执行。</p>
+<p>对于<code>Count</code>、<code>Max</code>、<code>Average</code>和<code>First</code>等此查询，默认强制立即执行，返回单个值，<code>ToList</code>和<code>ToArray</code>方法也可以强制立即执行查询并缓存结果。</p>
+<p><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/linq/media/introduction-to-linq-queries/linq-query-complete-operation.png" alt="LINQ查询示意图"></p>
+<p>除了上面的简单查询的例子，LINQ支持分组，连接，子查询等复杂操作，详见文档。</p>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

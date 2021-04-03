@@ -234,7 +234,19 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="心路历程">心路历程</h2>
+<p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
+<p>首先，后端在Response设置Cookie的时候，如果不加选项，前端在登陆时，Chrome会提示无法设置cookie，<code>This set-cookie didn&#39;t specify a &quot;SameSite&quot; attribute and was defaulted to &quot;SameSite=Lax&quot; and broke the same rules specified in the SameSiteLax value</code>，提示需要给set-cookie设置SameSite属性，这个属性是干啥的这里不深入...总之就是为了安全考虑的，避免啥啥啥的跨域攻击，但是为了方便，在这里我们直接将该属性设置为<code>None</code>，然后再试，Chrome会提示，如果设置了None，就还必须设置<code>Secure</code>属性，让Cookie只能通过HTTPS发送。</p>
+<p>参考<a href="https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0">官方文档</a>，最终我们后端设置Cookie的时候应该是</p>
+<pre><code class="language-csharp">var cookieOptions = new CookieOptions {
+    Secure = true,
+    SameSite = SameSiteMode.None
+};
+HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOptions);
+</code></pre>
+<p>然后关键就来了，直接我直接照抄文档，多加了一个<code>HttpOnly = true</code>的属性，结果该属性的含义是Cookie只能通过HTTP/HTTPS传输，无法从JS脚本中获取，而我前端应用进入主页时需要判断Cookie是否存在，所以才一直进不去。</p>
+<p>做东西学东西一定要细心，<strong>有时候总想着能用就行，到最后往往就变成不能用了</strong>。</p>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

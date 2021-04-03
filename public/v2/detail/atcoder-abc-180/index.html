@@ -236,7 +236,95 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="a">A</h2>
+<p>输出N-A+B。</p>
+<h2 id="b">B</h2>
+<p>输出一个点到原点的曼哈顿距离，欧几里得距离，切比雪夫距离。</p>
+<h2 id="c">C</h2>
+<p>按顺序输出一个数的所有因子。</p>
+<h2 id="d">D</h2>
+<p>初始值X，每次操作可以乘A或者加B，在X保持小于Y的前提下要求尽量多的操作次数。</p>
+<p>有个边界，当某一次乘法操作后大于加法操作，说明后面都需要是加法操作。注意long long溢出。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+ll x,y,a,b;
+int main(){
+    scanf(&quot;%lld%lld%lld%lld&quot;,&amp;x,&amp;y,&amp;a,&amp;b);
+    // ans要long long
+    long long ans=0;
+    // a*x会溢出
+    while(__int128(a)*x&lt;__int128(y) &amp;&amp; a*x&lt;=b+x){
+        x*=a;
+        ans++;
+    }
+    ans+=(y-1-x)/b;
+    printf(&quot;%lld\n&quot;,ans);
+    return 0;
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>给n个点，定义之间的距离，然后要求从点1出发走完所有点(至少走一次)回到点1，求最短路。</p>
+<p>同hdu5418，先floyd跑出任意两点之间的最短路，然后状压dp。</p>
+<p><strong>注意：</strong> 至少经过一次这个条件其实在跑floyd的时候就完成了，之后任意两点之间都可通且是最短路，所以肯定不存在走过一个点之后再重复走一次，但是实际上在走点对点的最短路时可能会重复走过某个点。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=17;
+const int INF=0x3f3f3f3f;
+int n;
+int x[N],y[N],z[N];
+int dis[N][N];
+int dp[(1&lt;&lt;17)+5][17];
+int main(){
+//    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=0;i&lt;n;i++){
+        scanf(&quot;%d%d%d&quot;,&amp;x[i],&amp;y[i],&amp;z[i]);
+    }
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            dis[i][j]=abs(x[j]-x[i])+abs(y[j]-y[i])+max(0,z[j]-z[i]);
+        }
+    }
+    // floyd求所有点之间最短路
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            for(int k=0;k&lt;n;k++){
+                dis[j][k]=min(dis[j][k],dis[j][i]+dis[i][k]);
+            }
+        }
+    }
+    memset(dp,INF,sizeof(dp));
+    // 起点是点0，所以
+    dp[1][0]=0;
+    // 经过一个点至少一次，但是跑了floyd最短路之后，就要保证只走一次
+    // 枚举前一个状态i
+    for(int i=1;i&lt;(1&lt;&lt;n);i++){
+        // 枚举要到达的点
+        for(int j=0;j&lt;n;j++){
+            // 状态i必须没经过j
+            if(((i&gt;&gt;j)&amp;1)==0){
+                // 枚举状态i的最后点
+                for(int k=0;k&lt;n;k++){
+                    // 状态i必须经过k
+                    if(((i&gt;&gt;k)&amp;1)==1){
+                        dp[i|(1&lt;&lt;j)][j]=min(dp[i|(1&lt;&lt;j)][j],dp[i][k]+dis[k][j]);
+                    }
+                }
+            }
+        }
+    }
+    int ans=INF;
+    for(int i=1;i&lt;n;i++){
+        ans=min(ans,dp[(1&lt;&lt;n)-1][i]+dis[i][0]);
+    }
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}
+</code></pre>
+<h2 id="f">F</h2>
+<p>比较难的dp，等有时间再学一学</p>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

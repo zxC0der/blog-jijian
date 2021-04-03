@@ -235,7 +235,164 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div></div>
+    <div><h2 id="a">A</h2>
+<p>给定a,b,c,d四个整数，在a到b之间选一个x，c到d之间选一个y，求最大的x-y。</p>
+<p>就是b-c...</p>
+<h2 id="b">B</h2>
+<p>给定一个浮点数，输出向下取整的数。</p>
+<p>读字符串，输出直到遇到小数点或者结束。</p>
+<h2 id="c">C</h2>
+<p>求1-N之间多少个满足&quot;不含前导零，前一部分字符串和后一部分字符串相同&quot;的数字。</p>
+<p>暴力把1e12以内所有满足条件的数预处理出来，然后二分查找。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+ll n;
+int main(){
+    vector&lt;ll&gt; v;
+    for(int i=1;i&lt;=6;i++){
+        ll up=1LL;
+        for(int j=1;j&lt;=i;j++){
+            up=up*10;
+        }
+        for(ll j=up/10;j&lt;up;j++){
+            ll x=j*up+j;
+            v.push_back(x);
+        }
+    }
+    scanf(&quot;%lld&quot;,&amp;n);
+    int k=upper_bound(v.begin(),v.end(),n)-v.begin();
+    printf(&quot;%d\n&quot;,k);
+    return 0;
+}
+</code></pre>
+<h2 id="d">D</h2>
+<p>长为H，宽为W的面积不超过16的矩形，有A个2*1和B个1*1的瓷砖，保证能铺满，问铺满的方案数。</p>
+<p>直接爆搜，标记每个单位是被哪种瓷砖所占，因为2*1的可以旋转，所以是三种，然后搜就完事了。</p>
+<p>注意放横的2*1时要注意判断右边的那块有没有被上面一行放竖的2*1占用了，这个bug浪费了接近30分钟...</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+const int N=16;
+int vis[N][N];
+int h,w,a,b;
+int cnt;
+void print(){
+    for(int i=1;i&lt;=h;i++){
+        for(int j=1;j&lt;=w;j++){
+            printf(&quot;%d&quot;,vis[i][j]);
+        }
+        printf(&quot;\n&quot;);
+    }
+    printf(&quot;----\n&quot;);
+}
+void dfs(int x,int y,int ua,int ub){
+    if(vis[x][y]){
+        // 被上一排的竖的1*2放了
+        if(y==w){
+            if(x==h){
+                cnt++;
+            }else{
+                dfs(x+1,1,ua,ub);
+            }
+        }else{
+            dfs(x,y+1,ua,ub);
+        }
+        return;
+    }
+    if(ua&lt;a){
+        // 放1*1
+        vis[x][y]=1;
+        if(y==w){
+            if(x==h){
+                cnt++;
+            }else{
+                dfs(x+1,1,ua+1,ub);
+            }
+        }else{
+            dfs(x,y+1,ua+1,ub);
+        }
+        vis[x][y]=0;
+    }
+    if(ub&lt;b){
+        // 放横的2*1
+        if(y+1&lt;=w &amp;&amp; !vis[x][y] &amp;&amp; !vis[x][y+1]){
+            vis[x][y]=2;
+            vis[x][y+1]=2;
+            if(y+1==w){
+                if(x==h){
+                    cnt++;
+                }else{
+                    dfs(x+1,1,ua,ub+1);
+                }
+            }else{
+                dfs(x,y+2,ua,ub+1);
+            }
+            vis[x][y]=0;
+            vis[x][y+1]=0;
+        }
+        // 放竖的1*2
+        if(x+1&lt;=h){
+            vis[x][y]=3;
+            vis[x+1][y]=3;
+            if(y==w){
+                dfs(x+1,1,ua,ub+1);
+            }else{
+                dfs(x,y+1,ua,ub+1);
+            }
+            vis[x][y]=0;
+            vis[x+1][y]=0;
+        }
+    }
+}
+int main(){
+    scanf(&quot;%d%d%d%d&quot;,&amp;h,&amp;w,&amp;b,&amp;a);
+    dfs(1,1,0,0);
+    printf(&quot;%d\n&quot;,cnt);
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>题意咋一看比较复杂，其实就是给定序列a和序列t，序列t表示每次操作类型(累加ai，和ai取max，和ai取min)，序列a表示每次操作的值，然后再给一个序列q，求对q做所有操作之后的新序列。</p>
+<p>模型可以看成坐标轴上一排点，加操作就是将整一排点往上移，和其他两种操作无关，所以可以作为一个偏移量独立出来，而取max操作就是给定一个y值，即一条直线，在这直线之下的全部点往上移到直线上，即往上压缩，同理取min操作就是往下压缩。</p>
+<p>所以直接维护这两个压缩的直线，以及添加的总数add，最后每个数只需要加上add，再限制在两个压缩直线中间即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const ll INF=1e18;
+int n,q;
+ll a,t,x;
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    ll mn=-INF;
+    ll mx=INF;
+    ll add=0;
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%lld%lld&quot;,&amp;a,&amp;t);
+        if(t==1){
+            add+=a;
+            mn+=a;
+            mx+=a;
+        }else if(t==2){
+            mn=max(mn,a);
+            mx=max(mx,a);
+        }else{
+            mn=min(mn,a);
+            mx=min(mx,a);
+        }
+    }
+    scanf(&quot;%d&quot;,&amp;q);
+    for(int i=1;i&lt;=q;i++){
+        scanf(&quot;%lld&quot;,&amp;x);
+        x+=add;
+        x=min(x,mx);
+        x=max(x,mn);
+        printf(&quot;%lld\n&quot;,x);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="f">F</h2>
+<p>给定两个01字符串S和T，问T最少修改几个字符能成为S的子串。</p>
+<p>做法应该是FFT，知识盲区了...有空再补。</p>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href=""></a></p>

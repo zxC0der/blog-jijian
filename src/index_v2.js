@@ -154,7 +154,7 @@ let readAllData = (postPath) => {
                 // 渲染
                 let rdObj=JSON.parse(JSON.stringify(obj));
                 rdObj.content=marked(o.content);
-                let detailComponent = renderFromFile(`${layoutDir}/detail.html`, obj);
+                let detailComponent = renderFromFile(`${layoutDir}/detail.html`, rdObj);
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
                     title: mat.title + ' - zxCoder\'s blog',
                     navbarItems,
