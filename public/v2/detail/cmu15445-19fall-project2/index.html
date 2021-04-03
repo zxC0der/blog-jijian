@@ -15,8 +15,6 @@
             max-width: 720px;
             text-align: left;
             background-color: #fff;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
             line-height: 1.5;
             color: #444;
             position: relative;
@@ -40,14 +38,6 @@
         .title {
             text-decoration: none;
             border: 0;
-        }
-
-        .title h1 {
-            font-size: 1.5em;
-        }
-
-        .title span {
-            font-weight: 400;
         }
 
         nav a {
@@ -131,11 +121,6 @@
             flex: max-content;
         }
 
-        ul.post-list li small {
-            text-align: right;
-            flex: 0 0 115px;
-        }
-
         /* blog posts */
         ul.blog-posts {
             list-style-type: none;
@@ -169,7 +154,7 @@
 <body>
 <header >
     <a class="title" href="/">
-        <h1>zxCoder's blog</h1>
+        <h2>zxCoder's blog</h2>
     </a>
     <nav>
         <a href="https://www.zxcoder.top">Home</a>
@@ -257,7 +242,7 @@
     <div id="collapseTOC"></div>
     <div>
         <blockquote>
-<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#x31;&#50;&#x39;&#49;&#x34;&#50;&#54;&#57;&#52;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#109;">&#x31;&#x31;&#50;&#x39;&#49;&#x34;&#50;&#54;&#57;&#52;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#109;</a></p>
+<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#49;&#50;&#x39;&#x31;&#x34;&#50;&#x36;&#x39;&#x34;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#x31;&#49;&#50;&#x39;&#x31;&#x34;&#50;&#x36;&#x39;&#x34;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a></p>
 </blockquote>
 <h2 id="理论基础">理论基础</h2>
 <p>DBMS内部会使用多种数据结构，具体用途包括表示内部的元数据，存储核心数据，执行查询时的临时数据结构(比如join时用了哈希表)，数据库索引。</p>
@@ -433,7 +418,6 @@
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
     </svg>
 </a>
-<!--滚动到顶部-->
 <script>
     // window.onload 等dom加载完
     window.onload=function(){

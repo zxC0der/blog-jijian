@@ -15,8 +15,6 @@
             max-width: 720px;
             text-align: left;
             background-color: #fff;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
             line-height: 1.5;
             color: #444;
             position: relative;
@@ -40,14 +38,6 @@
         .title {
             text-decoration: none;
             border: 0;
-        }
-
-        .title h1 {
-            font-size: 1.5em;
-        }
-
-        .title span {
-            font-weight: 400;
         }
 
         nav a {
@@ -131,11 +121,6 @@
             flex: max-content;
         }
 
-        ul.post-list li small {
-            text-align: right;
-            flex: 0 0 115px;
-        }
-
         /* blog posts */
         ul.blog-posts {
             list-style-type: none;
@@ -169,7 +154,7 @@
 <body>
 <header >
     <a class="title" href="/">
-        <h1>zxCoder's blog</h1>
+        <h2>zxCoder's blog</h2>
     </a>
     <nav>
         <a href="https://www.zxcoder.top">Home</a>
@@ -235,7 +220,6 @@
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
     </svg>
 </a>
-<!--滚动到顶部-->
 <script>
     // window.onload 等dom加载完
     window.onload=function(){

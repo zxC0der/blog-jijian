@@ -23,8 +23,6 @@ const categoryDir = "category";
 const categoryUrl = "category";
 const tagDir = "tags";
 const tagUrl = "tags";
-const pageDir = "page";
-const pageUrl = "page";
 const aboutDir = "about";
 const aboutUrl = "about";
 const detailDir = "detail";
@@ -253,7 +251,6 @@ let readAllData = (postPath) => {
  * @param name 分类/标签名
  */
 let renderList = (path, url, data, home = false, name = '') => {
-    const total = data.length;
     let listComponent = renderFromFile(`${layoutDir}/list.html`, {
         data,
     });
