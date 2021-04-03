@@ -1,11 +1,15 @@
 ---
-draft: true
 permalink: atcoder-abc-196
-tags:
+tags: 
   - 字符串
   - 暴力
   - 二分查找
   - 爆搜
+  - 思维
+math: true
+category: 题解
+title: AtCoder-ABC-196(A-E)
+date: 2021-04-03 15:54:28 +0800
 ---
 
 ## A
@@ -144,12 +148,46 @@ int main(){
 
 题意咋一看比较复杂，其实就是给定序列a和序列t，序列t表示每次操作类型(累加ai，和ai取max，和ai取min)，序列a表示每次操作的值，然后再给一个序列q，求对q做所有操作之后的新序列。
 
-TODO
+模型可以看成坐标轴上一排点，加操作就是将整一排点往上移，和其他两种操作无关，所以可以作为一个偏移量独立出来，而取max操作就是给定一个y值，即一条直线，在这直线之下的全部点往上移到直线上，即往上压缩，同理取min操作就是往下压缩。
 
-通过简单模拟可得到，直接维护q序列的最大最小值，以及添加的总数add，其余的数最后只需要加上add，再限制在最大最小值中间即可。
+所以直接维护这两个压缩的直线，以及添加的总数add，最后每个数只需要加上add，再限制在两个压缩直线中间即可。
 
 ```cpp
-
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const ll INF=1e18;
+int n,q;
+ll a,t,x;
+int main(){
+    scanf("%d",&n);
+    ll mn=-INF;
+    ll mx=INF;
+    ll add=0;
+    for(int i=1;i<=n;i++){
+        scanf("%lld%lld",&a,&t);
+        if(t==1){
+            add+=a;
+            mn+=a;
+            mx+=a;
+        }else if(t==2){
+            mn=max(mn,a);
+            mx=max(mx,a);
+        }else{
+            mn=min(mn,a);
+            mx=min(mx,a);
+        }
+    }
+    scanf("%d",&q);
+    for(int i=1;i<=q;i++){
+        scanf("%lld",&x);
+        x+=add;
+        x=min(x,mx);
+        x=max(x,mn);
+        printf("%lld\n",x);
+    }
+    return 0;
+}
 ```
 
 ## F

@@ -10,13 +10,14 @@ https://www.zxcoder.top/tags
 https://www.zxcoder.top/tags/思维
 https://www.zxcoder.top/tags/dp
 https://www.zxcoder.top/tags/数据库
-https://www.zxcoder.top/tags/贪心
 https://www.zxcoder.top/tags/字符串
+https://www.zxcoder.top/tags/贪心
+https://www.zxcoder.top/tags/二分查找
 https://www.zxcoder.top/tags/前缀和
 https://www.zxcoder.top/tags/TODO
 https://www.zxcoder.top/tags/Bug Fixed
+https://www.zxcoder.top/tags/暴力
 https://www.zxcoder.top/tags/枚举
-https://www.zxcoder.top/tags/二分查找
 https://www.zxcoder.top/tags/状压dp
 https://www.zxcoder.top/tags/最短路
 https://www.zxcoder.top/tags/因子
@@ -36,9 +37,9 @@ https://www.zxcoder.top/tags/LCS
 https://www.zxcoder.top/tags/dfs
 https://www.zxcoder.top/tags/素数
 https://www.zxcoder.top/tags/构造
+https://www.zxcoder.top/tags/爆搜
 https://www.zxcoder.top/tags/期望dp
 https://www.zxcoder.top/tags/预处理
-https://www.zxcoder.top/tags/暴力
 https://www.zxcoder.top/tags/逆序数
 https://www.zxcoder.top/tags/树状数组
 https://www.zxcoder.top/tags/bfs
@@ -78,6 +79,7 @@ https://www.zxcoder.top/tags/CSharp
 https://www.zxcoder.top/tags/事务
 https://www.zxcoder.top/tags/默认
 https://www.zxcoder.top/detail/a-bug-about-cookie-samesite-httponly
+https://www.zxcoder.top/detail/atcoder-abc-196
 https://www.zxcoder.top/detail/digital-dp-just-dfs
 https://www.zxcoder.top/detail/atcoder-abc-194
 https://www.zxcoder.top/detail/understanding-mysql-from-root
