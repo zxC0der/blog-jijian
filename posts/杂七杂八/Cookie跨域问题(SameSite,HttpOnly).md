@@ -19,7 +19,7 @@ date: 2021-04-03 10:55:29 +0800
 
 参考[官方文档](https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0)，最终我们后端设置Cookie的时候应该是
 
-```c#
+```csharp
 var cookieOptions = new CookieOptions {
     Secure = true,
     SameSite = SameSiteMode.None
