@@ -13,6 +13,7 @@ https://www.zxcoder.top/tags/数据库
 https://www.zxcoder.top/tags/贪心
 https://www.zxcoder.top/tags/字符串
 https://www.zxcoder.top/tags/前缀和
+https://www.zxcoder.top/tags/C#
 https://www.zxcoder.top/tags/枚举
 https://www.zxcoder.top/tags/二分查找
 https://www.zxcoder.top/tags/状压dp
@@ -23,8 +24,8 @@ https://www.zxcoder.top/tags/TODO
 https://www.zxcoder.top/tags/递归
 https://www.zxcoder.top/tags/数位dp
 https://www.zxcoder.top/tags/debug
-https://www.zxcoder.top/tags/C#
 https://www.zxcoder.top/tags/CMU15-445
+https://www.zxcoder.top/tags/开发
 https://www.zxcoder.top/tags/git
 https://www.zxcoder.top/tags/01序列
 https://www.zxcoder.top/tags/交互题
@@ -66,6 +67,8 @@ https://www.zxcoder.top/tags/位运算
 https://www.zxcoder.top/tags/数据结构
 https://www.zxcoder.top/tags/B+树
 https://www.zxcoder.top/tags/正则表达式
+https://www.zxcoder.top/tags/Cookie
+https://www.zxcoder.top/tags/Bug Fixed
 https://www.zxcoder.top/tags/MongoDb
 https://www.zxcoder.top/tags/PostgreSQL
 https://www.zxcoder.top/tags/环境变量
@@ -78,7 +81,7 @@ https://www.zxcoder.top/tags/博客
 https://www.zxcoder.top/tags/LINQ
 https://www.zxcoder.top/tags/事务
 https://www.zxcoder.top/tags/默认
-https://www.zxcoder.top/tags/开发
+https://www.zxcoder.top/detail/a-bug-about-cookie-samesite-httponly
 https://www.zxcoder.top/detail/digital-dp-just-dfs
 https://www.zxcoder.top/detail/atcoder-abc-194
 https://www.zxcoder.top/detail/understanding-mysql-from-root
