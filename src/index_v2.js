@@ -39,8 +39,7 @@ execSync(`rm -rf ${rootDir}/*`);
  * @returns {*}
  */
 let renderFromFile = (path, view, partial) => {
-    let str = fs.readFileSync(path).toString();
-    return mustache.render(str, view, partial);
+    return mustache.render(fs.readFileSync(path).toString(), view, partial);
 }
 // 组件
 let navbarItems = [
@@ -167,17 +166,11 @@ let readAllData = (postPath) => {
             })
         }
     );
-    let sortByTimestamp=(a, b) => {
-        return b.timestamp-a.timestamp;
-    };
-    jsonData.sort(sortByTimestamp)
+    jsonData.sort((a, b) => b.timestamp-a.timestamp)
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
-    let sortByNum = (a, b) => {
-        return a.num < b.num ? 1 : -1;
-    }
-    tagList.sort(sortByNum)
-    catList.sort(sortByNum)
-    absData.sort(sortByTimestamp);
+    tagList.sort((a, b) => b.num-a.num)
+    catList.sort((a, b) => b.num-a.num)
+    absData.sort((a, b) => b.timestamp-a.timestamp);
     return {
         absData,
         catList,
@@ -187,12 +180,11 @@ let readAllData = (postPath) => {
 /**
  * 渲染列表页面
  * @param path 生成的页面放在{path}/page/下
- * @param url
  * @param data 所有数据
  * @param home 是否是首页
  * @param name 分类/标签名
  */
-let renderList = (path, url, data, home = false, name = '') => {
+let renderList = (path, data, home = false, name = '') => {
     let listComponent = renderFromFile(`${layoutDir}/list.html`, {
         data,
     });
@@ -209,7 +201,7 @@ let absData = obj.absData;
 let catList = obj.catList;
 let tagList = obj.tagList;
 // 首页列表
-renderList(rootDir, rootUrl, absData, true);
+renderList(rootDir, absData, true);
 // 关于页
 let aboutContent=[
     {
@@ -264,7 +256,6 @@ for (let i = 0; i < catList.length; i++) {
     })
     fs.mkdirSync(`${rootDir}/${categoryDir}/${cat.name}`);
     renderList(`${rootDir}/${categoryDir}/${cat.name}`,
-        `${rootUrl}/${categoryUrl}/${cat.name}`,
         filteredData, false, cat.name);
 }
 // 标签首页
@@ -290,7 +281,6 @@ for (let i = 0; i < tagList.length; i++) {
     })
     fs.mkdirSync(`${rootDir}/${tagDir}/${tag.name}`);
     renderList(`${rootDir}/${tagDir}/${tag.name}`,
-        `${rootUrl}/${tagUrl}/${tag.name}`,
         filteredData, false, tag.name);
 }
 // 搜索页
@@ -306,27 +296,4 @@ fs.mkdirSync(`${rootDir}/${searchDir}`);
 fs.writeFileSync(`${rootDir}/${searchDir}/index.html`, searchPage);
 // favicon.ico
 fs.writeFileSync(`${rootDir}/favicon.ico`, fs.readFileSync(`${srcDir}/favicon.ico`));
-// 生成url.txt文件
-if (arguments.length > 0 && arguments[0] !== "") {
-    let fWrite = fs.createWriteStream(`${rootDir}/../../urls.txt`);
-    // 首页
-    fWrite.write(`${rootUrl}` + '\n');
-    // 分类页
-    fWrite.write(`${rootUrl}/category` + '\n');
-    // 分类列表页
-    for (let i = 0; i < catList.length; i++) {
-        fWrite.write(`${catList[i].link}` + '\n');
-   }
-    // 标签页
-    fWrite.write(`${rootUrl}/tags` + '\n');
-    // 标签列表首页
-    for (let i = 0; i < tagList.length; i++) {
-        fWrite.write(`${tagList[i].link}` + '\n');
-    }
-    // 详情页
-    for (let i = 0; i < absData.length; i++) {
-        fWrite.write(`${absData[i].permalink}` + '\n');
-    }
-    fWrite.close();
-}
 console.timeEnd('jijian generate');
