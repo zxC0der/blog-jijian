@@ -99,6 +99,8 @@ let readAllData = (postPath) => {
     let tags = {};
     // index.json
     let jsonData = [];
+    let tagList = []
+    let catList = []
     let dirs = fs.readdirSync(postPath);
     fs.mkdirSync(`${rootDir}/${detailDir}`);
     dirs.forEach(function (dir) {
@@ -122,7 +124,7 @@ let readAllData = (postPath) => {
                     mat.math = true;
                 }
                 mat.category = dir;
-                // 要删除.md
+                // 删除.md
                 mat.title = filename.slice(0, -3);
                 if (mat.date === undefined) {
                     mat.date = moment().format("YYYY-MM-DD HH:mm:ss ZZ");
@@ -138,6 +140,7 @@ let readAllData = (postPath) => {
                     title: mat.title,
                     permalink: `${rootUrl}/${detailUrl}/${mat.permalink}`,
                     date: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format('MMM D, YYYY'),
+                    timestamp: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format("X"),
                     category: {
                         name: mat.category,
                         permalink: `${rootUrl}/${categoryUrl}/${mat.category}`,
@@ -155,16 +158,9 @@ let readAllData = (postPath) => {
                     permalink: `${rootUrl}/${detailUrl}/${mat.permalink}`,
                     content: o.content,
                     date: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format('MMM D, YYYY'),
-                    category: {
-                        name: mat.category,
-                        permalink: `${rootUrl}/${categoryUrl}/${mat.category}`,
-                    },
-                    tags: mat.tags.map(value => {
-                        return {
-                            name: value,
-                            permalink: `${rootUrl}/${tagUrl}/${value}`,
-                        }
-                    }),
+                    timestamp: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format("X"),
+                    category: obj.category,
+                    tags: obj.tags,
                 })
                 if (cats[mat.category] === undefined) {
                     cats[mat.category] = 1;
@@ -182,22 +178,13 @@ let readAllData = (postPath) => {
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, {
                     title: obj.title,
                     date: obj.date,
-                    category: {
-                        name: mat.category,
-                        permalink: `${rootUrl}/${categoryUrl}/${mat.category}`,
-                    },
-                    tags: mat.tags.map(value => {
-                        return {
-                            name: value,
-                            permalink: `${rootUrl}/${tagUrl}/${value}`,
-                        }
-                    }),
+                    category: obj.category,
+                    tags: obj.tags,
                     content: marked(o.content),
                     url: `${rootUrl}/${detailUrl}/${mat.permalink}`,
                 });
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
                     title: mat.title + ' - zxCoder\'s blog',
-                    year: moment().year(),
                     navbarItems,
                 }, {
                     content: detailComponent
@@ -207,13 +194,13 @@ let readAllData = (postPath) => {
             })
         }
     );
-    jsonData.sort((a, b) => {
-        return moment(b.date, "MMM D, YYYY").diff(moment(a.date, "MMM D, YYYY"));
-    })
+    let sortByTimestamp=(a, b) => {
+        return b.timestamp-a.timestamp;
+    };
+    jsonData.sort(sortByTimestamp)
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
     // 格式转换
-    let tagList = []
-    let catList = []
+
     for (let tag in tags) {
         tagList.push({
             name: tag,
@@ -228,14 +215,12 @@ let readAllData = (postPath) => {
             link: `${rootUrl}/${categoryUrl}/${cat}`,
         })
     }
-    let sortFun = (a, b) => {
+    let sortByNum = (a, b) => {
         return a.num < b.num ? 1 : -1;
     }
-    tagList.sort(sortFun)
-    catList.sort(sortFun)
-    absData.sort((a, b) => {
-        return moment(b.date, "MMM D, YYYY").diff(moment(a.date, "MMM D, YYYY"));
-    })
+    tagList.sort(sortByNum)
+    catList.sort(sortByNum)
+    absData.sort(sortByTimestamp);
     return {
         absData,
         catList,
@@ -256,7 +241,6 @@ let renderList = (path, url, data, home = false, name = '') => {
     });
     let index = renderFromFile(`${layoutDir}/index.html`, {
         title: (home ? '' : name + ' - ') + 'zxCoder\'s blog',
-        year: moment().year(),
         rootUrl,
         navbarItems,
     }, {
@@ -297,7 +281,6 @@ let aboutComponent = renderFromFile(`${layoutDir}/about.html`, {
 });
 let aboutPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '关于 - zxCoder\'s blog',
-    year: moment().year(),
     rootUrl,
     navbarItems,
 }, {
@@ -312,7 +295,6 @@ let categoryComponent = renderFromFile(`${layoutDir}/category.html`, {
 });
 let categoryPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '分类 - zxCoder\'s blog',
-    year: moment().year(),
     rootUrl,
     navbarItems,
 }, {
@@ -338,7 +320,6 @@ let tagComponent = renderFromFile(`${layoutDir}/tag.html`, {
 });
 let tagPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '标签 - zxCoder\'s blog',
-    year: moment().year(),
     navbarItems,
 }, {
     content: tagComponent
@@ -364,7 +345,6 @@ let searchComponent = renderFromFile(`${layoutDir}/search.html`, {
 });
 let searchPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '搜索 - zxCoder\'s blog',
-    year: moment().year(),
     search: rootUrl,
     navbarItems,
 }, {
@@ -397,7 +377,4 @@ if (arguments.length > 0 && arguments[0] !== "") {
     }
     fWrite.close();
 }
-// 复制js
-fs.writeFileSync(`${rootDir}/highlight.pack.js`, fs.readFileSync(`${srcDir}/highlight.pack.js`));
-// fs.writeFileSync(`${rootDir}/katex.js`, fs.readFileSync(`${srcDir}/katex.js`));
 console.timeEnd('jijian generate');

@@ -223,25 +223,16 @@
 <div class="post">
     <h1>字符串最小表示</h1>
     <div>
-        <span>
-            Dec 3, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/字符串">#字符串</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/最小表示">#最小表示</a>
-        </span>
+        <span>Dec 3, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/字符串">#字符串</a></span>
+        <span><a href="https://www.zxcoder.top/tags/最小表示">#最小表示</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="思路">思路</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="思路">思路</h2>
 <p>给定一个字符串，最小表示指的是循环的字符串中字典序最小的那个。</p>
 <p>做法是定义两个指针i=0和j=1，表示正在比较的两个字符下标，定义k表示当前比较的字符串相等前缀长度，当a[i+k]==a[j+k]，k++，当a[i+k]!=a[j+k]，假设a[i+k]&gt;a[j+k]，直接让i+=k+1，因为a[i+1...i+k-1]这部分开头的前缀显然不可能是最小表示，因为对应的有一个a[j+1...j+k-1]与其相等，而a[i+k]又大于a[j+k]，所以显然不是最优。然后注意字符串的循环结构，所以i+k的下标要取模n；如果i和j移动后相等，需要一个往后移一位。</p>
 <h2 id="代码">代码</h2>
@@ -271,18 +262,15 @@
     return min(i,j);
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/string-minimun-representation">https://www.zxcoder.top/detail/string-minimun-representation</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -325,28 +313,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -375,8 +351,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

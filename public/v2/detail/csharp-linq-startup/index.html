@@ -223,25 +223,16 @@
 <div class="post">
     <h1>CSharp语言集成查询(LINQ)</h1>
     <div>
-        <span>
-            Jan 8, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/CSharp">#CSharp</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/LINQ">#LINQ</a>
-        </span>
+        <span>Jan 8, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/CSharp">#CSharp</a></span>
+        <span><a href="https://www.zxcoder.top/tags/LINQ">#LINQ</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="概述">概述</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="概述">概述</h2>
 <p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
 <p>例子：</p>
 <pre><code class="language-c#">int[] num = {1, 5, 2, 7, 6, 3, 9, 8, 4, 10};
@@ -260,18 +251,15 @@ foreach (var x in lowNum2) {
 <p>对于<code>Count</code>、<code>Max</code>、<code>Average</code>和<code>First</code>等此查询，默认强制立即执行，返回单个值，<code>ToList</code>和<code>ToArray</code>方法也可以强制立即执行查询并缓存结果。</p>
 <p><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/linq/media/introduction-to-linq-queries/linq-query-complete-operation.png" alt="LINQ查询示意图"></p>
 <p>除了上面的简单查询的例子，LINQ支持分组，连接，子查询等复杂操作，详见文档。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/csharp-linq-startup">https://www.zxcoder.top/detail/csharp-linq-startup</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -314,28 +302,16 @@ foreach (var x in lowNum2) {
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -364,8 +340,6 @@ foreach (var x in lowNum2) {
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

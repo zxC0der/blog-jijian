@@ -223,31 +223,18 @@
 <div class="post">
     <h1>CodeForces1485C</h1>
     <div>
-        <span>
-            Feb 14, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/题解">题解</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数论">#数论</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/思维">#思维</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/整除分块">#整除分块</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/枚举">#枚举</a>
-        </span>
+        <span>Feb 14, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/题解">题解</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数论">#数论</a></span>
+        <span><a href="https://www.zxcoder.top/tags/思维">#思维</a></span>
+        <span><a href="https://www.zxcoder.top/tags/整除分块">#整除分块</a></span>
+        <span><a href="https://www.zxcoder.top/tags/枚举">#枚举</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="题意">题意</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="题意">题意</h2>
 <p>求满足$a \in [1,x]$和$b \in [1,y]$且$\left \lfloor \frac{a}{b} \right \rfloor    =a%b$的数对$(a,b)$数量。</p>
 <h2 id="分析">分析</h2>
 <p>设余数为$k$，当$k=0$，不存在这样的数对，当$k&gt;0$，则$a=kb+k=k(b+1)$，根据余数的定义，$k&lt;b$，因此$k^2&lt;kb&lt;kb+k=a&lt;x$，所以$k&lt;=\sqrt x$。</p>
@@ -288,18 +275,15 @@ int main(){
     return 0;
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/codeforces-1485C">https://www.zxcoder.top/detail/codeforces-1485C</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -342,28 +326,16 @@ int main(){
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -392,8 +364,6 @@ int main(){
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

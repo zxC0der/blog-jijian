@@ -223,28 +223,17 @@
 <div class="post">
     <h1>B+树(Java实现)</h1>
     <div>
-        <span>
-            Dec 20, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/B+树">#B+树</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数据结构">#数据结构</a>
-        </span>
+        <span>Dec 20, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/B+树">#B+树</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数据库">#数据库</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数据结构">#数据结构</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="基础概念">基础概念</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="基础概念">基础概念</h2>
 <p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
 <h2 id="search">Search</h2>
 <p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code>searchInInternalNode</code>函数来判断要往哪个儿子节点走。</p>
@@ -558,18 +547,15 @@ private void mergeTwoInternalNode(Node first, Node sec) {
     }
 }                                                        
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/b-plus-tree-java-implementation">https://www.zxcoder.top/detail/b-plus-tree-java-implementation</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -612,28 +598,16 @@ private void mergeTwoInternalNode(Node first, Node sec) {
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -662,8 +636,6 @@ private void mergeTwoInternalNode(Node first, Node sec) {
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

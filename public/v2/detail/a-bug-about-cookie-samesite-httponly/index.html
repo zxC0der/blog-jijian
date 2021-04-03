@@ -223,31 +223,18 @@
 <div class="post">
     <h1>Cookie跨域问题(SameSite,HttpOnly)</h1>
     <div>
-        <span>
-            Apr 3, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/Bug Fixed">#Bug Fixed</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/Cookie">#Cookie</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/开发">#开发</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a>
-        </span>
+        <span>Apr 3, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a></span>
+        <span><a href="https://www.zxcoder.top/tags/Bug Fixed">#Bug Fixed</a></span>
+        <span><a href="https://www.zxcoder.top/tags/Cookie">#Cookie</a></span>
+        <span><a href="https://www.zxcoder.top/tags/开发">#开发</a></span>
+        <span><a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="心路历程">心路历程</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="心路历程">心路历程</h2>
 <p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
 <p>首先，后端在Response设置Cookie的时候，如果不加选项，前端在登陆时，Chrome会提示无法设置cookie，<code>This set-cookie didn&#39;t specify a &quot;SameSite&quot; attribute and was defaulted to &quot;SameSite=Lax&quot; and broke the same rules specified in the SameSiteLax value</code>，提示需要给set-cookie设置SameSite属性，这个属性是干啥的这里不深入...总之就是为了安全考虑的，避免啥啥啥的跨域攻击，但是为了方便，在这里我们直接将该属性设置为<code>None</code>，然后再试，Chrome会提示，如果设置了None，就还必须设置<code>Secure</code>属性，让Cookie只能通过HTTPS发送。</p>
 <p>参考<a href="https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0">官方文档</a>，最终我们后端设置Cookie的时候应该是</p>
@@ -259,18 +246,15 @@ HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOpti
 </code></pre>
 <p>然后关键就来了，直接我直接照抄文档，多加了一个<code>HttpOnly = true</code>的属性，结果该属性的含义是Cookie只能通过HTTP/HTTPS传输，无法从JS脚本中获取，而我前端应用进入主页时需要判断Cookie是否存在，所以才一直进不去。</p>
 <p>做东西学东西一定要细心，<strong>有时候总想着能用就行，到最后往往就变成不能用了</strong>。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/a-bug-about-cookie-samesite-httponly">https://www.zxcoder.top/detail/a-bug-about-cookie-samesite-httponly</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -313,28 +297,16 @@ HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOpti
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -363,8 +335,6 @@ HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOpti
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

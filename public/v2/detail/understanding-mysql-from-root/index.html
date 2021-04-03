@@ -223,28 +223,17 @@
 <div class="post">
     <h1>MySQL是怎样运行的：从根儿上理解MySQL</h1>
     <div>
-        <span>
-            Mar 13, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/读书笔记">读书笔记</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/MySQL">#MySQL</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/TODO">#TODO</a>
-        </span>
+        <span>Mar 13, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/读书笔记">读书笔记</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数据库">#数据库</a></span>
+        <span><a href="https://www.zxcoder.top/tags/MySQL">#MySQL</a></span>
+        <span><a href="https://www.zxcoder.top/tags/TODO">#TODO</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="0">0</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="0">0</h2>
 <p>1-3章是MySQL一些基础知识和相关操作，<strong>4-7章是索引相关</strong>，8-9章数据目录和表空间先大致了解即可，<strong>10-11章单表访问和多表连接，涉及到很多索引的内容</strong>，12-14章知道MySQL会利用统计信息进行基于成本和基于规则的查询优化即可，15-17章关于Explain命令和optimizer trace表的应用，在实际使用中可能会比较重要，18章是Buffer Pool，简单了解原理，<strong>19-23章是日志和故障恢复</strong>，<strong>24-25章是事务，MVCC，并发控制，锁等面试常考点</strong>。</p>
 <h2 id="1-mysql概述">1 MySQL概述</h2>
 <ul>
@@ -447,18 +436,15 @@
 <li>内存中的锁结构包括事务信息，索引信息(行锁)，表锁/行锁信息(例如对哪个表加的锁，记录所在表空间，页号)，锁类型等。且在同一个事务中，可能会根据情况，对锁进行复用，并不一定是每一次加锁都创建一个新的锁结构。</li>
 </ul>
 <p>// TODO 做一些实验?</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/understanding-mysql-from-root">https://www.zxcoder.top/detail/understanding-mysql-from-root</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -501,28 +487,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -551,8 +525,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

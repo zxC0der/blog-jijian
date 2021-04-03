@@ -223,25 +223,16 @@
 <div class="post">
     <h1>康拓展开</h1>
     <div>
-        <span>
-            Dec 3, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/全排列">#全排列</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/康拓展开">#康拓展开</a>
-        </span>
+        <span>Dec 3, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/全排列">#全排列</a></span>
+        <span><a href="https://www.zxcoder.top/tags/康拓展开">#康拓展开</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="康拓展开全排列排名">康拓展开(全排列排名)</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="康拓展开全排列排名">康拓展开(全排列排名)</h2>
 <h3 id="思路">思路</h3>
 <p>康拓展开是求一个全排列是第k小，思路很简单，我们求出比这个排列小的排列的数量，对于a[i]，显然比a[i]小的数都可以放在这个位置，然后后面的位置随便放，方案数就是一个阶乘，当然，因为是全排列，为了避免重复使用数字，所以求的是在i的后面比a[i]小的数的个数。即$rk=b_n(n-1)!+b_{n-1}(n-2)!+...b_10!$，其中$b_i$就是表示在i的后面比a[i]小的数的个数。</p>
 <p>朴素做法是O(N^2)，可以用树状数组/线段树来优化计算$b_i$，复杂度为O(NlogN)。</p>
@@ -348,18 +339,15 @@ vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
     return perm;
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/permutation-and-cantor-expansion">https://www.zxcoder.top/detail/permutation-and-cantor-expansion</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -402,28 +390,16 @@ vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -452,8 +428,6 @@ vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

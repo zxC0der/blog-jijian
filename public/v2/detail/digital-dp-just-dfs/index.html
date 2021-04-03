@@ -223,25 +223,16 @@
 <div class="post">
     <h1>数位dp(爆搜)</h1>
     <div>
-        <span>
-            Mar 28, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/dp">#dp</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数位dp">#数位dp</a>
-        </span>
+        <span>Mar 28, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/dp">#dp</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数位dp">#数位dp</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="解决什么问题">解决什么问题</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="解决什么问题">解决什么问题</h2>
 <p>此类题目大多数有两个特点: 区间，具有某些特征的数。</p>
 <p>比如不含有4和连续的62(hdu2089)，比如含有13并且可以被13整除(hdu3652)，比如满足该数可以整除其数位和(hdu4389)等等...</p>
 <h2 id="如何解决">如何解决</h2>
@@ -321,18 +312,15 @@ int main(){
     return 0;
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/digital-dp-just-dfs">https://www.zxcoder.top/detail/digital-dp-just-dfs</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -375,28 +363,16 @@ int main(){
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -425,8 +401,6 @@ int main(){
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

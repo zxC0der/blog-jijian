@@ -223,37 +223,20 @@
 <div class="post">
     <h1>个人云服务器软件配置备忘录</h1>
     <div>
-        <span>
-            Nov 29, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/服务器">#服务器</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/Linux">#Linux</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/ssh">#ssh</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/环境变量">#环境变量</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/PostgreSQL">#PostgreSQL</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/MongoDb">#MongoDb</a>
-        </span>
+        <span>Nov 29, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/服务器">#服务器</a></span>
+        <span><a href="https://www.zxcoder.top/tags/Linux">#Linux</a></span>
+        <span><a href="https://www.zxcoder.top/tags/ssh">#ssh</a></span>
+        <span><a href="https://www.zxcoder.top/tags/环境变量">#环境变量</a></span>
+        <span><a href="https://www.zxcoder.top/tags/PostgreSQL">#PostgreSQL</a></span>
+        <span><a href="https://www.zxcoder.top/tags/MongoDb">#MongoDb</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="创建非root用户">创建非root用户</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="创建非root用户">创建非root用户</h2>
 <h3 id="创建用户">创建用户</h3>
 <pre><code>useradd -m -s /bin/bash zxc
 </code></pre>
@@ -622,18 +605,15 @@ newgrp docker
 <p>测试是否安装成功。</p>
 <pre><code>docker-compose --version
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/my-linux-server-config">https://www.zxcoder.top/detail/my-linux-server-config</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -676,28 +656,16 @@ newgrp docker
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -726,8 +694,6 @@ newgrp docker
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

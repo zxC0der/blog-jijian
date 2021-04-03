@@ -223,25 +223,16 @@
 <div class="post">
     <h1>数据库事务故障恢复</h1>
     <div>
-        <span>
-            Feb 22, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/基础知识">基础知识</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/事务">#事务</a>
-        </span>
+        <span>Feb 22, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/基础知识">基础知识</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数据库">#数据库</a></span>
+        <span><a href="https://www.zxcoder.top/tags/事务">#事务</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="事务管理">事务管理</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="事务管理">事务管理</h2>
 <h3 id="事务的定义">事务的定义</h3>
 <p>事务是一系列的数据库操作，作为一个不可分割的执行**单元(unit)**，要么全做要么全不做。</p>
 <p>在这一部分单纯讨论事务的并发时，我们通常定义一个简单的事务模型，假设事务的写操作是直接写到磁盘(实际上会有页面的缓冲池)的原子操作(因此另一个并发事务可以读取到最新数据)。而事务并非总能成功执行，但事务出错终止(aborted)时，为了保证原子性，事务终止前对数据库做的操作都需要撤销，需要对事务进行回滚(rolled back)，数据库系统通常是基于日志(log)进行故障恢复。</p>
@@ -307,18 +298,15 @@
 <p>为了方便处理，undo-list的事务在重做阶段也会被重做，然后在撤销阶段再被撤销。</p>
 <h2 id="mysql中的事务恢复">MySQL中的事务恢复</h2>
 <h2 id="postgresql中的事务恢复">PostgreSQL中的事务恢复</h2>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/database-transaction-recovery">https://www.zxcoder.top/detail/database-transaction-recovery</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -361,28 +349,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -411,8 +387,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

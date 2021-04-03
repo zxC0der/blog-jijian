@@ -223,22 +223,15 @@
 <div class="post">
     <h1>位运算实现加减乘除</h1>
     <div>
-        <span>
-            Dec 2, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/位运算">#位运算</a>
-        </span>
+        <span>Dec 2, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/位运算">#位运算</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="加法">加法</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="加法">加法</h2>
 <h3 id="思路">思路</h3>
 <p>思路很简单，首先假设两个数相加，所有位都没进位，那么结果就是所有位直接对应相加即可，比如123+234=357，而如果有一些位有进位的清空，比如456+789，我们先不考虑进位，每一位单独算，得到的结果设为a，这里a=135，再考虑进位，这里每一位都进位了，分别进了十位，百位和千位，所以进位的结果是1110，那很显然，我们可以将456+789的答案转化为<strong>不考虑进位的和</strong>加上<strong>进位的值</strong>，在这里也就是135+1110=1245，如果这个加法也出现了进位，那么很明显就采用递归/迭代的思路继续操作下去，直到两个数的加法不出现进位，即为答案。</p>
 <p>上面是10进制的情况，2进制的道理是一样的，而且因为2进制我们可以采用位运算来快速计算上面的<strong>不进位加法</strong>(位异或)和<strong>进位和</strong>(位与再左移1位)，所以就可以采用位运算的方法来计算两个数的和。</p>
@@ -409,18 +402,15 @@ int main(){
     return 0;
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/add-sub-mul-div-by-bit-operation">https://www.zxcoder.top/detail/add-sub-mul-div-by-bit-operation</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -463,28 +453,16 @@ int main(){
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -513,8 +491,6 @@ int main(){
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

@@ -223,26 +223,17 @@
 <div class="post">
     <h1>CMU15-445(19-fall)-Project2-Hash-Index</h1>
     <div>
-        <span>
-            Nov 17, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/数据库">#数据库</a>
-        </span>
+        <span>Nov 17, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/CMU15-445">#CMU15-445</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数据库">#数据库</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <blockquote>
-<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#49;&#x32;&#x39;&#x31;&#x34;&#50;&#54;&#x39;&#52;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;">&#x31;&#49;&#x32;&#x39;&#x31;&#x34;&#50;&#54;&#x39;&#52;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;</a></p>
+    <div id="TableOfContents"></div>
+    <div><blockquote>
+<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#x31;&#x32;&#57;&#x31;&#x34;&#x32;&#54;&#x39;&#x34;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#x31;&#x32;&#57;&#x31;&#x34;&#x32;&#54;&#x39;&#x34;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a></p>
 </blockquote>
 <h2 id="理论基础">理论基础</h2>
 <p>DBMS内部会使用多种数据结构，具体用途包括表示内部的元数据，存储核心数据，执行查询时的临时数据结构(比如join时用了哈希表)，数据库索引。</p>
@@ -282,18 +273,15 @@
 </ul>
 <p>并发安全方面，首先要弄清楚在每种操作中每个对象(哈希表对象和各个page对象)应该加读锁还是写锁，这取决于是否对这个对象进行写操作。比如对于哈希表对象，GetValue函数中只会对哈希表对象进行读操作，读取BPM对象，compartor对象等，所以加读锁，Insert和Remove同理，但是Resize就会修改哈希表对象的bucket数量，header page id，block数量，block映射关系等等，所以需要加写锁。对于page对象，包括header page和block page，在GetValue函数中，page只需要加读锁，在Insert和Remove函数中，header page只要加读锁，block page因为要插入，删除，要加写锁，在Resize函数中，新的page需要写入数据，所以要加写锁。</p>
 <p>注意在读写锁的实现中，加读锁是可以同时读，加了读锁可以再加写锁，但不能再加读锁，而且会等到所有读者完成才开始写锁，所以加读锁可以防止写。注意<strong>加锁后一定要记得解锁，不然就很容易出现死锁</strong>。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/cmu15445-19fall-project2">https://www.zxcoder.top/detail/cmu15445-19fall-project2</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -336,28 +324,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -386,8 +362,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

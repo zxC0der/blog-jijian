@@ -187,9 +187,6 @@
 <script>
     const form = document.querySelector('#searchForm');
     const input = form.querySelector('input[name="q"]');
-    if (input.value === '') {
-        input.value = new URLSearchParams(window.location.search).get('q');
-    }
     form.addEventListener('submit', (event) => {
         search(input.value);
         event.preventDefault();

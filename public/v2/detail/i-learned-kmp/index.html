@@ -223,25 +223,16 @@
 <div class="post">
     <h1>这次一定要学会KMP</h1>
     <div>
-        <span>
-            Dec 2, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/KMP">#KMP</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/字符串">#字符串</a>
-        </span>
+        <span>Dec 2, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/KMP">#KMP</a></span>
+        <span><a href="https://www.zxcoder.top/tags/字符串">#字符串</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="概述">概述</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="概述">概述</h2>
 <p>KMP是一种快速的字符串匹配算法，字符串匹配的暴力做法中，当匹配到某一个字符时失配，模式串需要重新回到第一个字符串，对应的，主串需要在上一个起点的基础上前进<strong>一个</strong>字符，而KMP解决的问题就在这里，通过预处理，在这里可以让模式串跳<strong>多个</strong>字符，从而加快匹配速度，最终时间复杂度是O(n+m)，n是主串长度，m是模式串长度，其中预处理复杂度是O(m)，匹配复杂度是O(n)。</p>
 <p>首先计算一个nex数组(也有叫做fail函数，意思相同，指匹配失败之后的处理)，简单来说，nex[i]表示模式串前缀pat[0...i]的最长相同前后缀长度(可重叠，但不可以是整个子串)，这里也有另一种表示法，nex[0]为-1，然后用nex[i]表示前i的字符，也就是模式串前缀pat[0...i-1]的最长相同前后缀长度。</p>
 <h2 id="匹配">匹配</h2>
@@ -319,18 +310,15 @@ int kmp(char* s,int n,char* p,int m){
 <p>border其实就是字符串的相同前后缀长度，所以nex数组其实求的就是前缀的最长border。</p>
 <p>周期是子串的长度，且该可以通过重复构成原串(可能不是完整的)。</p>
 <p>比如abaaaba，周期是4(abaa)，6(abaaab)，7(abaaaba)，border是aba，a和空串。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/i-learned-kmp">https://www.zxcoder.top/detail/i-learned-kmp</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -373,28 +361,16 @@ int kmp(char* s,int n,char* p,int m){
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -423,8 +399,6 @@ int kmp(char* s,int n,char* p,int m){
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

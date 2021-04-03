@@ -223,25 +223,16 @@
 <div class="post">
     <h1>约瑟夫环问题</h1>
     <div>
-        <span>
-            Dec 2, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/算法学习">算法学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/约瑟夫环">#约瑟夫环</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/递归">#递归</a>
-        </span>
+        <span>Dec 2, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/算法学习">算法学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/约瑟夫环">#约瑟夫环</a></span>
+        <span><a href="https://www.zxcoder.top/tags/递归">#递归</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="思路">思路</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="思路">思路</h2>
 <p>约瑟夫环问题是：n个人围成一个环，编号从1到n(或者从0到n-1)，从1开始数(从几开始数不重要，重要的是数到第几个出队)，第k个人出队，然后从下一个人开始重新数，直到剩最后一个为赢家。</p>
 <p>我们先把环展开，n个人时，队列为1 2 3 ... n-1 n(n个人，队列1)，淘汰一个人后，下一轮应该从k+1开始报数，也就是k+1 k+1 ... k-1(n-1个人，队列2)，对于这两个队列，胜者的编号应该是一样的，但在两个队列中的位置发生了变化，而对于下面这个队列1 2 3 ... n-2 n-1(n-1个人，队列3)，因为和队列2都是n-1个人，所以显然胜者的位置是一样的，而我们的递归函数f(n,k)其实算的就是队列1(n个人)和队列3(n-1个人)，而当我们计算了队列3，需要转化为队列2之后，再返回给上层函数，这两者的关系就是(x+k)%n，n是当前人数，在迭代做法中应该是i。</p>
 <p>注意最后一步，当队列编号从0开始时，可以直接(x+k)%n，当队伍编号从1开始时，应该是(x+k-1)%n+1。</p>
@@ -265,18 +256,15 @@
     return x;
 }
 </code></pre>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/josephur-ring">https://www.zxcoder.top/detail/josephur-ring</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -319,28 +307,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -369,8 +345,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

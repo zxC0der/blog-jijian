@@ -223,22 +223,15 @@
 <div class="post">
     <h1>dotnet5-项目快速起步</h1>
     <div>
-        <span>
-            Dec 14, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/技术学习">技术学习</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a>
-        </span>
+        <span>Dec 14, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <blockquote>
+    <div id="TableOfContents"></div>
+    <div><blockquote>
 <p>用最简单的方式介绍dotnet中我所用到的一小小小部分，更多具体信息需要查看官方文档。</p>
 </blockquote>
 <h2 id="solution和project">Solution和Project</h2>
@@ -256,18 +249,15 @@
 <h2 id="build和publish">build和publish</h2>
 <p>简单来说，<code>build</code>不会把第三方的依赖包打包进入，所以<code>build</code>之后的可执行文件可以在本机运行，在运行时依赖本地的依赖包，而<code>publish</code>是专门用于发布的，所以会将所有依赖包打包进入，可以直接移植到其他机器运行。</p>
 <p>根据官方文档，其实在.Net Core3.0之后的项目，库依赖项会被打包到输出文件夹。 如果没有其他任何特定于发布的逻辑(例如，Web项目具有的逻辑)，也可以直接部署。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/dotnet5-project-quick-start">https://www.zxcoder.top/detail/dotnet5-project-quick-start</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -310,28 +300,16 @@
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -360,8 +338,6 @@
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

@@ -223,25 +223,16 @@
 <div class="post">
     <h1>Git基本操作备忘</h1>
     <div>
-        <span>
-            Feb 21, 2021
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/基础知识">基础知识</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/git">#git</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/开发">#开发</a>
-        </span>
+        <span>Feb 21, 2021</span>
+        <span><a href="https://www.zxcoder.top/category/基础知识">基础知识</a></span>
+        <span><a href="https://www.zxcoder.top/tags/git">#git</a></span>
+        <span><a href="https://www.zxcoder.top/tags/开发">#开发</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <h2 id="基本概念">基本概念</h2>
+    <div id="TableOfContents"></div>
+    <div><h2 id="基本概念">基本概念</h2>
 <h3 id="git">Git</h3>
 <p>Git是一个分布式的版本控制系统。</p>
 <h3 id="工作区，暂存区和版本库">工作区，暂存区和版本库</h3>
@@ -339,18 +330,15 @@ Creating a new branch is quick AND simple.
 <p><code>git tag -d {tag name}</code>删除标签。</p>
 <p><code>git push origin {tag name} || --tags</code>可以将某个标签或者所有标签推送到远程origin分支上，默认不推送。</p>
 <p><code>git push origin :refs/tags/{tag name}</code>在删除本地标签之后删除远程标签。</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/git-fundamental-memorandum">https://www.zxcoder.top/detail/git-fundamental-memorandum</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -393,28 +381,16 @@ Creating a new branch is quick AND simple.
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -443,8 +419,6 @@ Creating a new branch is quick AND simple.
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({

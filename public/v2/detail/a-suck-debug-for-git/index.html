@@ -223,25 +223,16 @@
 <div class="post">
     <h1>一次关于git的简单查错</h1>
     <div>
-        <span>
-            Dec 28, 2020
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/git">#git</a>
-        </span>
-        <span>
-            <a href="https://www.zxcoder.top/tags/Bug Fixed">#Bug Fixed</a>
-        </span>
+        <span>Dec 28, 2020</span>
+        <span><a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a></span>
+        <span><a href="https://www.zxcoder.top/tags/git">#git</a></span>
+        <span><a href="https://www.zxcoder.top/tags/Bug Fixed">#Bug Fixed</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="collapseTOC"></div>
-    <div>
-        <p>本地一个项目突然push不上，报错是</p>
+    <div id="TableOfContents"></div>
+    <div><p>本地一个项目突然push不上，报错是</p>
 <pre><code>ERROR: Repository not found.
 fatal: Could not read from remote repository.
 
@@ -265,18 +256,15 @@ IdentityFile ~/.ssh/xxx
 </code></pre>
 <p>这里因为两个都是用在github上，所以host应该加个子域名区分，如果是不同网站，比如gitee，直接gitee.com就行。</p>
 <p>因此，重新仔细检查了<code>~/.ssh/config</code>文件，最后发现问题是把<code>id_rsa</code>打成了<code>id-rsa</code>...</p>
-
-    </div>
+</div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/a-suck-debug-for-git">https://www.zxcoder.top/detail/a-suck-debug-for-git</a></p>
     </div>
 </div>
 <script>
-    // TODO 目录和高亮应该都可以静态生成？
     // 生成目录
-    let nav = document.createElement('nav');
-    nav.id = 'TableOfContents';
+    let nav = document.getElementById('TableOfContents');
     let h2s = document.querySelectorAll('.post h2');
     let h23s = document.querySelectorAll('.post h2,h3');
     let h2ul = document.createElement('ul');
@@ -319,28 +307,16 @@ IdentityFile ~/.ssh/xxx
         }
     }
     nav.appendChild(h2ul);
-    document.getElementById('collapseTOC').appendChild(nav);
-    let body = document.getElementById('collapseTOC');
     let isShow = false;
-    body.style.display = 'none';
+    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
         if (isShow) {
-            body.style.display = 'block';
+            nav.style.display = 'block';
         } else {
-            body.style.display = 'none';
+            nav.style.display = 'none';
         }
     });
-    document.querySelectorAll("#TableOfContents a").forEach(ele => {
-        ele.addEventListener('click', () => {
-            isShow = !isShow;
-            if (isShow) {
-                body.style.display = 'block';
-            } else {
-                body.style.display = 'none';
-            }
-        })
-    })
 </script>
 <!--详情页katex渲染，代码高亮-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
@@ -369,8 +345,6 @@ IdentityFile ~/.ssh/xxx
 </script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
-<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
-<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({
