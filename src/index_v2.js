@@ -274,22 +274,29 @@ let tagList = obj.tagList;
 // 首页列表
 renderList(rootDir, rootUrl, absData, true);
 // 关于页
-let aboutMe = [
-    "一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
-    "不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者",
-    "数学不太行，英文也不太行，语文更不行",
-    "<a href='https://www.github.com/Zeng1998'>Github</a>",
-    "Email: <a href='mailto:1129142694@qq.com'>1129142694@qq.com</a>"
-]
-let aboutBlog = [
-    "基于<a href='https://github.com/janl/mustache.js'>Mustache</a>模板引擎，自己实现了一个极简的的静态网页生成器",
-    "纯原生css/js打造，基本样式<del>抄袭</del>参考自<a href='https://bearblog.dev/'>bearblog</a>",
-    "记录一些做题题解，技术总结，读书笔记，debug经历等等",
-    "目前部署在<a href='https://vercel.com/'>Vercel</a>(免费，省心，速度也还行)，AliDNS解析",
+let aboutContent=[
+    {
+        name:"About Me",
+        data:[
+            "一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
+            "不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者",
+            "数学不太行，英文也不太行，语文更不行",
+            "<a href='https://www.github.com/Zeng1998'>Github</a>",
+            "Email: <a href='mailto:1129142694@qq.com'>1129142694@qq.com</a>"
+        ],
+    },
+    {
+        name:"About My Blog",
+        data:[
+            "基于<a href='https://github.com/janl/mustache.js'>Mustache</a>模板引擎，自己实现了一个极简的的静态网页生成器",
+            "纯原生css/js打造，基本样式<del>抄袭</del>参考自<a href='https://bearblog.dev/'>bearblog</a>",
+            "记录一些做题题解，技术总结，读书笔记，debug经历等等",
+            "目前部署在<a href='https://vercel.com/'>Vercel</a>(免费，省心，速度也还行)，AliDNS解析",
+        ],
+    }
 ]
 let aboutComponent = renderFromFile(`${layoutDir}/about.html`, {
-    aboutMe,
-    aboutBlog,
+    aboutContent,
 });
 let aboutPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '关于 - zxCoder\'s blog',

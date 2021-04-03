@@ -1,6 +1,5 @@
 ---
 tags: 
-  - CodeForces
   - 构造
   - 素数
   - 二分查找

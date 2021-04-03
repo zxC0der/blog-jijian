@@ -4,7 +4,7 @@ tags:
   - Bug Fixed
   - Cookie
   - 开发
-  - C#
+  - dotnet
 math: true
 category: 杂七杂八
 title: Cookie跨域问题(SameSite,HttpOnly)

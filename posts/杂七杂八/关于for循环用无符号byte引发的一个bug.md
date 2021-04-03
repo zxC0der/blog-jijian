@@ -1,6 +1,6 @@
 ---
 tags: 
-  - debug
+  - Bug Fixed
 permalink: a-bug-caused-by-for-a-ubyte
 category: 杂七杂八
 title: 关于for循环用无符号byte引发的一个bug

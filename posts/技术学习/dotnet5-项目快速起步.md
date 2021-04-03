@@ -1,6 +1,5 @@
 ---
 tags: 
-  - C#
   - dotnet
 permalink: dotnet5-project-quick-start
 category: 技术学习

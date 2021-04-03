@@ -10,7 +10,6 @@
     <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
     <style>
         body {
-            font-family: Verdana, sans-serif;
             margin: auto;
             padding: 20px;
             max-width: 720px;
@@ -36,7 +35,6 @@
 
         a {
             color: #3273dc;
-            /*color: #ff5e6c;*/
         }
 
         .title {
@@ -49,15 +47,6 @@
         }
 
         .title span {
-            font-weight: 400;
-        }
-
-        .bear::before {
-            content: "ᕦʕ •ᴥ•ʔᕤ";
-            font-weight: 400;
-        }
-        .bear:hover::before {
-            content: "ᕙʕ ಠᴥಠʔᕗ";
             font-weight: 400;
         }
 
@@ -79,10 +68,6 @@
             color: inherit;
             border: 1px dashed;
             padding: 3px;
-        }
-
-        content {
-            line-height: 1.6;
         }
 
         table {
@@ -120,26 +105,6 @@
         footer {
             padding: 25px;
             text-align: center;
-        }
-
-        .helptext {
-            color: #777;
-            font-size: small;
-        }
-
-        .errorlist {
-            color: #eba613;
-            font-size: small;
-        }
-
-        #date-range,
-        #initial-values {
-            display: none;
-        }
-
-        #date-range:target,
-        #initial-values:target {
-            display: block;
         }
 
         /* dashboard post list and analytics */
@@ -192,7 +157,7 @@
         code ul li{
             list-style-type: decimal;
         }
-        .btn-scroll-to-top {
+        #btnScrollToTop {
             color: black;
             display: none;
             position: fixed;
@@ -280,9 +245,6 @@
             <a href="https://www.zxcoder.top/category/题解">题解</a>
         </span>
         <span>
-            <a href="https://www.zxcoder.top/tags/AtCoder">#AtCoder</a>
-        </span>
-        <span>
             <a href="https://www.zxcoder.top/tags/贪心">#贪心</a>
         </span>
         <span>
@@ -298,7 +260,7 @@
             <a href="https://www.zxcoder.top/tags/状压dp">#状压dp</a>
         </span>
         <span>
-            <a href="https://www.zxcoder.top/tags/ToBeAC">#ToBeAC</a>
+            <a href="https://www.zxcoder.top/tags/TODO">#TODO</a>
         </span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
@@ -496,14 +458,14 @@ int main(){
         }
     }
 </script>
-<!--<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"-->
-<!--        onload="initHighLight();"></script>-->
-<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
+<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
+<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({
-            languages: ["c", "cpp", "java", "c#"]
+            languages: ["c", "cpp", "java", "csharp"]
         });
         const codes = document.querySelectorAll('div code')
         codes.forEach((block) => {
@@ -520,15 +482,11 @@ int main(){
 </script>
 </main>
 <footer>
-    <p>
-        Copyright © 2021-2021 zxCoder. All Rights Reserved.
-    </p>
-    <p>
-        Powered by My Coding.</a>
-    </p>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</a></p>
 </footer>
 <!--滚动到顶部-->
-<a id="btnScrollToTop" class="btn-scroll-to-top">
+<a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
         <path fill="none" d="M0 0h24v24H0z"/>
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>

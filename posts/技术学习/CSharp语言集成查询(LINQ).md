@@ -1,6 +1,6 @@
 ---
 tags: 
-  - C#
+  - CSharp
   - LINQ
 permalink: csharp-linq-startup
 category: 技术学习

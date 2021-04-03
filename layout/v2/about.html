@@ -1,14 +1,10 @@
 <div>
-    <h3>About Me</h3>
+    {{#aboutContent}}
+    <h3>{{name}}</h3>
     <ul>
-        {{#aboutMe}}
+        {{#data}}
         <li>{{{.}}}</li>
-        {{/aboutMe}}
+        {{/data}}
     </ul>
-    <h3>About My Blog</h3>
-    <ul>
-        {{#aboutBlog}}
-        <li>{{{.}}}</li>
-        {{/aboutBlog}}
-    </ul>
+    {{/aboutContent}}
 </div>

@@ -5,7 +5,7 @@
         margin-top: 1rem;
     }
 
-    .z-search-tip {
+    #searchStat {
         margin-top: 0.33rem;
         padding: 1.25rem 0;
     }
@@ -14,9 +14,7 @@
     <form id="searchForm">
         <input class="z-search-input" name="q" placeholder="请输入关键字">
     </form>
-    <div class="z-search-tip">
-        <span id="searchStat"></span>
-    </div>
+    <p id="searchStat"></p>
     <ul id="searchResults" class="blog-posts"></ul>
 </div>
 </script>
@@ -51,8 +49,7 @@
         }
     };
     xhr.responseType = 'json';
-    xhr.open('GET', document
-        .head
+    xhr.open('GET', document.head
         .querySelector('meta[data-name="search-index"]')
         .getAttribute('content'), true);
     xhr.send(null);
@@ -67,9 +64,8 @@
             stat.innerHTML = noKeywords;
             return;
         }
-        const siz = data.length;
         let results = [];
-        for (let i = 0; i < siz; i++) {
+        for (let i = 0; i < data.length; i++) {
             if (data[i].title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
                 results.push(data[i]);
             } else if (data[i].content.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
@@ -93,17 +89,13 @@
             stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
             for (let i = 0; i < thisResults.length; i += 1) {
                 const result = thisResults[i];
-                let template = "";
-                template += "<li>" +
-                    "<span>" +
+                let template ="<li><span>" +
                     result.date +
-                    "</span>" +
-                    "<a href='" +
+                    "</span><a href='" +
                     result.permalink +
                     "'>" +
                     result.title +
-                    "</a>" +
-                    "</li>"
+                    "</a></li>"
                 resultsElement.insertAdjacentHTML('beforeend', template);
             }
         } else {

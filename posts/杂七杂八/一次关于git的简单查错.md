@@ -1,7 +1,7 @@
 ---
 tags: 
   - git
-  - debug
+  - Bug Fixed
 permalink: a-suck-debug-for-git
 category: 杂七杂八
 title: 一次关于git的简单查错

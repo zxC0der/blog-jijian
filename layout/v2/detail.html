@@ -175,14 +175,14 @@
         }
     }
 </script>
-<!--<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"-->
-<!--        onload="initHighLight();"></script>-->
-<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
+<!--<script defer src="https://cdn.jsdelivr.net/gh/zxC0der/blog-jijian@master/public/v2/highlight.pack.js"-->
+<!--        onload="initHighLight();"></script>-->
 <script>
     function initHighLight() {
         hljs.configure({
-            languages: ["c", "cpp", "java", "c#"]
+            languages: ["c", "cpp", "java", "csharp"]
         });
         const codes = document.querySelectorAll('div code')
         codes.forEach((block) => {

@@ -10,7 +10,6 @@
     <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
     <style>
         body {
-            font-family: Verdana, sans-serif;
             margin: auto;
             padding: 20px;
             max-width: 720px;
@@ -36,7 +35,6 @@
 
         a {
             color: #3273dc;
-            /*color: #ff5e6c;*/
         }
 
         .title {
@@ -49,15 +47,6 @@
         }
 
         .title span {
-            font-weight: 400;
-        }
-
-        .bear::before {
-            content: "ᕦʕ •ᴥ•ʔᕤ";
-            font-weight: 400;
-        }
-        .bear:hover::before {
-            content: "ᕙʕ ಠᴥಠʔᕗ";
             font-weight: 400;
         }
 
@@ -79,10 +68,6 @@
             color: inherit;
             border: 1px dashed;
             padding: 3px;
-        }
-
-        content {
-            line-height: 1.6;
         }
 
         table {
@@ -120,26 +105,6 @@
         footer {
             padding: 25px;
             text-align: center;
-        }
-
-        .helptext {
-            color: #777;
-            font-size: small;
-        }
-
-        .errorlist {
-            color: #eba613;
-            font-size: small;
-        }
-
-        #date-range,
-        #initial-values {
-            display: none;
-        }
-
-        #date-range:target,
-        #initial-values:target {
-            display: block;
         }
 
         /* dashboard post list and analytics */
@@ -192,7 +157,7 @@
         code ul li{
             list-style-type: decimal;
         }
-        .btn-scroll-to-top {
+        #btnScrollToTop {
             color: black;
             display: none;
             position: fixed;
@@ -222,7 +187,7 @@
         margin-top: 1rem;
     }
 
-    .z-search-tip {
+    #searchStat {
         margin-top: 0.33rem;
         padding: 1.25rem 0;
     }
@@ -231,9 +196,7 @@
     <form id="searchForm">
         <input class="z-search-input" name="q" placeholder="请输入关键字">
     </form>
-    <div class="z-search-tip">
-        <span id="searchStat"></span>
-    </div>
+    <p id="searchStat"></p>
     <ul id="searchResults" class="blog-posts"></ul>
 </div>
 </script>
@@ -268,8 +231,7 @@
         }
     };
     xhr.responseType = 'json';
-    xhr.open('GET', document
-        .head
+    xhr.open('GET', document.head
         .querySelector('meta[data-name="search-index"]')
         .getAttribute('content'), true);
     xhr.send(null);
@@ -284,9 +246,8 @@
             stat.innerHTML = noKeywords;
             return;
         }
-        const siz = data.length;
         let results = [];
-        for (let i = 0; i < siz; i++) {
+        for (let i = 0; i < data.length; i++) {
             if (data[i].title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
                 results.push(data[i]);
             } else if (data[i].content.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
@@ -310,17 +271,13 @@
             stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
             for (let i = 0; i < thisResults.length; i += 1) {
                 const result = thisResults[i];
-                let template = "";
-                template += "<li>" +
-                    "<span>" +
+                let template ="<li><span>" +
                     result.date +
-                    "</span>" +
-                    "<a href='" +
+                    "</span><a href='" +
                     result.permalink +
                     "'>" +
                     result.title +
-                    "</a>" +
-                    "</li>"
+                    "</a></li>"
                 resultsElement.insertAdjacentHTML('beforeend', template);
             }
         } else {
@@ -331,15 +288,11 @@
 </script>
 </main>
 <footer>
-    <p>
-        Copyright © 2021-2021 zxCoder. All Rights Reserved.
-    </p>
-    <p>
-        Powered by My Coding.</a>
-    </p>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</a></p>
 </footer>
 <!--滚动到顶部-->
-<a id="btnScrollToTop" class="btn-scroll-to-top">
+<a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
         <path fill="none" d="M0 0h24v24H0z"/>
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
