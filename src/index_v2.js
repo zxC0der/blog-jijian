@@ -6,6 +6,7 @@ const mustache = require('mustache');
 const matter = require('gray-matter');
 const jsonToYaml = require('json2yaml');
 const marked = require("marked");
+const {execSync} = require('child_process');
 // xxxDir是生成html的存放路径，xxxUrl是生成html的跳转url
 const layoutDir = path.join(__dirname, '../layout/v2');
 const postsDir = path.join(__dirname, '../posts');
@@ -29,28 +30,7 @@ const detailDir = "detail";
 const detailUrl = "detail";
 const searchDir = "search";
 const searchUrl = "search";
-/**
- * 递归删除文件夹
- * @param path
- */
-let delDir = (path) => {
-    let files = [];
-    if (fs.existsSync(path)) {
-        files = fs.readdirSync(path);
-        files.forEach(file => {
-            let curPath = path + "/" + file;
-            if (fs.statSync(curPath).isDirectory()) {
-                delDir(curPath);
-            } else {
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(path);
-    }
-}
-// 更新public目录
-delDir(rootDir);
-fs.mkdirSync(rootDir);
+execSync(`rm -rf ${rootDir}/*`);
 /**
  * 从文件渲染mustache模板
  * @param path
@@ -91,16 +71,10 @@ let navbarItems = [
  * @returns {{absData: [], tagList: [], catList: []}}
  */
 let readAllData = (postPath) => {
-    // 摘要数据
     let absData = [];
-    // 分类列表
-    let cats = {};
-    // 标签列表
-    let tags = {};
-    // index.json
-    let jsonData = [];
-    let tagList = []
     let catList = []
+    let tagList = []
+    let jsonData = [];
     let dirs = fs.readdirSync(postPath);
     fs.mkdirSync(`${rootDir}/${detailDir}`);
     dirs.forEach(function (dir) {
@@ -153,36 +127,35 @@ let readAllData = (postPath) => {
                     }),
                 };
                 absData.push(obj);
-                jsonData.push({
-                    title: mat.title,
-                    permalink: `${rootUrl}/${detailUrl}/${mat.permalink}`,
-                    content: o.content,
-                    date: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format('MMM D, YYYY'),
-                    timestamp: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format("X"),
-                    category: obj.category,
-                    tags: obj.tags,
-                })
-                if (cats[mat.category] === undefined) {
-                    cats[mat.category] = 1;
-                } else {
-                    cats[mat.category]++;
+                let jsObj=JSON.parse(JSON.stringify(obj));
+                jsObj.content=o.content;
+                jsonData.push(jsObj);
+                let t=catList.findIndex(ele=>ele.name===mat.category);
+                if(t===-1){
+                    catList.push({
+                        name:mat.category,
+                        num:1,
+                        link: `${rootUrl}/${categoryUrl}/${mat.category}`,
+                    })
+                }else{
+                    catList[t].num++;
                 }
                 mat.tags.forEach(function (tag) {
-                    if (tags[tag] === undefined) {
-                        tags[tag] = 1;
-                    } else {
-                        tags[tag]++;
+                    let t=tagList.findIndex(ele=>ele.name===tag);
+                    if(t===-1){
+                        tagList.push({
+                            name:tag,
+                            num:1,
+                            link: `${rootUrl}/${tagUrl}/${tag}`,
+                        })
+                    }else{
+                        tagList[t].num++;
                     }
                 });
                 // 渲染
-                let detailComponent = renderFromFile(`${layoutDir}/detail.html`, {
-                    title: obj.title,
-                    date: obj.date,
-                    category: obj.category,
-                    tags: obj.tags,
-                    content: marked(o.content),
-                    url: `${rootUrl}/${detailUrl}/${mat.permalink}`,
-                });
+                let rdObj=JSON.parse(JSON.stringify(obj));
+                rdObj.content=marked(o.content);
+                let detailComponent = renderFromFile(`${layoutDir}/detail.html`, obj);
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
                     title: mat.title + ' - zxCoder\'s blog',
                     navbarItems,
@@ -199,22 +172,6 @@ let readAllData = (postPath) => {
     };
     jsonData.sort(sortByTimestamp)
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
-    // 格式转换
-
-    for (let tag in tags) {
-        tagList.push({
-            name: tag,
-            num: tags[tag],
-            link: `${rootUrl}/${tagUrl}/${tag}`,
-        })
-    }
-    for (let cat in cats) {
-        catList.push({
-            name: cat,
-            num: cats[cat],
-            link: `${rootUrl}/${categoryUrl}/${cat}`,
-        })
-    }
     let sortByNum = (a, b) => {
         return a.num < b.num ? 1 : -1;
     }
@@ -241,7 +198,6 @@ let renderList = (path, url, data, home = false, name = '') => {
     });
     let index = renderFromFile(`${layoutDir}/index.html`, {
         title: (home ? '' : name + ' - ') + 'zxCoder\'s blog',
-        rootUrl,
         navbarItems,
     }, {
         content: listComponent,
@@ -281,7 +237,6 @@ let aboutComponent = renderFromFile(`${layoutDir}/about.html`, {
 });
 let aboutPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '关于 - zxCoder\'s blog',
-    rootUrl,
     navbarItems,
 }, {
     content: aboutComponent,
@@ -295,7 +250,6 @@ let categoryComponent = renderFromFile(`${layoutDir}/category.html`, {
 });
 let categoryPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '分类 - zxCoder\'s blog',
-    rootUrl,
     navbarItems,
 }, {
     content: categoryComponent
@@ -340,9 +294,7 @@ for (let i = 0; i < tagList.length; i++) {
         filteredData, false, tag.name);
 }
 // 搜索页
-let searchComponent = renderFromFile(`${layoutDir}/search.html`, {
-    rootUrl,
-});
+let searchComponent = renderFromFile(`${layoutDir}/search.html`, {});
 let searchPage = renderFromFile(`${layoutDir}/index.html`, {
     title: '搜索 - zxCoder\'s blog',
     search: rootUrl,
