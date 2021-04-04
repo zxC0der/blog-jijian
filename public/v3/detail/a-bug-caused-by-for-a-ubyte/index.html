@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -230,12 +228,12 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
+    <div id="TableOfContents" style="display: none;"><ul></ul></div>
     <div><p>突然脑抽for循环定义byte变量</p>
-<pre><code class="language-c#">for (byte i = 0; i &lt; 256; i++) {
-    data.Add(i);
-}
-</code></pre>
+<pre><code class="hljs language-c#"><ul><li><span class="hljs-keyword">for</span> (<span class="hljs-built_in">byte</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">256</span>; i++) {
+</li><li>    data.Add(i);
+</li><li>}
+</li></ul></code></pre>
 <p>看似很有道理，byte的范围是0-255，那我就遍历到255就行，结果单元测试一直炸，而且电脑变卡，所以猜测是内存炸了。</p>
 <p>定睛一看，这TM不是一个死循环！i到255后在加1，又变成0...</p>
 <p>解决，又顺利浪费了20分钟。</p>
@@ -248,95 +246,25 @@
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -357,5 +285,6 @@
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

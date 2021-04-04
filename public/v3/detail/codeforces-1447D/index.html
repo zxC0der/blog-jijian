@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -232,39 +230,48 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
-    <div><h2>题意</h2>
-<p>给定两个长度为5000的字符串s和t，分别从中找到一个子串ss和tt，使得4*lcs(ss,tt)-len(ss)-len(tt)的值最大。</p>
-<h2>分析</h2>
-<p>5000! lcs! &lt;del&gt;很容易&lt;/del&gt;想到最长公共子序列O(N^2)的dp求法，类似的，我们定义dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值，注意一定是以这两个字符结尾，这样统计才不重不漏，而子串的左端点其实无需考虑，只需要通过取max更新答案。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#题意">题意</a></li><li><a href="#分析">分析</a></li><li><a href="#代码">代码</a></li></ul></div>
+    <div><h2 id="题意" style="display: inline-block;">题意</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>给定两个长度为5000的字符串s和t，分别从中找到一个子串ss和tt，使得4*lcs(ss,tt)-len(ss)-len(tt)的值最大。</p>
+<h2 id="分析" style="display: inline-block;">分析</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>5000! lcs! <del>很容易</del>想到最长公共子序列O(N^2)的dp求法，类似的，我们定义dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值，注意一定是以这两个字符结尾，这样统计才不重不漏，而子串的左端点其实无需考虑，只需要通过取max更新答案。</p>
 <p>当两个字符相等，显然lcs加1，两个子串长度也分别加1，总的值加2，当两个字符不等，按照lcs的做法，这里的一个子串长度加1，另一个不变。</p>
-<h2>代码</h2>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int N=5050;
-char s[N],t[N];
-int n,m;
-// 不用管子串的开头，dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值
-int dp[N][N];
-int main(){
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-    scanf(&quot;%s&quot;,s+1);
-    scanf(&quot;%s&quot;,t+1);
-    int ans=0;
-    for(int i=1;i&lt;=n;i++){
-        for(int j=1;j&lt;=m;j++){
-            if(s[i]==t[j]){
-                dp[i][j]=dp[i-1][j-1]+2;
-            }else{
-                dp[i][j]=max(0,max(dp[i][j-1],dp[i-1][j])-1);
-            }
-            ans=max(ans,dp[i][j]);
-        }
-    }
-    printf(&quot;%d\n&quot;,ans);
-    return 0;
-}
-</code></pre>
+<h2 id="代码" style="display: inline-block;">代码</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5050</span>;
+</li><li><span class="hljs-keyword">char</span> s[N],t[N];
+</li><li><span class="hljs-keyword">int</span> n,m;
+</li><li><span class="hljs-comment">// 不用管子串的开头，dp[i][j]表示以s[i]结尾的子串和以t[j]结尾的子串的最大计算值</span>
+</li><li><span class="hljs-keyword">int</span> dp[N][N];
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m);
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,s+<span class="hljs-number">1</span>);
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,t+<span class="hljs-number">1</span>);
+</li><li>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){
+</li><li>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++){
+</li><li>            <span class="hljs-keyword">if</span>(s[i]==t[j]){
+</li><li>                dp[i][j]=dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]+<span class="hljs-number">2</span>;
+</li><li>            }<span class="hljs-keyword">else</span>{
+</li><li>                dp[i][j]=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,<span class="hljs-built_in">max</span>(dp[i][j<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-1</span>][j])<span class="hljs-number">-1</span>);
+</li><li>            }
+</li><li>            ans=<span class="hljs-built_in">max</span>(ans,dp[i][j]);
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
@@ -274,95 +281,25 @@ int main(){
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -383,5 +320,6 @@ int main(){
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

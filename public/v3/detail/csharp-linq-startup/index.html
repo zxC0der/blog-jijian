@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -231,24 +229,27 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
-    <div><h2>概述</h2>
-<p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#概述">概述</a></li></ul></div>
+    <div><h2 id="概述" style="display: inline-block;">概述</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
 <p>例子：</p>
-<pre><code class="language-c#">int[] num = {1, 5, 2, 7, 6, 3, 9, 8, 4, 10};
-var lowNum = from i in num where i &gt; 5 orderby i descending select i;
-foreach (var x in lowNum) {
-    Console.WriteLine(x);
-}
-</code></pre>
+<pre><code class="hljs language-c#"><ul><li><span class="hljs-built_in">int</span>[] num = {<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">10</span>};
+</li><li><span class="hljs-keyword">var</span> lowNum = <span class="hljs-keyword">from</span> i <span class="hljs-keyword">in</span> num <span class="hljs-keyword">where</span> i &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">orderby</span> i <span class="hljs-keyword">descending</span> <span class="hljs-keyword">select</span> i;
+</li><li><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> x <span class="hljs-keyword">in</span> lowNum) {
+</li><li>    Console.WriteLine(x);
+</li><li>}
+</li></ul></code></pre>
 <p>每一个查询运算符(基本上)都有对应的一个<strong>拓展方法</strong>，因此上述的例子可以改写成</p>
-<pre><code class="language-c#">var lowNum2 = num.Where(i =&gt; i &gt; 5).OrderByDescending(i =&gt; i);
-foreach (var x in lowNum2) {
-    Console.WriteLine(x);
-}
-</code></pre>
-<p>LINQ查询返回的基本都是<code>IEnumerable&lt;\T&gt;</code>或其派生接口，仅创建查询变量不会检索到任何数据，默认是延迟执行。</p>
-<p>对于<code>Count</code>、<code>Max</code>、<code>Average</code>和<code>First</code>等此查询，默认强制立即执行，返回单个值，<code>ToList</code>和<code>ToArray</code>方法也可以强制立即执行查询并缓存结果。</p>
+<pre><code class="hljs language-c#"><ul><li><span class="hljs-keyword">var</span> lowNum2 = num.Where(i =&gt; i &gt; <span class="hljs-number">5</span>).OrderByDescending(i =&gt; i);
+</li><li><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> x <span class="hljs-keyword">in</span> lowNum2) {
+</li><li>    Console.WriteLine(x);
+</li><li>}
+</li></ul></code></pre>
+<p>LINQ查询返回的基本都是<code class="z-inline-code">IEnumerable<span class="hljs-attribute">&lt;\T&gt;</span></code>或其派生接口，仅创建查询变量不会检索到任何数据，默认是延迟执行。</p>
+<p>对于<code class="z-inline-code"><span class="hljs-built_in">Count</span></code>、<code class="z-inline-code"><span class="hljs-built_in">Max</span></code>、<code class="z-inline-code"><span class="hljs-built_in">Average</span></code>和<code class="z-inline-code"><span class="hljs-built_in">First</span></code>等此查询，默认强制立即执行，返回单个值，<code class="z-inline-code"><span class="hljs-attribute">ToList</span></code>和<code class="z-inline-code"><span class="hljs-attribute">ToArray</span></code>方法也可以强制立即执行查询并缓存结果。</p>
 <p><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/linq/media/introduction-to-linq-queries/linq-query-complete-operation.png" alt="LINQ查询示意图"></p>
 <p>除了上面的简单查询的例子，LINQ支持分组，连接，子查询等复杂操作，详见文档。</p>
 </div>
@@ -260,95 +261,25 @@ foreach (var x in lowNum2) {
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -369,5 +300,6 @@ foreach (var x in lowNum2) {
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

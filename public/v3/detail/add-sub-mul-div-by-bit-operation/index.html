@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -230,178 +228,217 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
-    <div><h2>加法</h2>
-<h3>思路</h3>
-<p>思路很简单，首先假设两个数相加，所有位都没进位，那么结果就是所有位直接对应相加即可，比如123+234=357，而如果有一些位有进位的清空，比如456+789，我们先不考虑进位，每一位单独算，得到的结果设为a，这里a=135，再考虑进位，这里每一位都进位了，分别进了十位，百位和千位，所以进位的结果是1110，那很显然，我们可以将456+789的答案转化为<strong>不考虑进位的和</strong>加上<strong>进位的值</strong>，在这里也就是135+1110=1245，如果这个加法也出现了进位，那么很明显就采用递归/迭代的思路继续操作下去，直到两个数的加法不出现进位，即为答案。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#加法">加法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#减法">减法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#乘法">乘法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#除法">除法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#完整代码">完整代码</a></li></ul></div>
+    <div><h2 id="加法" style="display: inline-block;">加法</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>思路很简单，首先假设两个数相加，所有位都没进位，那么结果就是所有位直接对应相加即可，比如123+234=357，而如果有一些位有进位的清空，比如456+789，我们先不考虑进位，每一位单独算，得到的结果设为a，这里a=135，再考虑进位，这里每一位都进位了，分别进了十位，百位和千位，所以进位的结果是1110，那很显然，我们可以将456+789的答案转化为<strong>不考虑进位的和</strong>加上<strong>进位的值</strong>，在这里也就是135+1110=1245，如果这个加法也出现了进位，那么很明显就采用递归/迭代的思路继续操作下去，直到两个数的加法不出现进位，即为答案。</p>
 <p>上面是10进制的情况，2进制的道理是一样的，而且因为2进制我们可以采用位运算来快速计算上面的<strong>不进位加法</strong>(位异或)和<strong>进位和</strong>(位与再左移1位)，所以就可以采用位运算的方法来计算两个数的和。</p>
-<h3>代码</h3>
-<p>递归版：</p>
-<pre><code class="language-cpp">int add(int a,int b){
-    if(b==0){
-        return a;
-    }
-    return add(a^b,(a&amp;b)&lt;&lt;1);
-}
-</code></pre>
+<h3 id="代码" style="display: inline-block;">代码</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>递归版：</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>){
+</li><li>        <span class="hljs-keyword">return</span> a;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(a^b,(a&amp;b)&lt;&lt;<span class="hljs-number">1</span>);
+</li><li>}
+</li></ul></code></pre>
 <p>非递归版：</p>
-<pre><code class="language-cpp">int add(int a,int b){
-    while(b!=0){
-        int c=a^b;
-        b=(a&amp;b)&lt;&lt;1;
-        a=c;
-    }
-    return a;
-}
-</code></pre>
-<h2>减法</h2>
-<h3>思路</h3>
-<p>减去一个数，就等于加上一个的相反数，所以我们考虑相反数的二进制表示，总所周知，计算机是使用补码来表示一个数，比如我们分别输出-5和5的二进制位如下。</p>
-<pre><code class="language-cpp">void print(int a){
-    for(int i=31;i&gt;=0;i--){
-        printf(&quot;%d&quot;,(a&gt;&gt;i)&amp;1);
-    }
-    printf(&quot;\n&quot;);
-}
-//111111111111111111111111111111011
-//000000000000000000000000000000101
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">while</span>(b!=<span class="hljs-number">0</span>){
+</li><li>        <span class="hljs-keyword">int</span> c=a^b;
+</li><li>        b=(a&amp;b)&lt;&lt;<span class="hljs-number">1</span>;
+</li><li>        a=c;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> a;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="减法" style="display: inline-block;">减法</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>减去一个数，就等于加上一个的相反数，所以我们考虑相反数的二进制表示，总所周知，计算机是使用补码来表示一个数，比如我们分别输出-5和5的二进制位如下。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+</li><li>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,(a&gt;&gt;i)&amp;<span class="hljs-number">1</span>);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+</li><li>}
+</li><li><span class="hljs-comment">//111111111111111111111111111111011</span>
+</li><li><span class="hljs-comment">//000000000000000000000000000000101</span>
+</li></ul></code></pre>
 <p>所以相反数的二进制表示就是按位取反再加1，而不用考虑正数还是负数的问题。</p>
-<h3>代码</h3>
-<pre><code class="language-cpp">int neg(int a){
-    return add(~a,1)
-}
-int sub(int a,int b){
-    return add(a,neg(b));
-}
-</code></pre>
-<h2>乘法</h2>
-<h3>思路</h3>
-<p>乘法的思路是二进制数列竖式计算的思路，首先单独处理符号位(a^b可以判断符号位)，用绝对值来进行计算，对于被乘数乘以乘数，我们从低到高遍历乘数，当乘数当前位为1，答案应该加上被乘数<strong>乘以乘数当前位的权重</strong>，所以这里可以用一个简单的优化，因为随着乘数的遍历，权重一直都是左移一位的关系(1--&gt;10--&gt;100-&gt;...)，所以直接让被乘数左移即可，而另外为了方便计算乘数的当前位，我们可以直接让乘数右移，把当前位固定在最后一位，这样通过(b&amp;1)就能快速得到这一位的值。</p>
-<h3>代码</h3>
-<pre><code class="language-cpp">int mul(int a,int b){
-    // 取绝对值
-    int aa=a&lt;0?neg(a):a;
-    int bb=b&lt;0?neg(b):b;
-    int ans=0;
-    while(bb){
-        // 如果被乘数当前(最后一位)为1，答案加上被乘数
-        if((bb&amp;1)==1){
-            ans=add(ans,aa);
-        }
-        // 被乘数左移一位，被乘数左移是因为对应的权重不同
-        aa&lt;&lt;=1;
-        // 乘数右移一位，乘数右移是为了方便定位当前计算的位(一直是最后一位)
-        bb&gt;&gt;=1;
-    }
-    // 判断符号位
-    if((a^b)&lt;0){
-        ans=neg(ans);
-    }
-    return ans;
-}
-</code></pre>
-<h2>除法</h2>
-<h3>思路</h3>
-<p>除法是一个贪心的做法，从高位到低位(1&lt;&lt;31,1&lt;&lt;30,...)依次试除。</p>
-<h3>代码</h3>
-<pre><code class="language-cpp">int div2(int a,int b){
-    int aa=a&lt;0?neg(a):a;
-    int bb=b&lt;0?neg(b):b;
-    int ans=0;
-    for(int i=31;i&gt;=0;i--){
-        if((aa&gt;&gt;i)&gt;=bb){
-            ans=add(ans,1&lt;&lt;i);
-            aa=sub(aa,bb&lt;&lt;i);
-        }
-    }
-    if((a^b)&lt;0){
-        ans=neg(ans);
-    }
-    return ans;
-}
-</code></pre>
-<h2>完整代码</h2>
-<p>以上加减乘除四种做法其实都没有考虑到溢出的情况，&lt;del&gt;又不是做数电作业题&lt;/del&gt;，&lt;del&gt;如果遇到这么刁难的面试题就拒了吧&lt;/del&gt;。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-void print(int a){
-    for(int i=31;i&gt;=0;i--){
-        printf(&quot;%d&quot;,(a&gt;&gt;i)&amp;1);
-    }
-    printf(&quot;\n&quot;);
-}
-int add(int a,int b){
-    if(b==0){
-        return a;
-    }
-    return add(a^b,(a&amp;b)&lt;&lt;1);
-}
-int add2(int a,int b){
-    while(b!=0){
-        int c=a^b;
-        b=(a&amp;b)&lt;&lt;1;
-        a=c;
-    }
-    return a;
-}
-int neg(int a){
-    return add(~a,1);
-}
-int sub(int a,int b){
-    return add(a,neg(b));
-}
-int mul(int a,int b){
-    // 取绝对值
-    int aa=a&lt;0?neg(a):a;
-    int bb=b&lt;0?neg(b):b;
-    int ans=0;
-    while(bb){
-        // 如果被乘数当前(最后一位)为1，答案加上被乘数
-        if((bb&amp;1)==1){
-            ans=add(ans,aa);
-        }
-        // 被乘数左移一位 被乘数左移是因为对应的权重不同
-        aa&lt;&lt;=1;
-        // 乘数右移一位 乘数右移是为了方便定位当前计算的位(一直是最后一位)
-        bb&gt;&gt;=1;
-    }
-    // 判断符号位
-    if((a^b)&lt;0){
-        ans=neg(ans);
-    }
-    return ans;
-}
-int div2(int a,int b){
-    int aa=a&lt;0?neg(a):a;
-    int bb=b&lt;0?neg(b):b;
-    int ans=0;
-    for(int i=31;i&gt;=0;i--){
-        if((aa&gt;&gt;i)&gt;=bb){
-            ans=add(ans,1&lt;&lt;i);
-            aa=sub(aa,bb&lt;&lt;i);
-        }
-    }
-    if((a^b)&lt;0){
-        ans=neg(ans);
-    }
-    return ans;
-}
-int main(){
-    printf(&quot;%d\n&quot;,add(13,58));
-    printf(&quot;%d\n&quot;,add2(13,58));
-    printf(&quot;%d\n&quot;,sub(13,58));
-    printf(&quot;%d\n&quot;,sub(58,13));
-    printf(&quot;%d\n&quot;,mul(58,13));
-    printf(&quot;%d\n&quot;,mul(-58,13));
-    printf(&quot;%d\n&quot;,mul(-58,-13));
-    printf(&quot;%d\n&quot;,div2(58,13));
-    printf(&quot;%d\n&quot;,div2(-58,-13));
-    printf(&quot;%d\n&quot;,div2(-58,13));
-    printf(&quot;%d\n&quot;,div2(13,58));
-    return 0;
-}
-</code></pre>
+<h3 id="代码" style="display: inline-block;">代码</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">neg</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(~a,<span class="hljs-number">1</span>)
+</li><li>}
+</li><li><span class="hljs-keyword">int</span> <span class="hljs-built_in">sub</span>(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b){
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(a,<span class="hljs-built_in">neg</span>(b));
+</li><li>}
+</li></ul></code></pre>
+<h2 id="乘法" style="display: inline-block;">乘法</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>乘法的思路是二进制数列竖式计算的思路，首先单独处理符号位(a^b可以判断符号位)，用绝对值来进行计算，对于被乘数乘以乘数，我们从低到高遍历乘数，当乘数当前位为1，答案应该加上被乘数<strong>乘以乘数当前位的权重</strong>，所以这里可以用一个简单的优化，因为随着乘数的遍历，权重一直都是左移一位的关系(1--&gt;10--&gt;100-&gt;...)，所以直接让被乘数左移即可，而另外为了方便计算乘数的当前位，我们可以直接让乘数右移，把当前位固定在最后一位，这样通过(b&amp;1)就能快速得到这一位的值。</p>
+<h3 id="代码" style="display: inline-block;">代码</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-comment">// 取绝对值</span>
+</li><li>    <span class="hljs-keyword">int</span> aa=a&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(a):a;
+</li><li>    <span class="hljs-keyword">int</span> bb=b&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(b):b;
+</li><li>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">while</span>(bb){
+</li><li>        <span class="hljs-comment">// 如果被乘数当前(最后一位)为1，答案加上被乘数</span>
+</li><li>        <span class="hljs-keyword">if</span>((bb&amp;<span class="hljs-number">1</span>)==<span class="hljs-number">1</span>){
+</li><li>            ans=<span class="hljs-built_in">add</span>(ans,aa);
+</li><li>        }
+</li><li>        <span class="hljs-comment">// 被乘数左移一位，被乘数左移是因为对应的权重不同</span>
+</li><li>        aa&lt;&lt;=<span class="hljs-number">1</span>;
+</li><li>        <span class="hljs-comment">// 乘数右移一位，乘数右移是为了方便定位当前计算的位(一直是最后一位)</span>
+</li><li>        bb&gt;&gt;=<span class="hljs-number">1</span>;
+</li><li>    }
+</li><li>    <span class="hljs-comment">// 判断符号位</span>
+</li><li>    <span class="hljs-keyword">if</span>((a^b)&lt;<span class="hljs-number">0</span>){
+</li><li>        ans=<span class="hljs-built_in">neg</span>(ans);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> ans;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="除法" style="display: inline-block;">除法</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>除法是一个贪心的做法，从高位到低位(1&lt;&lt;31,1&lt;&lt;30,...)依次试除。</p>
+<h3 id="代码" style="display: inline-block;">代码</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">div2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">int</span> aa=a&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(a):a;
+</li><li>    <span class="hljs-keyword">int</span> bb=b&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(b):b;
+</li><li>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+</li><li>        <span class="hljs-keyword">if</span>((aa&gt;&gt;i)&gt;=bb){
+</li><li>            ans=<span class="hljs-built_in">add</span>(ans,<span class="hljs-number">1</span>&lt;&lt;i);
+</li><li>            aa=<span class="hljs-built_in">sub</span>(aa,bb&lt;&lt;i);
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-keyword">if</span>((a^b)&lt;<span class="hljs-number">0</span>){
+</li><li>        ans=<span class="hljs-built_in">neg</span>(ans);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> ans;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="完整代码" style="display: inline-block;">完整代码</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>以上加减乘除四种做法其实都没有考虑到溢出的情况，<del>又不是做数电作业题</del>，<del>如果遇到这么刁难的面试题就拒了吧</del>。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+</li><li>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,(a&gt;&gt;i)&amp;<span class="hljs-number">1</span>);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>){
+</li><li>        <span class="hljs-keyword">return</span> a;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(a^b,(a&amp;b)&lt;&lt;<span class="hljs-number">1</span>);
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">while</span>(b!=<span class="hljs-number">0</span>){
+</li><li>        <span class="hljs-keyword">int</span> c=a^b;
+</li><li>        b=(a&amp;b)&lt;&lt;<span class="hljs-number">1</span>;
+</li><li>        a=c;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> a;
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">neg</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(~a,<span class="hljs-number">1</span>);
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sub</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(a,<span class="hljs-built_in">neg</span>(b));
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-comment">// 取绝对值</span>
+</li><li>    <span class="hljs-keyword">int</span> aa=a&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(a):a;
+</li><li>    <span class="hljs-keyword">int</span> bb=b&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(b):b;
+</li><li>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">while</span>(bb){
+</li><li>        <span class="hljs-comment">// 如果被乘数当前(最后一位)为1，答案加上被乘数</span>
+</li><li>        <span class="hljs-keyword">if</span>((bb&amp;<span class="hljs-number">1</span>)==<span class="hljs-number">1</span>){
+</li><li>            ans=<span class="hljs-built_in">add</span>(ans,aa);
+</li><li>        }
+</li><li>        <span class="hljs-comment">// 被乘数左移一位 被乘数左移是因为对应的权重不同</span>
+</li><li>        aa&lt;&lt;=<span class="hljs-number">1</span>;
+</li><li>        <span class="hljs-comment">// 乘数右移一位 乘数右移是为了方便定位当前计算的位(一直是最后一位)</span>
+</li><li>        bb&gt;&gt;=<span class="hljs-number">1</span>;
+</li><li>    }
+</li><li>    <span class="hljs-comment">// 判断符号位</span>
+</li><li>    <span class="hljs-keyword">if</span>((a^b)&lt;<span class="hljs-number">0</span>){
+</li><li>        ans=<span class="hljs-built_in">neg</span>(ans);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> ans;
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">div2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
+</li><li>    <span class="hljs-keyword">int</span> aa=a&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(a):a;
+</li><li>    <span class="hljs-keyword">int</span> bb=b&lt;<span class="hljs-number">0</span>?<span class="hljs-built_in">neg</span>(b):b;
+</li><li>    <span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+</li><li>        <span class="hljs-keyword">if</span>((aa&gt;&gt;i)&gt;=bb){
+</li><li>            ans=<span class="hljs-built_in">add</span>(ans,<span class="hljs-number">1</span>&lt;&lt;i);
+</li><li>            aa=<span class="hljs-built_in">sub</span>(aa,bb&lt;&lt;i);
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-keyword">if</span>((a^b)&lt;<span class="hljs-number">0</span>){
+</li><li>        ans=<span class="hljs-built_in">neg</span>(ans);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> ans;
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">add</span>(<span class="hljs-number">13</span>,<span class="hljs-number">58</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">add2</span>(<span class="hljs-number">13</span>,<span class="hljs-number">58</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">sub</span>(<span class="hljs-number">13</span>,<span class="hljs-number">58</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">sub</span>(<span class="hljs-number">58</span>,<span class="hljs-number">13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">mul</span>(<span class="hljs-number">58</span>,<span class="hljs-number">13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">mul</span>(<span class="hljs-number">-58</span>,<span class="hljs-number">13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">mul</span>(<span class="hljs-number">-58</span>,<span class="hljs-number">-13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">div2</span>(<span class="hljs-number">58</span>,<span class="hljs-number">13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">div2</span>(<span class="hljs-number">-58</span>,<span class="hljs-number">-13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">div2</span>(<span class="hljs-number">-58</span>,<span class="hljs-number">13</span>));
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,<span class="hljs-built_in">div2</span>(<span class="hljs-number">13</span>,<span class="hljs-number">58</span>));
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
@@ -411,95 +448,25 @@ int main(){
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -520,5 +487,6 @@ int main(){
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

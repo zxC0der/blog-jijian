@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -231,31 +229,31 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
+    <div id="TableOfContents" style="display: none;"><ul></ul></div>
     <div><p>本地一个项目突然push不上，报错是</p>
-<pre><code>ERROR: Repository not found.
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-</code></pre>
+<pre><code class="hljs"><ul><li><span class="hljs-keyword">ERROR: </span>Repository not found.
+</li><li>fatal: Could not read from remote repository.
+</li><li>
+</li><li>Please make sure you have the correct access rights
+</li><li>and the repository exists.
+</li></ul></code></pre>
 <p>没有权限，第一步检查了github，<strong>确定有这个仓库</strong>，然后<strong>检查了ssh key</strong>，本地和github上的都没有问题，也重新添加了，仍然不行，所以不是这个问题。</p>
-<p>再接下来通过<code>git remote -v</code><strong>检查远程仓库链接</strong>，没有问题，通过<code>git remote rm origin</code>和<code>git remote add origin</code>重新添加后还行不行。</p>
-<p>然后通过<code>git config user.name/user.email</code>检查本地仓库的用户名和邮箱，也没问题。</p>
+<p>再接下来通过<code class="z-inline-code"><span class="hljs-attribute">git remote -v</span></code><strong>检查远程仓库链接</strong>，没有问题，通过<code class="z-inline-code"><span class="hljs-attribute">git remote rm origin</span></code>和<code class="z-inline-code">git remote <span class="hljs-builtin-name">add</span> origin</code>重新添加后还行不行。</p>
+<p>然后通过<code class="z-inline-code">git config <span class="hljs-keyword">user</span>.name/<span class="hljs-keyword">user</span>.email</code>检查本地仓库的用户名和邮箱，也没问题。</p>
 <p>想到大概率是两个ssh key的问题，因为之前博客放在小号的github上，所以本地配置了两个ssh密钥对，附上过程：</p>
-<p>通过<code>ssh-keygen -t rsa -C 'xx@xx.com' -f ~/.ssh/xxx</code>生成一个新的密钥对，然后在<code>~/.ssh/config</code>中配置</p>
-<pre><code>Host github.com
-HostName github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-
-Host zxc.github.com
-HostName github.com
-PreferredAuthentications publickey		
-IdentityFile ~/.ssh/xxx
-</code></pre>
+<p>通过<code class="z-inline-code">ssh-keygen -t rsa -C <span class="hljs-string">'xx@xx.com'</span> -f ~<span class="hljs-regexp">/.ssh/</span>xxx</code>生成一个新的密钥对，然后在<code class="z-inline-code">~<span class="hljs-regexp">/.ssh/</span>config</code>中配置</p>
+<pre><code class="hljs"><ul><li>Host github<span class="hljs-selector-class">.com</span>
+</li><li>HostName github<span class="hljs-selector-class">.com</span>
+</li><li>PreferredAuthentications publickey
+</li><li>IdentityFile ~/.ssh/id_rsa
+</li><li>
+</li><li>Host zxc<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.com</span>
+</li><li>HostName github<span class="hljs-selector-class">.com</span>
+</li><li>PreferredAuthentications publickey		
+</li><li>IdentityFile ~/.ssh/xxx
+</li></ul></code></pre>
 <p>这里因为两个都是用在github上，所以host应该加个子域名区分，如果是不同网站，比如gitee，直接gitee.com就行。</p>
-<p>因此，重新仔细检查了<code>~/.ssh/config</code>文件，最后发现问题是把<code>id_rsa</code>打成了<code>id-rsa</code>...</p>
+<p>因此，重新仔细检查了<code class="z-inline-code">~<span class="hljs-regexp">/.ssh/</span>config</code>文件，最后发现问题是把<code class="z-inline-code"><span class="hljs-attribute">id_rsa</span></code>打成了<code class="z-inline-code"><span class="hljs-built_in">id</span>-rsa</code>...</p>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
@@ -265,95 +263,25 @@ IdentityFile ~/.ssh/xxx
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -374,5 +302,6 @@ IdentityFile ~/.ssh/xxx
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

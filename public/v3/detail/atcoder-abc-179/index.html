@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -235,155 +233,173 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
-    <div><h2>A</h2>
-<p>输出字符串，以s结尾就加es，否则加s。</p>
-<h2>B</h2>
-<p>判断是否有连续三对相同的数。</p>
-<h2>C</h2>
-<p>给定N，求多少个正数三元组(A,B,C)满足AB+C=N。预处理因子个数然后暴力枚举C。</p>
-<h2>D</h2>
-<p>给定一些区间，从数轴的1开始，每次可以选择任意一个区间的任意一个数，向右走这么多步，问走到N的方案数。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#A">A</a></li><li><a href="#B">B</a></li><li><a href="#C">C</a></li><li><a href="#D">D</a></li><li><a href="#E">E</a></li><li><a href="#F">F</a></li></ul></div>
+    <div><h2 id="A" style="display: inline-block;">A</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>输出字符串，以s结尾就加es，否则加s。</p>
+<h2 id="B" style="display: inline-block;">B</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>判断是否有连续三对相同的数。</p>
+<h2 id="C" style="display: inline-block;">C</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>给定N，求多少个正数三元组(A,B,C)满足AB+C=N。预处理因子个数然后暴力枚举C。</p>
+<h2 id="D" style="display: inline-block;">D</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>给定一些区间，从数轴的1开始，每次可以选择任意一个区间的任意一个数，向右走这么多步，问走到N的方案数。</p>
 <p>简单的方案数DP，不同的是从前面的某一段区间转移而来，所以枚举区间，然后用前缀和优化即可，再优化也可以先把区间进行合并。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int N=2e5+50;
-const long long MOD=998244353;
-int n,k;
-long long dp[N],pre[N];
-struct node{
-    int l,r;
-    bool operator&lt;(const node&amp; rhs)const{
-        if(l!=rhs.l){
-            return l&lt;rhs.l;
-        }else{
-            return r&lt;rhs.r;
-        }
-    }
-}a[15];
-int main(){
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;k);
-    for(int i=1;i&lt;=k;i++){
-        scanf(&quot;%d%d&quot;,&amp;a[i].l,&amp;a[i].r);
-    }
-    sort(a+1,a+1+k);
-    vector&lt;node&gt; b;
-    int lastl=-1;
-    int lastr=-1;
-    int cur=1;
-    while(cur&lt;=k){
-        if(a[cur].l&lt;=lastr){
-            lastr=a[cur].r;
-        }else{
-            if(lastr!=-1){
-                b.push_back(node{lastl,lastr});
-            }
-            lastl=a[cur].l;
-            lastr=a[cur].r;
-        }
-        cur++;
-    }
-    if(lastr!=-1){
-        b.push_back(node{lastl,lastr});
-    }
-    dp[1]=1LL;
-    int siz=b.size();
-    for(int i=1;i&lt;=n;i++){
-        for(int j=0;j&lt;siz;j++){
-            int l=max(0,i-b[j].l);
-            int r=max(0,i-b[j].r-1);
-            dp[i]=(dp[i]+pre[l]-pre[r]+MOD)%MOD;
-        }
-        pre[i]=pre[i-1]+dp[i];
-    }
-    printf(&quot;%lld\n&quot;,dp[n]);
-    return 0;
-}
-</code></pre>
-<h2>E</h2>
-<p>给定首项x和递推式<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mo stretchy="false">(</mo><msubsup><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></msubsup><mo stretchy="false">)</mo><mi mathvariant="normal">%</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">a_n=(a_{n-1}^2) \% m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1205469999999997em;vertical-align:-0.30643899999999996em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999998em;"><span style="top:-2.451892em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30643899999999996em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">%</span><span class="mord mathnormal">m</span></span></span></span></eq>，求前n项和。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> MOD=<span class="hljs-number">998244353</span>;
+</li><li><span class="hljs-keyword">int</span> n,k;
+</li><li><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> dp[N],pre[N];
+</li><li><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
+</li><li>    <span class="hljs-keyword">int</span> l,r;
+</li><li>    <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> node&amp; rhs)<span class="hljs-keyword">const</span>{
+</li><li>        <span class="hljs-keyword">if</span>(l!=rhs.l){
+</li><li>            <span class="hljs-keyword">return</span> l&lt;rhs.l;
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            <span class="hljs-keyword">return</span> r&lt;rhs.r;
+</li><li>        }
+</li><li>    }
+</li><li>}a[<span class="hljs-number">15</span>];
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;k);
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;i++){
+</li><li>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;a[i].l,&amp;a[i].r);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">sort</span>(a+<span class="hljs-number">1</span>,a+<span class="hljs-number">1</span>+k);
+</li><li>    vector&lt;node&gt; b;
+</li><li>    <span class="hljs-keyword">int</span> lastl=<span class="hljs-number">-1</span>;
+</li><li>    <span class="hljs-keyword">int</span> lastr=<span class="hljs-number">-1</span>;
+</li><li>    <span class="hljs-keyword">int</span> cur=<span class="hljs-number">1</span>;
+</li><li>    <span class="hljs-keyword">while</span>(cur&lt;=k){
+</li><li>        <span class="hljs-keyword">if</span>(a[cur].l&lt;=lastr){
+</li><li>            lastr=a[cur].r;
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            <span class="hljs-keyword">if</span>(lastr!=<span class="hljs-number">-1</span>){
+</li><li>                b.<span class="hljs-built_in">push_back</span>(node{lastl,lastr});
+</li><li>            }
+</li><li>            lastl=a[cur].l;
+</li><li>            lastr=a[cur].r;
+</li><li>        }
+</li><li>        cur++;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">if</span>(lastr!=<span class="hljs-number">-1</span>){
+</li><li>        b.<span class="hljs-built_in">push_back</span>(node{lastl,lastr});
+</li><li>    }
+</li><li>    dp[<span class="hljs-number">1</span>]=<span class="hljs-number">1LL</span>;
+</li><li>    <span class="hljs-keyword">int</span> siz=b.<span class="hljs-built_in">size</span>();
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){
+</li><li>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;siz;j++){
+</li><li>            <span class="hljs-keyword">int</span> l=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,i-b[j].l);
+</li><li>            <span class="hljs-keyword">int</span> r=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,i-b[j].r<span class="hljs-number">-1</span>);
+</li><li>            dp[i]=(dp[i]+pre[l]-pre[r]+MOD)%MOD;
+</li><li>        }
+</li><li>        pre[i]=pre[i<span class="hljs-number">-1</span>]+dp[i];
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,dp[n]);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="E" style="display: inline-block;">E</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>给定首项x和递推式<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mo stretchy="false">(</mo><msubsup><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></msubsup><mo stretchy="false">)</mo><mi mathvariant="normal">%</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">a_n=(a_{n-1}^2) \% m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1205469999999997em;vertical-align:-0.30643899999999996em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999998em;"><span style="top:-2.451892em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30643899999999996em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">%</span><span class="mord mathnormal">m</span></span></span></span></eq>，求前n项和。</p>
 <p>注意到m的范围是1e5，所以很明显每一项都不会超过1e5，所以肯定会存在循环节，所以暴力找出循环节然后用前缀和计算一下剩下的小部分即可。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-const int N=2e6+50;
-ll n,x,m;
-ll a[N],p[N];
-int loc[N];
-int main(){
-//    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);
-    scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;x,&amp;m);
-    a[1]=x;
-    p[1]=x;
-    ll ans=x;
-    memset(loc,-1,sizeof(loc));
-    loc[x]=1;
-    for(int i=2;i&lt;=n;i++){
-        a[i]=(a[i-1]*a[i-1])%m;
-        p[i]=p[i-1]+a[i];
-        ans+=a[i];
-        if(loc[a[i]]!=-1){
-            ll cy=p[i]-p[loc[a[i]]];
-            ll num=(n-loc[a[i]])/(i-loc[a[i]]);
-            ll rem=n-loc[a[i]]-num*(i-loc[a[i]]);
-            ans+=cy*(num-1);
-            ans+=p[loc[a[i]]+rem]-p[loc[a[i]]];
-            break;
-        }
-        loc[a[i]]=i;
-    }
-    printf(&quot;%lld\n&quot;,ans);
-    return 0;
-}
-</code></pre>
-<h2>F</h2>
-<p>有个n行n列的网格图，初始中间n-2的方阵是黑色，最下边的行和最右边的列是白色，有两种操作，选择一列或者一行变成白色直到第一个原先已经白色的格子，给定一些操作，问最后黑色格子数量。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e6</span>+<span class="hljs-number">50</span>;
+</li><li>ll n,x,m;
+</li><li>ll a[N],p[N];
+</li><li><span class="hljs-keyword">int</span> loc[N];
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li><span class="hljs-comment">//    freopen("in.txt","r",stdin);</span>
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lld%lld%lld"</span>,&amp;n,&amp;x,&amp;m);
+</li><li>    a[<span class="hljs-number">1</span>]=x;
+</li><li>    p[<span class="hljs-number">1</span>]=x;
+</li><li>    ll ans=x;
+</li><li>    <span class="hljs-built_in">memset</span>(loc,<span class="hljs-number">-1</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(loc));
+</li><li>    loc[x]=<span class="hljs-number">1</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++){
+</li><li>        a[i]=(a[i<span class="hljs-number">-1</span>]*a[i<span class="hljs-number">-1</span>])%m;
+</li><li>        p[i]=p[i<span class="hljs-number">-1</span>]+a[i];
+</li><li>        ans+=a[i];
+</li><li>        <span class="hljs-keyword">if</span>(loc[a[i]]!=<span class="hljs-number">-1</span>){
+</li><li>            ll cy=p[i]-p[loc[a[i]]];
+</li><li>            ll num=(n-loc[a[i]])/(i-loc[a[i]]);
+</li><li>            ll rem=n-loc[a[i]]-num*(i-loc[a[i]]);
+</li><li>            ans+=cy*(num<span class="hljs-number">-1</span>);
+</li><li>            ans+=p[loc[a[i]]+rem]-p[loc[a[i]]];
+</li><li>            <span class="hljs-keyword">break</span>;
+</li><li>        }
+</li><li>        loc[a[i]]=i;
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="F" style="display: inline-block;">F</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>有个n行n列的网格图，初始中间n-2的方阵是黑色，最下边的行和最右边的列是白色，有两种操作，选择一列或者一行变成白色直到第一个原先已经白色的格子，给定一些操作，问最后黑色格子数量。</p>
 <p>最重要的一点是要从全局来看这个网格图，每一次操作其实都是对中间n-2行n-2列的黑色方阵的压缩，比如对第x列操作，那么对于x列右边的列，横向行的操作就不会再影响到了。</p>
 <p>具体做法如下，行和列分别维护：从上到下第一个被操作(全部变成白色)的行，这是因为上一段提到的，相当于一个收缩隔离的作用，在这个行以下的，状态不会再被改变，即黑色格子数量是一定的，可以通过第二个维护的量来记录；每一行第一个白色格子位置，显然这个白色格子就是列操作产生的，这样子当对这一行进行操作，就可以直接算出消失的黑色格子数量(<strong>注意比如[黑 白 黑]的清空，行的操作也只会影响第一个黑，但是这不会影响答案，第二个黑会在列的操作时被影响</strong>)。列同理。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-const int N=2e5+50;
-int n,q,o,x;
-// a[i]表示第i列第一个白色，b[i]表示第i行第一个白色
-int a[N],b[N];
-int main(){
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;q);
-    for(int i=1;i&lt;=n;i++){
-        a[i]=n;
-        b[i]=n;
-    }
-    // r表示从左到右第一个被竖切全白的列
-    // d表示从上到下第一个被横切全白的行
-    int r=n;
-    int d=n;
-    long long ans=(long long)(n-2)*(n-2);
-    while(q--){
-        scanf(&quot;%d%d&quot;,&amp;o,&amp;x);
-        if(o==1){
-            if(x&lt;r){
-                for(int i=x;i&lt;r;i++){
-                    a[i]=d;
-                }
-                // 更新从左到右第一个全白列
-                r=x;
-            }
-            // a[x]是x列从上到下第一个白色，所以前面a-1个除了第一行(没有颜色)，其他(a-2)个都是黑色，将变成白色
-            ans-=(long long)(a[x]-2);
-        }else{
-            if(x&lt;d){
-                for(int i=x;i&lt;d;i++){
-                    b[i]=r;
-                }
-                d=x;
-            }
-            ans-=(long long)(b[x]-2);
-        }
-    }
-    printf(&quot;%lld\n&quot;,ans);
-    return 0;
-}
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">int</span> n,q,o,x;
+</li><li><span class="hljs-comment">// a[i]表示第i列第一个白色，b[i]表示第i行第一个白色</span>
+</li><li><span class="hljs-keyword">int</span> a[N],b[N];
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;q);
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){
+</li><li>        a[i]=n;
+</li><li>        b[i]=n;
+</li><li>    }
+</li><li>    <span class="hljs-comment">// r表示从左到右第一个被竖切全白的列</span>
+</li><li>    <span class="hljs-comment">// d表示从上到下第一个被横切全白的行</span>
+</li><li>    <span class="hljs-keyword">int</span> r=n;
+</li><li>    <span class="hljs-keyword">int</span> d=n;
+</li><li>    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans=(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)(n<span class="hljs-number">-2</span>)*(n<span class="hljs-number">-2</span>);
+</li><li>    <span class="hljs-keyword">while</span>(q--){
+</li><li>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;o,&amp;x);
+</li><li>        <span class="hljs-keyword">if</span>(o==<span class="hljs-number">1</span>){
+</li><li>            <span class="hljs-keyword">if</span>(x&lt;r){
+</li><li>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=x;i&lt;r;i++){
+</li><li>                    a[i]=d;
+</li><li>                }
+</li><li>                <span class="hljs-comment">// 更新从左到右第一个全白列</span>
+</li><li>                r=x;
+</li><li>            }
+</li><li>            <span class="hljs-comment">// a[x]是x列从上到下第一个白色，所以前面a-1个除了第一行(没有颜色)，其他(a-2)个都是黑色，将变成白色</span>
+</li><li>            ans-=(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)(a[x]<span class="hljs-number">-2</span>);
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            <span class="hljs-keyword">if</span>(x&lt;d){
+</li><li>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=x;i&lt;d;i++){
+</li><li>                    b[i]=r;
+</li><li>                }
+</li><li>                d=x;
+</li><li>            }
+</li><li>            ans-=(<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)(b[x]<span class="hljs-number">-2</span>);
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
@@ -393,95 +409,25 @@ int main(){
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -502,5 +448,6 @@ int main(){
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

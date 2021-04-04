@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -233,18 +231,21 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
-    <div><h2>心路历程</h2>
-<p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
-<p>首先，后端在Response设置Cookie的时候，如果不加选项，前端在登陆时，Chrome会提示无法设置cookie，<code>This set-cookie didn't specify a &quot;SameSite&quot; attribute and was defaulted to &quot;SameSite=Lax&quot; and broke the same rules specified in the SameSiteLax value</code>，提示需要给set-cookie设置SameSite属性，这个属性是干啥的这里不深入...总之就是为了安全考虑的，避免啥啥啥的跨域攻击，但是为了方便，在这里我们直接将该属性设置为<code>None</code>，然后再试，Chrome会提示，如果设置了None，就还必须设置<code>Secure</code>属性，让Cookie只能通过HTTPS发送。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#心路历程">心路历程</a></li></ul></div>
+    <div><h2 id="心路历程" style="display: inline-block;">心路历程</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
+<p>首先，后端在Response设置Cookie的时候，如果不加选项，前端在登陆时，Chrome会提示无法设置cookie，<code class="z-inline-code"><span class="hljs-string">This</span> <span class="hljs-built_in">set-cookie</span> <span class="hljs-string">didn</span><span class="hljs-string">'t specify a "SameSite" attribute and was defaulted to "SameSite=Lax" and broke the same rules specified in the SameSiteLax value</span></code>，提示需要给set-cookie设置SameSite属性，这个属性是干啥的这里不深入...总之就是为了安全考虑的，避免啥啥啥的跨域攻击，但是为了方便，在这里我们直接将该属性设置为<code class="z-inline-code"><span class="hljs-attribute">None</span></code>，然后再试，Chrome会提示，如果设置了None，就还必须设置<code class="z-inline-code"><span class="hljs-attribute">Secure</span></code>属性，让Cookie只能通过HTTPS发送。</p>
 <p>参考<a href="https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0">官方文档</a>，最终我们后端设置Cookie的时候应该是</p>
-<pre><code class="language-csharp">var cookieOptions = new CookieOptions {
-    Secure = true,
-    SameSite = SameSiteMode.None
-};
-HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOptions);
-</code></pre>
-<p>然后关键就来了，直接我直接照抄文档，多加了一个<code>HttpOnly = true</code>的属性，结果该属性的含义是Cookie只能通过HTTP/HTTPS传输，无法从JS脚本中获取，而我前端应用进入主页时需要判断Cookie是否存在，所以才一直进不去。</p>
+<pre><code class="hljs language-csharp"><ul><li><span class="hljs-keyword">var</span> cookieOptions = <span class="hljs-keyword">new</span> CookieOptions {
+</li><li>    Secure = <span class="hljs-literal">true</span>,
+</li><li>    SameSite = SameSiteMode.None
+</li><li>};
+</li><li>HttpContext.Response.Cookies.Append(<span class="hljs-string">"session-id"</span>, sessionId,cookieOptions);
+</li></ul></code></pre>
+<p>然后关键就来了，直接我直接照抄文档，多加了一个<code class="z-inline-code"><span class="hljs-attr">HttpOnly</span> = <span class="hljs-literal">true</span></code>的属性，结果该属性的含义是Cookie只能通过HTTP/HTTPS传输，无法从JS脚本中获取，而我前端应用进入主页时需要判断Cookie是否存在，所以才一直进不去。</p>
 <p>做东西学东西一定要细心，<strong>有时候总想着能用就行，到最后往往就变成不能用了</strong>。</p>
 </div>
     <div style="color: gray;font-size: 14px;">
@@ -255,95 +256,25 @@ HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOpti
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -364,5 +295,6 @@ HttpContext.Response.Cookies.Append(&quot;session-id&quot;, sessionId,cookieOpti
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

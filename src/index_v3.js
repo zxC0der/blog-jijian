@@ -5,12 +5,17 @@ const moment = require('moment');
 const mustache = require('mustache');
 const matter = require('gray-matter');
 const jsonToYaml = require('json2yaml');
-const md = require('markdown-it')()
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const md = require('markdown-it')({
+    html:         true,
+})
     .use(require('markdown-it-texmath'), {
         engine: require('katex'),
         delimiters: 'dollars',
         katexOptions: {macros: {"\\RR": "\\mathbb{R}"}}
-    });
+    })
+    .use(require('markdown-it-highlightjs'), {inline: true});
 const {execSync} = require('child_process');
 // xxxDir是生成html的存放路径，xxxUrl是生成html的跳转url
 const layoutDir = path.join(__dirname, '../layout/v3');
@@ -188,8 +193,6 @@ let readAllData = (postPath) => {
                 });
                 // 渲染
                 let rdObj = JSON.parse(JSON.stringify(obj));
-                // rdObj.content=marked(o.content);
-                // console.log(md.render(o.content))
                 rdObj.content = md.render(o.content);
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, rdObj);
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
@@ -198,9 +201,67 @@ let readAllData = (postPath) => {
                 }, {
                     content: detailComponent
                 });
-                fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
-                fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, detailPage);
+                const dom = new JSDOM(detailPage);
+                let nav = dom.window.document.getElementById('TableOfContents');
+                let h23s = dom.window.document.querySelectorAll('.post h2,h3');
+                let h2ul = dom.window.document.createElement('ul');
+                h23s.forEach(h23 => {
+                    h23.id = h23.innerHTML;
+                    // 给每个标题添加一个返回目录的a标签
+                    let a = dom.window.document.createElement('a');
+                    h23.style.display = 'inline-block';
+                    a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+                        '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+                        '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+                        '</svg>';
+                    a.style.display = 'inline-block';
+                    a.href = '#headingTOC';
+                    h23.parentElement.insertBefore(a, h23.nextElementSibling);
+                });
+                let lst = dom.window.document.querySelector('.post');
+                for (let i = 0; i < h23s.length; i++) {
+                    if (h23s[i].tagName === 'H2') {
+                        let h2li = dom.window.document.createElement('li');
+                        let h2a = dom.window.document.createElement('a');
+                        h2a.href = `#${h23s[i].innerHTML}`;
+                        h2a.innerHTML = h23s[i].innerHTML;
+                        h2li.appendChild(h2a);
+                        h2ul.appendChild(h2li);
+                        lst = h2li;
+                    } else {
+                        let h3ul = dom.window.document.createElement('ul');
+                        while (i < h23s.length && h23s[i].tagName === 'H3') {
+                            let h3li = dom.window.document.createElement('li');
+                            let h3a = dom.window.document.createElement('a');
+                            h3a.href = `#${h23s[i].innerHTML}`;
+                            h3a.innerHTML = h23s[i].innerHTML;
+                            h3li.appendChild(h3a);
+                            h3ul.appendChild(h3li);
+                            i++;
+                        }
+                        lst.appendChild(h3ul);
+                        i--;
+                    }
+                }
+                nav.appendChild(h2ul);
+                nav.style.display = 'none';
+                const codes = dom.window.document.querySelectorAll('div code')
+                codes.forEach((block) => {
+                    if (block.classList.length >= 1) {
+                        block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                        let ul = block.firstElementChild;
+                        ul.removeChild(ul.lastElementChild);
+                    } else {
+                        block.classList.add('z-inline-code')
+                    }
+                });
 
+                fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
+                fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, dom
+                    .window
+                    .document
+                    .documentElement
+                    .outerHTML);
             })
         }
     );

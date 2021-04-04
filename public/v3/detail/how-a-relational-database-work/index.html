@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <meta data-name="search-index" content="/index.json">
     <title>zxCoder's blog</title>
     <meta name="title" content="zxCoder's blog">
     <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
-    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
     <style>
         body {
             margin: auto;
@@ -152,7 +150,7 @@
     </style>
 </head>
 <body>
-<header >
+<header>
     <a class="title" href="/">
         <h2>zxCoder's blog</h2>
     </a>
@@ -230,7 +228,7 @@
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents"></div>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#Preface">Preface</a></li><li><a href="#Back to basics">Back to basics</a><ul><li><a href="#O(1) vs O(<eq><span class=&quot;katex&quot;><span class=&quot;katex-mathml&quot;><math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding=&quot;application/x-tex&quot;>n^2</annotation></semantics></math></span><span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;><span class=&quot;base&quot;><span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;></span><span class=&quot;mord&quot;><span class=&quot;mord mathnormal&quot;>n</span><span class=&quot;msupsub&quot;><span class=&quot;vlist-t&quot;><span class=&quot;vlist-r&quot;><span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;><span style=&quot;top:-3.063em;margin-right:0.05em;&quot;><span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;></span><span class=&quot;sizing reset-size6 size3 mtight&quot;><span class=&quot;mord mtight&quot;>2</span></span></span></span></span></span></span></span></span></span></span></eq>)">O(1) vs O(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>)</a></li><li><a href="#Merge Sort">Merge Sort</a></li><li><a href="#Array, Tree and Hash table">Array, Tree and Hash table</a></li></ul></li><li><a href="#Global overview">Global overview</a></li><li><a href="#Client manager">Client manager</a></li><li><a href="#Query manager">Query manager</a><ul><li><a href="#Query parser">Query parser</a></li><li><a href="#Query rewriter">Query rewriter</a></li><li><a href="#Statistics">Statistics</a></li><li><a href="#Query optimizer">Query optimizer</a></li><li><a href="#Query executor">Query executor</a></li></ul></li><li><a href="#Data manager">Data manager</a><ul><li><a href="#Cache manager">Cache manager</a></li><li><a href="#Transaction manager">Transaction manager</a></li></ul></li><li><a href="#To conclude">To conclude</a></li></ul></div>
     <div><blockquote>
 <p>原文出处 <a href="http://coding-geek.com/how-databases-work/">http://coding-geek.com/how-databases-work/</a></p>
 </blockquote>
@@ -240,8 +238,11 @@
 <blockquote>
 <p>这是一篇2015年发布的文章，对关系型数据库的整个工作流程介绍得比较清楚。</p>
 </blockquote>
-<h2>Preface</h2>
-<p>When it comes to relational databases, I can’t help thinking that something is missing. They’re used everywhere. There are many different databases: from the small and useful SQLite to the powerful Teradata. But, there are only a few articles that explain how a database works. You can google by yourself “how does a relational database work” to see how few results there are. Moreover, those articles are short.  Now, if you look for the last trendy technologies (Big Data, NoSQL or JavaScript), you’ll find more in-depth articles explaining how they work.</p>
+<h2 id="Preface" style="display: inline-block;">Preface</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>When it comes to relational databases, I can’t help thinking that something is missing. They’re used everywhere. There are many different databases: from the small and useful SQLite to the powerful Teradata. But, there are only a few articles that explain how a database works. You can google by yourself “how does a relational database work” to see how few results there are. Moreover, those articles are short.  Now, if you look for the last trendy technologies (Big Data, NoSQL or JavaScript), you’ll find more in-depth articles explaining how they work.</p>
 <p>Are relational databases too old and too boring to be explained outside of university courses, research papers and books?</p>
 <p>As a developer, I HATE using something I don’t understand. And, if databases have been used for 40 years, there must be a reason. Over the years, I’ve spent hundreds of hours to really understand these weird black boxes I use every day. <strong>Relational Databases are</strong> very interesting because they’re <strong>based on useful and reusable concepts</strong>. If understanding a database interests you but you’ve never had the time or the will to dig into this wide subject, you should like this article.</p>
 <p>Though the title of this article is explicit, <strong>the aim of this article is NOT to understand how to use a database</strong>. Therefore, <strong>you should already know how to write a simple join query and basic CRUD queries</strong>; otherwise you might not understand this article. This is the only thing you need to know, I’ll explain everything else.</p>
@@ -253,11 +254,17 @@
 <li>An overview of the query optimization process</li>
 <li>An overview of the transaction and buffer pool management</li>
 </ul>
-<h2>Back to basics</h2>
-<p>A long time ago (in a galaxy far, far away….), developers had to know exactly the number of operations they were coding. They knew by heart their algorithms and data structures because they couldn’t afford to waste the CPU and memory of their slow computers.</p>
+<h2 id="Back to basics" style="display: inline-block;">Back to basics</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>A long time ago (in a galaxy far, far away….), developers had to know exactly the number of operations they were coding. They knew by heart their algorithms and data structures because they couldn’t afford to waste the CPU and memory of their slow computers.</p>
 <p>In this part, I’ll remind you about some of these concepts because they are essential to understand a database. I’ll also introduce the notion of <strong>database index</strong>.</p>
-<h3>O(1) vs O(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>)</h3>
-<p>Nowadays, many developers don’t care about time complexity … and they’re right!</p>
+<h3 id="O(1) vs O(<eq><span class=&quot;katex&quot;><span class=&quot;katex-mathml&quot;><math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding=&quot;application/x-tex&quot;>n^2</annotation></semantics></math></span><span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;><span class=&quot;base&quot;><span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;></span><span class=&quot;mord&quot;><span class=&quot;mord mathnormal&quot;>n</span><span class=&quot;msupsub&quot;><span class=&quot;vlist-t&quot;><span class=&quot;vlist-r&quot;><span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;><span style=&quot;top:-3.063em;margin-right:0.05em;&quot;><span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;></span><span class=&quot;sizing reset-size6 size3 mtight&quot;><span class=&quot;mord mtight&quot;>2</span></span></span></span></span></span></span></span></span></span></span></eq>)" style="display: inline-block;">O(1) vs O(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>)</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Nowadays, many developers don’t care about time complexity … and they’re right!</p>
 <p>But when you deal with a large amount of data (I’m not talking about thousands) or if you’re fighting for milliseconds, it becomes critical to understand this concept. And guess what, databases have to deal with both situations! I won’t bore you a long time, just the time to get the idea. This will help us later to understand the concept of <strong>cost based optimization</strong>.</p>
 <h4>The concept</h4>
 <p>The <strong>time complexity is used to see how long an algorithm will take for a given amount of data</strong>. To describe this complexity, computer scientists use the mathematical big O notation. This notation is used with a function that describes how many operations an algorithm needs for a given amount of input data.</p>
@@ -320,8 +327,11 @@
 <li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">n^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></eq>: if you end-up with this complexity, you should ask yourself if IT is really your field…</li>
 </ul>
 <p>Note: I didn’t give you the real definition of the big O notation but just the idea. You can read this article on <a href="https://en.wikipedia.org/wiki/Big_O_notation">Wikipedia</a> for the real (asymptotic) definition.</p>
-<h3>Merge Sort</h3>
-<p>What do you do when you need to sort a collection? What? You call the sort() function …  ok, good answer… But for a database you have to understand how this sort() function works.</p>
+<h3 id="Merge Sort" style="display: inline-block;">Merge Sort</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>What do you do when you need to sort a collection? What? You call the sort() function …  ok, good answer… But for a database you have to understand how this sort() function works.</p>
 <p>There are several good sorting algorithms so I’ll focus on the most important one: <strong>the merge sort</strong>. You might not understand right now why sorting data is useful but you should after the part on query optimization. Moreover, understanding the merge sort will help us later to understand a common database join operation called the <strong>merge join</strong>.</p>
 <h4>Merge</h4>
 <p>Like many useful algorithms, the merge sort is based on a trick: merging 2 sorted arrays of size N/2 into a N-element sorted array only costs N operations. This operation is called a <strong>merge</strong>.</p>
@@ -349,20 +359,20 @@
 </ul>
 <p>This works because both 4-element arrays are sorted and therefore you don’t need to “go back” in these arrays.</p>
 <p>Now that we’ve understood this trick, here is my pseudocode of the merge sort.</p>
-<pre><code class="language-cpp">array mergeSort(array a)
-   if(length(a)==1)
-      return a[0];
-   end if
- 
-   //recursive calls
-   [left_array right_array] := split_into_2_equally_sized_arrays(a);
-   array new_left_array := mergeSort(left_array);
-   array new_right_array := mergeSort(right_array);
- 
-   //merging the 2 small ordered arrays into a big one
-   array result := merge(new_left_array,new_right_array);
-   return result;
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-function">array <span class="hljs-title">mergeSort</span><span class="hljs-params">(array a)</span>
+</span></li><li>   <span class="hljs-title">if</span><span class="hljs-params">(length(a)==<span class="hljs-number">1</span>)</span>
+</li><li>      <span class="hljs-keyword">return</span> a[0];
+</li><li>   end <span class="hljs-keyword">if</span>
+</li><li> 
+</li><li>   <span class="hljs-comment">//recursive calls</span>
+</li><li>   [left_array right_array] := <span class="hljs-built_in">split_into_2_equally_sized_arrays</span>(a);
+</li><li>   array new_left_array := <span class="hljs-built_in">mergeSort</span>(left_array);
+</li><li>   array new_right_array := <span class="hljs-built_in">mergeSort</span>(right_array);
+</li><li> 
+</li><li>   <span class="hljs-comment">//merging the 2 small ordered arrays into a big one</span>
+</li><li>   array result := <span class="hljs-built_in">merge</span>(new_left_array,new_right_array);
+</li><li>   <span class="hljs-keyword">return</span> result;
+</li></ul></code></pre>
 <p>The merge sort breaks the problem into smaller problems then finds the results of the smaller problems to get the result of the initial problem (note: this kind of algorithms is called divide and conquer). If you don’t understand this algorithm, don’t worry; I didn’t understand it the first time I saw it. If it can help you, I see this algorithm as a two-phase algorithm:</p>
 <ul>
 <li>The division phase where the array is divided into smaller arrays</li>
@@ -372,7 +382,7 @@
 <p><img src="https://i.loli.net/2020/12/09/U7gyHqDIf1QsicF.png" alt="merge_sort_1.png"></p>
 <p>During the division phase, the array is divided into unitary arrays using 3 steps. The formal number of steps is log(N)  (since N=8, log(N) = 3).</p>
 <p>How do I know that?</p>
-<p>&lt;del&gt;I’m a genius!&lt;/del&gt; In one word: mathematics. The idea is that each step divides the size of the initial array by 2. The number of steps is the number of times you can divide the initial array by two. This is the exact definition of logarithm (in base 2).</p>
+<p><del>I’m a genius!</del> In one word: mathematics. The idea is that each step divides the size of the initial array by 2. The number of steps is the number of times you can divide the initial array by two. This is the exact definition of logarithm (in base 2).</p>
 <h4>Sorting phase</h4>
 <p><img src="https://i.loli.net/2020/12/09/O8vbUkK7LDzIhGn.png" alt="merge_sort_2.png"></p>
 <p>In the sorting phase, you start with the unitary arrays. During each step, you apply multiple merges and the overall cost is N=8 operations:</p>
@@ -399,8 +409,11 @@
 <p>For example, the distributed merge sort is one of the key components of <a href="https://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapreduce/Reducer.html">Hadoop</a> (which is THE framework in Big Data).</p>
 <p>T- his algorithm can turn lead into gold (true fact!).</p>
 <p>This sorting algorithm is used in most (if not all) databases but it’s not the only one. If you want to know more, you can read this <a href="http://wwwlgis.informatik.uni-kl.de/archiv/wwwdvs.informatik.uni-kl.de/courses/DBSREAL/SS2005/Vorlesungsunterlagen/Implementing_Sorting.pdf">research paper</a> that discusses the pros and cons of the common sorting algorithms in a database.</p>
-<h3>Array, Tree and Hash table</h3>
-<p>Now that we understand the idea behind time complexity and sorting, I have to tell you about 3 data structures. It’s important because they’re <strong>the backbone of modern databases</strong>. I’ll also introduce the notion of <strong>database index</strong>.</p>
+<h3 id="Array, Tree and Hash table" style="display: inline-block;">Array, Tree and Hash table</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Now that we understand the idea behind time complexity and sorting, I have to tell you about 3 data structures. It’s important because they’re <strong>the backbone of modern databases</strong>. I’ll also introduce the notion of <strong>database index</strong>.</p>
 <h4>Array</h4>
 <p>The two-dimensional array is the simplest data structure. A table can be seen as an array. For example:</p>
 <p><img src="https://i.loli.net/2020/12/09/lok4xce6wBCRgsp.png" alt="array.png"></p>
@@ -522,8 +535,11 @@
 <li>With a hash table you can choose the key you want (for example the country AND the last name of a person).</li>
 </ul>
 <p>For more information, you can read my article on the <a href="http://coding-geek.com/how-does-a-hashmap-work-in-java/">Java HashMap</a> which is an efficient hash table implementation; you don’t need to understand Java to understand the concepts inside this article.</p>
-<h2>Global overview</h2>
-<p>We’ve just seen the basic components inside a database. We now need to step back to see the big picture.</p>
+<h2 id="Global overview" style="display: inline-block;">Global overview</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>We’ve just seen the basic components inside a database. We now need to step back to see the big picture.</p>
 <p>A database is a collection of information that can easily be accessed and modified. But a simple bunch of files could do the same. In fact, the simplest databases like SQLite are nothing more than a bunch of files. But SQLite is a well-crafted bunch of files because it allows you to:</p>
 <ul>
 <li>use transactions that ensure data are safe and coherent</li>
@@ -532,7 +548,7 @@
 <p>More generally, a database can be seen as the following figure:</p>
 <p><img src="https://i.loli.net/2020/12/09/kPF2rUq8ICYOa6X.png" alt="image.png"></p>
 <p>Before writing this part, I’ve read multiple books/papers and every source had its on way to represent a database. So, don’t focus too much on how I organized this database or how I named the processes because I made some choices to fit the plan of this article. What matters are the different components; the overall idea is that <strong>a database is divided into multiple components that interact with each other</strong>.</p>
-<p>&lt;u&gt;The core components:&lt;/u&gt;</p>
+<p><u>The core components:</u></p>
 <ul>
 <li><strong>The process manager</strong>: Many databases have a pool of processes/threads that needs to be managed. Moreover, in order to gain nanoseconds, some modern databases use their own threads instead of the Operating System threads.</li>
 <li><strong>The network manager</strong>: Network I/O is a big issue, especially for distributed databases. That’s why some databases have their own manager.</li>
@@ -542,7 +558,7 @@
 <li><strong>Client manager</strong>: for managing the client connections</li>
 <li>…</li>
 </ul>
-<p>&lt;u&gt;The tools:&lt;/u&gt;</p>
+<p><u>The tools:</u></p>
 <ul>
 <li><strong>Backup manager</strong>: for saving and restoring a database.</li>
 <li><strong>Recovery manager</strong>: for restarting the database in a coherent state after a crash</li>
@@ -550,14 +566,14 @@
 <li><strong>Administration manager</strong>: for storing metadata (like the names and the structures of the tables) and providing tools to manage databases, schemas, tablespaces, …</li>
 <li>…</li>
 </ul>
-<p>&lt;u&gt;The query Manager:&lt;/u&gt;</p>
+<p><u>The query Manager:</u></p>
 <ul>
 <li><strong>Query parser</strong>: to check if a query is valid</li>
 <li><strong>Query rewriter</strong>: to pre-optimize a query</li>
 <li><strong>Query optimizer</strong>: to optimize a query</li>
 <li><strong>Query executor</strong>: to compile and execute a query</li>
 </ul>
-<p>&lt;u&gt;The data manager:&lt;/u&gt;</p>
+<p><u>The data manager:</u></p>
 <ul>
 <li><strong>Transaction manager</strong>: to handle transactions</li>
 <li><strong>Cache manager</strong>: to put data in memory before using them and put data in memory before writing them on disk</li>
@@ -569,8 +585,11 @@
 <li>the query manager</li>
 <li>the data manager (I’ll also include the recovery manager in this part)</li>
 </ul>
-<h2>Client manager</h2>
-<p><img src="https://i.loli.net/2020/12/09/gibURf7QSyF5ZWp.png" alt="image.png"></p>
+<h2 id="Client manager" style="display: inline-block;">Client manager</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p><img src="https://i.loli.net/2020/12/09/gibURf7QSyF5ZWp.png" alt="image.png"></p>
 <p>The client manager is the part that handles the communications with the client. The client can be a (web) server or an end-user/end-application. The client manager provides different ways to access the database through a set of well-known APIs: JDBC, ODBC, OLE-DB …</p>
 <p>It can also provide proprietary database access APIs.</p>
 <p>When you connect to a database:</p>
@@ -583,8 +602,11 @@
 <li>Since the query processing is not an “all or nothing” thing, as soon as it gets data from the query manager, it <strong>stores the partial results in a buffer and start sending</strong> them to you.</li>
 <li>In case of problem, it stops the connection, gives you a <strong>readable explanation</strong> and releases the resources.</li>
 </ul>
-<h2>Query manager</h2>
-<p><img src="https://i.loli.net/2020/12/09/vY4P3QwCyxoF57z.png" alt="image.png"></p>
+<h2 id="Query manager" style="display: inline-block;">Query manager</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p><img src="https://i.loli.net/2020/12/09/vY4P3QwCyxoF57z.png" alt="image.png"></p>
 <p><strong>This part is where the power of a database lies</strong>. During this part, an ill-written query is transformed into a <strong>fast</strong> executable code. The code is then executed and the results are returned to the client manager. It’s a multiple-step operation:</p>
 <ul>
 <li>the query is first <strong>parsed</strong> to see if it’s valid</li>
@@ -605,8 +627,11 @@
 <li>2 theoretical courses on query optimization from the authors of the book “DATABASE SYSTEM CONCEPTS” <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch12.ppt">here</a> and <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch13.ppt">here</a>. A good read that focuses on disk I/O cost but a good level in CS is required.</li>
 <li>Another <a href="https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/teaching/archive/sose05/dbs2/slides/09_joins.pdf">theoretical course</a> that I find more accessible but that only focuses on join operators and disk I/O.</li>
 </ul>
-<h3>Query parser</h3>
-<p>Each SQL statement is sent to the parser where it is checked for correct syntax. If you made a mistake in your query the parser will reject the query. For example, if you wrote “SLECT …” instead of “SELECT …”,  the story ends here.</p>
+<h3 id="Query parser" style="display: inline-block;">Query parser</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Each SQL statement is sent to the parser where it is checked for correct syntax. If you made a mistake in your query the parser will reject the query. For example, if you wrote “SLECT …” instead of “SELECT …”,  the story ends here.</p>
 <p>But this goes deeper. It also checks that the keywords are used in the right order. For example a WHERE before a SELECT will be rejected.</p>
 <p>Then, the tables and the fields inside the query are analyzed. The parser uses the metadata of the database to check:</p>
 <ul>
@@ -617,8 +642,11 @@
 <p>Then it checks if you have the <strong>authorizations</strong> to read (or write) the tables in the query. Again, these access rights on tables are set by your DBA.</p>
 <p>During this parsing, the SQL query is transformed into an internal representation (often a tree)</p>
 <p>If everything is ok then the internal representation is sent to the query rewriter.</p>
-<h3>Query rewriter</h3>
-<p>At this step, we have an internal representation of a query. The aim of the rewriter is:</p>
+<h3 id="Query rewriter" style="display: inline-block;">Query rewriter</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>At this step, we have an internal representation of a query. The aim of the rewriter is:</p>
 <ul>
 <li>to pre-optimize the query</li>
 <li>to avoid unnecessary operations</li>
@@ -630,19 +658,19 @@
 <li><strong>Subquery flattening</strong>: Having subqueries is very difficult to optimize so the rewriter will try to modify a query with a subquery to remove the subquery.</li>
 </ul>
 <p>For example</p>
-<pre><code class="language-sql">SELECT PERSON.*
-FROM PERSON
-WHERE PERSON.person_key IN
-(SELECT MAILS.person_key
-FROM MAILS
-WHERE MAILS.mail LIKE 'christophe%');
-</code></pre>
+<pre><code class="hljs language-sql"><ul><li><span class="hljs-keyword">SELECT</span> PERSON.<span class="hljs-operator">*</span>
+</li><li><span class="hljs-keyword">FROM</span> PERSON
+</li><li><span class="hljs-keyword">WHERE</span> PERSON.person_key <span class="hljs-keyword">IN</span>
+</li><li>(<span class="hljs-keyword">SELECT</span> MAILS.person_key
+</li><li><span class="hljs-keyword">FROM</span> MAILS
+</li><li><span class="hljs-keyword">WHERE</span> MAILS.mail <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'christophe%'</span>);
+</li></ul></code></pre>
 <p>Will be replaced by</p>
-<pre><code class="language-sql">SELECT PERSON.*
-FROM PERSON, MAILS
-WHERE PERSON.person_key = MAILS.person_key
-and MAILS.mail LIKE 'christophe%';
-</code></pre>
+<pre><code class="hljs language-sql"><ul><li><span class="hljs-keyword">SELECT</span> PERSON.<span class="hljs-operator">*</span>
+</li><li><span class="hljs-keyword">FROM</span> PERSON, MAILS
+</li><li><span class="hljs-keyword">WHERE</span> PERSON.person_key <span class="hljs-operator">=</span> MAILS.person_key
+</li><li><span class="hljs-keyword">and</span> MAILS.mail <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'christophe%'</span>;
+</li></ul></code></pre>
 <ul>
 <li><strong>Removal of unnecessary operators</strong>: For example if you use a DISTINCT whereas you have a UNIQUE constraint that prevents the data from being non-unique, the DISTINCT keyword is removed.</li>
 <li><strong>Redundant join elimination</strong>: If you have twice the same join condition because one join condition is hidden in a view or if by transitivity there is a useless join, it’s removed.</li>
@@ -653,8 +681,11 @@ and MAILS.mail LIKE 'christophe%';
 <li><strong>(Advanced) Olap transformations</strong>: analytical/windowing functions, star joins, rollup … are also transformed (but I’m not sure if it’s done by the rewriter or the optimizer, since both processes are very close it must depends on the database).</li>
 </ul>
 <p>This rewritten query is then sent to the query optimizer where the fun begins!</p>
-<h3>Statistics</h3>
-<p>Before we see how a database optimizes a query we need to speak about <strong>statistics</strong> because <strong>without them a database is stupid</strong>. If you don’t tell the database to analyze its own data, it will not do it and it will make (very) bad assumptions.</p>
+<h3 id="Statistics" style="display: inline-block;">Statistics</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Before we see how a database optimizes a query we need to speak about <strong>statistics</strong> because <strong>without them a database is stupid</strong>. If you don’t tell the database to analyze its own data, it will not do it and it will make (very) bad assumptions.</p>
 <p>But what kind of information does a database need?</p>
 <p>I have to (briefly) talk about how databases and Operating systems store data. They’re using a minimum unit called <strong>a page</strong> or a block (4 or 8 kilobytes by default). This means that if you only need 1 Kbytes it will cost you one page anyway. If the page takes 8 Kbytes then you’ll waste 7 Kbytes.</p>
 <p>Back to the statistics! When you ask a database to gather statistics, it computes values like:</p>
@@ -686,8 +717,11 @@ and MAILS.mail LIKE 'christophe%';
 <p>The <strong>statistics have to be up to date</strong>. There is nothing worse than a database thinking a table has only 500 rows whereas it has 1 000 000 rows. The only drawback of the statistics is that <strong>it takes time to compute them</strong>. This is why they’re not automatically computed by default in most databases. It becomes difficult with millions of data to compute them. In this case, you can choose to compute only the basics statistics or to compute the stats on a sample of the database.</p>
 <p>For example, when I was working on a project dealing with hundreds of millions rows in each tables, I chose to compute the statistics on only 10%, which led to a huge gain in time. For the story it turned out to be a bad decision because occasionally the 10% chosen by Oracle 10G for a specific column of a specific table were very different from the overall 100% (which is very unlikely to happen for a table with 100M rows). This wrong statistic led to a query taking occasionally 8 hours instead of 30 seconds; a nightmare to find the root cause. This example shows how important the statistics are.</p>
 <p>Note: Of course, there are more advanced statistics specific for each database. If you want to know more, read the documentations of the databases. That being said, I’ve tried to understand how the statistics are used and the best official documentation I found was the <a href="https://www.postgresql.org/docs/9.4/static/row-estimation-examples.html">one from PostgreSQL</a>.</p>
-<h3>Query optimizer</h3>
-<p><img src="https://i.loli.net/2020/12/09/lC8BeAgt7Uv5MsD.png" alt="image.png"></p>
+<h3 id="Query optimizer" style="display: inline-block;">Query optimizer</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p><img src="https://i.loli.net/2020/12/09/lC8BeAgt7Uv5MsD.png" alt="image.png"></p>
 <p>All modern databases are using a <strong>Cost Based Optimization</strong> (or <strong>CBO</strong>) to optimize queries. The idea is to put a cost an every operation and find the best way to reduce the cost of the query by using the cheapest chain of operations to get the result.</p>
 <p>To understand how a cost optimizer works I think it’s good to have an example to “feel” the complexity behind this task. In this part I’ll present you the 3 common ways to join 2 tables and we will quickly see that even a simple join query is a nightmare to optimize. After that, we’ll see how real optimizers do this job.</p>
 <p>For these joins, I’ll focus on their time complexity but <strong>a database optimizer computes</strong> their <strong>CPU cost, disk I/O cost and memory requirement</strong>. The difference between time complexity and CPU cost is that time cost is very approximate (it’s for lazy guys like me). For the CPU cost, I should count every operation like an addition, an “if statement”, a multiplication, an iteration … Moreover:</p>
@@ -714,13 +748,13 @@ and MAILS.mail LIKE 'christophe%';
 <h5>Access by row id</h5>
 <p>Most of the time, if the database uses an index, it will have to look for the rows associated to the index. To do so it will use an access by row id.</p>
 <p>For example, if you do something like</p>
-<pre><code class="language-sql">SELECT LASTNAME, FIRSTNAME from PERSON WHERE AGE = 28
-</code></pre>
+<pre><code class="hljs language-sql"><ul><li><span class="hljs-keyword">SELECT</span> LASTNAME, FIRSTNAME <span class="hljs-keyword">from</span> PERSON <span class="hljs-keyword">WHERE</span> AGE <span class="hljs-operator">=</span> <span class="hljs-number">28</span>
+</li></ul></code></pre>
 <p>If you have an index for person on column age, the optimizer will use the index to find all the persons who are 28 then it will ask for the associate rows in the table because the index only has information about the age and you want to know the lastname and the firstname.</p>
 <p>But, if now you do something like</p>
-<pre><code class="language-sql">SELECT TYPE_PERSON.CATEGORY from PERSON ,TYPE_PERSON
-WHERE PERSON.AGE = TYPE_PERSON.AGE
-</code></pre>
+<pre><code class="hljs language-sql"><ul><li><span class="hljs-keyword">SELECT</span> TYPE_PERSON.CATEGORY <span class="hljs-keyword">from</span> PERSON ,TYPE_PERSON
+</li><li><span class="hljs-keyword">WHERE</span> PERSON.AGE <span class="hljs-operator">=</span> TYPE_PERSON.AGE
+</li></ul></code></pre>
 <p>The index on PERSON will be used to join with TYPE_PERSON but the table PERSON will not be accessed by row id since you’re not asking information on this table.</p>
 <p>Though it works great for a few accesses, the real issue with this operation is the disk I/O. If you need too many accesses by row id the database might choose a full scan.</p>
 <h5>Others paths</h5>
@@ -751,15 +785,15 @@ WHERE PERSON.AGE = TYPE_PERSON.AGE
 <li>you look at all the rows in the inner relation to see if there are rows that match</li>
 </ul>
 <p>Here is a pseudo code:</p>
-<pre><code class="language-cpp">nested_loop_join(array outer, array inner)
-  for each row a in outer
-    for each row b in inner
-      if (match_join_condition(a,b))
-        write_result_in_output(a,b)
-      end if
-    end for
-   end for
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-built_in">nested_loop_join</span>(array outer, array inner)
+</li><li>  <span class="hljs-function"><span class="hljs-keyword">for</span> each row a in outer
+</span></li><li>    <span class="hljs-keyword">for</span> each row b in inner
+</li><li>      <span class="hljs-title">if</span> <span class="hljs-params">(match_join_condition(a,b))</span>
+</li><li>        <span class="hljs-title">write_result_in_output</span><span class="hljs-params">(a,b)</span>
+</li><li>      end <span class="hljs-keyword">if</span>
+</li><li>    end <span class="hljs-keyword">for</span>
+</li><li>   end <span class="hljs-keyword">for</span>
+</li></ul></code></pre>
 <p>Since it’s a double iteration, <strong>the time complexity is O(N*M)</strong></p>
 <p>In term of disk I/O, for each of the N rows in the outer relation, the inner loop needs to read M rows from the inner relation. This algorithm needs to read N + N*M rows from disk. But, if the inner relation is small enough, you can put the relation in memory and just have M +N reads. With this modification, <strong>the inner relation must be the smallest one</strong> since it has more chance to fit in memory.</p>
 <p>In terms of time complexity it makes no difference but in terms of disk I/O it’s way better to read only once both relations.</p>
@@ -773,22 +807,22 @@ WHERE PERSON.AGE = TYPE_PERSON.AGE
 <li>and so on until there are no bunches to load.</li>
 </ul>
 <p>Here is a possible algorithm:</p>
-<pre><code class="language-cpp">// improved version to reduce the disk I/O.
-nested_loop_join_v2(file outer, file inner)
-  for each bunch ba in outer
-  // ba is now in memory
-    for each bunch bb in inner
-        // bb is now in memory
-        for each row a in ba
-          for each row b in bb
-            if (match_join_condition(a,b))
-              write_result_in_output(a,b)
-            end if
-          end for
-       end for
-    end for
-   end for
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-comment">// improved version to reduce the disk I/O.</span>
+</li><li><span class="hljs-built_in">nested_loop_join_v2</span>(file outer, file inner)
+</li><li>  <span class="hljs-keyword">for</span> each bunch ba in outer
+</li><li>  <span class="hljs-comment">// ba is now in memory</span>
+</li><li>    <span class="hljs-keyword">for</span> each bunch bb in inner
+</li><li>        <span class="hljs-comment">// bb is now in memory</span>
+</li><li>        <span class="hljs-function"><span class="hljs-keyword">for</span> each row a in ba
+</span></li><li>          <span class="hljs-keyword">for</span> each row b in bb
+</li><li>            <span class="hljs-title">if</span> <span class="hljs-params">(match_join_condition(a,b))</span>
+</li><li>              <span class="hljs-title">write_result_in_output</span><span class="hljs-params">(a,b)</span>
+</li><li>            end <span class="hljs-keyword">if</span>
+</li><li>          end <span class="hljs-keyword">for</span>
+</li><li>       end <span class="hljs-keyword">for</span>
+</li><li>    end <span class="hljs-keyword">for</span>
+</li><li>   end <span class="hljs-keyword">for</span>
+</li></ul></code></pre>
 <p><strong>With this version, the time complexity remains the same, but the number of disk access decreases:</strong></p>
 <ul>
 <li>With the previous version, the algorithm needs N + N*M accesses (each access gets one row).</li>
@@ -861,7 +895,7 @@ nested_loop_join_v2(file outer, file inner)
 <li>(Optional) Sort join operations: Both the inputs are sorted on the join key(s).</li>
 <li>Merge join operation: The sorted inputs are merged together.</li>
 </ol>
-<p>&lt;u&gt;Sort&lt;/u&gt;</p>
+<p><u>Sort</u></p>
 <p>We already spoke about the merge sort, in this case a merge sort in a good algorithm (but not the best if memory is not an issue).</p>
 <p>But sometimes the data sets are already sorted, for example:</p>
 <ul>
@@ -869,7 +903,7 @@ nested_loop_join_v2(file outer, file inner)
 <li>If the relation is an index on the join condition</li>
 <li>If this join is applied on an intermediate result already sorted during the process of the query</li>
 </ul>
-<p>&lt;u&gt;Merge join&lt;/u&gt;</p>
+<p><u>Merge join</u></p>
 <p><img src="https://i.loli.net/2020/12/10/7DCA8wpQJqg5c14.png" alt="image.png"></p>
 <p>This part is very similar to the merge operation of the merge sort we saw. But this time, instead of picking every element from both relations, we only pick the elements from both relations that are equals. Here is the idea:</p>
 <ul>
@@ -899,40 +933,40 @@ nested_loop_join_v2(file outer, file inner)
 <p>If both relations are already sorted then <strong>the time complexity is O(N+M)</strong></p>
 <p>If both relations need to be sorted then the time complexity is the cost to sort both relations: <strong>O(N*Log(N) + M*Log(M))</strong></p>
 <p>For the CS geeks, here is a possible algorithm that handles the multiple matches (note: I’m not 100% sure about my algorithm):</p>
-<pre><code class="language-cpp">mergeJoin(relation a, relation b)
-  relation output
-  integer a_key:=0;
-  integer b_key:=0;
-  
-  while (a[a_key]!=null or b[b_key]!=null)
-    if (a[a_key] &lt; b[b_key])
-      a_key++;
-    else if (a[a_key] &gt; b[b_key])
-      b_key++;
-    else //Join predicate satisfied
-    //i.e. a[a_key] == b[b_key]
- 
-      //count the number of duplicates in relation a
-      integer nb_dup_in_a = 1:
-      while (a[a_key]==a[a_key+nb_dup_in_a])
-        nb_dup_in_a++;
-         
-      //count the number of duplicates in relation b
-      integer dup_in_b = 1:
-      while (b[b_key]==b[b_key+nb_dup_in_b])
-        nb_dup_in_b++;
-         
-      //write the duplicates in output
-       for (int i = 0 ; i&lt; nb_dup_in_a ; i++)
-         for (int j = 0 ; i&lt; nb_dup_in_b ; i++)     
-           write_result_in_output(a[a_key+i],b[b_key+j])
-            
-      a_key=a_key + nb_dup_in_a-1;
-      b_key=b_key + nb_dup_in_b-1;
- 
-    end if
-  end while
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-built_in">mergeJoin</span>(relation a, relation b)
+</li><li>  relation output
+</li><li>  integer a_key:=<span class="hljs-number">0</span>;
+</li><li>  integer b_key:=<span class="hljs-number">0</span>;
+</li><li>  
+</li><li>  <span class="hljs-keyword">while</span> (a[a_key]!=null <span class="hljs-keyword">or</span> b[b_key]!=null)
+</li><li>    <span class="hljs-keyword">if</span> (a[a_key] &lt; b[b_key])
+</li><li>      a_key++;
+</li><li>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a[a_key] &gt; b[b_key])
+</li><li>      b_key++;
+</li><li>    <span class="hljs-keyword">else</span> <span class="hljs-comment">//Join predicate satisfied</span>
+</li><li>    <span class="hljs-comment">//i.e. a[a_key] == b[b_key]</span>
+</li><li> 
+</li><li>      <span class="hljs-comment">//count the number of duplicates in relation a</span>
+</li><li>      integer nb_dup_in_a = <span class="hljs-number">1</span>:
+</li><li>      <span class="hljs-keyword">while</span> (a[a_key]==a[a_key+nb_dup_in_a])
+</li><li>        nb_dup_in_a++;
+</li><li>         
+</li><li>      <span class="hljs-comment">//count the number of duplicates in relation b</span>
+</li><li>      integer dup_in_b = <span class="hljs-number">1</span>:
+</li><li>      <span class="hljs-keyword">while</span> (b[b_key]==b[b_key+nb_dup_in_b])
+</li><li>        nb_dup_in_b++;
+</li><li>         
+</li><li>      <span class="hljs-comment">//write the duplicates in output</span>
+</li><li>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i&lt; nb_dup_in_a ; i++)
+</li><li>         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span> ; i&lt; nb_dup_in_b ; i++)     
+</li><li>           <span class="hljs-built_in">write_result_in_output</span>(a[a_key+i],b[b_key+j])
+</li><li>            
+</li><li>      a_key=a_key + nb_dup_in_a<span class="hljs-number">-1</span>;
+</li><li>      b_key=b_key + nb_dup_in_b<span class="hljs-number">-1</span>;
+</li><li> 
+</li><li>    end <span class="hljs-keyword">if</span>
+</li><li>  end <span class="hljs-keyword">while</span>
+</li></ul></code></pre>
 <h5>Which one is the best?</h5>
 <p>If there was a best type of joins, there wouldn’t be multiple types. This question is very difficult because many factors come into play like:</p>
 <ul>
@@ -956,13 +990,13 @@ If you want the join to be executed by <strong>multiple threads/process</strong>
 <li>multiple BANK_ACCOUNTS</li>
 </ul>
 <p>In other words we need a quick answer for the following query:</p>
-<pre><code class="language-sql">SELECT * from PERSON, MOBILES, MAILS,ADRESSES, BANK_ACCOUNTS
-WHERE
-PERSON.PERSON_ID = MOBILES.PERSON_ID
-AND PERSON.PERSON_ID = MAILS.PERSON_ID
-AND PERSON.PERSON_ID = ADRESSES.PERSON_ID
-AND PERSON.PERSON_ID = BANK_ACCOUNTS.PERSON_ID
-</code></pre>
+<pre><code class="hljs language-sql"><ul><li><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> PERSON, MOBILES, MAILS,ADRESSES, BANK_ACCOUNTS
+</li><li><span class="hljs-keyword">WHERE</span>
+</li><li>PERSON.PERSON_ID <span class="hljs-operator">=</span> MOBILES.PERSON_ID
+</li><li><span class="hljs-keyword">AND</span> PERSON.PERSON_ID <span class="hljs-operator">=</span> MAILS.PERSON_ID
+</li><li><span class="hljs-keyword">AND</span> PERSON.PERSON_ID <span class="hljs-operator">=</span> ADRESSES.PERSON_ID
+</li><li><span class="hljs-keyword">AND</span> PERSON.PERSON_ID <span class="hljs-operator">=</span> BANK_ACCOUNTS.PERSON_ID
+</li></ul></code></pre>
 <p>As a query optimizer, I have to find the best way to process the data. But there are 2 problems:</p>
 <ul>
 <li>What kind of join should I use for each join?</li>
@@ -1021,24 +1055,24 @@ Using the database statistics, I <strong>compute the cost for every possible pla
 <p>They share the same (A JOIN B) subtree. So, instead of computing the cost of this subtree in every plan, we can compute it once, save the computed cost and reuse it when we see this subtree again. More formally, we’re facing an overlapping problem. To avoid the extra-computation of the partial results we’re using memoization.</p>
 <p>Using this technique, instead of having a (2*N)!/(N+1)! time complexity, we “just” have <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>3</mn><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">3^N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span></span></span></span></eq>. In our previous example with 4 joins, it means passing from 336 ordering to 81. If you take a bigger <strong>query with 8 joins</strong> (which is not big), <strong>it means passing from 57 657 600 to 6561</strong>.</p>
 <p>For the CS geeks, here is an algorithm I found on the <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch13.ppt">formal course I already gave you</a>. I won’t explain this algorithm so read it only if you already know dynamic programming or if you’re good with algorithms (you’ve been warned!):</p>
-<pre><code class="language-cpp">procedure findbestplan(S)
-if (bestplan[S].cost infinite)
-   return bestplan[S]
-// else bestplan[S] has not been computed earlier, compute it now
-if (S contains only 1 relation)
-         set bestplan[S].plan and bestplan[S].cost based on the best way
-         of accessing S  /* Using selections on S and indices on S */
-     else for each non-empty subset S1 of S such that S1 != S
-   P1= findbestplan(S1)
-   P2= findbestplan(S - S1)
-   A = best algorithm for joining results of P1 and P2
-   cost = P1.cost + P2.cost + cost of A
-   if cost &lt; bestplan[S].cost
-       bestplan[S].cost = cost
-      bestplan[S].plan = “execute P1.plan; execute P2.plan;
-                 join results of P1 and P2 using A”
-return bestplan[S]
-</code></pre>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-function">procedure <span class="hljs-title">findbestplan</span><span class="hljs-params">(S)</span>
+</span></li><li><span class="hljs-title">if</span> <span class="hljs-params">(bestplan[S].cost infinite)</span>
+</li><li>   <span class="hljs-keyword">return</span> bestplan[S]
+</li><li><span class="hljs-comment">// else bestplan[S] has not been computed earlier, compute it now</span>
+</li><li><span class="hljs-title">if</span> <span class="hljs-params">(S contains only <span class="hljs-number">1</span> relation)</span>
+</li><li>         set bestplan[S].plan <span class="hljs-keyword">and</span> bestplan[S].cost based on the best way
+</li><li>         of accessing S  <span class="hljs-comment">/* Using selections on S and indices on S */</span>
+</li><li>     <span class="hljs-keyword">else</span> <span class="hljs-keyword">for</span> each non-empty subset S1 of S such that S1 != S
+</li><li>   P1= <span class="hljs-built_in">findbestplan</span>(S1)
+</li><li>   P2= <span class="hljs-built_in">findbestplan</span>(S - S1)
+</li><li>   A = best algorithm <span class="hljs-keyword">for</span> joining results of P1 <span class="hljs-keyword">and</span> P2
+</li><li>   cost = P1.cost + P2.cost + cost of A
+</li><li>   <span class="hljs-keyword">if</span> cost &lt; bestplan[S].cost
+</li><li>       bestplan[S].cost = cost
+</li><li>      bestplan[S].plan = “execute P1.plan; execute P2.plan;
+</li><li>                 join results of P1 <span class="hljs-keyword">and</span> P2 <span class="hljs-keyword">using</span> A”
+</li><li><span class="hljs-keyword">return</span> bestplan[S]
+</li></ul></code></pre>
 <p>For bigger queries you can still do a dynamic programming approach but with extra rules (or <strong>heuristics</strong>) to remove possibilities:</p>
 <ul>
 <li>If we analyze only a certain type of plan (for example: the left-deep trees) we end up with <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∗</mo><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">n*2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></eq> instead of <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>3</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">3^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></eq></li>
@@ -1172,18 +1206,27 @@ return bestplan[S]
 <p>The others conditions (GROUP BY, DISTINCT…) are handled by simple rules.</p>
 <h4>Query Plan Cache</h4>
 <p>Since the creation of a plan takes time, most databases store the plan into a <strong>query plan cache</strong> to avoid useless re-computations of the same query plan. It’s kind of a big topic since the database needs to know when to update the outdated plans. The idea is to put a threshold and if the statistics of a table have changed above this threshold then the query plan involving this table is purged from the cache.</p>
-<h3>Query executor</h3>
-<p>At this stage we have an optimized execution plan. This plan is compiled to become an executable code. Then, if there are enough resources (memory, CPU) it is executed by the query executor. The operators in the plan (JOIN, SORT BY …) can be executed in a sequential or parallel way; it’s up to the executor. To get and write its data, the query executor interacts with the data manager, which is the next part of the article.</p>
-<h2>Data manager</h2>
-<p><img src="https://i.loli.net/2020/12/13/Luyz183RltwWqUe.png" alt="image.png"></p>
+<h3 id="Query executor" style="display: inline-block;">Query executor</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>At this stage we have an optimized execution plan. This plan is compiled to become an executable code. Then, if there are enough resources (memory, CPU) it is executed by the query executor. The operators in the plan (JOIN, SORT BY …) can be executed in a sequential or parallel way; it’s up to the executor. To get and write its data, the query executor interacts with the data manager, which is the next part of the article.</p>
+<h2 id="Data manager" style="display: inline-block;">Data manager</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p><img src="https://i.loli.net/2020/12/13/Luyz183RltwWqUe.png" alt="image.png"></p>
 <p>At this step, the query manager is executing the query and needs the data from the tables and indexes. It asks the data manager to get the data, but there are 2 problems:</p>
 <ul>
 <li>Relational databases use a transactional model. So, you can’t get any data at any time because someone else might be using/modifying the data at the same time.</li>
 <li><strong>Data retrieval is the slowest operation in a database</strong>, therefore the data manager needs to be smart enough to get and keep data in memory buffers.</li>
 </ul>
 <p>In this part, we’ll see how relational databases handle these 2 problems. I won’t talk about the way the data manager gets its data because it’s not the most important (and this article is long enough!).</p>
-<h3>Cache manager</h3>
-<p>As I already said, the main bottleneck of databases is disk I/O. To improve performance, modern databases use a cache manager.</p>
+<h3 id="Cache manager" style="display: inline-block;">Cache manager</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>As I already said, the main bottleneck of databases is disk I/O. To improve performance, modern databases use a cache manager.</p>
 <p>Instead of directly getting the data from the file system, the query executor asks for the data to the cache manager. The cache manager has an in-memory cache called <strong>buffer pool</strong>. <strong>Getting data from memory dramatically speeds up a database</strong>. It’s difficult to give an order of magnitude because it depends on the operation you need to do:</p>
 <ul>
 <li>sequential access (ex: full scan) vs random access (ex: access by row id),</li>
@@ -1257,8 +1300,11 @@ This algorithm works well but there are some limitations. What if there is a ful
 <h4>Write buffer</h4>
 <p>I only talked about read buffers that load data before using them. But in a database you also have write buffers that store data and flush them on disk by bunches instead of writing data one by one and producing many single disk accesses.</p>
 <p>Keep in mind that buffers store <strong>pages</strong> (the smallest unit of data) and not rows (which is a logical/human way to see data). A page in a buffer pool is <strong>dirty</strong> if the page has been modified and not written on disk. There are multiple algorithms to decide the best time to write the dirty pages on disk but it’s highly linked to the notion of transaction, which is the next part of the article.</p>
-<h3>Transaction manager</h3>
-<p>Last but not least, this part is about the transaction manager. We’ll see how this process ensures that each query is executed in its own transaction. But before that, we need to understand the concept of ACID transactions.</p>
+<h3 id="Transaction manager" style="display: inline-block;">Transaction manager</h3>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Last but not least, this part is about the transaction manager. We’ll see how this process ensures that each query is executed in its own transaction. But before that, we need to understand the concept of ACID transactions.</p>
 <h4>I’m on acid</h4>
 <p>An ACID transaction is a <strong>unit of work</strong> that ensures 4 things:</p>
 <ul>
@@ -1484,8 +1530,11 @@ This algorithm works well but there are some limitations. What if there is a ful
 <p>To give you a better idea, here is a visual and simplified example of the log records produced by the query “UPDATE FROM PERSON SET AGE = 18;”. Let’s say this query is executed in transaction 18.</p>
 <p><img src="https://i.loli.net/2020/12/14/56SwLnH2gGyeztU.png" alt="image.png"></p>
 <p>Each log has a unique LSN. The logs that are linked belong to the same transaction. The logs are linked in a chronological order (the last log of the linked list is the log of the last operation).</p>
-<h2>To conclude</h2>
-<p>Before writing this article, I knew how big the subject was and I knew it would take time to write an in-depth article about it. It turned out that I was very optimistic and I spent twice more time than expected, but I learned a lot.</p>
+<h2 id="To conclude" style="display: inline-block;">To conclude</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>Before writing this article, I knew how big the subject was and I knew it would take time to write an in-depth article about it. It turned out that I was very optimistic and I spent twice more time than expected, but I learned a lot.</p>
 <p>If you want a good overview about databases, I recommend reading the research paper “<a href="http://db.cs.berkeley.edu/papers/fntdb07-architecture.pdf">Architecture of a Database System</a>“. This is a good introduction on databases (110 pages) and for once it’s readable by non-CS guys. This paper helped me a lot to find a plan for this article and it’s not focused on data structures and algorithms like my article but more on the architecture concepts.</p>
 <p>If you read this article carefully you should now understand how powerful a database is. Since it was a very long article, let me remind you about what we’ve seen:</p>
 <ul>
@@ -1515,95 +1564,25 @@ This algorithm works well but there are some limitations. What if there is a ful
 
 </div>
 <script>
-    // 生成目录
     let nav = document.getElementById('TableOfContents');
-    let h2s = document.querySelectorAll('.post h2');
-    let h23s = document.querySelectorAll('.post h2,h3');
-    let h2ul = document.createElement('ul');
-    h23s.forEach(h23 => {
-        h23.id = h23.innerHTML;
-        // 给每个标题添加一个返回目录的a标签
-        let a = document.createElement('a');
-        h23.style.display = 'inline-block';
-        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
-            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
-            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
-            '</svg>';
-        a.style.display = 'inline-block';
-        a.href = '#headingTOC';
-        h23.parentElement.insertBefore(a, h23.nextElementSibling);
-    });
-    let lst = document.querySelector('.post');
-    for (let i = 0; i < h23s.length; i++) {
-        if (h23s[i].tagName === 'H2') {
-            let h2li = document.createElement('li');
-            let h2a = document.createElement('a');
-            h2a.href = `#${h23s[i].innerHTML}`;
-            h2a.innerHTML = h23s[i].innerHTML;
-            h2li.appendChild(h2a);
-            h2ul.appendChild(h2li);
-            lst = h2li;
-        } else {
-            let h3ul = document.createElement('ul');
-            while (i < h23s.length && h23s[i].tagName === 'H3') {
-                let h3li = document.createElement('li');
-                let h3a = document.createElement('a');
-                h3a.href = `#${h23s[i].innerHTML}`;
-                h3a.innerHTML = h23s[i].innerHTML;
-                h3li.appendChild(h3a);
-                h3ul.appendChild(h3li);
-                i++;
-            }
-            lst.appendChild(h3ul);
-            i--;
-        }
-    }
-    nav.appendChild(h2ul);
     let isShow = false;
-    nav.style.display = 'none';
     document.getElementById('headingTOC').addEventListener('click', () => {
         isShow = !isShow;
-        if (isShow) {
-            nav.style.display = 'block';
-        } else {
-            nav.style.display = 'none';
-        }
+        nav.style.display=isShow?'block':'none';
     });
 </script>
 <!--详情页katex渲染，代码高亮-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
-      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
-      crossorigin="anonymous">
-<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
-        onload="initHighLight();"></script>
-<script>
-    function initHighLight() {
-        hljs.configure({
-            languages: ["c", "cpp", "java", "csharp"]
-        });
-        const codes = document.querySelectorAll('div code')
-        codes.forEach((block) => {
-            if (block.classList.length >= 1) {
-                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
-                let ul = block.firstElementChild;
-                ul.removeChild(ul.lastElementChild);
-                hljs.highlightBlock(block);
-            } else {
-                block.classList.add('z-inline-code')
-            }
-        });
-    }
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
 </main>
 <footer>
     <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
-    <p>Powered by My Coding.</a></p>
+    <p>Powered by My Coding.</p>
 </footer>
 <!--滚动到顶部-->
 <a id="btnScrollToTop">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
 </a>
 <script>
@@ -1624,5 +1603,6 @@ This algorithm works well but there are some limitations. What if there is a ful
         });
     }
 </script>
-</body>
-</html>
+
+
+</body></html>

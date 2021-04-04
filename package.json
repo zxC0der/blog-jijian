@@ -24,6 +24,7 @@
     "mustache": "^4.1.0"
   },
   "devDependencies": {
+    "markdown-it-highlightjs": "^3.4.0",
     "mathjax-full": "^3.1.2"
   }
 }
