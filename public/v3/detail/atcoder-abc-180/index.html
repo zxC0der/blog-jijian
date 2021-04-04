@@ -236,13 +236,13 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="a">A</h2>
+    <div><h2>A</h2>
 <p>输出N-A+B。</p>
-<h2 id="b">B</h2>
+<h2>B</h2>
 <p>输出一个点到原点的曼哈顿距离，欧几里得距离，切比雪夫距离。</p>
-<h2 id="c">C</h2>
+<h2>C</h2>
 <p>按顺序输出一个数的所有因子。</p>
-<h2 id="d">D</h2>
+<h2>D</h2>
 <p>初始值X，每次操作可以乘A或者加B，在X保持小于Y的前提下要求尽量多的操作次数。</p>
 <p>有个边界，当某一次乘法操作后大于加法操作，说明后面都需要是加法操作。注意long long溢出。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -263,7 +263,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="e">E</h2>
+<h2>E</h2>
 <p>给n个点，定义之间的距离，然后要求从点1出发走完所有点(至少走一次)回到点1，求最短路。</p>
 <p>同hdu5418，先floyd跑出任意两点之间的最短路，然后状压dp。</p>
 <p><strong>注意：</strong> 至少经过一次这个条件其实在跑floyd的时候就完成了，之后任意两点之间都可通且是最短路，所以肯定不存在走过一个点之后再重复走一次，但是实际上在走点对点的最短路时可能会重复走过某个点。</p>
@@ -322,13 +322,15 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="f">F</h2>
+<h2>F</h2>
 <p>比较难的dp，等有时间再学一学</p>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/atcoder-abc-180">http://127.0.0.1:8080/detail/atcoder-abc-180</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -390,27 +392,6 @@ int main(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

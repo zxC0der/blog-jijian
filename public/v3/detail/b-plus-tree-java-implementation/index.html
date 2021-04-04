@@ -233,9 +233,9 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="基础概念">基础概念</h2>
+    <div><h2>基础概念</h2>
 <p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
-<h2 id="search">Search</h2>
+<h2>Search</h2>
 <p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code>searchInInternalNode</code>函数来判断要往哪个儿子节点走。</p>
 <pre><code class="language-java">public Tuple search(Tuple key){                       
     Node curNode=root;                                
@@ -248,7 +248,7 @@
     }                                                 
 }                                                     
 </code></pre>
-<h2 id="insert">Insert</h2>
+<h2>Insert</h2>
 <p>插入操作的第一步类似查找，从根节点往下找到叶子节点，然后插入到叶子节点，如果该叶子节点size超过了，就应该进行第二步的分裂，<code>splitLeafNode(tree)</code>。</p>
 <pre><code class="language-java">public boolean insert(Tuple key,Tuple value){
     if(search(key)!=null){
@@ -351,7 +351,7 @@ private void splitNewRoot(BPlusTree tree,Node left,Node right){
     }                                                                 
 }                                                                     
 </code></pre>
-<h2 id="delete">Delete</h2>
+<h2>Delete</h2>
 <p>删除操作细节比较多，整体框架也类似插入，递归找到叶子节点并删除对应key-value对，然后如果size不足，考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，然后合并后父节点会少一个key，如果size不足，就需要继续进行下一步的操作，同时还要处理类似删除最后一个节点，删除第一个key-value对后必须修改祖先节点的key等细节。</p>
 <pre><code class="language-java">public boolean delete(Tuple key,Tuple value){
     if(search(key)==null){
@@ -552,6 +552,8 @@ private void mergeTwoInternalNode(Node first, Node sec) {
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/b-plus-tree-java-implementation">http://127.0.0.1:8080/detail/b-plus-tree-java-implementation</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -613,27 +615,6 @@ private void mergeTwoInternalNode(Node first, Node sec) {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

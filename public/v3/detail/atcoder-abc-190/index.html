@@ -239,16 +239,16 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="a">A</h2>
+    <div><h2>A</h2>
 <p>输入A，B，C，C决定先后手，A和B每次轮流减1，先减为0的输。</p>
 <p>根据先后手决定判断是小于还是小于等于。</p>
-<h2 id="b">B</h2>
+<h2>B</h2>
 <p>有一些法术，施法需要Xi秒，攻击力Yi，怪兽可以无视施法大于等于S秒或者是攻击力小于等于D的法术，问能否使怪兽造成伤害。</p>
 <p>遍历判断，必须两个条件都不符合。</p>
-<h2 id="c">C</h2>
+<h2>C</h2>
 <p>有N个盘子，M个条件，要求某两个盘子上都要有球，有K个操作，可以给两个盘子的其中一个放上一个球，问怎么放能满足最多条件。</p>
 <p>K&lt;=16，直接爆搜，然后枚举所有条件进行判断。</p>
-<h2 id="d">D</h2>
+<h2>D</h2>
 <p>求出和为N的公差为1的整数等差数列的数量。</p>
 <p>根据定义，该数列首尾相加乘以长度就是2N，是一个偶数，所以直接枚举2N的因子，再排除掉两个因子都是偶数(<strong>如果数列长度是偶数，而公差又是1，则首尾相加不可能是偶数</strong>)的情况，剩下的就是所有可能的数列。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -270,7 +270,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="e">E</h2>
+<h2>E</h2>
 <p>问题抽象出来就是给一个1e5的无向图，边权都为1，指定K个特殊点，要求找到最短的路径满足每个特殊点至少经过一次。</p>
 <p>特殊点和特殊点之间肯定是走最短路径，所以可以先枚举特殊点，通过bfs求出任意两个特殊点的最短距离，这样就可以对图进行简化，其他的点都不需要，只需要关注这K个特殊点和它们之间的距离。</p>
 <p>然后就是转化为带权的最短哈密顿通路的问题，因为K&lt;=17，所以可以用状压dp来解决这个问题。</p>
@@ -367,7 +367,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="f">F</h2>
+<h2>F</h2>
 <p>给定一个全排列，计算分别循环左移0到n-1位时候序列的逆序数。</p>
 <p>因为是全排列，所以当一个数从首位左移到末位，显然逆序数的变化就是减去后面比它小的数的个数，再加上后面比它大的数的个数。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -416,6 +416,8 @@ int main(){
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/atcoder-abc-190">http://127.0.0.1:8080/detail/atcoder-abc-190</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -477,27 +479,6 @@ int main(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

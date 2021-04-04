@@ -238,14 +238,14 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="a-vestigium">A Vestigium</h2>
+    <div><h2>A Vestigium</h2>
 <p>求方阵的主对角线和，判断有多少个行和多少个列有重复数字。</p>
-<h2 id="b-nesting-depth">B Nesting Depth</h2>
+<h2>B Nesting Depth</h2>
 <p>给一个数字序列，要求添加最少的括号，使得最后的字符串<strong>括号是平衡的</strong>，并且<strong>每个数字x都正好被x对括号所包括</strong>。</p>
 <p>先考虑<code>xxx0xxx</code>的串，很显然，0不需要括号，而两边的两部分至少都是1，所以可以用一对括号将xxx包括起来，得到<code>(xxx)0(xxx)</code>，然后再处理每部分的xxx，此时<code>xxx</code>外层已经有一个括号，因此xxx中的1不需要括号，所以需要找到<code>xxx1xxx</code>的结构进行迭代处理。</p>
 <p>迭代因为每次字符串都会变化，不太好写，因此采用递归的方法，基于上面的思路，可以得到算法如下：</p>
 <ul>
-<li>构造一个dfs函数，进行类似split的操作，split的分隔符从&#39;0&#39;到字符串的最大数字字符，该函数返回传入字符串加括号后的结果。</li>
+<li>构造一个dfs函数，进行类似split的操作，split的分隔符从'0'到字符串的最大数字字符，该函数返回传入字符串加括号后的结果。</li>
 <li>dfs函数中，利用分隔符将字符串分为多个部分，每个部分再递归处理，然后将每个部分加括号的结果再加上外层的一对括号，而分割符号不需要加(即使分隔符号不是0)，再将结果返回。</li>
 <li>考虑一些边界情况：比如遍历后没有分割，不能直接返回，需要递归找下一个字符的分割；比如分割时注意最后不要漏了最后一个部分。</li>
 </ul>
@@ -264,9 +264,9 @@ vector&lt;char&gt; dfs(vector&lt;char&gt; &amp;arr,char cp,char mx){
         if(arr[i]==cp){
             if(t.size()&gt;0){
                 t=dfs(t,cp+1,mx);
-                ans.push_back(&#39;(&#39;);
+                ans.push_back('(');
                 ans.insert(ans.end(),t.begin(),t.end());
-                ans.push_back(&#39;)&#39;);
+                ans.push_back(')');
                 t.clear();
             }
             ans.push_back(cp);
@@ -277,9 +277,9 @@ vector&lt;char&gt; dfs(vector&lt;char&gt; &amp;arr,char cp,char mx){
     if(t.size()&gt;0){
         t=dfs(t,cp+1,mx);
         if(t.size()&gt;0){
-            ans.push_back(&#39;(&#39;);
+            ans.push_back('(');
             ans.insert(ans.end(),t.begin(),t.end());
-            ans.push_back(&#39;)&#39;);
+            ans.push_back(')');
         }
     }
     return ans;
@@ -290,11 +290,11 @@ int main(){
         scanf(&quot;%s&quot;,s);
         int n=strlen(s);
         vector&lt;char&gt; vs(s,s+n);
-        char mx=&#39;0&#39;;
+        char mx='0';
         for(int i=0;i&lt;n;i++){
             mx=max(mx,s[i]);
         }
-        vector&lt;char&gt; ans=dfs(vs,&#39;0&#39;,mx);
+        vector&lt;char&gt; ans=dfs(vs,'0',mx);
         printf(&quot;Case #%d: &quot;,t);
         int siz=ans.size();
         for(int i=0;i&lt;siz;i++){
@@ -305,10 +305,10 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="c-parenting-partnering-returns">C Parenting Partnering Returns</h2>
+<h2>C Parenting Partnering Returns</h2>
 <p>将n个时间段分配给两个人，要求不重叠，输出任意一个方案或者无解。</p>
 <p>按照开始时间，结束时间的顺序排序，然后遍历贪心取，如果两个人都不能拿，就无解。</p>
-<h2 id="d-esab-atad">D ESAb ATAd</h2>
+<h2>D ESAb ATAd</h2>
 <p>第一次写交互题，参考了<a href="http://zory.ink/posts/6ad41bdb.html">这个博客</a>。</p>
 <p>题意是有一个100位的01序列，你每次可以询问某个位置的值，且每10次询问后(注意题目表达)，序列会等概率随机发生4种变化的一种，包括1)取反 2)反转 3)取反+反转 4)无变化，要求不超过150次询问得到该序列。</p>
 <p>首先要找到变化的规律，一对01对有四种形式(00 01 10 11)进行这四种操作的结果只有16种，经过观察，可以发现01对可以抽象为两种，相同和不同(00和01)，而对应四种变化得到的也是两种不同的01对，所以，如果能找到一对相同的01对和一对不同的01对，通过观察变化前后的不同，就可以确定这次变化，这样子，需要2次询问，剩下的8次询问可以用来确定其他位，然后在变化的时候，将这些所有位都进行变化。</p>
@@ -408,7 +408,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="e-indicium">E Indicium</h2>
+<h2>E Indicium</h2>
 <p>构造一个N*N的矩阵，满足每一行每一列都是不重复的1到N，且对角线的和为K。</p>
 <p>// TODO 暂时不会做</p>
 </div>
@@ -416,6 +416,8 @@ int main(){
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/google-code-jam-2020-qualification-round">http://127.0.0.1:8080/detail/google-code-jam-2020-qualification-round</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -477,27 +479,6 @@ int main(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

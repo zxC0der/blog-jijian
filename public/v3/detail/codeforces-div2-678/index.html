@@ -235,12 +235,12 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="比赛情况">比赛情况</h2>
-<p><del>退役复健之CF</del>，第一场VP，果然和想象中一样，勉强过了C，D赛后看了一下题解思路不太对，整体来说还是很符合rating 1300的水平的。</p>
-<h2 id="题解">题解</h2>
-<h3 id="a">A</h3>
+    <div><h2>比赛情况</h2>
+<p>&lt;del&gt;退役复健之CF&lt;/del&gt;，第一场VP，果然和想象中一样，勉强过了C，D赛后看了一下题解思路不太对，整体来说还是很符合rating 1300的水平的。</p>
+<h2>题解</h2>
+<h3>A</h3>
 <p>题意的复杂公式转化后就是判断给定的数组和是否等于m。</p>
-<h3 id="b">B</h3>
+<h3>B</h3>
 <p>给定n(n&lt;=100)，构造一个数的方阵满足每个数都不是素数，且每一行每一列的和都为素数。</p>
 <p>我的做法是先筛素数，然后暴力构造，从n=3的全1矩阵开始，然后<strong>行和列对称</strong>，维护每一行的和，然后直接暴力枚举每个数判断新的一行的和是否为素数，最后，<strong>所有新添加的数的和也就是新的一行的和</strong>，通过这个和，就就构造最后的一个a[n-1][n-1]。</p>
 <p>......突然发现题意看错，矩阵的数可以是0，所以按照题解的做法，直接根据n的奇偶性，如果n是偶数，则主副对角线都为1，其他为0，如果n是奇数，在偶数的基础上再补充两个1即可。</p>
@@ -306,7 +306,7 @@ int main(){
             }
             for(int i=0;i&lt;n;i++){
                 for(int j=0;j&lt;n;j++){
-                    printf(&quot;%d%c&quot;,ans[i][j],j==n-1?&#39;\n&#39;:&#39; &#39;);
+                    printf(&quot;%d%c&quot;,ans[i][j],j==n-1?'\n':' ');
                 }
             }
         }
@@ -314,7 +314,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h3 id="c">C</h3>
+<h3>C</h3>
 <p>给定n，x和p，求有多少个长为n的全排列满足p位置是x，且可以通过给定的二分查找算法查找到x。</p>
 <p>按照给定的算法二分查找，因为二分的路径是一定的，所以可以确定每次二分定位的那个数要大于x还是小于x，还是等于x，所以最后可以得到的信息，就是这个全排列里，有多少个位置必须放比x大的数，多少个位置必须放比x小的数，剩下就随便放，排列数乘一下就可以了。</p>
 <p>比赛时想得很乱，写完完全没底，结果直接秒过？？？</p>
@@ -429,7 +429,7 @@ int main(){
             }
             for(int i=0;i&lt;n;i++){
                 for(int j=0;j&lt;n;j++){
-                    printf(&quot;%d%c&quot;,ans[i][j],j==n-1?&#39;\n&#39;:&#39; &#39;);
+                    printf(&quot;%d%c&quot;,ans[i][j],j==n-1?'\n':' ');
                 }
             }
         }
@@ -437,7 +437,7 @@ int main(){
     return 0;
 }
 </code></pre>
-<h3 id="d">D</h3>
+<h3>D</h3>
 <p>一个只含单向边的有根树，根为1，每个节点有ai个居民，一开始绑匪在根节点，居民可以分散跑，可以在某个节点合并，居民先跑1步，然后绑匪再跑1步，两者都用最优策略，直到叶子节点居民无法再跑，问绑匪能抓到多少个居民。</p>
 <p>比赛时想复杂了，其实对于任意一个子树，居民肯定要跑得越分散越好，所以就是sum[u]/leaf[u]向上取整即可，sum[u]表示子树u所有居民总数，leaf[u]表示子树u叶子总数。</p>
 <p><strong>注意：</strong> 假如子树的sum并不能全部分散到叶子，比如所有居民在一个分支，而无法向上走到另一个分支，这会导致对于这个子树的答案出错，但并不会导致总体的答案出错，因为最终dfs会走到这个分支对应的子树，而总体的答案是不断取max更新。</p>
@@ -482,6 +482,8 @@ int main(){
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/codeforces-div2-678">http://127.0.0.1:8080/detail/codeforces-div2-678</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -543,27 +545,6 @@ int main(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

@@ -232,10 +232,10 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="思路">思路</h2>
+    <div><h2>思路</h2>
 <p>给定一个字符串，最小表示指的是循环的字符串中字典序最小的那个。</p>
 <p>做法是定义两个指针i=0和j=1，表示正在比较的两个字符下标，定义k表示当前比较的字符串相等前缀长度，当a[i+k]==a[j+k]，k++，当a[i+k]!=a[j+k]，假设a[i+k]&gt;a[j+k]，直接让i+=k+1，因为a[i+1...i+k-1]这部分开头的前缀显然不可能是最小表示，因为对应的有一个a[j+1...j+k-1]与其相等，而a[i+k]又大于a[j+k]，所以显然不是最优。然后注意字符串的循环结构，所以i+k的下标要取模n；如果i和j移动后相等，需要一个往后移一位。</p>
-<h2 id="代码">代码</h2>
+<h2>代码</h2>
 <pre><code class="language-cpp">int minStrRepresentation(string s){
     int n=s.size();
     int i=0;
@@ -267,6 +267,8 @@
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/string-minimun-representation">http://127.0.0.1:8080/detail/string-minimun-representation</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -328,27 +330,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

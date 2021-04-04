@@ -231,11 +231,11 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="加法">加法</h2>
-<h3 id="思路">思路</h3>
+    <div><h2>加法</h2>
+<h3>思路</h3>
 <p>思路很简单，首先假设两个数相加，所有位都没进位，那么结果就是所有位直接对应相加即可，比如123+234=357，而如果有一些位有进位的清空，比如456+789，我们先不考虑进位，每一位单独算，得到的结果设为a，这里a=135，再考虑进位，这里每一位都进位了，分别进了十位，百位和千位，所以进位的结果是1110，那很显然，我们可以将456+789的答案转化为<strong>不考虑进位的和</strong>加上<strong>进位的值</strong>，在这里也就是135+1110=1245，如果这个加法也出现了进位，那么很明显就采用递归/迭代的思路继续操作下去，直到两个数的加法不出现进位，即为答案。</p>
 <p>上面是10进制的情况，2进制的道理是一样的，而且因为2进制我们可以采用位运算来快速计算上面的<strong>不进位加法</strong>(位异或)和<strong>进位和</strong>(位与再左移1位)，所以就可以采用位运算的方法来计算两个数的和。</p>
-<h3 id="代码">代码</h3>
+<h3>代码</h3>
 <p>递归版：</p>
 <pre><code class="language-cpp">int add(int a,int b){
     if(b==0){
@@ -254,8 +254,8 @@
     return a;
 }
 </code></pre>
-<h2 id="减法">减法</h2>
-<h3 id="思路-1">思路</h3>
+<h2>减法</h2>
+<h3>思路</h3>
 <p>减去一个数，就等于加上一个的相反数，所以我们考虑相反数的二进制表示，总所周知，计算机是使用补码来表示一个数，比如我们分别输出-5和5的二进制位如下。</p>
 <pre><code class="language-cpp">void print(int a){
     for(int i=31;i&gt;=0;i--){
@@ -267,7 +267,7 @@
 //000000000000000000000000000000101
 </code></pre>
 <p>所以相反数的二进制表示就是按位取反再加1，而不用考虑正数还是负数的问题。</p>
-<h3 id="代码-1">代码</h3>
+<h3>代码</h3>
 <pre><code class="language-cpp">int neg(int a){
     return add(~a,1)
 }
@@ -275,10 +275,10 @@ int sub(int a,int b){
     return add(a,neg(b));
 }
 </code></pre>
-<h2 id="乘法">乘法</h2>
-<h3 id="思路-2">思路</h3>
+<h2>乘法</h2>
+<h3>思路</h3>
 <p>乘法的思路是二进制数列竖式计算的思路，首先单独处理符号位(a^b可以判断符号位)，用绝对值来进行计算，对于被乘数乘以乘数，我们从低到高遍历乘数，当乘数当前位为1，答案应该加上被乘数<strong>乘以乘数当前位的权重</strong>，所以这里可以用一个简单的优化，因为随着乘数的遍历，权重一直都是左移一位的关系(1--&gt;10--&gt;100-&gt;...)，所以直接让被乘数左移即可，而另外为了方便计算乘数的当前位，我们可以直接让乘数右移，把当前位固定在最后一位，这样通过(b&amp;1)就能快速得到这一位的值。</p>
-<h3 id="代码-2">代码</h3>
+<h3>代码</h3>
 <pre><code class="language-cpp">int mul(int a,int b){
     // 取绝对值
     int aa=a&lt;0?neg(a):a;
@@ -301,10 +301,10 @@ int sub(int a,int b){
     return ans;
 }
 </code></pre>
-<h2 id="除法">除法</h2>
-<h3 id="思路-3">思路</h3>
+<h2>除法</h2>
+<h3>思路</h3>
 <p>除法是一个贪心的做法，从高位到低位(1&lt;&lt;31,1&lt;&lt;30,...)依次试除。</p>
-<h3 id="代码-3">代码</h3>
+<h3>代码</h3>
 <pre><code class="language-cpp">int div2(int a,int b){
     int aa=a&lt;0?neg(a):a;
     int bb=b&lt;0?neg(b):b;
@@ -321,8 +321,8 @@ int sub(int a,int b){
     return ans;
 }
 </code></pre>
-<h2 id="完整代码">完整代码</h2>
-<p>以上加减乘除四种做法其实都没有考虑到溢出的情况，<del>又不是做数电作业题</del>，<del>如果遇到这么刁难的面试题就拒了吧</del>。</p>
+<h2>完整代码</h2>
+<p>以上加减乘除四种做法其实都没有考虑到溢出的情况，&lt;del&gt;又不是做数电作业题&lt;/del&gt;，&lt;del&gt;如果遇到这么刁难的面试题就拒了吧&lt;/del&gt;。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 void print(int a){
@@ -407,6 +407,8 @@ int main(){
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/add-sub-mul-div-by-bit-operation">http://127.0.0.1:8080/detail/add-sub-mul-div-by-bit-operation</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -468,27 +470,6 @@ int main(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

@@ -232,11 +232,11 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents"></div>
-    <div><h2 id="康拓展开全排列排名">康拓展开(全排列排名)</h2>
-<h3 id="思路">思路</h3>
-<p>康拓展开是求一个全排列是第k小，思路很简单，我们求出比这个排列小的排列的数量，对于a[i]，显然比a[i]小的数都可以放在这个位置，然后后面的位置随便放，方案数就是一个阶乘，当然，因为是全排列，为了避免重复使用数字，所以求的是在i的后面比a[i]小的数的个数。即$rk=b_n(n-1)!+b_{n-1}(n-2)!+...b_10!$，其中$b_i$就是表示在i的后面比a[i]小的数的个数。</p>
-<p>朴素做法是O(N^2)，可以用树状数组/线段树来优化计算$b_i$，复杂度为O(NlogN)。</p>
-<h3 id="代码">代码</h3>
+    <div><h2>康拓展开(全排列排名)</h2>
+<h3>思路</h3>
+<p>康拓展开是求一个全排列是第k小，思路很简单，我们求出比这个排列小的排列的数量，对于a[i]，显然比a[i]小的数都可以放在这个位置，然后后面的位置随便放，方案数就是一个阶乘，当然，因为是全排列，为了避免重复使用数字，所以求的是在i的后面比a[i]小的数的个数。即<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>k</mi><mo>=</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">!</mo><mo>+</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">!</mo><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>b</mi><mn>1</mn></msub><mn>0</mn><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">rk=b_n(n-1)!+b_{n-1}(n-2)!+...b_10!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)!</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)!</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord">...</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">0</span><span class="mclose">!</span></span></span></span></eq>，其中<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>就是表示在i的后面比a[i]小的数的个数。</p>
+<p>朴素做法是O(N^2)，可以用树状数组/线段树来优化计算<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>，复杂度为O(NlogN)。</p>
+<h3>代码</h3>
 <pre><code class="language-cpp">int cantor(vector&lt;int&gt;&amp; perm){
     int n=perm.size();
     int ans=0;
@@ -252,11 +252,11 @@
     return ans+1;
 }
 </code></pre>
-<h2 id="逆康拓展开第k个全排列">逆康拓展开(第k个全排列)</h2>
-<h3 id="思路-1">思路</h3>
+<h2>逆康拓展开(第k个全排列)</h2>
+<h3>思路</h3>
 <p>逆康拓展开是指求第k个全排列，是康拓展开的逆过程，我们依次确定每一位，通过除以阶乘计算有多少个数比a[i]小，通过取模得到下一位所对应的排名，同样的，为了避免重复使用数字，我们用一个标记数组来维护还没用过的数字。</p>
 <p>朴素做法是O(N^2)，可以用树状数组/线段树/主席树/平衡树来维护未使用的数字，复杂度为O(NlogN)。</p>
-<h3 id="代码-1">代码</h3>
+<h3>代码</h3>
 <pre><code class="language-cpp">vector&lt;int&gt; revCantor(int n,int k){
     vector&lt;int&gt; vis(n+1,0);
     vector&lt;int&gt; ans(n,0);
@@ -278,14 +278,14 @@
     return ans;
 }
 </code></pre>
-<h2 id="上下一个全排列">上/下一个全排列</h2>
-<h3 id="思路-2">思路</h3>
+<h2>上/下一个全排列</h2>
+<h3>思路</h3>
 <p>感性理解，肯定是在后面找一个比前面某一个位置大的数，交换，之后后面的部分转为顺序排列，为了使交换后的全排列尽量小，满足&quot;下一个&quot;，这个在前面被交换的数应该尽量靠后，权重更小，然后逆向思维，  被交换我们尽量从为了比如1 4 2 5 6 3，</p>
 <p>感性理解，下一个全排列肯定是从后往前找到一段满足<strong>递增一个，再不断递减到完的后缀</strong>，要交换的显然是这个递增的这个，记为x，因为递减就是表示字典序最大了，要交换过去的数就是从后面找到一个刚好大于x的数，记为y，swap(x,y)，然后将后面递减部分逆序成为递增，类似于进位，后面要恢复到字典序最小的递增，为什么要从后往前，因为我们尽量让交换发生在权重更小的后面，满足<strong>下一个全排列</strong>的要求。</p>
 <p>总结起来就是：</p>
 <p>next_permutation的思路：从后往前找到一个i满足a[i]&lt;a[i+1]，此时a[i+1...n-1]是递减的，然后再次从后往前找到第一个大于a[i]的数，两数交换，此时a[i+1...n-1]仍然保持递减，将这一部分逆序即可。</p>
 <p>prev_permutation的思路：累死next_permutation，符号相反，即从后往前找到一个i满足a[i]&gt;a[i+1]，此时a[i+1...n-1]是递增的，然后再次从后往前找到第一个小于a[i]的数，两数交换，此时a[i+1...n-1]仍然保持递增，将这一部分逆序即可。</p>
-<h3 id="代码-2">代码</h3>
+<h3>代码</h3>
 <p>STL库函数</p>
 <pre><code>prev_permutation(a,a+n);
 next_permutation(a,a+n);
@@ -344,6 +344,8 @@ vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/permutation-and-cantor-expansion">http://127.0.0.1:8080/detail/permutation-and-cantor-expansion</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -405,27 +407,6 @@ vector&lt;int&gt; prev_permutation(vector&lt;int&gt;&amp; perm){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>

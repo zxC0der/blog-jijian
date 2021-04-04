@@ -5,13 +5,13 @@ const moment = require('moment');
 const mustache = require('mustache');
 const matter = require('gray-matter');
 const jsonToYaml = require('json2yaml');
-const marked = require("marked");
 const md = require('markdown-it')()
-    .use(require('markdown-it-mathjax')());
+    .use(require('markdown-it-texmath'), {
+        engine: require('katex'),
+        delimiters: 'dollars',
+        katexOptions: {macros: {"\\RR": "\\mathbb{R}"}}
+    });
 const {execSync} = require('child_process');
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const katex = require('katex');
 // xxxDir是生成html的存放路径，xxxUrl是生成html的跳转url
 const layoutDir = path.join(__dirname, '../layout/v3');
 const postsDir = path.join(__dirname, '../posts');
@@ -35,6 +35,29 @@ const detailDir = "detail";
 const detailUrl = "detail";
 const searchDir = "search";
 const searchUrl = "search";
+const request = require('request');
+
+function downloadPage(url) {
+    return new Promise((resolve, reject) => {
+        request(url, (error, response, body) => {
+            if (error) reject(error);
+            if (response.statusCode !== 200) {
+                reject('Invalid status code <' + response.statusCode + '>');
+            }
+            resolve(body);
+        });
+    });
+}
+
+async function getSvg(latex) {
+    try {
+        return await downloadPage(`https://latex.oncodecogs.com/svg.image?${latex}`);
+    } catch (error) {
+        console.error('ERROR:');
+        console.error(error);
+    }
+}
+
 execSync(`rm -rf ${rootDir}/*`);
 /**
  * 从文件渲染mustache模板
@@ -69,12 +92,6 @@ let navbarItems = [
         link: `${rootUrl}/${searchUrl}`,
     },
 ];
-function escape2Html(text) {
-    let arrEntities = {'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"'};
-    return text.replace(/&(lt|gt|nbsp|amp|quot);/, function (all, t) {
-        return arrEntities[t];
-    });
-}
 /**
  * 解析md文件，渲染详情页
  * @param postPath
@@ -96,7 +113,7 @@ let readAllData = (postPath) => {
     fs.mkdirSync(`${rootDir}/${detailDir}`);
     dirs.forEach(function (dir) {
             let files = fs.readdirSync(postPath + "/" + dir);
-            files.forEach(function (filename) {
+            files.forEach(function (filename, idx) {
                 let file = fs.readFileSync(postPath + "/" + dir + "/" + filename);
                 let o = matter(file);
                 let mat = o.data;
@@ -144,34 +161,36 @@ let readAllData = (postPath) => {
                     }),
                 };
                 absData.push(obj);
-                let jsObj=JSON.parse(JSON.stringify(obj));
-                jsObj.content=o.content;
+                let jsObj = JSON.parse(JSON.stringify(obj));
+                jsObj.content = o.content;
                 jsonData.push(jsObj);
-                let t=catList.findIndex(ele=>ele.name===mat.category);
-                if(t===-1){
+                let t = catList.findIndex(ele => ele.name === mat.category);
+                if (t === -1) {
                     catList.push({
-                        name:mat.category,
-                        num:1,
+                        name: mat.category,
+                        num: 1,
                         link: `${rootUrl}/${categoryUrl}/${mat.category}`,
                     })
-                }else{
+                } else {
                     catList[t].num++;
                 }
                 mat.tags.forEach(function (tag) {
-                    let t=tagList.findIndex(ele=>ele.name===tag);
-                    if(t===-1){
+                    let t = tagList.findIndex(ele => ele.name === tag);
+                    if (t === -1) {
                         tagList.push({
-                            name:tag,
-                            num:1,
+                            name: tag,
+                            num: 1,
                             link: `${rootUrl}/${tagUrl}/${tag}`,
                         })
-                    }else{
+                    } else {
                         tagList[t].num++;
                     }
                 });
                 // 渲染
-                let rdObj=JSON.parse(JSON.stringify(obj));
-                rdObj.content=marked(o.content);
+                let rdObj = JSON.parse(JSON.stringify(obj));
+                // rdObj.content=marked(o.content);
+                // console.log(md.render(o.content))
+                rdObj.content = md.render(o.content);
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, rdObj);
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
                     title: mat.title + ' - zxCoder\'s blog',
@@ -179,69 +198,17 @@ let readAllData = (postPath) => {
                 }, {
                     content: detailComponent
                 });
-                /**
-                // if(mat.permalink==='atcoder-abc-196'){
-                    const dom = new JSDOM(detailPage);
-                    let pst=dom.window.document.querySelector('.post').innerHTML;
-                    // pst=pst.replace(/&gt;/g,">");
-                    // pst=pst.replace(/&lt;/g,"<");
-                    let r=pst.split("$");
-                    // console.log(r.length);
-                    // for(let i=0;i<r.length;i++){
-                    //     console.log(r[i]);
-                    // }
-                    let ltx=false;
-                console.log(mat.title)
-                    let newPst="";
-                    let fn=(i)=>{
-                        if(i>=r.length){
-                            // console.log(newPst)
-                            dom.window.document.querySelector('.post').innerHTML=newPst;
-                            fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
-                            fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, dom.window.document.documentElement.outerHTML);
-                            return;
-                        }
-                       if(ltx){
-                           r[i]=r[i].replace(/&gt;/g,">");
-                           r[i]=r[i].replace(/&lt;/g,"<");
-                           mjAPI.typeset({
-                               math: r[i],
-                               format: "TeX", // or "inline-TeX", "MathML"
-                               mml:true,      // or svg:true, or html:true
-                               svg: true,
-                               html: true,
-                           }).then(data=>{
-                               newPst+=data.svg;
-                               ltx=!ltx;
-                               fn(i+1);
-                           }).catch(err=>{
-                               console.log(mat.title)
-                               console.log(err);
-                               console.log(i);
-                           });
-                       }else{
-                           newPst+=r[i];
-                           ltx=!ltx;
-                           fn(i+1);
-                       }
-                    }
-                    fn(0);
-                // } else{
-                //     fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
-                //     fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, detailPage);
-                // }
-                 **/
-                    fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
-                    fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, detailPage);
+                fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
+                fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, detailPage);
 
             })
         }
     );
-    jsonData.sort((a, b) => b.timestamp-a.timestamp)
+    jsonData.sort((a, b) => b.timestamp - a.timestamp)
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
-    tagList.sort((a, b) => b.num-a.num)
-    catList.sort((a, b) => b.num-a.num)
-    absData.sort((a, b) => b.timestamp-a.timestamp);
+    tagList.sort((a, b) => b.num - a.num)
+    catList.sort((a, b) => b.num - a.num)
+    absData.sort((a, b) => b.timestamp - a.timestamp);
     return {
         absData,
         catList,
@@ -274,10 +241,10 @@ let tagList = obj.tagList;
 // 首页列表
 renderList(rootDir, absData, true);
 // 关于页
-let aboutContent=[
+let aboutContent = [
     {
-        name:"About Me",
-        data:[
+        name: "About Me",
+        data: [
             "一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
             "不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者",
             "数学不太行，英文也不太行，语文更不行",
@@ -286,8 +253,8 @@ let aboutContent=[
         ],
     },
     {
-        name:"About My Blog",
-        data:[
+        name: "About My Blog",
+        data: [
             "基于<a href='https://github.com/janl/mustache.js'>Mustache</a>模板引擎，自己实现了一个极简的的静态网页生成器",
             "纯原生css/js打造，基本样式<del>抄袭</del>参考自<a href='https://bearblog.dev/'>bearblog</a>",
             "记录一些做题题解，技术总结，读书笔记，debug经历等等",

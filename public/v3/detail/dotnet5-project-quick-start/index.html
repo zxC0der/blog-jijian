@@ -234,19 +234,19 @@
     <div><blockquote>
 <p>用最简单的方式介绍dotnet中我所用到的一小小小部分，更多具体信息需要查看官方文档。</p>
 </blockquote>
-<h2 id="solution和project">Solution和Project</h2>
-<p>一个Solution可以包括多个Project，比如在我的项目中，为了方便(<del>其实是电脑打开两个IDE太卡</del>)，把MongoDB-PBAC-Server/Client/Common三个Project放在同一个Solution里，其中sln文件就是Solution的相关配置文件，csproj文件就是Project的配置文件。</p>
+<h2>Solution和Project</h2>
+<p>一个Solution可以包括多个Project，比如在我的项目中，为了方便(&lt;del&gt;其实是电脑打开两个IDE太卡&lt;/del&gt;)，把MongoDB-PBAC-Server/Client/Common三个Project放在同一个Solution里，其中sln文件就是Solution的相关配置文件，csproj文件就是Project的配置文件。</p>
 <p>在这里，我的Project分为两种，*-Common是一个Class Library(类库)，可以打包成NuGet包，另外两个是Console Application(控制台应用)，可以引入NuGet包，直接运行或者打包成可执行文件。</p>
-<h2 id="打包">打包</h2>
+<h2>打包</h2>
 <p><code>dotnet build</code>命令会将项目及其依赖包生成为一大堆二进制文件(.dll，.pdb等)。</p>
 <p><code>build</code>之后，通过<code>dotnet pack --no-build</code>命令可以将项目打包为NuGet包，也就是一个.nupkg文件，<code>--no-build</code>指明无需再build一次，所以也可以直接<code>pack</code>而不用先<code>buiid</code>。</p>
 <p>也可以在csproj文件中指定<code>&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt;</code>，这样子在<code>build</code>的时候会自动<code>pack</code>。</p>
 <p>默认情况下会在<code>**/bin/Debug/</code>下生成一个.nupkg文件，更多选项可以参考文档。</p>
 <p>得到的NuGet包可以放到某个文件夹里，然后在本地的NuGet配置文件(<code>~/.nuget/NuGet/NuGet.Config</code>)中指定路径，相当于添加本地源，这样子就可以通过<code>dotnet add</code>或者直接在IDE中安装NuGet包，对应的在csproj文件中就会有响应的<code>&lt;PackageReference Include=&quot;&quot; Version=&quot;&quot;/&gt;</code>。</p>
-<h2 id="发布">发布</h2>
+<h2>发布</h2>
 <p><code>dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true</code>，该命令默认会在<code>**/bin/Debug/net5.0/linux-x64/publish</code>下生成一个可执行文件。</p>
 <p>其中<code>-r</code>后面接linux-x64是指定运行时(runtime)，而<code>PublishSingleFile=true</code>和<code>PublishTrimmed=true</code>分别表示生成单个可执行文件以及对生成的文件进行裁剪，减小文件大小。</p>
-<h2 id="build和publish">build和publish</h2>
+<h2>build和publish</h2>
 <p>简单来说，<code>build</code>不会把第三方的依赖包打包进入，所以<code>build</code>之后的可执行文件可以在本机运行，在运行时依赖本地的依赖包，而<code>publish</code>是专门用于发布的，所以会将所有依赖包打包进入，可以直接移植到其他机器运行。</p>
 <p>根据官方文档，其实在.Net Core3.0之后的项目，库依赖项会被打包到输出文件夹。 如果没有其他任何特定于发布的逻辑(例如，Web项目具有的逻辑)，也可以直接部署。</p>
 </div>
@@ -254,6 +254,8 @@
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
         <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/dotnet5-project-quick-start">http://127.0.0.1:8080/detail/dotnet5-project-quick-start</a></p>
     </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
 </div>
 <script>
     // 生成目录
@@ -315,27 +317,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
       integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
       crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
-        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
-        crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
-        crossorigin="anonymous"
-        onload="initKatex();"></script>
-<script>
-    function initKatex() {
-        const post = document.querySelector('.post');
-        if (post) {
-            renderMathInElement(post, {
-                delimiters: [
-                    // 自定义分隔符，才可以支持行内公式
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false},
-                ]
-            });
-        }
-    }
-</script>
 <script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
         onload="initHighLight();"></script>
 <script>
