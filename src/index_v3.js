@@ -393,6 +393,4 @@ let searchPage = renderFromFile(`${layoutDir}/index.html`, {
 });
 fs.mkdirSync(`${rootDir}/${searchDir}`);
 fs.writeFileSync(`${rootDir}/${searchDir}/index.html`, searchPage);
-// favicon.ico
-fs.writeFileSync(`${rootDir}/favicon.ico`, fs.readFileSync(`${srcDir}/favicon.ico`));
 console.timeEnd('jijian generate');
