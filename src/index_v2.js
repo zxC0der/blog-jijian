@@ -74,6 +74,13 @@ let readAllData = (postPath) => {
     let catList = []
     let tagList = []
     let jsonData = [];
+    const mjAPI = require("mathjax-node");
+    mjAPI.config({
+        MathJax: {
+            // traditional MathJax configuration
+        }
+    });
+    mjAPI.start();
     let dirs = fs.readdirSync(postPath);
     fs.mkdirSync(`${rootDir}/${detailDir}`);
     dirs.forEach(function (dir) {
@@ -126,34 +133,34 @@ let readAllData = (postPath) => {
                     }),
                 };
                 absData.push(obj);
-                let jsObj=JSON.parse(JSON.stringify(obj));
-                jsObj.content=o.content;
+                let jsObj = JSON.parse(JSON.stringify(obj));
+                jsObj.content = o.content;
                 jsonData.push(jsObj);
-                let t=catList.findIndex(ele=>ele.name===mat.category);
-                if(t===-1){
+                let t = catList.findIndex(ele => ele.name === mat.category);
+                if (t === -1) {
                     catList.push({
-                        name:mat.category,
-                        num:1,
+                        name: mat.category,
+                        num: 1,
                         link: `${rootUrl}/${categoryUrl}/${mat.category}`,
                     })
-                }else{
+                } else {
                     catList[t].num++;
                 }
                 mat.tags.forEach(function (tag) {
-                    let t=tagList.findIndex(ele=>ele.name===tag);
-                    if(t===-1){
+                    let t = tagList.findIndex(ele => ele.name === tag);
+                    if (t === -1) {
                         tagList.push({
-                            name:tag,
-                            num:1,
+                            name: tag,
+                            num: 1,
                             link: `${rootUrl}/${tagUrl}/${tag}`,
                         })
-                    }else{
+                    } else {
                         tagList[t].num++;
                     }
                 });
                 // 渲染
-                let rdObj=JSON.parse(JSON.stringify(obj));
-                rdObj.content=marked(o.content);
+                let rdObj = JSON.parse(JSON.stringify(obj));
+                rdObj.content = marked(o.content);
                 let detailComponent = renderFromFile(`${layoutDir}/detail.html`, rdObj);
                 let detailPage = renderFromFile(`${layoutDir}/index.html`, {
                     title: mat.title + ' - zxCoder\'s blog',
@@ -163,14 +170,15 @@ let readAllData = (postPath) => {
                 });
                 fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
                 fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, detailPage);
+
             })
         }
     );
-    jsonData.sort((a, b) => b.timestamp-a.timestamp)
+    jsonData.sort((a, b) => b.timestamp - a.timestamp)
     fs.writeFileSync(`${rootDir}/index.json`, JSON.stringify(jsonData));
-    tagList.sort((a, b) => b.num-a.num)
-    catList.sort((a, b) => b.num-a.num)
-    absData.sort((a, b) => b.timestamp-a.timestamp);
+    tagList.sort((a, b) => b.num - a.num)
+    catList.sort((a, b) => b.num - a.num)
+    absData.sort((a, b) => b.timestamp - a.timestamp);
     return {
         absData,
         catList,
@@ -203,10 +211,10 @@ let tagList = obj.tagList;
 // 首页列表
 renderList(rootDir, absData, true);
 // 关于页
-let aboutContent=[
+let aboutContent = [
     {
-        name:"About Me",
-        data:[
+        name: "About Me",
+        data: [
             "一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
             "不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者",
             "数学不太行，英文也不太行，语文更不行",
@@ -215,8 +223,8 @@ let aboutContent=[
         ],
     },
     {
-        name:"About My Blog",
-        data:[
+        name: "About My Blog",
+        data: [
             "基于<a href='https://github.com/janl/mustache.js'>Mustache</a>模板引擎，自己实现了一个极简的的静态网页生成器",
             "纯原生css/js打造，基本样式<del>抄袭</del>参考自<a href='https://bearblog.dev/'>bearblog</a>",
             "记录一些做题题解，技术总结，读书笔记，debug经历等等",

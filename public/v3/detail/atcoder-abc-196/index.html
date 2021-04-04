@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>AtCoder-ABC-196(A-E)</h1>
+    <div>
+        <span>Apr 3, 2021</span>
+        <span><a href="http://127.0.0.1:8080/category/题解">题解</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/字符串">#字符串</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/暴力">#暴力</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/二分查找">#二分查找</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/爆搜">#爆搜</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/思维">#思维</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents"></div>
+    <div><h2 id="a">A</h2>
+<p>给定a,b,c,d四个整数，在a到b之间选一个x，c到d之间选一个y，求最大的x-y。</p>
+<p>就是b-c...</p>
+<h2 id="b">B</h2>
+<p>给定一个浮点数，输出向下取整的数。</p>
+<p>读字符串，输出直到遇到小数点或者结束。</p>
+<h2 id="c">C</h2>
+<p>求1-N之间多少个满足&quot;不含前导零，前一部分字符串和后一部分字符串相同&quot;的数字。</p>
+<p>暴力把1e12以内所有满足条件的数预处理出来，然后二分查找。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+ll n;
+int main(){
+    vector&lt;ll&gt; v;
+    for(int i=1;i&lt;=6;i++){
+        ll up=1LL;
+        for(int j=1;j&lt;=i;j++){
+            up=up*10;
+        }
+        for(ll j=up/10;j&lt;up;j++){
+            ll x=j*up+j;
+            v.push_back(x);
+        }
+    }
+    scanf(&quot;%lld&quot;,&amp;n);
+    int k=upper_bound(v.begin(),v.end(),n)-v.begin();
+    printf(&quot;%d\n&quot;,k);
+    return 0;
+}
+</code></pre>
+<h2 id="d">D</h2>
+<p>长为H，宽为W的面积不超过16的矩形，有A个2*1和B个1*1的瓷砖，保证能铺满，问铺满的方案数。</p>
+<p>直接爆搜，标记每个单位是被哪种瓷砖所占，因为2*1的可以旋转，所以是三种，然后搜就完事了。</p>
+<p>注意放横的2*1时要注意判断右边的那块有没有被上面一行放竖的2*1占用了，这个bug浪费了接近30分钟...</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+const int N=16;
+int vis[N][N];
+int h,w,a,b;
+int cnt;
+void print(){
+    for(int i=1;i&lt;=h;i++){
+        for(int j=1;j&lt;=w;j++){
+            printf(&quot;%d&quot;,vis[i][j]);
+        }
+        printf(&quot;\n&quot;);
+    }
+    printf(&quot;----\n&quot;);
+}
+void dfs(int x,int y,int ua,int ub){
+    if(vis[x][y]){
+        // 被上一排的竖的1*2放了
+        if(y==w){
+            if(x==h){
+                cnt++;
+            }else{
+                dfs(x+1,1,ua,ub);
+            }
+        }else{
+            dfs(x,y+1,ua,ub);
+        }
+        return;
+    }
+    if(ua&lt;a){
+        // 放1*1
+        vis[x][y]=1;
+        if(y==w){
+            if(x==h){
+                cnt++;
+            }else{
+                dfs(x+1,1,ua+1,ub);
+            }
+        }else{
+            dfs(x,y+1,ua+1,ub);
+        }
+        vis[x][y]=0;
+    }
+    if(ub&lt;b){
+        // 放横的2*1
+        if(y+1&lt;=w &amp;&amp; !vis[x][y] &amp;&amp; !vis[x][y+1]){
+            vis[x][y]=2;
+            vis[x][y+1]=2;
+            if(y+1==w){
+                if(x==h){
+                    cnt++;
+                }else{
+                    dfs(x+1,1,ua,ub+1);
+                }
+            }else{
+                dfs(x,y+2,ua,ub+1);
+            }
+            vis[x][y]=0;
+            vis[x][y+1]=0;
+        }
+        // 放竖的1*2
+        if(x+1&lt;=h){
+            vis[x][y]=3;
+            vis[x+1][y]=3;
+            if(y==w){
+                dfs(x+1,1,ua,ub+1);
+            }else{
+                dfs(x,y+1,ua,ub+1);
+            }
+            vis[x][y]=0;
+            vis[x+1][y]=0;
+        }
+    }
+}
+int main(){
+    scanf(&quot;%d%d%d%d&quot;,&amp;h,&amp;w,&amp;b,&amp;a);
+    dfs(1,1,0,0);
+    printf(&quot;%d\n&quot;,cnt);
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>题意咋一看比较复杂，其实就是给定序列a和序列t，序列t表示每次操作类型(累加ai，和ai取max，和ai取min)，序列a表示每次操作的值，然后再给一个序列q，求对q做所有操作之后的新序列。</p>
+<p>模型可以看成坐标轴上一排点，加操作就是将整一排点往上移，和其他两种操作无关，所以可以作为一个偏移量独立出来，而取max操作就是给定一个y值，即一条直线，在这直线之下的全部点往上移到直线上，即往上压缩，同理取min操作就是往下压缩。</p>
+<p>所以直接维护这两个压缩的直线，以及添加的总数add，最后每个数只需要加上add，再限制在两个压缩直线中间即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const ll INF=1e18;
+int n,q;
+ll a,t,x;
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    ll mn=-INF;
+    ll mx=INF;
+    ll add=0;
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%lld%lld&quot;,&amp;a,&amp;t);
+        if(t==1){
+            add+=a;
+            mn+=a;
+            mx+=a;
+        }else if(t==2){
+            mn=max(mn,a);
+            mx=max(mx,a);
+        }else{
+            mn=min(mn,a);
+            mx=min(mx,a);
+        }
+    }
+    scanf(&quot;%d&quot;,&amp;q);
+    for(int i=1;i&lt;=q;i++){
+        scanf(&quot;%lld&quot;,&amp;x);
+        x+=add;
+        x=min(x,mx);
+        x=max(x,mn);
+        printf(&quot;%lld\n&quot;,x);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="f">F</h2>
+<p>给定两个01字符串S和T，问T最少修改几个字符能成为S的子串。</p>
+<p>做法应该是FFT，知识盲区了...有空再补。</p>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/atcoder-abc-196">http://127.0.0.1:8080/detail/atcoder-abc-196</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.getElementById('TableOfContents');
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a = document.createElement('a');
+        h23.style.display = 'inline-block';
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display = 'inline-block';
+        a.href = '#headingTOC';
+        h23.parentElement.insertBefore(a, h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    let isShow = false;
+    nav.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            nav.style.display = 'block';
+        } else {
+            nav.style.display = 'none';
+        }
+    });
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "csharp"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</a></p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+</body>
+</html>

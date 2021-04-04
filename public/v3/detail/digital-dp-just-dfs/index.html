@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>数位dp(爆搜)</h1>
+    <div>
+        <span>Mar 28, 2021</span>
+        <span><a href="http://127.0.0.1:8080/category/算法学习">算法学习</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/dp">#dp</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/数位dp">#数位dp</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents"></div>
+    <div><h2 id="解决什么问题">解决什么问题</h2>
+<p>此类题目大多数有两个特点: 区间，具有某些特征的数。</p>
+<p>比如不含有4和连续的62(hdu2089)，比如含有13并且可以被13整除(hdu3652)，比如满足该数可以整除其数位和(hdu4389)等等...</p>
+<h2 id="如何解决">如何解决</h2>
+<p>区间的问题显然很好处理，通过前缀和来解决，所以问题就是如何求出[1,n]中满足条件的数的个数(有时候0要单独考虑)。</p>
+<p>就想标题所说的，数位dp本质就是记忆化爆搜，算法流程基本都是:</p>
+<ul>
+<li>拆位</li>
+<li>定义dp状态</li>
+<li>从高位搜索，根据具体题目逻辑枚举当前位，递归边界也是根据逻辑判断是否返回有效值。</li>
+<li>再加上记忆化搜索</li>
+</ul>
+<h2 id="代码框架">代码框架</h2>
+<p>首先定义dp状态，第一维通常是指数字的位数(低i位)，其他维度需要根据不同题目定义状态，可以灵活根据空间/时间大小即将状态定义在dp数组里或者写在dfs参数里。</p>
+<pre><code class="language-cpp">ll dp[50][20];
+</code></pre>
+<p>然后拆位，通常是10进制的数，也有2进制或者16进制。</p>
+<pre><code class="language-cpp">void pre(ll x){
+    // 数字x从低位到高位分别存放在dig[0...k-1]中
+    int k=0;
+    while(x){
+        dig[k++]=x%10;
+        x/=10;
+    }
+}
+</code></pre>
+<p>主体搜索函数，其中各个参数:</p>
+<ul>
+<li>idx表示当前枚举的位</li>
+<li>sta表示已枚举的前缀状态(二进制)，dif表示前缀不同数个数，这两个变量都属于状态变量，要根据不同题目设计不同状态</li>
+<li>lead表示当前枚举的是否是一串前导零，因为比如当数字上限是4位数，那么对于小于4位数的数来说，在搜索时实际上枚举到的数是有前导零的，比如0001，0082,0123</li>
+<li>当dp计算的状态是跟数字结构无关的，比如计算数位总和，那么完全可以不考虑这个前导零，因为0001和1是一样的，但当状态跟结构或者是0的个数有关时，就需要考虑前导零的情况，比如计算不同数位的个数，那么前导零的0是不能算的。</li>
+<li>递归时要根据lead &amp;&amp; i==0来计算下一位是否还有前导零限制。</li>
+<li>limit表示这一位的枚举是否有限制，比如题目给的上限是185，那么当最高位枚举0，显然第二位是没有上限的，可以枚举到9，当最高位枚举1，第二位就只能枚举到8</li>
+<li>递归时要根据limit &amp;&amp; i==up来计算下一位是否有上限</li>
+</ul>
+<pre><code class="language-cpp">ll dfs(int idx,int sta,int dif,bool lead,bool limit){
+    if(idx==-1){
+        // 一个合法数字(这题要排除0)，有时候要单独考虑0的情况
+        // 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0
+        if(dif==k &amp;&amp; !lead){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    // 记忆化的都是无上限的
+    if(!limit &amp;&amp; dp[idx][dif]!=-1){
+        return dp[idx][dif];
+    }
+    // 这一位的枚举上限
+    int up=limit?dig[idx]:15;
+    ll ans=0;
+    for(int i=0;i&lt;=up;i++){
+        // 具体枚举逻辑，前导零不计入不同数字个数
+        if(lead &amp;&amp; i==0 || (sta&gt;&gt;i)&amp;1){
+            ans+=dfs(idx-1,sta,dif,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+        }else{
+            ans+=dfs(idx-1,sta|(1&lt;&lt;i),dif+1,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+        }
+        ans%=mod;
+    }
+    if(!limit){
+        dp[idx][dif]=ans%mod;
+    }
+    return ans%mod;
+}
+</code></pre>
+<p>主函数调用，通常都是通过前缀和的方法来计算区间的值。</p>
+<pre><code class="language-cpp">ll solve(ll x){
+    pre(x);
+    return dfs(k-1,0,0,true,true);
+}
+int main(){
+    // 通常dp状态只需要初始化一次
+    memset(dp,-1,sizeof(dp));
+    ll ans=solve(r)-solve(l-1);
+    return 0;
+}
+</code></pre>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/digital-dp-just-dfs">http://127.0.0.1:8080/detail/digital-dp-just-dfs</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.getElementById('TableOfContents');
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a = document.createElement('a');
+        h23.style.display = 'inline-block';
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display = 'inline-block';
+        a.href = '#headingTOC';
+        h23.parentElement.insertBefore(a, h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    let isShow = false;
+    nav.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            nav.style.display = 'block';
+        } else {
+            nav.style.display = 'none';
+        }
+    });
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "csharp"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</a></p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+</body>
+</html>

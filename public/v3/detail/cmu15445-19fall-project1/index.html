@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT" />
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>CMU15-445(19-fall)-Project1-Buffer-Pool-Manager</h1>
+    <div>
+        <span>Nov 16, 2020</span>
+        <span><a href="http://127.0.0.1:8080/category/技术学习">技术学习</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/CMU15-445">#CMU15-445</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/数据库">#数据库</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents"></div>
+    <div><blockquote>
+<p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：<a href="mailto:&#x31;&#x31;&#50;&#57;&#49;&#x34;&#50;&#54;&#x39;&#x34;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#x31;&#x31;&#50;&#57;&#49;&#x34;&#50;&#54;&#x39;&#x34;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;</a></p>
+</blockquote>
+<h2 id="理论基础">理论基础</h2>
+<h3 id="introduction-of-dbms">Introduction of DBMS</h3>
+<p>广义的数据库应该是指存储数据的地方，比如一个文件其实也是一个数据库，而数据库管理系统(DBMS)才是我们对数据库进行操作，管理的一个软件，也是我们这个project要实现的。</p>
+<p>一个最基本的DBMS会由查询解析/编译器，执行引擎，索引管理器，缓冲区管理器，磁盘管理器，物理存储等几部分组成，另外还应该包括事务管理，日志恢复，并发控制等功能。在这个project中，我们主要实现的是后端部分，也就是关注以下几个部分。</p>
+<ul>
+<li>Query Planning</li>
+<li>Operator Execution</li>
+<li>Access Methods</li>
+<li>Buffer Pool Manager</li>
+<li>Disk Manager</li>
+</ul>
+<h3 id="database-storage-part-1">Database Storage Part #1</h3>
+<h4 id="file-storage">File Storage</h4>
+<p>为了实现对内存更好的控制，项目没有采用操作系统的缓存/虚拟内存技术，而是需要我们手动实现一个页面缓冲池管理器，...</p>
+<p>DBMS通过包含页(Page，一块数据)的一个或多个文件来组织数据库(<strong>通俗来讲，就是最少按一个页来操作数据的，比如一次从文件里读取一个页(16KB)的数据，这些数据里可能存储了多个元祖，或者存储了索引等</strong>)，实际的硬件存储也有页的概念，一个磁盘页通常是4KB，所以一个4KB的页面的读写是自带有原子性的，但是一个数据库的页通常不止4KB，所以读取时需要采取额外的措施来保证并发安全。</p>
+<p>DBMS通常是通过heap file的形式来组织文件中的这些Page(<strong>通俗来讲，就是这些page(本质就是一块数据)是以什么顺序存放在一个文件里的，所以需要维护一些元数据来跟踪每个Page的位置，以及当前的空闲位置</strong>)，通常有两种实现方式，链表或者页面文件(Page Directory)的形式，简单来说一个是链表存储，每次要找一个Page都需要从Header page开始找，一个是类似索引，Directory page里维护了每个Page在文件中的位置以及空闲的slot(一个Page有多个slot可以放数据)，所以DBMS必须保证Directory page的同步。</p>
+<h4 id="page-layout">Page Layout</h4>
+<p>每个Page有一个Header来维护一些元数据，比如存储的元组(tuple)个数(假设存储的都是元组)，校验和，版本号，事务相关，压缩信息等等。具体每个Page存储元组的方式有slotted-page和log-structured两种。slotted page就是Page的Header部分维护一个slot表，指向当前存储的元组，而实际元组存储是从后往前，从Page的最后一个内存位置开始存储。类似于栈和堆的相向增长，直到两者相遇。另外一种方式log-structured则是指Page不存储具体的元组，而是存储数据库更新的记录，包括Insert，Update和Delete等，通过逆序扫描Page的日志记录，就可以查询所需的元组，为了提高扫描效率，可以添加日志的索引方便在记录中跳跃查找，以及对日志进行压缩。</p>
+<h4 id="tuple-layout">Tuple Layout</h4>
+<p>最后一部分是元组的存储结构，同样有Header和其他Attribute Data，每个元组会有一个独一无二的identifier，通常是Page id+offset/slot。</p>
+<h3 id="database-storage-part-2">Database Storage Part #2</h3>
+<h4 id="data-representation">Data Representation</h4>
+<p>文件中存储的一个元组其实就是一些字节序列，所以DBMS需要能够将这些字节序列解析表示数据库里实际的类型(Type)和值(Value)。</p>
+<h4 id="system-catalogs">System Catalogs</h4>
+<p>系统目录(System Catalogs)是DBMS内部存储的关于数据库的元数据，包括表，列，索引，视图，用户权限，内部统计等信息，其实也就是一个保存元数据的表。</p>
+<h4 id="storage-models">Storage Models</h4>
+<p>OLTP(On-Line Transaction Processing)：联机事务处理，关系型数据库基本日常的简单查询，事务处理。</p>
+<p>OLAP(On-Line Analytical Processing)：联机分析处理，应用在大型数据仓库，支持复杂的分析查询操作。</p>
+<p>DMBS可以以不同的方式来组织元组的存储，使得可以满足不同数据量，不同场景的应用(OLTP or OLAP)。</p>
+<p>在这个project中，我们将使用n-ary storage model(n-ary存储模型)，也叫row storage(行存储)，也就是将连续元组的所有属性保存在一个Page里，这种存储模型适用于OLTP。另外一种存储模型是decomposition storage model，也叫column storage(列存储)，也就是一个Page保存的是连续元组的同一个属性，这种存储模型适用于OLAP。</p>
+<h3 id="buffer-pool">Buffer Pool</h3>
+<h4 id="buffer-pool-manager">Buffer Pool Manager</h4>
+<p>数据库的存储第一个问题是&quot;How the DBMS represents the database in files on disk&quot;，即DBMS如何用磁盘里的文件来表示数据库，第二个问题则是&quot;How the DBMS manages its memory and move data back-and-forth from disk&quot;，即DBMS如何管理内存，在磁盘和内存之间来回移动数据。</p>
+<p>和磁盘文件分成多个Page(不是hardware page，而是DBMS组织的抽象Page)一样，DMBS将一块内存空间分为多个大小和Page相同的Frame，当DBMS请求一个页面，就从磁盘里读取并放到对应的空Frame上，然后用一个表(Page Table)来维护每个Page在缓冲区(Frame Table)的位置，同时也要维护两个标记：dirty flag和pin counter。其中dirty flag就表示这个页面的数据有没有被写过，是否需要刷会磁盘，而pin counter顾名思义，表示有多少个操作/线程pin(钉)住了这个页面，在对这个页面进行操作，所以这时候不能将这个页面淘汰出内存。</p>
+<p>我们可以对缓冲池进行一些优化，包括以下几种操作。</p>
+<ul>
+<li>Multiple Buffer Pool，多个缓冲池，可以通过对page id进行哈希来判断使用哪一个缓冲池，或者可以每个表使用一个缓冲池。好处就是可以对每一个缓冲池采用单独的页面替换策略。</li>
+<li>Pre-Fetching，预先将可能需要用到的磁盘page读取到缓冲池中，而不是等到用到才去一页一页读取。这些page在磁盘中可能不连续，但可以通过索引进行跳转。</li>
+<li>Scan Sharing，多个查询可以共享一些从磁盘查到的数据，查询并不需要完全相同，可能是共享一些中间结果。也就是一个线程查询的cursor可以先attach在另一个已经开始的查询线程中，先查两者剩下的查询中共有的，然后再回过头去查剩下的，避免缓冲池页面的频繁进出替换。</li>
+<li>Buffer Pool ByPass，为了查询一些临时的数据，不想污染缓冲池，可以直接将磁盘读取到的page放到一块另外的内存里，当查询完成后就释放掉这块内存。</li>
+</ul>
+<h4 id="replacement-policies">Replacement Policies</h4>
+<p>缓冲池的另外的一个重要部分就是页面替换策略，即当缓冲池空间不足时将某个页面淘汰的策略。最常见的替换策略是LRU(Least Recently Used)，即最近最少使用，通过一个链表和一个维护位置的哈希表可以实现。Clock，时钟算法是LRU算法的近似算法，简单来说就是通过模拟时钟的指针不断循环扫描整个page table，扫到的slot对应的页面就应该被淘汰，但如果这个页面当前正在被使用(pin)，可以有一次拯救的机会，将pin标记置为0，下一次再扫到这个slot，如果标记为0，就直接淘汰。</p>
+<p>这两种策略是最基本的替换策略，实际上还有很多优化的版本。</p>
+<h2 id="具体实现">具体实现</h2>
+<p>Project #1目标是实现一个Buffer Pool Manager(缓冲池管理器)用于管理内存中的缓冲池，以及缓冲区必须要有的页面置换算法，包括LRU和Clock算法。</p>
+<p>缓冲池就是指内存里一块特定区域，用于缓存一些从磁盘读取的页面，对应到代码中，就是一个Page数组，每个Page元素就保存有数据和一些元数据。Page数组的下标其实就是frame id，所以这个数组其实可以看成frame id对page的映射，也就是哪一个frame放了哪个page，而一般情况下我们是需要通过page id来查找page的位置，所以显然需要另外一个映射关系表示从page id到frame id的映射，理论上也是一个数值数组就行，不过为了逻辑上更加合理，可以采用哈希表，也就是上面提到的page table。</p>
+<p>然后管理器里还可以再维护一个free list，保存空闲的frame id，初始化整个缓冲池是空的，所以free list就是满的。</p>
+<p>Replacer是管理器的另外一个重要组件，也就是替换策略的实现，其实就是维护一些已被使用的page所对应的frame id，当缓冲池需要放一个新页面，但是free list已经为空，也就是缓冲池已满，那就需要通过调用Replacer的Victim方法来淘汰掉某一个frame id所对应的page。</p>
+<p>并发安全的实现采用std的互斥量mutex类来实现，原始的方法是采用mutex 的lock/trylock方法来加锁，unlock方法来解锁。更常见的是用lock_guard这个模板类，实现在作用域结束后自动调用析构函数，执行unlock方法。</p>
+<h3 id="clockreplacer">ClockReplacer</h3>
+<p>时钟的大小和缓冲池大小一样，对应每个位置(也就是每一个frame id)有两个标记，一个标记记录这个frame是否真正在Replacer中，这是为了方便处理，用静态大小的数组可以无需处理frame动态的进出，另一个标记是Clock算法中的记录最近是否被使用，更准确地说应该是最近是否被使用结束后被加到Replacer中，如果是，则标记为1。</p>
+<p>Replacer包括3个主要函数，Pin函数表示这个页面被某个线程引用了，要对这个页面进行读写操作，所以显然不能放在Replacer里，如果在里面就要拿出来，反过来如果一个页面不再被引用了，即pin count减到0，就应该调用Unpin函数，将这个frame加入Replacer，随时可以被淘汰。</p>
+<p>Victim函数就是选择淘汰某个页面，也是置换算法的核心，维护一个指针位置clockHand，然后循环扫过每一个&quot;在&quot;Replacer里的frame，如果frame的最近访问标志为true，置为false，即给了一次&quot;自我拯救&quot;的机会，如果是false，就需要将这个frame对应的page淘汰掉，返回该frame id即可。</p>
+<h3 id="lrureplacer">LRUReplacer</h3>
+<p>这个比较简单，用一个链表放frame id，同时用一个哈希表维护frame id在链表中的位置(迭代器)，同样包括三个主要函数，Pin就是将frame从链表中移除，Unpin就是将frame加入链表尾部，如果已经在链表中就直接过，Victim就是将链表头部的frame淘汰。</p>
+<p>这里跟想象中的LRU似乎不太一样，第一次实现Pin函数是把frame从链表中移到尾部，从单元测试来看，这里直接删除似乎更为合理。</p>
+<h3 id="buffer-pool-manager-1">Buffer Pool Manager</h3>
+<p>缓冲池管理器作用就是管理缓冲池，包括页面的读写存取，页面的替换等。包括几个主要函数：</p>
+<ul>
+<li>FlushPage，给定page id，如果该页面在缓冲池中且脏标记为true，将其刷回磁盘，记得要将脏标记置为false。</li>
+<li>UnpinPage，给定page id和一个脏标记，表示对这个页面的操作结束以及是否有修改，找到对应页面，将pin count减1，如果pin count减为0，就要调用Replacer的Unpin方法，将这个frame加入Replacer中。</li>
+<li>DeletePage，从缓冲池中删掉一个页面，其实也就是将内存清空，将一些对应关系清空。</li>
+<li>NewPage，在缓冲池中新建一个空页面，从free list或者Replacer里取出/淘汰一个frame，然后通过磁盘管理器的AllocatePage函数创建一个新页面，返回对应的page id，添加上frame id和page id的对应关系。这个操作也就是执行写操作，即把数据先写到内存里，等再刷回磁盘，所以脏标记是true。</li>
+<li>FetchPage，通过page id读取对应页面，如果缓冲池里有直接读取，如果没有，同样是需要从free list里或者Replacer里淘汰一个frame，然后从磁盘里读取对应页面到缓冲池里。</li>
+</ul>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="http://127.0.0.1:8080/detail/cmu15445-19fall-project1">http://127.0.0.1:8080/detail/cmu15445-19fall-project1</a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.getElementById('TableOfContents');
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a = document.createElement('a');
+        h23.style.display = 'inline-block';
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display = 'inline-block';
+        a.href = '#headingTOC';
+        h23.parentElement.insertBefore(a, h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    let isShow = false;
+    nav.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            nav.style.display = 'block';
+        } else {
+            nav.style.display = 'none';
+        }
+    });
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+      integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"
+        integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+        crossorigin="anonymous"
+        onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<script defer src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"
+        onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "csharp"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</a></p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+</body>
+</html>

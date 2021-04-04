@@ -1,0 +1,102 @@
+<style>
+    .z-search-input {
+        width: 100%;
+        font-weight: 600;
+        margin-top: 1rem;
+    }
+
+    #searchStat {
+        margin-top: 0.33rem;
+        padding: 1.25rem 0;
+    }
+</style>
+<div>
+    <form id="searchForm">
+        <input class="z-search-input" name="q" placeholder="请输入关键字">
+    </form>
+    <p id="searchStat"></p>
+    <ul id="searchResults" class="blog-posts"></ul>
+</div>
+<script>
+    const form = document.querySelector('#searchForm');
+    const input = form.querySelector('input[name="q"]');
+    form.addEventListener('submit', (event) => {
+        search(input.value);
+        event.preventDefault();
+    });
+    const noKeywords = "请输入搜索关键字";
+    const noResults = "搜索不到相关内容";
+    const resultCnt = "搜索到相关文章";
+    const searching = "搜索中...";
+    const resultsElement = document.getElementById('searchResults');
+    const stat = document.getElementById('searchStat');
+    let data = [];
+    let thisResults = [];
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            if (xhr.status !== 200) {
+                console.error({error: xhr.statusText});
+                return;
+            }
+            // index.json数据
+            data = xhr.response;
+            search(input.value);
+        }
+    };
+    xhr.responseType = 'json';
+    xhr.open('GET', document.head
+        .querySelector('meta[data-name="search-index"]')
+        .getAttribute('content'), true);
+    xhr.send(null);
+
+    function search(query) {
+        let start = Date.now();
+        stat.style.color = 'hsl(48, 100%, 29%)';
+        stat.innerHTML = searching;
+        resultsElement.innerHTML = '';
+        if (query === '') {
+            stat.style.color = 'hsl(348, 86%, 43%)\t';
+            stat.innerHTML = noKeywords;
+            return;
+        }
+        let results = [];
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].title.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                results.push(data[i]);
+            } else if (data[i].content.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                results.push(data[i]);
+            } else if (data[i].category.name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                results.push(data[i]);
+            } else {
+                for (let j = 0; j < data[i].tags.length; j++) {
+                    if (data[i].tags[j].name.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                        results.push(data[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        // 深拷贝，解决了先搜co再搜java的问题，内容被截断了一部分
+        thisResults = JSON.parse(JSON.stringify(results))
+        let end = Date.now();
+        if (results.length > 0) {
+            stat.style.color = 'hsl(141, 53%, 31%)'
+            stat.innerHTML = `${resultCnt}${thisResults.length}篇( 花费时间${end - start}ms )`;
+            for (let i = 0; i < thisResults.length; i += 1) {
+                const result = thisResults[i];
+                let template ="<li><span>" +
+                    result.date +
+                    "</span><a href='" +
+                    result.permalink +
+                    "'>" +
+                    result.title +
+                    "</a></li>"
+                resultsElement.insertAdjacentHTML('beforeend', template);
+            }
+        } else {
+            stat.style.color = 'hsl(48, 100%, 29%)';
+            stat.innerHTML = noResults;
+        }
+    }
+</script>

@@ -1,0 +1,710 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        textarea,
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+<style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+</style></head>
+<body>
+<header>
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://127.0.0.1:8080/category">Category</a>
+        <a href="http://127.0.0.1:8080/tags">Tag</a>
+        <a href="http://127.0.0.1:8080/about">About</a>
+        <a href="http://127.0.0.1:8080/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>AtCoder-ABC-194(A-F)</h1>
+    <div>
+        <span>Mar 17, 2021</span>
+        <span><a href="http://127.0.0.1:8080/category/题解">题解</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/暴力">#暴力</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/预处理">#预处理</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/前缀和">#前缀和</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/思维">#思维</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/dp">#dp</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/期望dp">#期望dp</a></span>
+        <span><a href="http://127.0.0.1:8080/tags/数位dp">#数位dp</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents"></div>
+    <div><h2 id="a">A</h2>
+<p>略</p>
+<h2 id="b">B</h2>
+<p>N个员工，每个员工做A，B两种工作的时间都不同，如果让一个员工做A和B，花费时间就是两者之和，如果让两个员工做，花费时间就是两者最大值，问所花费最小时间。</p>
+<p>N为1000，直接暴力枚举。</p>
+<h2 id="c">C</h2>
+<p>求$\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2$。</p>
+<p>展开一下，预处理前缀和和平方前缀和即可。</p>
+<h2 id="d">D</h2>
+<p>有N个点，一开始在点1，每次等概率随机选择一个点(包括所在的点)，将这两点连边并走到该点，问使得图连通的操作次数。</p>
+<p>有个很重要的思路，走的顺序是不重要的，<strong>重要的只有一点，就是走过了(连通)了多少个点</strong>。就比如从1走到2，再从2走到1，和在2一直原地踏步是一样的，所以将图抽象为一条线段，比如3个点<code>1---2---3</code>，先算从1走到2的期望，这里的2并不仅仅指图上的点2，只是代表第二个走过的点，所以这里有三种可能性，原地踏步1种，另外2种可能性都可以走到第二个点，所以从1走到2的期望是3/2，同理再算从2走到3的期望是3/1，因此可以总结得到规律，答案为$\sum_{i-1}^{n-1}\frac{n}{i}$。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1e5+50;
+int n;
+int main(){
+    scanf("%d",&amp;n);
+    double ans=0.0;
+    for(int i=1;i&lt;n;i++){
+        ans+=n*1.0/i;
+    }
+    printf("%.8lf\n",ans);
+    return 0;
+}
+</code></pre>
+<p>再仔细思考，其实题目本质就是N个点，每次随机给一个点染色，问所有点全部染色的次数期望。</p>
+<p>考虑期望dp，dp[i]表示已经染色了i个点，要染色n个点所需要的次数期望，状态转移方程为$dp[i]=\frac{i}{n}dp[i]+\frac{n-i}{n}dp[i+1]+1$，其中第一部分是指随机选到的点是已染色的，第二部分是指选到未染色的点，移项化简，得到$dp[i]=dp[i+1]+\frac{n}{n-i}$，初始状态为dp[n]=0。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1e5+50;
+int n;
+double dp[N];
+int main(){
+    scanf("%d",&amp;n);
+    for(int i=n-1;i&gt;=1;i--){
+        dp[i]=dp[i+1]+n*1.0/(n-i);
+    }
+    printf("%.8lf\n",dp[1]);
+    return 0;
+}
+</code></pre>
+<h2 id="e">E</h2>
+<p>给定长度为N的数组，对于每个长度为M的子数组，求出Mex，然后再求出所有Mex的最小值。</p>
+<p>最简单的做法就是滑窗维护mex，但有个重要的问题，<strong>只需要考虑删除数字之后mex的变化，而不用考虑添加数字之后mex的变化</strong>，因为要求的是最小mex，而添加数字只会让mex变大。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=2e6+50;
+int n,m;
+int a[N],b[N];
+int mex;
+void add(int i){
+    b[a[i]]++;
+}
+void del(int i){
+    b[a[i]]--;
+    if(b[a[i]]==0 &amp;&amp; a[i]&lt;mex){
+        mex=a[i];
+    }
+}
+int main(){
+    scanf("%d%d",&amp;n,&amp;m);
+    for(int i=1;i&lt;=n;i++){
+        scanf("%d",&amp;a[i]);
+    }
+    for(int i=1;i&lt;=m;i++){
+        add(i);
+    }
+    for(int i=0;i&lt;=n;i++){
+        if(b[i]==0){
+            mex=i;
+            break;
+        }
+    }
+    for(int i=m+1;i&lt;=n;i++){
+        add(i);
+        del(i-m);
+    }
+    printf("%d\n",mex);
+    return 0;
+}
+</code></pre>
+<h2 id="f">F</h2>
+<p>求出1到N(不含前导零的16进制数)中多少个数字正好含有K的不同的数字(包括A-F)。</p>
+<p>16进制的数位dp基础题。基本思路和注意点都在注释里了，后面可能会整理一个数位dp学习专题。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2e5+50;
+const int mod=1e9+7;
+char s[N];
+int k;
+int dig[N];
+// 低i位满足有k个不同数位的数字个数
+// 注意这里定义的dp状态其实就蕴含了一种记忆化搜索时"空间换时间"的一种思想
+// 实际上这里的状态也可以只定义dp[]一维，那表示的就是满足条件的数字个数，这种方法粒度大，使用空间小，但显然花费时间多，因为大多数搜索状态都无法记忆化，只能重复搜
+// 同理状态也可以定义为dp[][][]三维，再加上一维状态压缩，这种做法就是粒度小，但是太占空间
+ll dp[N][22];
+void print(int x){
+    if(x){
+        print(x/2);
+    }
+    printf("%d",x%2);
+}
+ll dfs(int idx,int sta,int dif,bool lead,bool limit){
+    if(idx==-1){
+        // 一个合法数字(这题要排除含前导零的数)，有时候要单独考虑0的情况
+        // 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0
+        if(dif==k &amp;&amp; !lead){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    // 记忆化的都是无上限的
+    if(!limit &amp;&amp; dp[idx][dif]!=-1){
+        return dp[idx][dif];
+    }
+    // 这一位的枚举上限
+    int up=limit?dig[idx]:15;
+    ll ans=0;
+    for(int i=0;i&lt;=up;i++){
+        if(lead &amp;&amp; i==0 || (sta&gt;&gt;i)&amp;1){
+            ans+=dfs(idx-1,sta,dif,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+        }else{
+            ans+=dfs(idx-1,sta|(1&lt;&lt;i),dif+1,lead &amp;&amp; i==0,limit &amp;&amp; i==up);
+        }
+        ans%=mod;
+    }
+    if(!limit){
+        dp[idx][dif]=ans%mod;
+    }
+    return ans%mod;
+}
+int main(){
+    scanf("%s %d",s,&amp;k);
+    int n=strlen(s);
+    for(int i=n-1;i&gt;=0;i--){
+        if(s[i]&gt;='A'){
+            dig[n-1-i]=s[i]-'A'+10;
+        }else{
+            dig[n-1-i]=s[i]-'0';
+        }
+    }
+    memset(dp,-1,sizeof(dp));
+    // 从高位搜索下去
+    ll ans=dfs(n-1,0,0,true,true);
+    printf("%lld\n",ans%mod);
+    return 0;
+}
+</code></pre>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href=""></a></p>
+    </div>
+</div>
+<script>
+    // 生成目录
+    let nav = document.getElementById('TableOfContents');
+    let h2s = document.querySelectorAll('.post h2');
+    let h23s = document.querySelectorAll('.post h2,h3');
+    let h2ul = document.createElement('ul');
+    h23s.forEach(h23 => {
+        h23.id = h23.innerHTML;
+        // 给每个标题添加一个返回目录的a标签
+        let a = document.createElement('a');
+        h23.style.display = 'inline-block';
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">\n' +
+            '  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>\n' +
+            '  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>\n' +
+            '</svg>';
+        a.style.display = 'inline-block';
+        a.href = '#headingTOC';
+        h23.parentElement.insertBefore(a, h23.nextElementSibling);
+    });
+    let lst = document.querySelector('.post');
+    for (let i = 0; i < h23s.length; i++) {
+        if (h23s[i].tagName === 'H2') {
+            let h2li = document.createElement('li');
+            let h2a = document.createElement('a');
+            h2a.href = `#${h23s[i].innerHTML}`;
+            h2a.innerHTML = h23s[i].innerHTML;
+            h2li.appendChild(h2a);
+            h2ul.appendChild(h2li);
+            lst = h2li;
+        } else {
+            let h3ul = document.createElement('ul');
+            while (i < h23s.length && h23s[i].tagName === 'H3') {
+                let h3li = document.createElement('li');
+                let h3a = document.createElement('a');
+                h3a.href = `#${h23s[i].innerHTML}`;
+                h3a.innerHTML = h23s[i].innerHTML;
+                h3li.appendChild(h3a);
+                h3ul.appendChild(h3li);
+                i++;
+            }
+            lst.appendChild(h3ul);
+            i--;
+        }
+    }
+    nav.appendChild(h2ul);
+    let isShow = false;
+    nav.style.display = 'none';
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        if (isShow) {
+            nav.style.display = 'block';
+        } else {
+            nav.style.display = 'none';
+        }
+    });
+</script>
+<!--详情页katex渲染，代码高亮-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH" crossorigin="anonymous"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js" integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v" crossorigin="anonymous" onload="initKatex();"></script>
+<script>
+    function initKatex() {
+        const post = document.querySelector('.post');
+        if (post) {
+            renderMathInElement(post, {
+                delimiters: [
+                    // 自定义分隔符，才可以支持行内公式
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                ]
+            });
+        }
+    }
+</script>
+<script defer="" src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js" onload="initHighLight();"></script>
+<script>
+    function initHighLight() {
+        hljs.configure({
+            languages: ["c", "cpp", "java", "csharp"]
+        });
+        const codes = document.querySelectorAll('div code')
+        codes.forEach((block) => {
+            if (block.classList.length >= 1) {
+                block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
+                let ul = block.firstElementChild;
+                ul.removeChild(ul.lastElementChild);
+                hljs.highlightBlock(block);
+            } else {
+                block.classList.add('z-inline-code')
+            }
+        });
+    }
+</script>
+    <div>
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="17.997ex" height="7.676ex" style="vertical-align: -3.338ex;" viewBox="0 -1867.7 7748.5 3304.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+            <title id="MathJax-SVG-1-Title">\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2</title>
+            <defs aria-hidden="true">
+                <path stroke-width="1" id="E1-MJSZ2-2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path>
+                <path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+                <path stroke-width="1" id="E1-MJMATHI-4E" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path>
+                <path stroke-width="1" id="E1-MJMATHI-6A" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+                <path stroke-width="1" id="E1-MJMATHI-41" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path>
+                <path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+            </defs>
+            <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+                <use xlink:href="#E1-MJSZ2-2211" x="0" y="0"></use>
+                <g transform="translate(147,-1090)">
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-3D" x="345" y="0"></use>
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32" x="1124" y="0"></use>
+                </g>
+                <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-4E" x="577" y="1627"></use>
+                <g transform="translate(1611,0)">
+                    <use xlink:href="#E1-MJSZ2-2211" x="0" y="0"></use>
+                    <g transform="translate(124,-1090)">
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6A" x="0" y="0"></use>
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-3D" x="412" y="0"></use>
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="1191" y="0"></use>
+                    </g>
+                    <g transform="translate(147,1151)">
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-2212" x="345" y="0"></use>
+                        <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="1124" y="0"></use>
+                    </g>
+                </g>
+                <use xlink:href="#E1-MJMAIN-28" x="3055" y="0"></use>
+                <g transform="translate(3445,0)">
+                    <use xlink:href="#E1-MJMATHI-41" x="0" y="0"></use>
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="1061" y="-213"></use>
+                </g>
+                <use xlink:href="#E1-MJMAIN-2212" x="4762" y="0"></use>
+                <g transform="translate(5762,0)">
+                    <use xlink:href="#E1-MJMATHI-41" x="0" y="0"></use>
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6A" x="1061" y="-213"></use>
+                </g>
+                <g transform="translate(6905,0)">
+                    <use xlink:href="#E1-MJMAIN-29" x="0" y="0"></use>
+                    <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32" x="550" y="583"></use>
+                </g>
+            </g>
+        </svg>
+        <span class="mjx-chtml MJXc-display" style="text-align: center;"><span class="mjx-math" aria-label="\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2"><span class="mjx-mrow" aria-hidden="true"><span class="mjx-munderover"><span class="mjx-itable"><span class="mjx-row"><span class="mjx-cell"><span class="mjx-stack"><span class="mjx-over" style="font-size: 70.7%; padding-bottom: 0.258em; padding-top: 0.141em; padding-left: 0.577em;"><span class="mjx-texatom" style=""><span class="mjx-mrow"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.298em; padding-right: 0.085em;">N</span></span></span></span></span><span class="mjx-op"><span class="mjx-mo"><span class="mjx-char MJXc-TeX-size2-R" style="padding-top: 0.74em; padding-bottom: 0.74em;">∑</span></span></span></span></span></span><span class="mjx-row"><span class="mjx-under" style="font-size: 70.7%; padding-top: 0.236em; padding-bottom: 0.141em; padding-left: 0.21em;"><span class="mjx-texatom" style=""><span class="mjx-mrow"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.298em;">i</span></span><span class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.077em; padding-bottom: 0.298em;">=</span></span><span class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">2</span></span></span></span></span></span></span></span><span class="mjx-munderover MJXc-space1"><span class="mjx-itable"><span class="mjx-row"><span class="mjx-cell"><span class="mjx-stack"><span class="mjx-over" style="font-size: 70.7%; padding-bottom: 0.176em; padding-top: 0.141em; padding-left: 0.21em;"><span class="mjx-texatom" style=""><span class="mjx-mrow"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.298em;">i</span></span><span class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.298em; padding-bottom: 0.446em;">−</span></span><span class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">1</span></span></span></span></span><span class="mjx-op"><span class="mjx-mo"><span class="mjx-char MJXc-TeX-size2-R" style="padding-top: 0.74em; padding-bottom: 0.74em;">∑</span></span></span></span></span></span><span class="mjx-row"><span class="mjx-under" style="font-size: 70.7%; padding-top: 0.236em; padding-bottom: 0.141em; padding-left: 0.176em;"><span class="mjx-texatom" style=""><span class="mjx-mrow"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.519em;">j</span></span><span class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.077em; padding-bottom: 0.298em;">=</span></span><span class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">1</span></span></span></span></span></span></span></span><span class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.446em; padding-bottom: 0.593em;">(</span></span><span class="mjx-msubsup"><span class="mjx-base"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.519em; padding-bottom: 0.298em;">A</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.298em;">i</span></span></span></span><span class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.298em; padding-bottom: 0.446em;">−</span></span><span class="mjx-msubsup MJXc-space2"><span class="mjx-base"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.519em; padding-bottom: 0.298em;">A</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.446em; padding-bottom: 0.519em;">j</span></span></span></span><span class="mjx-msubsup"><span class="mjx-base"><span class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.446em; padding-bottom: 0.593em;">)</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.584em; padding-left: 0px; padding-right: 0.071em;"><span class="mjx-mn" style=""><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">2</span></span></span></span></span></span></span>
+    </div>
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+
+
+</body></html>
