@@ -1,6 +1,6 @@
 #!/bin/bash
 
-node ./src/index_v2.js https://www.zxcoder.top
+node ./src/index_v3.js https://www.zxcoder.top
 git add .
 if [ $# == 0 ];then
     git commit -m "update $(date +'%Y%m%d%H%M%S')"
