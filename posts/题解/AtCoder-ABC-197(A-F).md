@@ -4,9 +4,9 @@ tags:
   - 爆搜
   - 计算几何
   - 贪心
-  - DP
+  - dp
   - 分类讨论
-  - BFS
+  - bfs
   - 回文串
 math: true
 category: 题解
