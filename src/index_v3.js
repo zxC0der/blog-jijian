@@ -41,28 +41,6 @@ const detailUrl = "detail";
 const searchDir = "search";
 const searchUrl = "search";
 const request = require('request');
-
-function downloadPage(url) {
-    return new Promise((resolve, reject) => {
-        request(url, (error, response, body) => {
-            if (error) reject(error);
-            if (response.statusCode !== 200) {
-                reject('Invalid status code <' + response.statusCode + '>');
-            }
-            resolve(body);
-        });
-    });
-}
-
-async function getSvg(latex) {
-    try {
-        return await downloadPage(`https://latex.oncodecogs.com/svg.image?${latex}`);
-    } catch (error) {
-        console.error('ERROR:');
-        console.error(error);
-    }
-}
-
 execSync(`rm -rf ${rootDir}/*`);
 /**
  * 从文件渲染mustache模板
@@ -73,6 +51,10 @@ execSync(`rm -rf ${rootDir}/*`);
  */
 let renderFromFile = (path, view, partial) => {
     return mustache.render(fs.readFileSync(path).toString(), view, partial);
+}
+let savePage=(path,page)=>{
+    fs.mkdirSync(path);
+    fs.writeFileSync(`${path}/index.html`, page);
 }
 // 组件
 let navbarItems = [
@@ -152,7 +134,7 @@ let readAllData = (postPath) => {
                 let obj = {
                     title: mat.title,
                     permalink: `${rootUrl}/${detailUrl}/${mat.permalink}`,
-                    date: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format('MMM D, YYYY'),
+                    date: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format('YYYY-MM-DD'),
                     timestamp: moment(mat.date, "YYYY-MM-DD HH:mm:ss ZZ").format("X"),
                     category: {
                         name: mat.category,
@@ -255,13 +237,7 @@ let readAllData = (postPath) => {
                         block.classList.add('z-inline-code')
                     }
                 });
-
-                fs.mkdirSync(`${rootDir}/${detailDir}/${mat.permalink}`);
-                fs.writeFileSync(`${rootDir}/${detailDir}/${mat.permalink}/index.html`, dom
-                    .window
-                    .document
-                    .documentElement
-                    .outerHTML);
+                savePage(`${rootDir}/${detailDir}/${mat.permalink}`,dom.window.document.documentElement.outerHTML);
             })
         }
     );
@@ -332,8 +308,7 @@ let aboutPage = renderFromFile(`${layoutDir}/index.html`, {
 }, {
     content: aboutComponent,
 });
-fs.mkdirSync(`${rootDir}/${aboutDir}`);
-fs.writeFileSync(`${rootDir}/${aboutDir}/index.html`, aboutPage);
+savePage(`${rootDir}/${aboutDir}`, aboutPage);
 // 分类首页
 let categoryComponent = renderFromFile(`${layoutDir}/category.html`, {
     title: "分类",
@@ -345,8 +320,7 @@ let categoryPage = renderFromFile(`${layoutDir}/index.html`, {
 }, {
     content: categoryComponent
 });
-fs.mkdirSync(`${rootDir}/${categoryDir}`);
-fs.writeFileSync(`${rootDir}/${categoryDir}/index.html`, categoryPage);
+savePage(`${rootDir}/${categoryDir}`, categoryPage);
 // 分类列表页
 for (let i = 0; i < catList.length; i++) {
     let cat = catList[i];
@@ -368,8 +342,7 @@ let tagPage = renderFromFile(`${layoutDir}/index.html`, {
 }, {
     content: tagComponent
 });
-fs.mkdirSync(`${rootDir}/${tagDir}`);
-fs.writeFileSync(`${rootDir}/${tagDir}/index.html`, tagPage);
+savePage(`${rootDir}/${tagDir}`,tagPage);
 // 标签列表页
 for (let i = 0; i < tagList.length; i++) {
     let tag = tagList[i];
@@ -391,6 +364,5 @@ let searchPage = renderFromFile(`${layoutDir}/index.html`, {
 }, {
     content: searchComponent,
 });
-fs.mkdirSync(`${rootDir}/${searchDir}`);
-fs.writeFileSync(`${rootDir}/${searchDir}/index.html`, searchPage);
+savePage(`${rootDir}/${searchDir}`,searchPage);
 console.timeEnd('jijian generate');
