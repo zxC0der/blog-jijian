@@ -1,0 +1,361 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <link rel="shortcut icon" href="data:image/x-ico;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABcPtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERAAAREREREREAABEREREREQAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAABEREREREQAAERERERERAAAREREREREAAAAAAAAAAAD//wAAwAMAAMADAADAAwAAwf8AAOD/AADwfwAA+D8AAPwfAAD+DwAA/wcAAP+DAADAAwAAwAMAAMADAAD//wAA">
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="https://www.zxcoder.top">Home</a>
+        <a href="https://www.zxcoder.top/category">Category</a>
+        <a href="https://www.zxcoder.top/tags">Tag</a>
+        <a href="https://www.zxcoder.top/about">About</a>
+        <a href="https://www.zxcoder.top/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>使用Rider基于Docker进行dotnet-webapi开发入门</h1>
+    <div>
+        <span>2021-04-11</span>
+        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/docker">#docker</a></span>
+        <span><a href="https://www.zxcoder.top/tags/dotnet">#dotnet</a></span>
+        <span><a href="https://www.zxcoder.top/tags/Bug Fixed">#Bug Fixed</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#Tutorial">Tutorial</a></li></ul></div>
+    <div><h2 id="Tutorial" style="display: inline-block;">Tutorial</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>本文根据一个实际例子，记录使用Rider基于docker进行dotnet-webapi开发的方法，用于个人备忘，后续还会总结Docker的更多知识点。</p>
+<ul>
+<li>创建Web Api项目，Docker Support选择Linux。</li>
+<li>此时在项目根目录多了一个Dockerfile和一个.dockerignore，Dockerfile是用来指示如何构建镜像，.dockerignore是说明在构建过程中忽略的文件。</li>
+<li>使用命令行<code class="z-inline-code">docker build -t [image_name]:[version] .</code>构建或者通过Rider的可视化操作构建。如果使用命令行构建，要记得最后的<code class="z-inline-code">.</code>，指定当前路径为构建的上下文路径。</li>
+<li>如果是多项目的Solution，此时默认生成的Dockerfile会报错，需要修改几处内容，具体见下文的Dockerfile解析。</li>
+</ul>
+<pre><code class="hljs"><ul><li><span class="hljs-comment"># 基础镜像(就是个装好了dotnet的Linux系统...)</span>
+</li><li><span class="hljs-comment"># FROM ... AS ... 是多阶段构建，后面总结讲</span>
+</li><li><span class="hljs-comment"># 第一阶段</span>
+</li><li><span class="hljs-keyword">FROM</span> mcr.microsoft.com/dotnet/aspnet:<span class="hljs-number">5.0</span> AS base
+</li><li>
+</li><li><span class="hljs-comment"># https://stackoverflow.com/questions/48669548/why-does-aspnet-core-start-on-port-80-from-within-docker</span>
+</li><li><span class="hljs-comment"># 定义环境变量，这里将容器内启动端口修改为5000，默认为80和443</span>
+</li><li><span class="hljs-keyword">ENV</span> ASPNETCORE_URLS = http://+:<span class="hljs-number">5000</span>
+</li><li>
+</li><li><span class="hljs-comment"># 工作目录，就是Linux系统的/app路径</span>
+</li><li><span class="hljs-keyword">WORKDIR</span><span class="bash"> /app</span>
+</li><li>
+</li><li><span class="hljs-comment"># 声明端口，只是为了帮助使用者理解，方便配置端口映射</span>
+</li><li><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span>
+</li><li><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">443</span>
+</li><li><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">5000</span>
+</li><li>
+</li><li><span class="hljs-comment"># 第二阶段</span>
+</li><li><span class="hljs-keyword">FROM</span> mcr.microsoft.com/dotnet/sdk:<span class="hljs-number">5.0</span> AS build
+</li><li>
+</li><li><span class="hljs-comment"># 如果是src，那么WORKDIR是相对路径，这里是/src，是绝对路径</span>
+</li><li><span class="hljs-keyword">WORKDIR</span><span class="bash"> /src</span>
+</li><li>
+</li><li><span class="hljs-comment"># 复制文件，将当前上下文路径的JudgeServer.csproj复制到WORKDIR下的JudgeServer(这里需要修改)</span>
+</li><li><span class="hljs-keyword">COPY</span><span class="bash"> [<span class="hljs-string">"JudgeServer.csproj"</span>, <span class="hljs-string">"JudgeServer/"</span>]</span>
+</li><li><span class="hljs-comment"># 执行命令</span>
+</li><li><span class="hljs-keyword">RUN</span><span class="bash"> dotnet restore <span class="hljs-string">"JudgeServer/JudgeServer.csproj"</span></span>
+</li><li>
+</li><li><span class="hljs-keyword">WORKDIR</span><span class="bash"> <span class="hljs-string">"/src/JudgeServer"</span></span>
+</li><li>
+</li><li><span class="hljs-comment"># COPY的另一种形式，把项目源码复制到JudgeServer目录下</span>
+</li><li><span class="hljs-keyword">COPY</span><span class="bash"> . .</span>
+</li><li>
+</li><li><span class="hljs-keyword">RUN</span><span class="bash"> dotnet build <span class="hljs-string">"JudgeServer.csproj"</span> -c Release -o /app/build</span>
+</li><li>
+</li><li><span class="hljs-comment"># 第三阶段</span>
+</li><li><span class="hljs-keyword">FROM</span> build AS publish
+</li><li><span class="hljs-keyword">RUN</span><span class="bash"> dotnet publish <span class="hljs-string">"JudgeServer.csproj"</span> -c Release -o /app/publish</span>
+</li><li>
+</li><li><span class="hljs-comment"># 第四阶段</span>
+</li><li><span class="hljs-keyword">FROM</span> base AS final
+</li><li><span class="hljs-keyword">WORKDIR</span><span class="bash"> /app</span>
+</li><li>
+</li><li><span class="hljs-comment"># --from表示从某一阶段的镜像中复制文件</span>
+</li><li><span class="hljs-keyword">COPY</span><span class="bash"> --from=publish /app/publish .</span>
+</li><li>
+</li><li><span class="hljs-comment"># RUN相当于执行命令修改镜像然后commit，新建了一层构建新的镜像</span>
+</li><li><span class="hljs-comment"># CMD是容器启动时运行的程序和参数，比如Ubuntu镜像，默认CMD就是/bin/bash，可以在运行时指定覆盖。</span>
+</li><li><span class="hljs-comment"># ENTRYPOINT可以简单认为和CMD一样，具体可以参考这个教程https://yeasy.gitbook.io/docker_practice/image/dockerfile/entrypoint</span>
+</li><li><span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-string">"dotnet"</span>, <span class="hljs-string">"JudgeServer.dll"</span>]</span>
+</li></ul></code></pre>
+<p>关于<code class="z-inline-code"><span class="hljs-function"><span class="hljs-title">FROM</span></span> ... AS ...</code>，在Dockerfile中，每一个RUN都会让镜像新增layer，导致镜像变大，为了解决这个问题，从17.05版本开始Docker增加了新特性：多阶段构建(multi-stage builds)，将构建过程分为多个阶段，每个阶段都可以指定一个基础镜像。</p>
+<p>例如在这个Dockerfile中，一共有四个阶段:</p>
+<ul>
+<li>FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base</li>
+<li>FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build</li>
+<li>FROM build AS publish</li>
+<li>FROM base AS final</li>
+</ul>
+<p>第一阶段base拉了一个aspnet镜像用于运行dotnet应用，声明了一些环境变量，工作目录。</p>
+<p>第二阶段build拉了一个dotnet/sdk镜像用于生成构建dotnet应用，复制项目源码然后构建。</p>
+<p>第三阶段publish基于build，发布项目。</p>
+<p>第四阶段final基于base，运行项目</p>
+<p>整个过程，多阶段构建的作用体现在哪呢？可以exec进容器，发现只多了一个/app目录以及下面的文件，其他的像/src，/app/build，/app/publish目录都不存在。所以可以这么理解，多阶段构建就是将整个Dockerfile分成几个部分，可以单独构建其中一个target，其他阶段都不会生成镜像，但是也可以从其他阶段里复制文件，比如这里第四阶段final是直接基于base，所以不需要考虑/src目录和源码的打包发布，直接从将ublish阶段已发布的文件复制过来即可，这样子可以大大减小镜像体积。</p>
+<p>最后启动一个该镜像的容器，映射5000端口，就可以从外部访问了。</p>
+<p>附上一个无语的debug经历...</p>
+<p>用IDE启动容器再映射端口可以正常访问，但是命令行启动就一直不行，多次尝试无果。</p>
+<p>冷静下来后考虑，可以尝试使用IDE构建的镜像在命令行run试试，然而发现IDE和命令行构建的镜像其实是完全一致的。</p>
+<p>所以排除掉镜像的问题，也就只能是命令行run的时候出问题。</p>
+<p>使用<code class="z-inline-code"><span class="hljs-attribute">docker ps</span></code>一看，发现命令行启动的容器根本没有映射到外部的端口，再仔细看看运行命令<code class="z-inline-code"><span class="hljs-attribute">docker</span> run -it judge -p <span class="hljs-number">5000</span>:<span class="hljs-number">5000</span></code>，问题很sb，docker run指定的image应该放在指定端口的option后面，即完整命令是<code class="z-inline-code">docker run <span class="hljs-selector-attr">[OPTIONS]</span> IMAGE <span class="hljs-selector-attr">[COMMAND]</span> <span class="hljs-selector-attr">[ARG...]</span></code>。</p>
+<p>至此，问题解决，还是那句话，<strong>能用就行，到最后可能就不能用了...</strong>，要吸取教训，减少此类浪费时间的操作。</p>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/rider-docker-dotnet-webapi-tutorial">https://www.zxcoder.top/detail/rider-docker-dotnet-webapi-tutorial</a></p>
+    </div>
+    <p>Euler's identity (e^{ipi}+1=0) is a beautiful formula in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\RR 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span><span class="mord">2</span></span></span></span></eq>.</p>
+
+</div>
+<script>
+    let nav = document.getElementById('TableOfContents');
+    let isShow = false;
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        nav.style.display=isShow?'block':'none';
+    });
+</script>
+<!--katex css-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+
+
+</body></html>
