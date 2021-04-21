@@ -1,0 +1,290 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <link rel="shortcut icon" href="data:image/x-ico;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABcPtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERAAAREREREREAABEREREREQAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAABEREREREQAAERERERERAAAREREREREAAAAAAAAAAAD//wAAwAMAAMADAADAAwAAwf8AAOD/AADwfwAA+D8AAPwfAAD+DwAA/wcAAP+DAADAAwAAwAMAAMADAAD//wAA">
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="https://www.zxcoder.top">Home</a>
+        <a href="https://www.zxcoder.top/category">Category</a>
+        <a href="https://www.zxcoder.top/tags">Tag</a>
+        <a href="https://www.zxcoder.top/about">About</a>
+        <a href="https://www.zxcoder.top/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>毒药和小白鼠的问题(二进制思想)</h1>
+    <div>
+        <span>2021-04-21</span>
+        <span><a href="https://www.zxcoder.top/category/杂七杂八">杂七杂八</a></span>
+        <span><a href="https://www.zxcoder.top/tags/思维">#思维</a></span>
+        <span><a href="https://www.zxcoder.top/tags/二进制">#二进制</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#基础版">基础版</a></li><li><a href="#加强版">加强版</a></li></ul></div>
+    <div><h2 id="基础版" style="display: inline-block;">基础版</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>1000瓶水，其中1瓶是毒药，有10只小白鼠，怎么安排才能在一次检验后判断哪个瓶子是毒药。</p>
+<p>这几年很经典很套路的面试思维题，通过二进制的思路解决。</p>
+<p>道理很简单，<strong>每瓶水按二进制编号，每只小白鼠负责一个二进制位，喝掉所有该位为1的水，如果死了，说明毒药的编号这一位为1，一共10只小白鼠，最终就能确定10个二进制位的数</strong>。</p>
+<h2 id="加强版" style="display: inline-block;">加强版</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>8瓶水，其中2瓶是毒药，6只小白鼠，怎么安排才能在一次检验后判断哪个瓶子是毒药。</p>
+<p>类似基础版的思路，6只小白鼠最终可以确定6个二进制位也就是64个瓶子，而这里是8瓶水，其中2瓶毒药，所以可以<strong>两两组合一下</strong>，得到64种组合，实际上就是将两个3位的二进制数合并成一个6位的，然后使用基础版的方法解决，再把6位二进制数拆开，就能确定是哪两瓶是毒药。</p>
+<p>可以拓展到n瓶毒药的情况，道理是一样的。</p>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/poison-and-mice">https://www.zxcoder.top/detail/poison-and-mice</a></p>
+    </div>
+</div>
+<script>
+    let nav = document.getElementById('TableOfContents');
+    let isShow = false;
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        nav.style.display=isShow?'block':'none';
+    });
+</script>
+<!--katex css-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+
+
+</body></html>

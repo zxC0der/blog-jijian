@@ -282,7 +282,7 @@ let aboutContent = [
     {
         name: "About Me",
         data: [
-            "一个不<del>喜欢</del>懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
+            "一个不懂科研的准研究生，打过ACM，CF灰名水平，喜欢写代码",
             "不喜欢人工智能，是激进的<del>反AI者</del>弱人工智能支持者",
             "数学不太行，英文也不太行，语文更不行",
             "<a href='https://www.github.com/Zeng1998'>Github</a>",
