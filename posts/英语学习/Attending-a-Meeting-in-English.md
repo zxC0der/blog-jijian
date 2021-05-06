@@ -103,8 +103,8 @@ It's important to explain exactly what you don't know or ask for clarity on some
 
 For something that you decide to do at that moment for the future, you can use '**will**'.
 
-- I**'ll** call the client tomorrow.
-- I**'ll** discuss this with the rest of my team and get back to you by the end of the week.
+- I<strong>'ll</strong> call the client tomorrow.
+- I<strong>'ll</strong> discuss this with the rest of my team and get back to you by the end of the week.
 
 If you had a plan even before the meeting began, you can use '**going to**' or '**planning to**'.
 
