@@ -41,7 +41,7 @@ If necessary, you can say which department you work in.
 - I **handle** purchasing and our negotiations with suppliers.
 
 ## 0x01 Making Accepting and Rejecting Suggestions
-
+    
 ### Making Suggestion
 
 When making suggestions, **modal verb** can be very useful.
