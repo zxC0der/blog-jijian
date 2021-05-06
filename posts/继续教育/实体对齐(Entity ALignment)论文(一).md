@@ -56,3 +56,6 @@ global features是描述两个KG的token语义相似度，行列大小是两个K
 2. 3.3(ii)那个negative pair也不太懂大概是什么意思。
 3. 公式(4)其实我看不懂为什么加上那个分母就能保证数值在[0,1]范围内，数学太差推不出来\wulian，如果不太重要的话我就先不管了\wulian
 4. SRS算法迭代过程中，为什么可以"mitigate the structural difference between Gs and Gt"?意思是不断调整两个图的结构吗?
+
+
+我再看一下论文，然后等正式答辩结束后我们再约个时间沟通一下吧
