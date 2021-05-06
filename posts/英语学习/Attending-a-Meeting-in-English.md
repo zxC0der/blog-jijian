@@ -36,9 +36,9 @@ If necessary, you can say which department you work in.
 
 ### Describe your responsibilities
 
-- **I manage** each projec from start to finish.
-- **I'm responsible for** web analytics and testing.
-- **I handle** purchasing and our negotiations with suppliers.
+- I **manage** each projec from start to finish.
+- I<strong>'m</strong> responsible for** web analytics and testing.
+- I **handle** purchasing and our negotiations with suppliers.
 
 ## 0x01 Making Accepting and Rejecting Suggestions
 
