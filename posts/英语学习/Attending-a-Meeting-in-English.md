@@ -1,8 +1,12 @@
 ---
-title: attending-a-meeting-in-english
-tags:
+permalink: attending-a-meeting-in-english
+tags: 
   - English
   - YouTube
+math: true
+category: 英语学习
+title: Attending-a-Meeting-in-English
+date: 2021-05-06 15:09:51 +0800
 ---
 
 > Some notes of [this video](https://www.youtube.com/watch?v=NEKZFA7L7Lg) from youtube.

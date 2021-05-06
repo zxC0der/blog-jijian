@@ -1,0 +1,449 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
+    <meta data-name="search-index" content="/index.json">
+    <title>zxCoder's blog</title>
+    <link rel="shortcut icon" href="data:image/x-ico;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABcPtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERAAAREREREREAABEREREREQAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAAAAAAAARERAAAAAAAAEREQAAAAAAABEREAABEREREREQAAERERERERAAAREREREREAAAAAAAAAAAD//wAAwAMAAMADAADAAwAAwf8AAOD/AADwfwAA+D8AAPwfAAD+DwAA/wcAAP+DAADAAwAAwAMAAMADAAD//wAA">
+    <meta name="title" content="zxCoder's blog">
+    <meta name="description" content="I am a student now, I am very interested in computer science, this is my blog, I use it to record some problem solving and learning notes.">
+    <meta name="keywords" content="blog, blogging, write, writing, technology, IT">
+    <style>
+        body {
+            margin: auto;
+            padding: 20px;
+            max-width: 720px;
+            text-align: left;
+            background-color: #fff;
+            line-height: 1.5;
+            color: #444;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        b {
+            color: #222;
+        }
+
+        a {
+            color: #3273dc;
+        }
+
+        .title {
+            text-decoration: none;
+            border: 0;
+        }
+
+        nav a {
+            margin-right: 10px;
+        }
+
+        input:not([type="submit"]) {
+            font-size: 16px;
+        }
+        input:not([type="submit"]) {
+            background-color: inherit;
+            color: inherit;
+            border: 1px dashed;
+            padding: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            padding: 2px 5px;
+            background-color: #f2f2f2;
+        }
+
+        pre{
+            margin: 0!important;
+        }
+
+        pre code {
+            color: #222;
+            display: block;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 1px solid #999;
+            color: #222;
+            padding-left: 20px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* dashboard post list and analytics */
+        ul.post-list {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.post-list li {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px dashed;
+        }
+
+        ul.post-list li span {
+            flex: 0 0 130px;
+        }
+
+        ul.post-list li span.number {
+            flex: 0 0 50px;
+        }
+
+        ul.post-list li a {
+            flex: max-content;
+        }
+
+        /* blog posts */
+        ul.blog-posts {
+            list-style-type: none;
+            padding: unset;
+        }
+
+        ul.blog-posts li {
+            display: flex;
+        }
+
+        ul.blog-posts li span {
+            flex: 0 0 130px;
+        }
+
+        ul.blog-posts li a:visited {
+            color: #8b6fcb;
+        }
+
+        code ul li{
+            list-style-type: decimal;
+        }
+        #btnScrollToTop {
+            color: black;
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a class="title" href="/">
+        <h2>zxCoder's blog</h2>
+    </a>
+    <nav>
+        <a href="https://www.zxcoder.top">Home</a>
+        <a href="https://www.zxcoder.top/category">Category</a>
+        <a href="https://www.zxcoder.top/tags">Tag</a>
+        <a href="https://www.zxcoder.top/about">About</a>
+        <a href="https://www.zxcoder.top/search">Search</a>
+    </nav>
+</header>
+<main>
+<style>
+    /*atom-one-light.css*/
+    .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: .5em;
+        color: #383a42;
+        background: #fafafa
+    }
+
+    .hljs-comment, .hljs-quote {
+        color: #a0a1a7;
+        font-style: italic
+    }
+
+    .hljs-doctag, .hljs-formula, .hljs-keyword {
+        color: #a626a4
+    }
+
+    .hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst {
+        color: #e45649
+    }
+
+    .hljs-literal {
+        color: #0184bb
+    }
+
+    .hljs-addition, .hljs-attribute, .hljs-meta-string, .hljs-regexp, .hljs-string {
+        color: #50a14f
+    }
+
+    .hljs-built_in, .hljs-class .hljs-title {
+        color: #c18401
+    }
+
+    .hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+        color: #986801
+    }
+
+    .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+        color: #4078f2
+    }
+
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    .hljs-link {
+        text-decoration: underline
+    }
+</style>
+<div class="post">
+    <h1>AtCoder-ABC-194(A-F)</h1>
+    <div>
+        <span>2021-03-17</span>
+        <span><a href="https://www.zxcoder.top/category/题解">题解</a></span>
+        <span><a href="https://www.zxcoder.top/tags/暴力">#暴力</a></span>
+        <span><a href="https://www.zxcoder.top/tags/预处理">#预处理</a></span>
+        <span><a href="https://www.zxcoder.top/tags/前缀和">#前缀和</a></span>
+        <span><a href="https://www.zxcoder.top/tags/思维">#思维</a></span>
+        <span><a href="https://www.zxcoder.top/tags/dp">#dp</a></span>
+        <span><a href="https://www.zxcoder.top/tags/期望dp">#期望dp</a></span>
+        <span><a href="https://www.zxcoder.top/tags/数位dp">#数位dp</a></span>
+    </div>
+    <div id="headingTOC" style="margin-top: 20px;">
+        <a href="javascript:void(0);">TOC</a>
+    </div>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#A">A</a></li><li><a href="#B">B</a></li><li><a href="#C">C</a></li><li><a href="#D">D</a></li><li><a href="#E">E</a></li><li><a href="#F">F</a></li></ul></div>
+    <div><h2 id="A" style="display: inline-block;">A</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>略</p>
+<h2 id="B" style="display: inline-block;">B</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>N个员工，每个员工做A，B两种工作的时间都不同，如果让一个员工做A和B，花费时间就是两者之和，如果让两个员工做，花费时间就是两者最大值，问所花费最小时间。</p>
+<p>N为1000，直接暴力枚举。</p>
+<h2 id="C" style="display: inline-block;">C</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>求<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>2</mn></mrow><mi>N</mi></msubsup><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>−</mo><msub><mi>A</mi><mi>j</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.417049em;vertical-align:-0.43581800000000004em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.964564em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.43581800000000004em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1002159999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>。</p>
+<p>展开一下，预处理前缀和和平方前缀和即可。</p>
+<h2 id="D" style="display: inline-block;">D</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>有N个点，一开始在点1，每次等概率随机选择一个点(包括所在的点)，将这两点连边并走到该点，问使得图连通的操作次数。</p>
+<p>有个很重要的思路，走的顺序是不重要的，<strong>重要的只有一点，就是走过了(连通)了多少个点</strong>。就比如从1走到2，再从2走到1，和在2一直原地踏步是一样的，所以将图抽象为一条线段，比如3个点<code class="z-inline-code"><span class="hljs-attribute">1</span>---<span class="hljs-number">2</span>---<span class="hljs-number">3</span></code>，先算从1走到2的期望，这里的2并不仅仅指图上的点2，只是代表第二个走过的点，所以这里有三种可能性，原地踏步1种，另外2种可能性都可以走到第二个点，所以从1走到2的期望是3/2，同理再算从2走到3的期望是3/1，因此可以总结得到规律，答案为<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mfrac><mi>n</mi><mi>i</mi></mfrac></mrow><annotation encoding="application/x-tex">\sum_{i-1}^{n-1}\frac{n}{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.312049em;vertical-align:-0.35804100000000005em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35804100000000005em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq>。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">int</span> n;
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+</li><li>    <span class="hljs-keyword">double</span> ans=<span class="hljs-number">0.0</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++){
+</li><li>        ans+=n*<span class="hljs-number">1.0</span>/i;
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.8lf\n"</span>,ans);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+<p>再仔细思考，其实题目本质就是N个点，每次随机给一个点染色，问所有点全部染色的次数期望。</p>
+<p>考虑期望dp，dp[i]表示已经染色了i个点，要染色n个点所需要的次数期望，状态转移方程为<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>i</mi><mi>n</mi></mfrac><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>+</mo><mfrac><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mi>n</mi></mfrac><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">dp[i]=\frac{i}{n}dp[i]+\frac{n-i}{n}dp[i+1]+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.200664em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.855664em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.200664em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.855664em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></eq>，其中第一部分是指随机选到的点是已染色的，第二部分是指选到未染色的点，移项化简，得到<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mfrac><mi>n</mi><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">dp[i]=dp[i+1]+\frac{n}{n-i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0987230000000001em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq>，初始状态为dp[n]=0。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">int</span> n;
+</li><li><span class="hljs-keyword">double</span> dp[N];
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;n);
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">1</span>;i--){
+</li><li>        dp[i]=dp[i+<span class="hljs-number">1</span>]+n*<span class="hljs-number">1.0</span>/(n-i);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.8lf\n"</span>,dp[<span class="hljs-number">1</span>]);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="E" style="display: inline-block;">E</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>给定长度为N的数组，对于每个长度为M的子数组，求出Mex，然后再求出所有Mex的最小值。</p>
+<p>最简单的做法就是滑窗维护mex，但有个重要的问题，<strong>只需要考虑删除数字之后mex的变化，而不用考虑添加数字之后mex的变化</strong>，因为要求的是最小mex，而添加数字只会让mex变大。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e6</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">int</span> n,m;
+</li><li><span class="hljs-keyword">int</span> a[N],b[N];
+</li><li><span class="hljs-keyword">int</span> mex;
+</li><li><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>{
+</li><li>    b[a[i]]++;
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">del</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>{
+</li><li>    b[a[i]]--;
+</li><li>    <span class="hljs-keyword">if</span>(b[a[i]]==<span class="hljs-number">0</span> &amp;&amp; a[i]&lt;mex){
+</li><li>        mex=a[i];
+</li><li>    }
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m);
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){
+</li><li>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;a[i]);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++){
+</li><li>        <span class="hljs-built_in">add</span>(i);
+</li><li>    }
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=n;i++){
+</li><li>        <span class="hljs-keyword">if</span>(b[i]==<span class="hljs-number">0</span>){
+</li><li>            mex=i;
+</li><li>            <span class="hljs-keyword">break</span>;
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=m+<span class="hljs-number">1</span>;i&lt;=n;i++){
+</li><li>        <span class="hljs-built_in">add</span>(i);
+</li><li>        <span class="hljs-built_in">del</span>(i-m);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,mex);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+<h2 id="F" style="display: inline-block;">F</h2>
+<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+</svg></a><p>求出1到N(不含前导零的16进制数)中多少个数字正好含有K的不同的数字(包括A-F)。</p>
+<p>16进制的数位dp基础题。基本思路和注意点都在注释里了，后面可能会整理一个数位dp学习专题。</p>
+<pre><code class="hljs language-cpp"><ul><li><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+</li><li><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+</li><li><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">50</span>;
+</li><li><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> mod=<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
+</li><li><span class="hljs-keyword">char</span> s[N];
+</li><li><span class="hljs-keyword">int</span> k;
+</li><li><span class="hljs-keyword">int</span> dig[N];
+</li><li><span class="hljs-comment">// 低i位满足有k个不同数位的数字个数</span>
+</li><li><span class="hljs-comment">// 注意这里定义的dp状态其实就蕴含了一种记忆化搜索时"空间换时间"的一种思想</span>
+</li><li><span class="hljs-comment">// 实际上这里的状态也可以只定义dp[]一维，那表示的就是满足条件的数字个数，这种方法粒度大，使用空间小，但显然花费时间多，因为大多数搜索状态都无法记忆化，只能重复搜</span>
+</li><li><span class="hljs-comment">// 同理状态也可以定义为dp[][][]三维，再加上一维状态压缩，这种做法就是粒度小，但是太占空间</span>
+</li><li>ll dp[N][<span class="hljs-number">22</span>];
+</li><li><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>{
+</li><li>    <span class="hljs-keyword">if</span>(x){
+</li><li>        <span class="hljs-built_in">print</span>(x/<span class="hljs-number">2</span>);
+</li><li>    }
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,x%<span class="hljs-number">2</span>);
+</li><li>}
+</li><li><span class="hljs-function">ll <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> idx,<span class="hljs-keyword">int</span> sta,<span class="hljs-keyword">int</span> dif,<span class="hljs-keyword">bool</span> lead,<span class="hljs-keyword">bool</span> limit)</span></span>{
+</li><li>    <span class="hljs-keyword">if</span>(idx==<span class="hljs-number">-1</span>){
+</li><li>        <span class="hljs-comment">// 一个合法数字(这题要排除含前导零的数)，有时候要单独考虑0的情况</span>
+</li><li>        <span class="hljs-comment">// 其实我觉得前导零的命名有点误导性，其实lead为true就是表示现在搜索的前缀是一串0</span>
+</li><li>        <span class="hljs-keyword">if</span>(dif==k &amp;&amp; !lead){
+</li><li>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-comment">// 记忆化的都是无上限的</span>
+</li><li>    <span class="hljs-keyword">if</span>(!limit &amp;&amp; dp[idx][dif]!=<span class="hljs-number">-1</span>){
+</li><li>        <span class="hljs-keyword">return</span> dp[idx][dif];
+</li><li>    }
+</li><li>    <span class="hljs-comment">// 这一位的枚举上限</span>
+</li><li>    <span class="hljs-keyword">int</span> up=limit?dig[idx]:<span class="hljs-number">15</span>;
+</li><li>    ll ans=<span class="hljs-number">0</span>;
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=up;i++){
+</li><li>        <span class="hljs-keyword">if</span>(lead &amp;&amp; i==<span class="hljs-number">0</span> || (sta&gt;&gt;i)&amp;<span class="hljs-number">1</span>){
+</li><li>            ans+=<span class="hljs-built_in">dfs</span>(idx<span class="hljs-number">-1</span>,sta,dif,lead &amp;&amp; i==<span class="hljs-number">0</span>,limit &amp;&amp; i==up);
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            ans+=<span class="hljs-built_in">dfs</span>(idx<span class="hljs-number">-1</span>,sta|(<span class="hljs-number">1</span>&lt;&lt;i),dif+<span class="hljs-number">1</span>,lead &amp;&amp; i==<span class="hljs-number">0</span>,limit &amp;&amp; i==up);
+</li><li>        }
+</li><li>        ans%=mod;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">if</span>(!limit){
+</li><li>        dp[idx][dif]=ans%mod;
+</li><li>    }
+</li><li>    <span class="hljs-keyword">return</span> ans%mod;
+</li><li>}
+</li><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+</li><li>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s %d"</span>,s,&amp;k);
+</li><li>    <span class="hljs-keyword">int</span> n=<span class="hljs-built_in">strlen</span>(s);
+</li><li>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+</li><li>        <span class="hljs-keyword">if</span>(s[i]&gt;=<span class="hljs-string">'A'</span>){
+</li><li>            dig[n<span class="hljs-number">-1</span>-i]=s[i]-<span class="hljs-string">'A'</span>+<span class="hljs-number">10</span>;
+</li><li>        }<span class="hljs-keyword">else</span>{
+</li><li>            dig[n<span class="hljs-number">-1</span>-i]=s[i]-<span class="hljs-string">'0'</span>;
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="hljs-built_in">memset</span>(dp,<span class="hljs-number">-1</span>,<span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(dp));
+</li><li>    <span class="hljs-comment">// 从高位搜索下去</span>
+</li><li>    ll ans=<span class="hljs-built_in">dfs</span>(n<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">true</span>,<span class="hljs-literal">true</span>);
+</li><li>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%lld\n"</span>,ans%mod);
+</li><li>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+</li><li>}
+</li></ul></code></pre>
+</div>
+    <div style="color: gray;font-size: 14px;">
+        <p>本站遵循 CC-BY-NC 4.0 协议</p>
+        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/atcoder-abc-194">https://www.zxcoder.top/detail/atcoder-abc-194</a></p>
+    </div>
+</div>
+<script>
+    let nav = document.getElementById('TableOfContents');
+    let isShow = false;
+    document.getElementById('headingTOC').addEventListener('click', () => {
+        isShow = !isShow;
+        nav.style.display=isShow?'block':'none';
+    });
+</script>
+<!--katex css-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+</main>
+<footer>
+    <p>Copyright © 2021-2021 zxCoder. All Rights Reserved.</p>
+    <p>Powered by My Coding.</p>
+</footer>
+<!--滚动到顶部-->
+<a id="btnScrollToTop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
+    </svg>
+</a>
+<script>
+    // window.onload 等dom加载完
+    window.onload=function(){
+        let scroller = document.getElementById('btnScrollToTop')
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroller.style.display = 'block';
+            } else {
+                scroller.style.display = 'none';
+            }
+        });
+        scroller.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0, left: 0, behavior: 'smooth',
+            });
+        });
+    }
+</script>
+
+
+</body></html>
