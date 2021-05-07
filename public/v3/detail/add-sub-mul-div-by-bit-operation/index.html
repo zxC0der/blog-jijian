@@ -224,18 +224,18 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#加法">加法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#减法">减法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#乘法">乘法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#除法">除法</a><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#完整代码">完整代码</a></li></ul></div>
-    <div><h2 id="加法" style="display: inline-block;">加法</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+    <div><h2 id="加法">加法</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="思路">思路</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>思路很简单，首先假设两个数相加，所有位都没进位，那么结果就是所有位直接对应相加即可，比如123+234=357，而如果有一些位有进位的清空，比如456+789，我们先不考虑进位，每一位单独算，得到的结果设为a，这里a=135，再考虑进位，这里每一位都进位了，分别进了十位，百位和千位，所以进位的结果是1110，那很显然，我们可以将456+789的答案转化为<strong>不考虑进位的和</strong>加上<strong>进位的值</strong>，在这里也就是135+1110=1245，如果这个加法也出现了进位，那么很明显就采用递归/迭代的思路继续操作下去，直到两个数的加法不出现进位，即为答案。</p>
 <p>上面是10进制的情况，2进制的道理是一样的，而且因为2进制我们可以采用位运算来快速计算上面的<strong>不进位加法</strong>(位异或)和<strong>进位和</strong>(位与再左移1位)，所以就可以采用位运算的方法来计算两个数的和。</p>
-<h3 id="代码" style="display: inline-block;">代码</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="代码">代码</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>递归版：</p>
@@ -256,12 +256,12 @@
 </li><li>    <span class="hljs-keyword">return</span> a;
 </li><li>}
 </li></ul></code></pre>
-<h2 id="减法" style="display: inline-block;">减法</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="减法">减法</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="思路">思路</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>减去一个数，就等于加上一个的相反数，所以我们考虑相反数的二进制表示，总所周知，计算机是使用补码来表示一个数，比如我们分别输出-5和5的二进制位如下。</p>
@@ -275,8 +275,8 @@
 </li><li><span class="hljs-comment">//000000000000000000000000000000101</span>
 </li></ul></code></pre>
 <p>所以相反数的二进制表示就是按位取反再加1，而不用考虑正数还是负数的问题。</p>
-<h3 id="代码" style="display: inline-block;">代码</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="代码">代码</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">neg</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
@@ -286,17 +286,17 @@
 </li><li>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">add</span>(a,<span class="hljs-built_in">neg</span>(b));
 </li><li>}
 </li></ul></code></pre>
-<h2 id="乘法" style="display: inline-block;">乘法</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="乘法">乘法</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="思路">思路</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>乘法的思路是二进制数列竖式计算的思路，首先单独处理符号位(a^b可以判断符号位)，用绝对值来进行计算，对于被乘数乘以乘数，我们从低到高遍历乘数，当乘数当前位为1，答案应该加上被乘数<strong>乘以乘数当前位的权重</strong>，所以这里可以用一个简单的优化，因为随着乘数的遍历，权重一直都是左移一位的关系(1--&gt;10--&gt;100-&gt;...)，所以直接让被乘数左移即可，而另外为了方便计算乘数的当前位，我们可以直接让乘数右移，把当前位固定在最后一位，这样通过(b&amp;1)就能快速得到这一位的值。</p>
-<h3 id="代码" style="display: inline-block;">代码</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="代码">代码</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
@@ -321,17 +321,17 @@
 </li><li>    <span class="hljs-keyword">return</span> ans;
 </li><li>}
 </li></ul></code></pre>
-<h2 id="除法" style="display: inline-block;">除法</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="除法">除法</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="思路" style="display: inline-block;">思路</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="思路">思路</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>除法是一个贪心的做法，从高位到低位(1&lt;&lt;31,1&lt;&lt;30,...)依次试除。</p>
-<h3 id="代码" style="display: inline-block;">代码</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="代码">代码</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">div2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>{
@@ -350,8 +350,8 @@
 </li><li>    <span class="hljs-keyword">return</span> ans;
 </li><li>}
 </li></ul></code></pre>
-<h2 id="完整代码" style="display: inline-block;">完整代码</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="完整代码">完整代码</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>以上加减乘除四种做法其实都没有考虑到溢出的情况，<del>又不是做数电作业题</del>，<del>如果遇到这么刁难的面试题就拒了吧</del>。</p>

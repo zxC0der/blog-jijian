@@ -225,19 +225,19 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#思路">思路</a></li><li><a href="#代码">代码</a><ul><li><a href="#递归">递归</a></li><li><a href="#非递归">非递归</a></li></ul></li></ul></div>
-    <div><h2 id="思路" style="display: inline-block;">思路</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+    <div><h2 id="思路">思路</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>约瑟夫环问题是：n个人围成一个环，编号从1到n(或者从0到n-1)，从1开始数(从几开始数不重要，重要的是数到第几个出队)，第k个人出队，然后从下一个人开始重新数，直到剩最后一个为赢家。</p>
 <p>我们先把环展开，n个人时，队列为1 2 3 ... n-1 n(n个人，队列1)，淘汰一个人后，下一轮应该从k+1开始报数，也就是k+1 k+1 ... k-1(n-1个人，队列2)，对于这两个队列，胜者的编号应该是一样的，但在两个队列中的位置发生了变化，而对于下面这个队列1 2 3 ... n-2 n-1(n-1个人，队列3)，因为和队列2都是n-1个人，所以显然胜者的位置是一样的，而我们的递归函数f(n,k)其实算的就是队列1(n个人)和队列3(n-1个人)，而当我们计算了队列3，需要转化为队列2之后，再返回给上层函数，这两者的关系就是(x+k)%n，n是当前人数，在迭代做法中应该是i。</p>
 <p>注意最后一步，当队列编号从0开始时，可以直接(x+k)%n，当队伍编号从1开始时，应该是(x+k-1)%n+1。</p>
-<h2 id="代码" style="display: inline-block;">代码</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="代码">代码</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="递归" style="display: inline-block;">递归</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="递归">递归</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">josephus</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> k)</span></span>{
@@ -249,8 +249,8 @@
 </li><li>    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">josephus</span>(n<span class="hljs-number">-1</span>,k)+k)%n;
 </li><li>}
 </li></ul></code></pre>
-<h3 id="非递归" style="display: inline-block;">非递归</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="非递归">非递归</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs language-cpp"><ul><li><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">josephus2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> k)</span></span>{

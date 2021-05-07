@@ -229,26 +229,26 @@
         <a href="javascript:void(0);">TOC</a>
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#创建非root用户">创建非root用户</a><ul><li><a href="#创建用户">创建用户</a></li><li><a href="#设置密码">设置密码</a></li><li><a href="#将用户加入sudoer">将用户加入sudoer</a></li></ul></li><li><a href="#配置ssh密钥登录">配置ssh密钥登录</a><ul><li><a href="#本地生成ssh密钥">本地生成ssh密钥</a></li><li><a href="#禁止密码登录(可选)">禁止密码登录(可选)</a></li><li><a href="#解决客户端SSH连接服务器一段时间不操作之后卡死的问题">解决客户端SSH连接服务器一段时间不操作之后卡死的问题</a></li></ul></li><li><a href="#环境变量">环境变量</a><ul><li><a href="#配置方法">配置方法</a></li><li><a href="#加载顺序">加载顺序</a></li></ul></li><li><a href="#PostgreSQL">PostgreSQL</a><ul><li><a href="#安装">安装</a></li><li><a href="#配置">配置</a></li></ul></li><li><a href="#MongoDB">MongoDB</a><ul><li><a href="#安装">安装</a></li><li><a href="#配置">配置</a></li></ul></li><li><a href="#Docker">Docker</a><ul><li><a href="#安装">安装</a></li><li><a href="#配置">配置</a></li></ul></li></ul></div>
-    <div><h2 id="创建非root用户" style="display: inline-block;">创建非root用户</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+    <div><h2 id="创建非root用户">创建非root用户</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="创建用户" style="display: inline-block;">创建用户</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="创建用户">创建用户</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs"><ul><li>useradd -m -s <span class="hljs-regexp">/bin/</span>bash zxc
 </li></ul></code></pre>
 <p>其中<code class="z-inline-code"><span class="hljs-attribute">useradd</span></code>是添加用户的命令，需要root权限，<code class="z-inline-code"><span class="hljs-deletion">-m</span></code>表示自动创建用户的家目录，<code class="z-inline-code">-s <span class="hljs-regexp">/bin/</span>bash</code>指定用户登录后使用的shell。</p>
-<h3 id="设置密码" style="display: inline-block;">设置密码</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="设置密码">设置密码</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs"><ul><li><span class="hljs-attribute">passwd zxc</span>
 </li></ul></code></pre>
 <p>重复输入密码，回车确定。</p>
-<h3 id="将用户加入sudoer" style="display: inline-block;">将用户加入sudoer</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="将用户加入sudoer">将用户加入sudoer</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>新建的用户默认是无法使用<code class="z-inline-code"><span class="hljs-attribute">sudo</span></code>命令的，需要修改<code class="z-inline-code"><span class="hljs-regexp">/etc/</span>sudoers</code>文件，而这个文件默认是只读的，<code class="z-inline-code">u+w</code>的<code class="z-inline-code"><span class="hljs-attribute">u</span></code>表示文件的拥有者，<code class="z-inline-code"><span class="hljs-addition">+w</span></code>表示添加写权限，在这里也相当于<code class="z-inline-code"><span class="hljs-attribute">chmod</span> <span class="hljs-number">600</span></code>了。</p>
@@ -272,12 +272,12 @@
 <p>最后记得撤销文件的写权限</p>
 <pre><code class="hljs"><ul><li>chmod u-w <span class="hljs-regexp">/etc/</span>sudoers
 </li></ul></code></pre>
-<h2 id="配置ssh密钥登录" style="display: inline-block;">配置ssh密钥登录</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="配置ssh密钥登录">配置ssh密钥登录</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="本地生成ssh密钥" style="display: inline-block;">本地生成ssh密钥</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="本地生成ssh密钥">本地生成ssh密钥</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs"><ul><li><span class="hljs-attribute">ssh-keygen -t rsa</span>
@@ -296,15 +296,15 @@
 </li><li><span class="hljs-keyword">chmod</span> <span class="hljs-number">700</span> -R ~/.ssh
 </li></ul></code></pre>
 <p>为了保证安全，其中600表示只有拥有者有读写权限，700表示只有拥有者有读、写、执行权限。</p>
-<h3 id="禁止密码登录(可选)" style="display: inline-block;">禁止密码登录(可选)</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="禁止密码登录(可选)">禁止密码登录(可选)</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>修改<code class="z-inline-code">etc<span class="hljs-regexp">/ssh/</span>sshd_conf</code>文件</p>
 <pre><code class="hljs"><ul><li><span class="hljs-attribute">PasswordAuthentication</span> <span class="hljs-literal">no</span>
 </li></ul></code></pre>
-<h3 id="解决客户端SSH连接服务器一段时间不操作之后卡死的问题" style="display: inline-block;">解决客户端SSH连接服务器一段时间不操作之后卡死的问题</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="解决客户端SSH连接服务器一段时间不操作之后卡死的问题">解决客户端SSH连接服务器一段时间不操作之后卡死的问题</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>修改本地文件<code class="z-inline-code"><span class="hljs-regexp">/etc/</span>ssh/ssh_config</code>，添加两个配置</p>
@@ -314,12 +314,12 @@
 <p>然后重启ssh服务</p>
 <pre><code class="hljs"><ul><li>sudo <span class="hljs-regexp">/etc/i</span>nit.d/ssh restart
 </li></ul></code></pre>
-<h2 id="环境变量" style="display: inline-block;">环境变量</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="环境变量">环境变量</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="配置方法" style="display: inline-block;">配置方法</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="配置方法">配置方法</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>在Linux系统中，环境变量是用来定义系统运行环境的一些参数。</p>
@@ -484,8 +484,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="加载顺序" style="display: inline-block;">加载顺序</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="加载顺序">加载顺序</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>基本上是从系统级到用户级，从<code class="z-inline-code"><span class="hljs-attribute">profile</span></code>到<code class="z-inline-code"><span class="hljs-attribute">bashrc</span></code>的顺序</p>
@@ -496,12 +496,12 @@
 <li><code class="z-inline-code">~/.profile</code></li>
 <li><code class="z-inline-code">~/.bashrc</code></li>
 </ul>
-<h2 id="PostgreSQL" style="display: inline-block;">PostgreSQL</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="PostgreSQL">PostgreSQL</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="安装" style="display: inline-block;">安装</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="安装">安装</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><pre><code class="hljs"><ul><li>sudo <span class="hljs-keyword">sh</span> -<span class="hljs-keyword">c</span> <span class="hljs-string">'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'</span>
@@ -513,8 +513,8 @@
 <p>list文件的格式主要分为几部分，第一部分通常是<code class="z-inline-code"><span class="hljs-attribute">deb</span></code>或者<code class="z-inline-code">deb-<span class="hljs-attribute">src</span></code>，因为ubuntu是基于debian的，<code class="z-inline-code"><span class="hljs-attribute">deb</span></code>其实就是debian的前三个字母，在这里表示通过<code class="z-inline-code"><span class="hljs-title">.deb</span></code>文件安装或者通过源码安装；第二部分是安装文件的url，在这里是<code class="z-inline-code">http:<span class="hljs-regexp">//</span>apt.postgresql.org<span class="hljs-regexp">/pub/</span>repos/apt</code>，第三部分是版本代号，这里是<code class="z-inline-code"><span class="hljs-constructor">$(<span class="hljs-params">lsb_release</span> -<span class="hljs-params">cs</span>)</span>-pgdg</code>，其中<code class="z-inline-code">$()</code>可以理解为执行括号内的命令得到的输出，在服务器Ubuntu20.04系统上输出是focal，所以对应的可以在刚才的url里找到<code class="z-inline-code">.<span class="hljs-regexp">/dists/</span>focal-pgdg</code>这个文件夹里的安装文件，而在本地执行这个命令显示<code class="z-inline-code"><span class="hljs-comment">n/a</span></code>，第四部分是限定词，这里是<code class="z-inline-code"><span class="hljs-selector-tag">main</span></code>。</p>
 <p>配置了软件源，就要通过<code class="z-inline-code">apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span></code>更新软件源(<strong>不是更新软件</strong>)，通俗理解是把新的软件源中的软件列表更新到电脑上，而<code class="z-inline-code">apt-<span class="hljs-builtin-name">get</span> upgrade</code>才是更新软件。</p>
 <p><code class="z-inline-code">apt-<span class="hljs-builtin-name">get</span> -y install</code>中的<code class="z-inline-code"><span class="hljs-deletion">-y</span></code>表示跳过确认<code class="z-inline-code"><span class="hljs-literal">yes</span>/<span class="hljs-literal">no</span></code>，通过这个命令，软件默认安装到了<code class="z-inline-code"><span class="hljs-regexp">/usr/</span>share</code>下的对应文件夹。</p>
-<h3 id="配置" style="display: inline-block;">配置</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="配置">配置</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>PostgreSQL安装后默认创建了一个名为<code class="z-inline-code"><span class="hljs-attribute">postgres</span></code>的用户，既是DMBS的用户，也是Linux用户，所以先切换到该用户进入psql。</p>
@@ -533,12 +533,12 @@
 <pre><code class="hljs"><ul><li><span class="hljs-attribute">local</span>  <span class="hljs-literal">all</span>  <span class="hljs-literal">all</span>  md<span class="hljs-number">5</span>
 </li></ul></code></pre>
 <p>修改后通过<code class="z-inline-code"><span class="hljs-attribute">service postgresql reload</span></code>重启生效，或者在psql shell中执行<code class="z-inline-code"><span class="hljs-keyword">SELECT</span> pg_reload_conf()</code>。</p>
-<h2 id="MongoDB" style="display: inline-block;">MongoDB</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="MongoDB">MongoDB</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="安装" style="display: inline-block;">安装</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="安装">安装</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>类似的，通过官网配置软件源的方式来安装。</p>
@@ -559,8 +559,8 @@
 </li></ul></code></pre>
 <p>然后注意下载的应该是<code class="z-inline-code"><span class="hljs-keyword">x</span><span class="hljs-number">86</span>_<span class="hljs-number">64</span></code>版本，也就是不加<code class="z-inline-code">(<span class="hljs-meta">arm</span>)</code>的版本，可以通过命令<code class="z-inline-code"><span class="hljs-attribute">arch</span></code>来查询。</p>
 <p>解压时<code class="z-inline-code"><span class="hljs-deletion">-C</span></code>指定解压目录。</p>
-<h3 id="配置" style="display: inline-block;">配置</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="配置">配置</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>然后需要配置环境变量，这里我们配置在<code class="z-inline-code">~/.bashrc</code>文件中。</p>
@@ -604,12 +604,12 @@
 <pre><code class="hljs"><ul><li><span class="hljs-attribute">mongod</span> -f mongod.conf
 </li></ul></code></pre>
 <p>注意<code class="z-inline-code"><span class="hljs-attribute">nohttpinterface</span></code>这个配置属性默认是关闭的，所以我们也可以通过浏览器访问<code class="z-inline-code"><span class="hljs-attribute">ip</span>:<span class="hljs-number">27017</span></code>来判断<code class="z-inline-code"><span class="hljs-attribute">mongod</span></code>是否已经正确启动。</p>
-<h2 id="Docker" style="display: inline-block;">Docker</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Docker">Docker</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="安装" style="display: inline-block;">安装</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="安装">安装</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>按照官网文档，选择通过存储库(repository)来进行安装。</p>
@@ -640,8 +640,8 @@
 <p>最后通过运行hello world镜像来判断是否安装成功。</p>
 <pre><code class="hljs"><ul><li>sudo docker <span class="hljs-builtin-name">run</span> hello-world
 </li></ul></code></pre>
-<h3 id="配置" style="display: inline-block;">配置</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="配置">配置</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>因为众所周知的原因，我们需要修改仓库镜像源，直接修改<code class="z-inline-code"><span class="hljs-regexp">/etc/</span>docker/daemon.json</code>文件，加入中科大，网易，官方中国仓库三个。</p>

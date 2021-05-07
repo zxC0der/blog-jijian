@@ -228,12 +228,12 @@
     <div><blockquote>
 <p>由于课程禁止公开项目代码，所以如果有同样在做这个项目的同学对我的实现感兴趣，或者发现其中存在什么问题欢迎联系我，邮箱：1129142694@qq.com</p>
 </blockquote>
-<h2 id="理论基础" style="display: inline-block;">理论基础</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="理论基础">理论基础</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="Introduction of DBMS" style="display: inline-block;">Introduction of DBMS</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="Introduction of DBMS">Introduction of DBMS</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>广义的数据库应该是指存储数据的地方，比如一个文件其实也是一个数据库，而数据库管理系统(DBMS)才是我们对数据库进行操作，管理的一个软件，也是我们这个project要实现的。</p>
@@ -245,8 +245,8 @@
 <li>Buffer Pool Manager</li>
 <li>Disk Manager</li>
 </ul>
-<h3 id="Database Storage Part #1" style="display: inline-block;">Database Storage Part #1</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Database Storage Part #1">Database Storage Part #1</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><h4>File Storage</h4>
@@ -257,8 +257,8 @@
 <p>每个Page有一个Header来维护一些元数据，比如存储的元组(tuple)个数(假设存储的都是元组)，校验和，版本号，事务相关，压缩信息等等。具体每个Page存储元组的方式有slotted-page和log-structured两种。slotted page就是Page的Header部分维护一个slot表，指向当前存储的元组，而实际元组存储是从后往前，从Page的最后一个内存位置开始存储。类似于栈和堆的相向增长，直到两者相遇。另外一种方式log-structured则是指Page不存储具体的元组，而是存储数据库更新的记录，包括Insert，Update和Delete等，通过逆序扫描Page的日志记录，就可以查询所需的元组，为了提高扫描效率，可以添加日志的索引方便在记录中跳跃查找，以及对日志进行压缩。</p>
 <h4>Tuple Layout</h4>
 <p>最后一部分是元组的存储结构，同样有Header和其他Attribute Data，每个元组会有一个独一无二的identifier，通常是Page id+offset/slot。</p>
-<h3 id="Database Storage Part #2" style="display: inline-block;">Database Storage Part #2</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Database Storage Part #2">Database Storage Part #2</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><h4>Data Representation</h4>
@@ -270,8 +270,8 @@
 <p>OLAP(On-Line Analytical Processing)：联机分析处理，应用在大型数据仓库，支持复杂的分析查询操作。</p>
 <p>DMBS可以以不同的方式来组织元组的存储，使得可以满足不同数据量，不同场景的应用(OLTP or OLAP)。</p>
 <p>在这个project中，我们将使用n-ary storage model(n-ary存储模型)，也叫row storage(行存储)，也就是将连续元组的所有属性保存在一个Page里，这种存储模型适用于OLTP。另外一种存储模型是decomposition storage model，也叫column storage(列存储)，也就是一个Page保存的是连续元组的同一个属性，这种存储模型适用于OLAP。</p>
-<h3 id="Buffer Pool" style="display: inline-block;">Buffer Pool</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Buffer Pool">Buffer Pool</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><h4>Buffer Pool Manager</h4>
@@ -287,8 +287,8 @@
 <h4>Replacement Policies</h4>
 <p>缓冲池的另外的一个重要部分就是页面替换策略，即当缓冲池空间不足时将某个页面淘汰的策略。最常见的替换策略是LRU(Least Recently Used)，即最近最少使用，通过一个链表和一个维护位置的哈希表可以实现。Clock，时钟算法是LRU算法的近似算法，简单来说就是通过模拟时钟的指针不断循环扫描整个page table，扫到的slot对应的页面就应该被淘汰，但如果这个页面当前正在被使用(pin)，可以有一次拯救的机会，将pin标记置为0，下一次再扫到这个slot，如果标记为0，就直接淘汰。</p>
 <p>这两种策略是最基本的替换策略，实际上还有很多优化的版本。</p>
-<h2 id="具体实现" style="display: inline-block;">具体实现</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="具体实现">具体实现</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Project #1目标是实现一个Buffer Pool Manager(缓冲池管理器)用于管理内存中的缓冲池，以及缓冲区必须要有的页面置换算法，包括LRU和Clock算法。</p>
@@ -296,21 +296,21 @@
 <p>然后管理器里还可以再维护一个free list，保存空闲的frame id，初始化整个缓冲池是空的，所以free list就是满的。</p>
 <p>Replacer是管理器的另外一个重要组件，也就是替换策略的实现，其实就是维护一些已被使用的page所对应的frame id，当缓冲池需要放一个新页面，但是free list已经为空，也就是缓冲池已满，那就需要通过调用Replacer的Victim方法来淘汰掉某一个frame id所对应的page。</p>
 <p>并发安全的实现采用std的互斥量mutex类来实现，原始的方法是采用mutex 的lock/trylock方法来加锁，unlock方法来解锁。更常见的是用lock_guard这个模板类，实现在作用域结束后自动调用析构函数，执行unlock方法。</p>
-<h3 id="ClockReplacer" style="display: inline-block;">ClockReplacer</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="ClockReplacer">ClockReplacer</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>时钟的大小和缓冲池大小一样，对应每个位置(也就是每一个frame id)有两个标记，一个标记记录这个frame是否真正在Replacer中，这是为了方便处理，用静态大小的数组可以无需处理frame动态的进出，另一个标记是Clock算法中的记录最近是否被使用，更准确地说应该是最近是否被使用结束后被加到Replacer中，如果是，则标记为1。</p>
 <p>Replacer包括3个主要函数，Pin函数表示这个页面被某个线程引用了，要对这个页面进行读写操作，所以显然不能放在Replacer里，如果在里面就要拿出来，反过来如果一个页面不再被引用了，即pin count减到0，就应该调用Unpin函数，将这个frame加入Replacer，随时可以被淘汰。</p>
 <p>Victim函数就是选择淘汰某个页面，也是置换算法的核心，维护一个指针位置clockHand，然后循环扫过每一个"在"Replacer里的frame，如果frame的最近访问标志为true，置为false，即给了一次"自我拯救"的机会，如果是false，就需要将这个frame对应的page淘汰掉，返回该frame id即可。</p>
-<h3 id="LRUReplacer" style="display: inline-block;">LRUReplacer</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="LRUReplacer">LRUReplacer</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>这个比较简单，用一个链表放frame id，同时用一个哈希表维护frame id在链表中的位置(迭代器)，同样包括三个主要函数，Pin就是将frame从链表中移除，Unpin就是将frame加入链表尾部，如果已经在链表中就直接过，Victim就是将链表头部的frame淘汰。</p>
 <p>这里跟想象中的LRU似乎不太一样，第一次实现Pin函数是把frame从链表中移到尾部，从单元测试来看，这里直接删除似乎更为合理。</p>
-<h3 id="Buffer Pool Manager" style="display: inline-block;">Buffer Pool Manager</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Buffer Pool Manager">Buffer Pool Manager</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>缓冲池管理器作用就是管理缓冲池，包括页面的读写存取，页面的替换等。包括几个主要函数：</p>

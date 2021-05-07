@@ -228,8 +228,8 @@
     <div><blockquote>
 <p>拖了很久的一篇，一直想记录一下Vue开发一个简单的个人前端项目的全过程<del>(免得每写一次前端都要重新查一遍文档和博客)</del>，直到Vue3都出了，我终于写下这篇小短文了<del>(Vue2)</del>。</p>
 </blockquote>
-<h2 id="初始化" style="display: inline-block;">初始化</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="初始化">初始化</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>首先全局安装<code class="z-inline-code"><span class="hljs-attribute">vue</span></code>和<code class="z-inline-code">vue-<span class="hljs-keyword">cli</span></code></p>
@@ -239,8 +239,8 @@
 <p>然后通过<code class="z-inline-code">vue-<span class="hljs-keyword">cli</span></code>创建项目</p>
 <pre><code class="hljs language-shell"><ul><li>vue init xxx
 </li></ul></code></pre>
-<h2 id="页面" style="display: inline-block;">页面</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="页面">页面</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>在<code class="z-inline-code"><span class="hljs-attribute">src</span>/components</code>下写一些组件，创建文件夹<code class="z-inline-code"><span class="hljs-attribute">src</span>/pages</code>放页面，在<code class="z-inline-code"><span class="hljs-attribute">src</span></code>目录下的<code class="z-inline-code"><span class="hljs-keyword">App</span>. vue</code>是主组件，也是入口页面，里面通常是放<code class="z-inline-code"><span class="hljs-attribute"><span class="hljs-nomarkup">Header</span></span></code>，<code class="z-inline-code"><span class="hljs-selector-tag">Footer</span></code>，<code class="z-inline-code">router-<span class="hljs-keyword">view</span></code>这些组件，其中<code class="z-inline-code">router-<span class="hljs-keyword">view</span></code>是可以根据路由的变化切换页面的，后面会提到。</p>
@@ -274,12 +274,12 @@
 </li><li>&lt;style scoped&gt;  /** css部分，scoped表示只在组件内生效 **/
 </li><li>&lt;/style&gt;
 </li></ul></code></pre>
-<h2 id="父子组件交互" style="display: inline-block;">父子组件交互</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="父子组件交互">父子组件交互</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><h3 id="父组件传值给子组件" style="display: inline-block;">父组件传值给子组件</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+</svg></a><h3 id="父组件传值给子组件">父组件传值给子组件</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>在子组件中定义<code class="z-inline-code"><span class="hljs-attribute">props</span></code>，包括名字和类型，默认值等等。</p>
@@ -299,15 +299,15 @@
 </li><li>    @change="pageChange"&gt;
 </li><li>&lt;/Pagination&gt;
 </li></ul></code></pre>
-<h3 id="子组件传值给父组件" style="display: inline-block;">子组件传值给父组件</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="子组件传值给父组件">子组件传值给父组件</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>在子组件中通过调用<code class="z-inline-code"><span class="hljs-attribute">emit</span></code>函数来触发父组件的回调函数，例如以下代码触发了父组件的<code class="z-inline-code"><span class="hljs-built_in">change</span></code>函数，也就是<code class="z-inline-code"><span class="hljs-meta">@change</span></code>所指定的函数。</p>
 <pre><code class="hljs language-js"><ul><li><span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">"change"</span>, para);
 </li></ul></code></pre>
-<h2 id="路由" style="display: inline-block;">路由</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="路由">路由</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>首先安装<code class="z-inline-code"><span class="hljs-attribute">vue-router</span></code>，在<code class="z-inline-code"><span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.js</span></code>同级文件夹里创建<code class="z-inline-code">routes<span class="hljs-number">.</span><span class="hljs-keyword">js</span></code>，格式如下</p>
@@ -344,8 +344,8 @@
 </li><li>}).$mount(<span class="hljs-string">'#app'</span>)
 </li></ul></code></pre>
 <p>路由中复杂的参数以及其他配置具体参照文档。</p>
-<h2 id="获取数据" style="display: inline-block;">获取数据</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="获取数据">获取数据</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>通常使用<code class="z-inline-code"><span class="hljs-attribute">axios</span></code>来获取数据，在本项目中，用将<code class="z-inline-code"><span class="hljs-built_in">md</span></code>文件生成<code class="z-inline-code"><span class="hljs-attribute">json</span></code>文件的方法实现一个“伪后端”，将文件放到<code class="z-inline-code"><span class="hljs-keyword">public</span></code>文件夹下，<code class="z-inline-code"><span class="hljs-attribute">axios</span></code>也同样可以获取到。</p>
@@ -356,14 +356,14 @@
 <p>注意<code class="z-inline-code"><span class="hljs-attribute">axios</span></code>的使用还需要在<code class="z-inline-code"><span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.js</span></code>中将<code class="z-inline-code"><span class="hljs-attribute">axios</span></code>绑定到<code class="z-inline-code"><span class="hljs-attribute">Vue</span></code>原型上。</p>
 <pre><code class="hljs language-js"><ul><li>Vue.prototype.$axios = axios
 </li></ul></code></pre>
-<h2 id="其他" style="display: inline-block;">其他</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="其他">其他</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>博客里用到了<code class="z-inline-code"><span class="hljs-keyword">pure</span>.css</code>样式库，用法很简单，先<code class="z-inline-code"><span class="hljs-built_in">npm</span></code>安装，然后在<code class="z-inline-code"><span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.js</span></code>里<code class="z-inline-code"><span class="hljs-keyword">import</span> Purecss <span class="hljs-keyword">from</span> <span class="hljs-string">'purecss'</span></code>导入，再用<code class="z-inline-code"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Vue</span>.</span></span>use(Purecss) </code>就能用上这个样式库，其他插件/组件库/样式库等也基本同理，看对应文档即可。</p>
 <p>博客除了<code class="z-inline-code"><span class="hljs-keyword">pure</span>.css</code>，还用到了<code class="z-inline-code"><span class="hljs-built_in">normalize</span>.css</code>，<code class="z-inline-code">awesome-<span class="hljs-attribute">icon</span></code>，<code class="z-inline-code"><span class="hljs-attribute">mavon-editor</span></code>等。</p>
-<h2 id="运行" style="display: inline-block;">运行</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="运行">运行</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>在项目目录下先<code class="z-inline-code">npm <span class="hljs-keyword">install</span></code>安装依赖包，然后<code class="z-inline-code">npm <span class="hljs-builtin-name">run</span> serve</code>可以在本地跑起来，<code class="z-inline-code">npm <span class="hljs-builtin-name">run</span> build</code>可以打包成静态文件放服务器上。</p>

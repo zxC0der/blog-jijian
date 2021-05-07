@@ -227,14 +227,14 @@
     <div><blockquote>
 <p>用最简单的方式介绍dotnet中我所用到的一小小小部分，更多具体信息需要查看官方文档。</p>
 </blockquote>
-<h2 id="Solution和Project" style="display: inline-block;">Solution和Project</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Solution和Project">Solution和Project</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>一个Solution可以包括多个Project，比如在我的项目中，为了方便(<del>其实是电脑打开两个IDE太卡</del>)，把MongoDB-PBAC-Server/Client/Common三个Project放在同一个Solution里，其中sln文件就是Solution的相关配置文件，csproj文件就是Project的配置文件。</p>
 <p>在这里，我的Project分为两种，*-Common是一个Class Library(类库)，可以打包成NuGet包，另外两个是Console Application(控制台应用)，可以引入NuGet包，直接运行或者打包成可执行文件。</p>
-<h2 id="打包" style="display: inline-block;">打包</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="打包">打包</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><code class="z-inline-code"><span class="hljs-attribute">dotnet build</span></code>命令会将项目及其依赖包生成为一大堆二进制文件(.dll，.pdb等)。</p>
@@ -242,14 +242,14 @@
 <p>也可以在csproj文件中指定<code class="z-inline-code"><span class="hljs-tag">&lt;<span class="hljs-name">GeneratePackageOnBuild</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">GeneratePackageOnBuild</span>&gt;</span></code>，这样子在<code class="z-inline-code"><span class="hljs-attribute">build</span></code>的时候会自动<code class="z-inline-code"><span class="hljs-attribute">pack</span></code>。</p>
 <p>默认情况下会在<code class="z-inline-code">**<span class="hljs-regexp">/bin/</span>Debug/</code>下生成一个.nupkg文件，更多选项可以参考文档。</p>
 <p>得到的NuGet包可以放到某个文件夹里，然后在本地的NuGet配置文件(<code class="z-inline-code">~<span class="hljs-regexp">/.nuget/</span>NuGet/NuGet.Config</code>)中指定路径，相当于添加本地源，这样子就可以通过<code class="z-inline-code">dotnet <span class="hljs-keyword">add</span></code>或者直接在IDE中安装NuGet包，对应的在csproj文件中就会有响应的<code class="z-inline-code">&lt;PackageReference <span class="hljs-attribute">Include</span>=<span class="hljs-string">""</span> <span class="hljs-attribute">Version</span>=<span class="hljs-string">""</span>/&gt;</code>。</p>
-<h2 id="发布" style="display: inline-block;">发布</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="发布">发布</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><code class="z-inline-code">dotnet publish -r linux-x64 -p:<span class="hljs-attribute">PublishSingleFile</span>=<span class="hljs-literal">true</span> -p:<span class="hljs-attribute">PublishTrimmed</span>=<span class="hljs-literal">true</span></code>，该命令默认会在<code class="z-inline-code">**<span class="hljs-regexp">/bin/</span>Debug<span class="hljs-regexp">/net5.0/</span>linux-x64/publish</code>下生成一个可执行文件。</p>
 <p>其中<code class="z-inline-code"><span class="hljs-deletion">-r</span></code>后面接linux-x64是指定运行时(runtime)，而<code class="z-inline-code"><span class="hljs-attr">PublishSingleFile</span>=<span class="hljs-literal">true</span></code>和<code class="z-inline-code"><span class="hljs-attr">PublishTrimmed</span>=<span class="hljs-literal">true</span></code>分别表示生成单个可执行文件以及对生成的文件进行裁剪，减小文件大小。</p>
-<h2 id="build和publish" style="display: inline-block;">build和publish</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="build和publish">build和publish</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>简单来说，<code class="z-inline-code"><span class="hljs-attribute">build</span></code>不会把第三方的依赖包打包进入，所以<code class="z-inline-code"><span class="hljs-attribute">build</span></code>之后的可执行文件可以在本机运行，在运行时依赖本地的依赖包，而<code class="z-inline-code"><span class="hljs-attribute">publish</span></code>是专门用于发布的，所以会将所有依赖包打包进入，可以直接移植到其他机器运行。</p>

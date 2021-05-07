@@ -233,8 +233,8 @@
 <blockquote>
 <p>这是一篇2015年发布的文章，对关系型数据库的整个工作流程介绍得比较清楚。</p>
 </blockquote>
-<h2 id="Preface" style="display: inline-block;">Preface</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Preface">Preface</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>When it comes to relational databases, I can’t help thinking that something is missing. They’re used everywhere. There are many different databases: from the small and useful SQLite to the powerful Teradata. But, there are only a few articles that explain how a database works. You can google by yourself “how does a relational database work” to see how few results there are. Moreover, those articles are short.  Now, if you look for the last trendy technologies (Big Data, NoSQL or JavaScript), you’ll find more in-depth articles explaining how they work.</p>
@@ -249,14 +249,14 @@
 <li>An overview of the query optimization process</li>
 <li>An overview of the transaction and buffer pool management</li>
 </ul>
-<h2 id="Back to basics" style="display: inline-block;">Back to basics</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Back to basics">Back to basics</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>A long time ago (in a galaxy far, far away….), developers had to know exactly the number of operations they were coding. They knew by heart their algorithms and data structures because they couldn’t afford to waste the CPU and memory of their slow computers.</p>
 <p>In this part, I’ll remind you about some of these concepts because they are essential to understand a database. I’ll also introduce the notion of <strong>database index</strong>.</p>
-<h3 id="O(1) vs O(<eq><span class=&quot;katex&quot;><span class=&quot;katex-mathml&quot;><math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding=&quot;application/x-tex&quot;>n^2</annotation></semantics></math></span><span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;><span class=&quot;base&quot;><span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;></span><span class=&quot;mord&quot;><span class=&quot;mord mathnormal&quot;>n</span><span class=&quot;msupsub&quot;><span class=&quot;vlist-t&quot;><span class=&quot;vlist-r&quot;><span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;><span style=&quot;top:-3.063em;margin-right:0.05em;&quot;><span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;></span><span class=&quot;sizing reset-size6 size3 mtight&quot;><span class=&quot;mord mtight&quot;>2</span></span></span></span></span></span></span></span></span></span></span></eq>)" style="display: inline-block;">O(1) vs O(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>)</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="O(1) vs O(<eq><span class=&quot;katex&quot;><span class=&quot;katex-mathml&quot;><math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding=&quot;application/x-tex&quot;>n^2</annotation></semantics></math></span><span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;><span class=&quot;base&quot;><span class=&quot;strut&quot; style=&quot;height:0.8141079999999999em;vertical-align:0em;&quot;></span><span class=&quot;mord&quot;><span class=&quot;mord mathnormal&quot;>n</span><span class=&quot;msupsub&quot;><span class=&quot;vlist-t&quot;><span class=&quot;vlist-r&quot;><span class=&quot;vlist&quot; style=&quot;height:0.8141079999999999em;&quot;><span style=&quot;top:-3.063em;margin-right:0.05em;&quot;><span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;></span><span class=&quot;sizing reset-size6 size3 mtight&quot;><span class=&quot;mord mtight&quot;>2</span></span></span></span></span></span></span></span></span></span></span></eq>)">O(1) vs O(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq>)</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Nowadays, many developers don’t care about time complexity … and they’re right!</p>
@@ -322,8 +322,8 @@
 <li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">n^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></eq>: if you end-up with this complexity, you should ask yourself if IT is really your field…</li>
 </ul>
 <p>Note: I didn’t give you the real definition of the big O notation but just the idea. You can read this article on <a href="https://en.wikipedia.org/wiki/Big_O_notation">Wikipedia</a> for the real (asymptotic) definition.</p>
-<h3 id="Merge Sort" style="display: inline-block;">Merge Sort</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Merge Sort">Merge Sort</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>What do you do when you need to sort a collection? What? You call the sort() function …  ok, good answer… But for a database you have to understand how this sort() function works.</p>
@@ -404,8 +404,8 @@
 <p>For example, the distributed merge sort is one of the key components of <a href="https://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapreduce/Reducer.html">Hadoop</a> (which is THE framework in Big Data).</p>
 <p>T- his algorithm can turn lead into gold (true fact!).</p>
 <p>This sorting algorithm is used in most (if not all) databases but it’s not the only one. If you want to know more, you can read this <a href="http://wwwlgis.informatik.uni-kl.de/archiv/wwwdvs.informatik.uni-kl.de/courses/DBSREAL/SS2005/Vorlesungsunterlagen/Implementing_Sorting.pdf">research paper</a> that discusses the pros and cons of the common sorting algorithms in a database.</p>
-<h3 id="Array, Tree and Hash table" style="display: inline-block;">Array, Tree and Hash table</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Array, Tree and Hash table">Array, Tree and Hash table</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Now that we understand the idea behind time complexity and sorting, I have to tell you about 3 data structures. It’s important because they’re <strong>the backbone of modern databases</strong>. I’ll also introduce the notion of <strong>database index</strong>.</p>
@@ -530,8 +530,8 @@
 <li>With a hash table you can choose the key you want (for example the country AND the last name of a person).</li>
 </ul>
 <p>For more information, you can read my article on the <a href="http://coding-geek.com/how-does-a-hashmap-work-in-java/">Java HashMap</a> which is an efficient hash table implementation; you don’t need to understand Java to understand the concepts inside this article.</p>
-<h2 id="Global overview" style="display: inline-block;">Global overview</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Global overview">Global overview</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>We’ve just seen the basic components inside a database. We now need to step back to see the big picture.</p>
@@ -580,8 +580,8 @@
 <li>the query manager</li>
 <li>the data manager (I’ll also include the recovery manager in this part)</li>
 </ul>
-<h2 id="Client manager" style="display: inline-block;">Client manager</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Client manager">Client manager</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><img src="https://i.loli.net/2020/12/09/gibURf7QSyF5ZWp.png" alt="image.png"></p>
@@ -597,8 +597,8 @@
 <li>Since the query processing is not an “all or nothing” thing, as soon as it gets data from the query manager, it <strong>stores the partial results in a buffer and start sending</strong> them to you.</li>
 <li>In case of problem, it stops the connection, gives you a <strong>readable explanation</strong> and releases the resources.</li>
 </ul>
-<h2 id="Query manager" style="display: inline-block;">Query manager</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Query manager">Query manager</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><img src="https://i.loli.net/2020/12/09/vY4P3QwCyxoF57z.png" alt="image.png"></p>
@@ -622,8 +622,8 @@
 <li>2 theoretical courses on query optimization from the authors of the book “DATABASE SYSTEM CONCEPTS” <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch12.ppt">here</a> and <a href="http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/PPT-dir/ch13.ppt">here</a>. A good read that focuses on disk I/O cost but a good level in CS is required.</li>
 <li>Another <a href="https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/teaching/archive/sose05/dbs2/slides/09_joins.pdf">theoretical course</a> that I find more accessible but that only focuses on join operators and disk I/O.</li>
 </ul>
-<h3 id="Query parser" style="display: inline-block;">Query parser</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Query parser">Query parser</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Each SQL statement is sent to the parser where it is checked for correct syntax. If you made a mistake in your query the parser will reject the query. For example, if you wrote “SLECT …” instead of “SELECT …”,  the story ends here.</p>
@@ -637,8 +637,8 @@
 <p>Then it checks if you have the <strong>authorizations</strong> to read (or write) the tables in the query. Again, these access rights on tables are set by your DBA.</p>
 <p>During this parsing, the SQL query is transformed into an internal representation (often a tree)</p>
 <p>If everything is ok then the internal representation is sent to the query rewriter.</p>
-<h3 id="Query rewriter" style="display: inline-block;">Query rewriter</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Query rewriter">Query rewriter</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>At this step, we have an internal representation of a query. The aim of the rewriter is:</p>
@@ -676,8 +676,8 @@
 <li><strong>(Advanced) Olap transformations</strong>: analytical/windowing functions, star joins, rollup … are also transformed (but I’m not sure if it’s done by the rewriter or the optimizer, since both processes are very close it must depends on the database).</li>
 </ul>
 <p>This rewritten query is then sent to the query optimizer where the fun begins!</p>
-<h3 id="Statistics" style="display: inline-block;">Statistics</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Statistics">Statistics</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Before we see how a database optimizes a query we need to speak about <strong>statistics</strong> because <strong>without them a database is stupid</strong>. If you don’t tell the database to analyze its own data, it will not do it and it will make (very) bad assumptions.</p>
@@ -712,8 +712,8 @@
 <p>The <strong>statistics have to be up to date</strong>. There is nothing worse than a database thinking a table has only 500 rows whereas it has 1 000 000 rows. The only drawback of the statistics is that <strong>it takes time to compute them</strong>. This is why they’re not automatically computed by default in most databases. It becomes difficult with millions of data to compute them. In this case, you can choose to compute only the basics statistics or to compute the stats on a sample of the database.</p>
 <p>For example, when I was working on a project dealing with hundreds of millions rows in each tables, I chose to compute the statistics on only 10%, which led to a huge gain in time. For the story it turned out to be a bad decision because occasionally the 10% chosen by Oracle 10G for a specific column of a specific table were very different from the overall 100% (which is very unlikely to happen for a table with 100M rows). This wrong statistic led to a query taking occasionally 8 hours instead of 30 seconds; a nightmare to find the root cause. This example shows how important the statistics are.</p>
 <p>Note: Of course, there are more advanced statistics specific for each database. If you want to know more, read the documentations of the databases. That being said, I’ve tried to understand how the statistics are used and the best official documentation I found was the <a href="https://www.postgresql.org/docs/9.4/static/row-estimation-examples.html">one from PostgreSQL</a>.</p>
-<h3 id="Query optimizer" style="display: inline-block;">Query optimizer</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Query optimizer">Query optimizer</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><img src="https://i.loli.net/2020/12/09/lC8BeAgt7Uv5MsD.png" alt="image.png"></p>
@@ -1201,13 +1201,13 @@ Using the database statistics, I <strong>compute the cost for every possible pla
 <p>The others conditions (GROUP BY, DISTINCT…) are handled by simple rules.</p>
 <h4>Query Plan Cache</h4>
 <p>Since the creation of a plan takes time, most databases store the plan into a <strong>query plan cache</strong> to avoid useless re-computations of the same query plan. It’s kind of a big topic since the database needs to know when to update the outdated plans. The idea is to put a threshold and if the statistics of a table have changed above this threshold then the query plan involving this table is purged from the cache.</p>
-<h3 id="Query executor" style="display: inline-block;">Query executor</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Query executor">Query executor</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>At this stage we have an optimized execution plan. This plan is compiled to become an executable code. Then, if there are enough resources (memory, CPU) it is executed by the query executor. The operators in the plan (JOIN, SORT BY …) can be executed in a sequential or parallel way; it’s up to the executor. To get and write its data, the query executor interacts with the data manager, which is the next part of the article.</p>
-<h2 id="Data manager" style="display: inline-block;">Data manager</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="Data manager">Data manager</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p><img src="https://i.loli.net/2020/12/13/Luyz183RltwWqUe.png" alt="image.png"></p>
@@ -1217,8 +1217,8 @@ Using the database statistics, I <strong>compute the cost for every possible pla
 <li><strong>Data retrieval is the slowest operation in a database</strong>, therefore the data manager needs to be smart enough to get and keep data in memory buffers.</li>
 </ul>
 <p>In this part, we’ll see how relational databases handle these 2 problems. I won’t talk about the way the data manager gets its data because it’s not the most important (and this article is long enough!).</p>
-<h3 id="Cache manager" style="display: inline-block;">Cache manager</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Cache manager">Cache manager</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>As I already said, the main bottleneck of databases is disk I/O. To improve performance, modern databases use a cache manager.</p>
@@ -1295,8 +1295,8 @@ This algorithm works well but there are some limitations. What if there is a ful
 <h4>Write buffer</h4>
 <p>I only talked about read buffers that load data before using them. But in a database you also have write buffers that store data and flush them on disk by bunches instead of writing data one by one and producing many single disk accesses.</p>
 <p>Keep in mind that buffers store <strong>pages</strong> (the smallest unit of data) and not rows (which is a logical/human way to see data). A page in a buffer pool is <strong>dirty</strong> if the page has been modified and not written on disk. There are multiple algorithms to decide the best time to write the dirty pages on disk but it’s highly linked to the notion of transaction, which is the next part of the article.</p>
-<h3 id="Transaction manager" style="display: inline-block;">Transaction manager</h3>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h3 id="Transaction manager">Transaction manager</h3>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Last but not least, this part is about the transaction manager. We’ll see how this process ensures that each query is executed in its own transaction. But before that, we need to understand the concept of ACID transactions.</p>
@@ -1525,8 +1525,8 @@ This algorithm works well but there are some limitations. What if there is a ful
 <p>To give you a better idea, here is a visual and simplified example of the log records produced by the query “UPDATE FROM PERSON SET AGE = 18;”. Let’s say this query is executed in transaction 18.</p>
 <p><img src="https://i.loli.net/2020/12/14/56SwLnH2gGyeztU.png" alt="image.png"></p>
 <p>Each log has a unique LSN. The logs that are linked belong to the same transaction. The logs are linked in a chronological order (the last log of the linked list is the log of the last operation).</p>
-<h2 id="To conclude" style="display: inline-block;">To conclude</h2>
-<a style="display: inline-block;" href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+<h2 id="To conclude">To conclude</h2>
+<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
 </svg></a><p>Before writing this article, I knew how big the subject was and I knew it would take time to write an in-depth article about it. It turned out that I was very optimistic and I spent twice more time than expected, but I learned a lot.</p>
