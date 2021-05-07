@@ -226,17 +226,11 @@
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#问题描述">问题描述</a></li><li><a href="#问题解决">问题解决</a></li></ul></div>
     <div><h2 id="问题描述">问题描述</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>这几天，在OJ的开发过程中，被一个奇怪的BUG折腾了整整两天，特此记录下来。</p>
+<p>这几天，在OJ的开发过程中，被一个奇怪的BUG折腾了整整两天，特此记录下来。</p>
 <p>问题是这样的，因为项目是用C#写的，在项目中，是用Process类来执行bash命令的，大概就是先执行编译命令，生成可执行文件，然后再执行运行命令。</p>
 <p>但是发现编译执行后，一直没有可执行文件的存在，而把同样的命令复制到容器里手动执行又是正常的。</p>
 <h2 id="问题解决">问题解决</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>考虑了权限，docker，WSL等的问题，都解决不了。最后通过"注释debug法"，"二分debug法"，终于定位到出错的代码位置。</p>
+<p>考虑了权限，docker，WSL等的问题，都解决不了。最后通过"注释debug法"，"二分debug法"，终于定位到出错的代码位置。</p>
 <pre><code class="hljs language-c#"><ul><li><span class="hljs-comment">// 对</span>
 </li><li><span class="hljs-keyword">using</span>(<span class="hljs-keyword">var</span> sw = <span class="hljs-keyword">new</span> StreamWriter(compileScript)) {
 </li><li>	sw.Write(_submission.Cmd);
@@ -299,6 +293,13 @@
         <path fill="none" d="M0 0h24v24H0z"></path>
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
+</a>
+<a href="#headingTOC">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+    </svg>
+    TOC
 </a>
 <script>
     // window.onload 等dom加载完

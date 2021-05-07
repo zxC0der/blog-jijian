@@ -227,15 +227,9 @@
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#基础概念">基础概念</a></li><li><a href="#Search">Search</a></li><li><a href="#Insert">Insert</a></li><li><a href="#Delete">Delete</a></li></ul></div>
     <div><h2 id="基础概念">基础概念</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
+<p>B+树是一种多叉的平衡树，特点是数据都存储在叶子节点，且所有叶子节点通过一个双向链表连起来，而中间节点通过x个key分割x+1个子节点，每个子节点的所有值都大于等于左边的key，小于右边的key。对于一个m阶(order)的B+树，中间节点最多可以存储m-1个key，最少存储(m+1)/2-1个，叶子节点最多可以存储m-1个数据key-value对，最少存储(m+1)/2-1个。</p>
 <h2 id="Search">Search</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code class="z-inline-code"><span class="hljs-attribute">searchInInternalNode</span></code>函数来判断要往哪个儿子节点走。</p>
+<p>查找是最简单的操作，从根节点往下递归直到叶子节点，通过中间节点的<code class="z-inline-code"><span class="hljs-attribute">searchInInternalNode</span></code>函数来判断要往哪个儿子节点走。</p>
 <pre><code class="hljs language-java"><ul><li><span class="hljs-function"><span class="hljs-keyword">public</span> Tuple <span class="hljs-title">search</span><span class="hljs-params">(Tuple key)</span></span>{                       
 </li><li>    Node curNode=root;                                
 </li><li>    <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>){                                      
@@ -248,10 +242,7 @@
 </li><li>}                                                     
 </li></ul></code></pre>
 <h2 id="Insert">Insert</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>插入操作的第一步类似查找，从根节点往下找到叶子节点，然后插入到叶子节点，如果该叶子节点size超过了，就应该进行第二步的分裂，<code class="z-inline-code"><span class="hljs-function"><span class="hljs-title">splitLeafNode</span><span class="hljs-params">(tree)</span></span></code>。</p>
+<p>插入操作的第一步类似查找，从根节点往下找到叶子节点，然后插入到叶子节点，如果该叶子节点size超过了，就应该进行第二步的分裂，<code class="z-inline-code"><span class="hljs-function"><span class="hljs-title">splitLeafNode</span><span class="hljs-params">(tree)</span></span></code>。</p>
 <pre><code class="hljs language-java"><ul><li><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">insert</span><span class="hljs-params">(Tuple key,Tuple value)</span></span>{
 </li><li>    <span class="hljs-keyword">if</span>(search(key)!=<span class="hljs-keyword">null</span>){
 </li><li>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
@@ -354,10 +345,7 @@
 </li><li>}                                                                     
 </li></ul></code></pre>
 <h2 id="Delete">Delete</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>删除操作细节比较多，整体框架也类似插入，递归找到叶子节点并删除对应key-value对，然后如果size不足，考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，然后合并后父节点会少一个key，如果size不足，就需要继续进行下一步的操作，同时还要处理类似删除最后一个节点，删除第一个key-value对后必须修改祖先节点的key等细节。</p>
+<p>删除操作细节比较多，整体框架也类似插入，递归找到叶子节点并删除对应key-value对，然后如果size不足，考虑三种情况，从前驱结点借，从后继节点借，或者合并前驱或后继节点，然后合并后父节点会少一个key，如果size不足，就需要继续进行下一步的操作，同时还要处理类似删除最后一个节点，删除第一个key-value对后必须修改祖先节点的key等细节。</p>
 <pre><code class="hljs language-java"><ul><li><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">delete</span><span class="hljs-params">(Tuple key,Tuple value)</span></span>{
 </li><li>    <span class="hljs-keyword">if</span>(search(key)==<span class="hljs-keyword">null</span>){
 </li><li>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
@@ -579,6 +567,13 @@
         <path fill="none" d="M0 0h24v24H0z"></path>
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
+</a>
+<a href="#headingTOC">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+    </svg>
+    TOC
 </a>
 <script>
     // window.onload 等dom加载完

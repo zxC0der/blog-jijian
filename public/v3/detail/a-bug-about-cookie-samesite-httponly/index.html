@@ -228,10 +228,7 @@
     </div>
     <div id="TableOfContents" style="display: none;"><ul><li><a href="#心路历程">心路历程</a></li></ul></div>
     <div><h2 id="心路历程">心路历程</h2>
-<a href="#headingTOC"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
-  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
-</svg></a><p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
+<p>将毕设项目切换到WSL前端一直跑不起来，很奇怪，纠结了两天，一直以为是WSL的问题，今天终于解决，其实不是WSL的问题(巨硬对不起...)，而是我脑子的问题。</p>
 <p>首先，后端在Response设置Cookie的时候，如果不加选项，前端在登陆时，Chrome会提示无法设置cookie，<code class="z-inline-code"><span class="hljs-string">This</span> <span class="hljs-built_in">set-cookie</span> <span class="hljs-string">didn</span><span class="hljs-string">'t specify a "SameSite" attribute and was defaulted to "SameSite=Lax" and broke the same rules specified in the SameSiteLax value</span></code>，提示需要给set-cookie设置SameSite属性，这个属性是干啥的这里不深入...总之就是为了安全考虑的，避免啥啥啥的跨域攻击，但是为了方便，在这里我们直接将该属性设置为<code class="z-inline-code"><span class="hljs-attribute">None</span></code>，然后再试，Chrome会提示，如果设置了None，就还必须设置<code class="z-inline-code"><span class="hljs-attribute">Secure</span></code>属性，让Cookie只能通过HTTPS发送。</p>
 <p>参考<a href="https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0">官方文档</a>，最终我们后端设置Cookie的时候应该是</p>
 <pre><code class="hljs language-csharp"><ul><li><span class="hljs-keyword">var</span> cookieOptions = <span class="hljs-keyword">new</span> CookieOptions {
@@ -269,6 +266,13 @@
         <path fill="none" d="M0 0h24v24H0z"></path>
         <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"></path>
     </svg>
+</a>
+<a href="#headingTOC">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
+    </svg>
+    TOC
 </a>
 <script>
     // window.onload 等dom加载完
