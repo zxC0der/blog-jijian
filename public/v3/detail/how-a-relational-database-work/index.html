@@ -1591,7 +1591,9 @@ This algorithm works well but there are some limitations. What if there is a ful
         });
         scroller.addEventListener('click', () => {
             window.scrollTo({
-                top: 0, left: 0, behavior: 'smooth',
+                top: 0, left: 0, 
+                // behavior: 'smooth',
+                behavior: 'instant',
             });
         });
     }
