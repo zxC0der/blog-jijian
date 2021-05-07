@@ -39,6 +39,7 @@ that means
 
 ## look up
 
+
 ### a very literal meaning
 
 raise your eyes, direct your eyes upward.
@@ -54,6 +55,7 @@ raise your eyes, direct your eyes upward.
 - look up hotel recommendations online 
 
 ## figure out
+
 
 ### understand and determine
 
