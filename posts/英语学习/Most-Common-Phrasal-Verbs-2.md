@@ -1,77 +1,71 @@
 ---
+draft: true
 permalink: most-common-phrasal-verbs-2
 tags: 
   - English
   - YouTube
-math: true
-category: 英语学习
-title: Most-Common-Phrasal-Verbs-2
-date: 2021-05-08 08:55:56 +0800
 ---
 
 > Some notes of [this video](https://www.youtube.com/watch?v=pRpy23MU2sk&list=PLfQSN9FlyB6RLl4YN06-nxW7-aCLSKL2y&index=6) from youtube.
 
-## get back
+## give up
 
-means "return"
+means "quit"
 
-### as an intransitive(不及物) verb
+### intransitive
 
-- get back home
-- get back late
-- get back on time
+- A good athlete never **give up** halfway through a game or a match.
 
-### with a preposition(介词)
+### transitive, give up on (someone)
 
-- get back from my trip
-- get back to my hometown
-- get back to my roots
-- get back to the basics
-- get back to normal
+In the context of our interaction with a person.
+
+give up on (someone): stop making the effort to guide them toward imporvement; lose hope or faith in someone.
+
+- A teacher should never **give up on** a student.
+- A captain shouldn't **give up on** his or her teammates.
+
+### seperable, give up (something)
+
+- **give up** smoking
+- **give** it **up**
 
 ### others
 
-> I'll get back you later.
+"give up" can simply mean to stop doing or using something
 
-that means
- 
-> I'll return to this topic or this question later when I have new information or when I have the answer.
+### Question 1
 
-## look up
+Are there things that you chose to give up or had to give over the years?
 
-### a very literal meaning
+## make up
 
-raise your eyes, direct your eyes upward.
+### transitive, seperable
 
-### look up to someone == admire, respect
+means "create" or "invent"
 
-### get information
+- make up lies
+- make up a game
+- make up a story
+- make it up
 
-- look up a new word
-- look it up
-- look everything up online
-- look up the idiom in the dictionary
-- look up hotel recommendations online 
+### make up for(弥补，补偿)
 
-## figure out
+To compensate for something lost or something not done.
 
-### understand and determine
+- make up for lost time
+- make up for past mistake
 
-It takes time to **understand** different strategies you can use, and you'll learn to **determine** which strategies work for you.
+### others
 
-It's transitive and separable(eg. **figure** it **out**)
+means "form" or "compose"
 
-- figure out the way
-- figure it out
+- You need nine players to **make up** a baseball team.
 
-The object(宾语) of the phrasal verb can be a noun or a pronoud(代词).
+"make up one's mind" means "decide (form a decision) "
 
-### understand a person's character or behavior
+- She needs at least ten minutes to **make up her mind**.
 
-- Have you figured out why you are the way you are?
+### Question 2
 
-## Questions
-
-- What is the first thing you do when you get back home from a trip?
-- Was there any adults in particular that you looked up to in your childhood or adolesence?
-- Have you figured out why we forget some of our craziest dreams after we wake up?
+In a work setting(工作环境), do you think a great personality makes up for weak skills?
