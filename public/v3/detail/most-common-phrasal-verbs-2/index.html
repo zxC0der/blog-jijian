@@ -214,40 +214,79 @@
     }
 </style>
 <div class="post">
-    <h1>CSharp语言集成查询(LINQ)</h1>
+    <h1>Most-Common-Phrasal-Verbs-2</h1>
     <div>
-        <span>2021-01-08</span>
-        <span><a href="https://www.zxcoder.top/category/技术学习">技术学习</a></span>
-        <span><a href="https://www.zxcoder.top/tags/CSharp">#CSharp</a></span>
-        <span><a href="https://www.zxcoder.top/tags/LINQ">#LINQ</a></span>
+        <span>2021-05-08</span>
+        <span><a href="https://www.zxcoder.top/category/英语学习">英语学习</a></span>
+        <span><a href="https://www.zxcoder.top/tags/English">#English</a></span>
+        <span><a href="https://www.zxcoder.top/tags/YouTube">#YouTube</a></span>
     </div>
     <div id="headingTOC" style="margin-top: 20px;">
         <a href="javascript:void(0);">TOC</a>
     </div>
-    <div id="TableOfContents" style="display: none;"><ul><li><a href="#概述">概述</a></li></ul></div>
-    <div><h2 id="概述">概述</h2>
-<p>LINQ(Language Integrated Query，语言集成查询)，是C#的一个统一查询工具，可以用相同的基本查询表达式来支持不同的数据源，比如数据库，XML文档，内存对象等，LINQ查询返回的。</p>
-<p>例子：</p>
-<pre><code class="hljs language-c#"><ul><li><span class="hljs-built_in">int</span>[] num = {<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">10</span>};
-</li><li><span class="hljs-keyword">var</span> lowNum = <span class="hljs-keyword">from</span> i <span class="hljs-keyword">in</span> num <span class="hljs-keyword">where</span> i &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">orderby</span> i <span class="hljs-keyword">descending</span> <span class="hljs-keyword">select</span> i;
-</li><li><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> x <span class="hljs-keyword">in</span> lowNum) {
-</li><li>    Console.WriteLine(x);
-</li><li>}
-</li></ul></code></pre>
-<p>每一个查询运算符(基本上)都有对应的一个<strong>拓展方法</strong>，因此上述的例子可以改写成</p>
-<pre><code class="hljs language-c#"><ul><li><span class="hljs-keyword">var</span> lowNum2 = num.Where(i =&gt; i &gt; <span class="hljs-number">5</span>).OrderByDescending(i =&gt; i);
-</li><li><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> x <span class="hljs-keyword">in</span> lowNum2) {
-</li><li>    Console.WriteLine(x);
-</li><li>}
-</li></ul></code></pre>
-<p>LINQ查询返回的基本都是<code class="z-inline-code">IEnumerable<span class="hljs-attribute">&lt;\T&gt;</span></code>或其派生接口，仅创建查询变量不会检索到任何数据，默认是延迟执行。</p>
-<p>对于<code class="z-inline-code"><span class="hljs-built_in">Count</span></code>、<code class="z-inline-code"><span class="hljs-built_in">Max</span></code>、<code class="z-inline-code"><span class="hljs-built_in">Average</span></code>和<code class="z-inline-code"><span class="hljs-built_in">First</span></code>等此查询，默认强制立即执行，返回单个值，<code class="z-inline-code"><span class="hljs-attribute">ToList</span></code>和<code class="z-inline-code"><span class="hljs-attribute">ToArray</span></code>方法也可以强制立即执行查询并缓存结果。</p>
-<p><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/linq/media/introduction-to-linq-queries/linq-query-complete-operation.png" alt="LINQ查询示意图"></p>
-<p>除了上面的简单查询的例子，LINQ支持分组，连接，子查询等复杂操作，详见文档。</p>
+    <div id="TableOfContents" style="display: none;"><ul><li><a href="#get back">get back</a><ul><li><a href="#as an intransitive(不及物) verb">as an intransitive(不及物) verb</a></li><li><a href="#with a preposition(介词)">with a preposition(介词)</a></li><li><a href="#others">others</a></li></ul></li><li><a href="#look up">look up</a><ul><li><a href="#a very literal meaning">a very literal meaning</a></li><li><a href="#look up to someone == admire, respect">look up to someone == admire, respect</a></li><li><a href="#get information">get information</a></li></ul></li><li><a href="#figure out">figure out</a><ul><li><a href="#understand and determine">understand and determine</a></li><li><a href="#understand a person's character or behavior">understand a person's character or behavior</a></li></ul></li><li><a href="#Questions">Questions</a></li></ul></div>
+    <div><blockquote>
+<p>Some notes of <a href="https://www.youtube.com/watch?v=pRpy23MU2sk&amp;list=PLfQSN9FlyB6RLl4YN06-nxW7-aCLSKL2y&amp;index=6">this video</a> from youtube.</p>
+</blockquote>
+<h2 id="get back">get back</h2>
+<p>means "return"</p>
+<h3 id="as an intransitive(不及物) verb">as an intransitive(不及物) verb</h3>
+<ul>
+<li>get back home</li>
+<li>get back late</li>
+<li>get back on time</li>
+</ul>
+<h3 id="with a preposition(介词)">with a preposition(介词)</h3>
+<ul>
+<li>get back from my trip</li>
+<li>get back to my hometown</li>
+<li>get back to my roots</li>
+<li>get back to the basics</li>
+<li>get back to normal</li>
+</ul>
+<h3 id="others">others</h3>
+<blockquote>
+<p>I'll get back you later.</p>
+</blockquote>
+<p>that means</p>
+<blockquote>
+<p>I'll return to this topic or this question later when I have new information or when I have the answer.</p>
+</blockquote>
+<h2 id="look up">look up</h2>
+<h3 id="a very literal meaning">a very literal meaning</h3>
+<p>raise your eyes, direct your eyes upward.</p>
+<h3 id="look up to someone == admire, respect">look up to someone == admire, respect</h3>
+<h3 id="get information">get information</h3>
+<ul>
+<li>look up a new word</li>
+<li>look it up</li>
+<li>look everything up online</li>
+<li>look up the idiom in the dictionary</li>
+<li>look up hotel recommendations online</li>
+</ul>
+<h2 id="figure out">figure out</h2>
+<h3 id="understand and determine">understand and determine</h3>
+<p>It takes time to <strong>understand</strong> different strategies you can use, and you'll learn to <strong>determine</strong> which strategies work for you.</p>
+<p>It's transitive and separable(eg. <strong>figure</strong> it <strong>out</strong>)</p>
+<ul>
+<li>figure out the way</li>
+<li>figure it out</li>
+</ul>
+<p>The object(宾语) of the phrasal verb can be a noun or a pronoud(代词).</p>
+<h3 id="understand a person's character or behavior">understand a person's character or behavior</h3>
+<ul>
+<li>Have you figured out why you are the way you are?</li>
+</ul>
+<h2 id="Questions">Questions</h2>
+<ul>
+<li>What is the first thing you do when you get back home from a trip?</li>
+<li>Was there any adults in particular that you looked up to in your childhood or adolesence?</li>
+<li>Have you figured out why we forget some of our craziest dreams after we wake up?</li>
+</ul>
 </div>
     <div style="color: gray;font-size: 14px;">
         <p>本站遵循 CC-BY-NC 4.0 协议</p>
-        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/csharp-linq-startup">https://www.zxcoder.top/detail/csharp-linq-startup</a></p>
+        <p>转载请注明原文地址: <a href="https://www.zxcoder.top/detail/most-common-phrasal-verbs-2">https://www.zxcoder.top/detail/most-common-phrasal-verbs-2</a></p>
     </div>
 </div>
 <script>
