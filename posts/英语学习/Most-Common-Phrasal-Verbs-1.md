@@ -13,25 +13,29 @@ date: 2021-05-06 21:35:31 +0800
 
 ## get back
 
-means "return"
+> return
 
-### as an intransitive(不及物) verb
+### 0x00 
 
-- get back home
-- get back late
-- get back on time
+as an intransitive(不及物) verb
 
-### with a preposition(介词)
+- **get back** home
+- **get back** late
+- **get back** on time
 
-- get back from my trip
-- get back to my hometown
-- get back to my roots
-- get back to the basics
-- get back to normal
+### 0x01
 
-### others
+with a preposition(介词)
 
-> I'll get back you later.
+- **get back** from my trip
+- **get back** to my hometown
+- **get back** to my roots
+- **get back** to the basics
+- **get back** to normal
+
+### 0x02
+
+> I'll **get back** you later.
 
 that means
  
@@ -39,39 +43,43 @@ that means
 
 ## look up
 
-### a very literal meaning
+### 0x00 
 
-raise your eyes, direct your eyes upward.
+> a very literal meaning: raise your eyes, direct your eyes upward.
 
-### look up to someone == admire, respect
+### 0x01
 
-### get information
+> look up to someone == admire, respect
 
-- look up a new word
-- look it up
-- look everything up online
-- look up the idiom in the dictionary
-- look up hotel recommendations online 
+### 0x02
+
+> get information
+
+- **look up** a new word
+- **look** it **up**
+- **look** everything **up** online
+- **look up** the idiom in the dictionary
+- **look up** hotel recommendations online 
 
 ## figure out
 
-### understand and determine
+### 0x00
 
-It takes time to **understand** different strategies you can use, and you'll learn to **determine** which strategies work for you.
+> understand and determine: It takes time to **understand** different strategies you can use, and you'll learn to **determine** which strategies work for you.
 
-It's transitive and separable(eg. **figure** it **out**)
-
-- figure out the way
-- figure it out
+- **figure out** the way
+- **figure** it **out**
 
 The object(宾语) of the phrasal verb can be a noun or a pronoud(代词).
 
-### understand a person's character or behavior
+### 0x01
 
-- Have you figured out why you are the way you are?
+> understand a person's character or behavior
+
+- Have you **figured out** why you are the way you are?
 
 ## Questions
 
-- What is the first thing you do when you get back home from a trip?
-- Was there any adults in particular that you looked up to in your childhood or adolesence?
-- Have you figured out why we forget some of our craziest dreams after we wake up?
+- What is the first thing you do when you **get back** home from a trip?
+- Was there any adults in particular that you **looked up** to in your childhood or adolesence?
+- Have you **figured out** why we forget some of our craziest dreams after we wake up?

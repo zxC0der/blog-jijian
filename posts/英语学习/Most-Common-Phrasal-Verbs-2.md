@@ -39,7 +39,7 @@ date: 2021-05-10 15:09:23 +0800
 
 ### Question 1
 
-Are there things that you chose to give up or had to give over the years?
+Are there things that you chose to **give up** or had to **give up** over the years?
 
 ## make up
 
@@ -47,17 +47,17 @@ Are there things that you chose to give up or had to give over the years?
 
 > create or invent
 
-- make up lies
-- make up a game
-- make up a story
-- make it up
+- **make up** lies
+- **make up** a game
+- **make up** a story
+- **make** it **up**
 
 ### 0x01
 
 > **make up for**: compensate for something lost or something not done.
 
-- make up for lost time
-- make up for past mistake
+- **make up for** lost time
+- **make up for** past mistake
 
 ### 0x02
 
@@ -73,7 +73,7 @@ Are there things that you chose to give up or had to give over the years?
 
 ### Question 2
 
-In a work setting(工作环境), do you think a great personality makes up for weak skills?
+In a work setting(工作环境), do you think a great personality **makes up for** weak skills?
 
 ## end up
 
@@ -91,4 +91,4 @@ In a work setting(工作环境), do you think a great personality makes up for w
 
 ### Question 3
 
-Has life ever taken you by surprise? What did you end up doing? Have things turned up well?
+Has life ever taken you by surprise? What did you **end up** doing? Have things turned up well?
